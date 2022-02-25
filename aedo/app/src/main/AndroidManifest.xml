@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.my_heaven">
+
+    <uses-sdk tools:overrideLibrary="com.google.zxing.client.android" />
+
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        tools:ignore="ScopedStorage" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_NUMBERS" />
+
+    <application
+        android:name=".util.base.MyApplication"
+        android:allowBackup="true"
+        android:hardwareAccelerated="false"
+        android:icon="@mipmap/ic_app_logo"
+        android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/network_config"
+        android:roundIcon="@mipmap/ic_app_logo_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.My_Heaven"
+        android:usesCleartextTraffic="false"
+        tools:targetApi="n">
+        <activity
+            android:name=".view.side.list.ListDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.notice.NoticeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.main.detail.center.CenterActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.main.detail.shop.ShopActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.main.detail.search.SearchActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.main.detail.modify.ModifyActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.main.detail.send.SendActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.main.detail.make.MakeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.side.setting.SettingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.side.FindActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.side.list.ListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.side.information.InforMationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.main.SideMenuActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.login.TermsReconsentActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.login.LoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.intro.SplashActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.intro.permission.PermissionActivity"
+            android:exported="false" />
+        <activity android:name=".view.main.MainActivity" />
+        <activity android:name=".util.base.BaseActivity" />
+        <activity
+            android:name=".util.activity.ActivityController"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <meta-data
+            android:name="com.naver.maps.map.CLIENT_ID"
+            android:value="@string/client_id" />
+    </application>
+
+</manifest>

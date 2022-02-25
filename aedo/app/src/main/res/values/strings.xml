@@ -1,0 +1,280 @@
+<resources>
+    <string name="app_name">애도</string>
+    <string name="client_id">wdi9z6cfek</string>
+    <string name="ok">확인</string>
+    <string name="cancel">취소</string>
+    <string name="update">업데이트</string>
+    <string name="exit">종료</string>
+    <string name="not_show_again">다시보지않기</string>
+
+    <string name="backpress_exit">\'뒤로\' 버튼을 한 번 더 누르시면 앱이 종료됩니다.</string>
+
+
+    <!-- 접근 권한 동의 -->
+    <string name="permission_title">앱 접근 권한 동의</string>
+    <string name="permission_camera">카메라</string>
+    <string name="permission_camera_desc">QR코드 스캔 및 반납 사진 촬영</string>
+    <string name="permission_location">위치정보</string>
+    <string name="permission_location_desc">위치기반 서비스 제공</string>
+    <string name="permission_storage">저장공간</string>
+    <string name="permission_storage_desc">첨부파일 저장</string>
+    <string name="permission_bluetooth">블루투스</string>
+    <string name="permission_bluetooth_desc">자전거 잠금장치 통신</string>
+    <string name="permission_alarm">알림</string>
+    <string name="permission_alarm_desc">공지 및 PUSH 알림</string>
+    <string name="permission_select">(선택)</string>
+    <string name="permission_necessary">(필수)</string>
+
+    <string name="permission_error_all_agree">권한동의를 하지 않으면 앱을 이용하실 수 없습니다.</string>
+    <string name="permission_error_all_agree_not_show">권한동의를 하지 않으면 앱을 이용하실 수 없습니다. \n[애플리케이션 설정] - [권한]에서 권한을 확인 해주세요.</string>
+
+    <string name="permission_push_title">마케팅정보(PUSH) 수신동의</string>
+    <string name="permission_push_agree">애도에서 제공하는 행사 및 이벤트, 할인 등의 정보와 다양한 혜택의 알림을 받으시겠습니까?</string>
+    <string name="permission_push_agree_sub">마케팅 정보 수신 동의는\n메뉴>설정에서 변경(동의/철회) 할 수 있습니다.</string>
+    <string name="permission_push_yes">동의</string>
+    <string name="permission_push_no">동의안함</string>
+    <string name="permission_push_sender">1. 전송자 : 애도</string>
+    <string name="permission_push_process_day">2. 처리일 :</string>
+    <string name="permission_push_process_result">3. 처리내용 :</string>
+    <string name="permission_push_process_agree">마케팅 정보 푸시 수신 동의</string>
+    <string name="permission_push_process_disagree">마케팅 정보 푸시 수신 거부</string>
+
+    <string name="error_network_connectivity">네트워크에 연결 할 수 없습니다.\n네트워크 연결상태를 확인해주세요.</string>
+    <string name="error_network">네트워크 에러가 발생했습니다.</string>
+    <string name="error_policy_data">정책정보를 불러오던 중 에러가 발생했습니다.</string>
+    <string name="error_policy_update_db">정책정보를 업데이트 하던중 에러가 발생했습니다.\n앱을 다시 실행해주세요.</string>
+    <string name="service_disable_error">서비스 점검중입니다.\n잠시 후에 다시 시도해 주세요.</string>
+    <string name="need_update_app">앱 업데이트가 필요합니다.\n업데이트를 진행해 주세요.</string>
+    <string name="auth_num_wrong_text">인증번호가 잘못되었습니다.</string>
+
+
+    <string name="warning_close_app">앱을 종료하시겠습니까?</string>
+    <string name="warning_rooting">안전한 앱 이용과 고객님의 정보보호를 위해 탈옥이나 루팅을 통한 비정상 단말은 지원되지 않습니다.</string>
+    <string name="warning_repackaging">정상적이지 않은 경로로 설치된 앱입니다.\n앱 제거 후 스토어에서 다시 다운로드 해주세요.</string>
+
+    <string name="login_authnum">인증번호</string>
+
+    <string name="login_desc1">휴대전화 번호를 입력해주세요.</string>
+    <string name="login_subtitle1">안녕하세요. 애도입니다.\n로그인을 위해 휴대전화 번호를 입력해주세요.</string>
+
+    <string name="login_desc2">인증번호를 입력해주세요.</string>
+    <string name="login_subtitle2">휴대전화로 전송된 6자리의\n인증번호를 입력해주세요.</string>
+
+    <string name="login_desc3">회원가입이 필요합니다.</string>
+    <string name="login_subtitle3">회원정보를 입력해주시고 약관 동의를 해주세요.</string>
+
+    <string name="login_title_phone_number">휴대전화 번호 입력</string>
+    <string name="login_title_phone_number_auth">휴대전화 번호</string>
+    <string name="login_hint_phone_number">\'-\' 없이 입력해주세요.</string>
+    <string name="login_hint_auth_number">인증번호를 입력해주세요</string>
+    <string name="login_btn_sms_send">인증번호 전송</string>
+    <string name="login_hint_birth">6자리 생년월일을 입력해주세요.</string>
+    <string name="login_hint_name">이름을 입력해 주세요.</string>
+
+    <string name="login_btn_phone_input_again">휴대전화 번호 재입력</string>
+    <string name="login_btn_auth_sms_request_again">인증코드 재전송</string>
+    <string name="login_confirm_auth_sms_request_again">인증코드를 재전송하시겠습니까?</string>
+
+    <string name="login_terms_all">이용약관 동의, 개인정보 이용동의, 제3자정보제공동의, 위치정보이용동의의 모든 약관을 확인 하였으며, 충분히 숙지 하였고 동의 합니다.</string>
+    <string name="login_terms_term">이용약관 동의</string>
+    <string name="login_terms_privit">개인정보 이용동의</string>
+    <string name="login_terms_third">제3자정보제공동의</string>
+    <string name="login_terms_location">위치정보이용동의</string>
+    <string name="login_terms_end">의 모든 약관을 확인 하였으며, 충분히 숙지 하였고 동의 합니다.</string>
+    <string name="login_terms_divider">, </string>
+
+    <string name="error_network_server_connect">서버 연결에 실패하였습니다.</string>
+
+    <string name="message_send">메시지가 전송되었습니다.</string>
+    <string name="login_subtitle_phone">휴대폰 본인인증</string>
+    <string name="login_subtitle_birtday">생년월일</string>
+    <string name="login_subtitle_gender">이름</string>
+    <string name="login_layout_hint">휴대폰 번호 입력</string>
+    <string name="login_join_age_error_15">만 15세 이상만\n가입 할 수 있습니다.</string>
+    <string name="longin_success">회원가입되었습니다.</string>
+    <string name="login_failed">회원가입에 실패했습니다.</string>
+    <string name="login_error_place">지역을 입력해 주세요.</string>
+    <string name="login_error_agree">이용약관에 동의해 주세요.</string>
+    <string name="login_error_bitrhday">생년월일 정보가 올바르지 않습니다.</string>
+    <string name="login_error_phone_num">휴대전화 번호 정보가 올바르지 않습니다.</string>
+    <string name="login_error_token">토큰 정보가 올바르지 않습니다.</string>
+    <string name="login_error_info">로그인 정보가 올바르지 않습니다.</string>
+    <string name="login_error_auth_num">인증번호 4자리를 모두 입력해 주세요.</string>
+    <string name="login_layout_hint_phone">휴대전화번호를 입력해 주세요.</string>
+    <string name="login_layout_auth_send">인증번호받기</string>
+    <string name="login_layout_auth_resend">인증번호재전송</string>
+    <string name="login_layout_auth_input">인증번호 입력</string>
+    <string name="login_layout_birthday">생년월일</string>
+    <string name="login_layout_hint_birthday">YYYYMMDD</string>
+    <string name="login_layout_gender">성별</string>
+    <string name="login_layout_gender_male">남</string>
+    <string name="login_layout_gender_female">여</string>
+    <string name="login_error_join_info">회원정보가 누락되었습니다.\n다시 로그인해 주세요.</string>
+    <string name="login_term_warning">※ 회원가입은 만 15세 이상만 가능합니다. 허위사항 기재 시\n불이익을 받을 수 있습니다.</string>
+
+    <string name="gender_male">남</string>
+    <string name="gender_female">여</string>
+
+
+    <string name="login_picker_year">yyyy년</string>
+    <string name="login_picker_month">MM월</string>
+    <string name="login_picker_day">dd일</string>
+    <string name="login_picker_year_suffix">년</string>
+    <string name="login_picker_month_suffix">월</string>
+    <string name="login_picker_day_suffix">일</string>
+
+    <!-- 약관 -->
+    <string name="term_agree_again_popup">회원님은 약관 재동의 대상입니다.\n약관 재동의 화면으로 이동합니다.</string>
+    <string name="term_agree_again_title">이용약관 및 개인정보 수집 및\n이용 재동의 안내</string>
+    <string name="term_agree_again_content">회원 서비스를 이용하기 위해서는 아래의 이용약관 및 \n개인정보 수집·이용에 재동의하셔야 합니다.</string>
+    <string name="term_agree_again_success">약관 재동의가 완료되었습니다.</string>
+    <string name="term_agree_again_msg">약관에 동의해 주시기 바랍니다.</string>
+
+    <string name="error_terms_version_no_availavle">약관 버전이 유효하지 않습니다.</string>
+    <string name="menu_infor">이용안내</string>
+    <string name="menu_card">결제수단</string>
+    <string name="menu_list">부고목록</string>
+    <string name="menu_find">장례식장 찾기</string>
+    <string name="menu_center">고객센터</string>
+    <string name="menu_setting">설정</string>
+
+    <string-array name="spinner_relationship">
+        <item>배우자</item>
+        <item>아들</item>
+        <item>딸</item>
+        <item>며느리</item>
+        <item>사위</item>
+        <item>손</item>
+        <item>손자</item>
+        <item>손녀</item>
+        <item>외손</item>
+        <item>외손자</item>
+        <item>외손녀</item>
+        <item>손부</item>
+        <item>손서</item>
+        <item>외손부</item>
+        <item>외손서</item>
+        <item>상주</item>
+        <item>조카</item>
+        <item>형제</item>
+        <item>자매</item>
+        <item>부</item>
+        <item>모</item>
+        <item>형</item>
+        <item>동생</item>
+        <item>형수</item>
+        <item>제수</item>
+        <item>처남</item>
+        <item>매제</item>
+        <item>매형</item>
+        <item>누나</item>
+        <item>언니</item>
+        <item>남매</item>
+    </string-array>
+
+    <string-array name="spinner_place">
+        <item>구례산림조합장례식장</item>
+        <item>구례병원장례식장</item>
+        <item>구례효사랑요양병원장례식장</item>
+        <item>새미소 요양병원장례식장</item>
+    </string-array>
+
+    <string-array name="spinner_hour">
+        <item>01</item>
+        <item>02</item>
+        <item>03</item>
+        <item>04</item>
+        <item>05</item>
+        <item>06</item>
+        <item>07</item>
+        <item>08</item>
+        <item>09</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+        <item>13</item>
+        <item>14</item>
+        <item>15</item>
+        <item>16</item>
+        <item>17</item>
+        <item>18</item>
+        <item>19</item>
+        <item>20</item>
+        <item>21</item>
+        <item>22</item>
+        <item>23</item>
+        <item>24</item>
+    </string-array>
+
+    <string-array name="spinner_min">
+        <item>00</item>
+        <item>01</item>
+        <item>02</item>
+        <item>03</item>
+        <item>04</item>
+        <item>05</item>
+        <item>06</item>
+        <item>07</item>
+        <item>08</item>
+        <item>09</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+        <item>13</item>
+        <item>14</item>
+        <item>15</item>
+        <item>16</item>
+        <item>17</item>
+        <item>18</item>
+        <item>19</item>
+        <item>20</item>
+        <item>21</item>
+        <item>22</item>
+        <item>23</item>
+        <item>24</item>
+        <item>25</item>
+        <item>26</item>
+        <item>27</item>
+        <item>28</item>
+        <item>29</item>
+        <item>30</item>
+        <item>31</item>
+        <item>32</item>
+        <item>33</item>
+        <item>34</item>
+        <item>35</item>
+        <item>36</item>
+        <item>37</item>
+        <item>38</item>
+        <item>39</item>
+        <item>40</item>
+        <item>41</item>
+        <item>42</item>
+        <item>43</item>
+        <item>44</item>
+        <item>45</item>
+        <item>46</item>
+        <item>47</item>
+        <item>48</item>
+        <item>49</item>
+        <item>50</item>
+        <item>51</item>
+        <item>52</item>
+        <item>53</item>
+        <item>54</item>
+        <item>55</item>
+        <item>56</item>
+        <item>57</item>
+        <item>58</item>
+        <item>59</item>
+
+    </string-array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="activity_shop_tab_1">근조화환</string>
+    <string name="activity_shop_tab_2">근조바구니</string>
+    <string name="activity_shop_tab_3">근조장구/오브제</string>
+    <string name="item_activity_shop_won">원</string>
+
+
+</resources>
