@@ -171,7 +171,7 @@
                                 android:id="@+id/cl_phonenum_delete"
                                 android:layout_width="0dp"
                                 android:layout_height="0dp"
-                                android:visibility='@{viewModel.phoneNum != null &amp;&amp; viewModel.phoneNum.length() > 0 ? View.VISIBLE : View.GONE, default = gone}'
+                                android:visibility="gone"
                                 app:layout_constraintDimensionRatio="1:1"
                                 app:layout_constraintTop_toTopOf="@id/et_phonenum"
                                 app:layout_constraintBottom_toBottomOf="@id/et_phonenum"
@@ -276,7 +276,7 @@
                                 android:textSize="@dimen/common_font_title"
                                 android:textColor="@color/semi_black"
                                 android:text='@={viewModel.authNum}'
-                                android:maxLength="4"
+                                android:maxLength="6"
                                 android:digits="0123456789"
                                 android:imeOptions="actionDone"
                                 app:layout_constraintHorizontal_weight="1"
@@ -286,18 +286,20 @@
                                 android:inputType="number" />
 
                             <!-- 문자 출력 시간 -->
-                            <TextView
+                            <Button
                                 android:id="@+id/tv_authnum_count"
                                 android:layout_width="wrap_content"
                                 android:layout_height="0dp"
                                 android:textSize="13dp"
+                                android:background="@color/transparent"
                                 android:textColor="@color/semi_black"
-                                tools:text="2:38"
                                 android:gravity="center"
+                                android:text="@string/ok"
                                 android:layout_marginLeft="5dp"
                                 android:layout_marginRight="5dp"
-                                android:visibility="gone"
+                                android:visibility="visible"
                                 tools:visibility="visible"
+                                android:onClick='@{activity::onCheckClick}'
                                 app:layout_constraintTop_toTopOf="@id/et_authnum"
                                 app:layout_constraintBottom_toBottomOf="@id/et_authnum"
                                 app:layout_constraintLeft_toRightOf="@id/et_authnum"
@@ -308,7 +310,7 @@
                                 android:id="@+id/cl_authnum_delete"
                                 android:layout_width="0dp"
                                 android:layout_height="0dp"
-                                android:visibility='@{viewModel.authNum != null &amp;&amp; viewModel.authNum.length() > 0 ? View.VISIBLE : View.GONE, default = gone}'
+                                android:visibility="gone"
                                 app:layout_constraintDimensionRatio="1:1"
                                 app:layout_constraintTop_toTopOf="@id/et_authnum"
                                 app:layout_constraintBottom_toBottomOf="@id/et_authnum"
@@ -568,7 +570,6 @@
                         android:layout_marginRight="30dp"
                         android:layout_marginBottom="20dp"
                         android:visibility="gone"
-                        tools:visibility="visible"
                         app:layout_constraintTop_toBottomOf="@id/tv_agree_desc"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintRight_toRightOf="parent"
@@ -576,6 +577,7 @@
 
                         <androidx.appcompat.widget.AppCompatButton
                             android:id="@+id/btn_ok2"
+                            android:visibility="gone"
                             style="@style/CommonButtonStyle"
                             android:onClick='@{activity::onOkClick}'
                             android:text="@string/ok" />

@@ -11,6 +11,7 @@ import com.example.my_heaven.util.`object`.Constant.PREF_KEY_LANG
 import com.example.my_heaven.util.`object`.Constant.PREF_KEY_LANG_CODE
 import com.example.my_heaven.util.`object`.Constant.PREF_KEY_TOKEN
 import com.example.my_heaven.util.`object`.Constant.PREF_PHONE
+import com.example.my_heaven.util.`object`.Constant.PREF_SMS
 import com.securepreferences.SecurePreferences
 
 class PreferenceManager (context: Context) : PreferenceAdapter() {
@@ -112,6 +113,10 @@ class PreferenceManager (context: Context) : PreferenceAdapter() {
     var mytoken : String?
         get() = prefs.getString(PREF_KEY_TOKEN,"")
         set(value) = prefs.edit().putString(PREF_KEY_TOKEN, value).apply()
+
+    var mysms : String?
+        get() = prefs.getString(PREF_SMS,"")
+        set(value) = prefs.edit().putString(PREF_SMS, value).apply()
 
 
 

@@ -27,6 +27,7 @@ object  Constant {
     const val PREF_AUTO_LOGIN = "PREF_AUTO_LOGIN"
     const val PREF_KEY_LANGUAGE = "PREF_KEY_LANGUAGE"
     const val PREF_KEY_LANGUAGE_CODE = "PREF_KEY_LANGUAGE_CODE"
+    const val PREF_SMS = "PREF_SMS"
 
     const val PREF_KEY_ENC_KEY = "PREF_KEY_ENC_KEY"
     const val PREF_KEY_ENC_IV = "PREF_KEY_ENC_IV"
