@@ -237,6 +237,7 @@
                                 android:textColor="@color/gray6"
                                 android:textSize="@dimen/common_font_text"
                                 android:text="@string/login_title_phone_number_auth"
+                                android:visibility="visible"
                                 android:fontFamily="@font/notosans_medium"/>
                             <TextView
                                 android:id="@+id/tv_phonenum_auth"
@@ -246,6 +247,7 @@
                                 app:layout_constraintLeft_toLeftOf="parent"
                                 app:layout_constraintRight_toRightOf="parent"
                                 android:textColor="@color/colorOverlayAccent"
+                                android:visibility="visible"
                                 android:textSize="@dimen/common_font_title"
                                 android:text='@{viewModel.phoneNum}'
                                 tools:text="01012341234"
@@ -276,7 +278,7 @@
                                 android:textSize="@dimen/common_font_title"
                                 android:textColor="@color/semi_black"
                                 android:text='@={viewModel.authNum}'
-                                android:maxLength="6"
+                                android:maxLength="4"
                                 android:digits="0123456789"
                                 android:imeOptions="actionDone"
                                 app:layout_constraintHorizontal_weight="1"

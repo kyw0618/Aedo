@@ -27,6 +27,7 @@ import com.example.my_heaven.R
 import com.example.my_heaven.api.APIService
 import com.example.my_heaven.api.ApiUtils
 import com.example.my_heaven.databinding.ActivityLoginBinding
+import com.example.my_heaven.model.restapi.base.Policy
 import com.example.my_heaven.model.restapi.login.LoginResult
 import com.example.my_heaven.model.restapi.login.LoginSMS
 import com.example.my_heaven.model.restapi.login.LoginSend
@@ -37,7 +38,6 @@ import com.example.my_heaven.util.encrypt.Base64Util
 import com.example.my_heaven.util.log.LLog.TAG
 import com.example.my_heaven.util.observable.LoginObservable
 import com.example.my_heaven.view.intro.permission.PermissionManager
-import com.google.firebase.auth.PhoneAuthProvider
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -51,8 +51,6 @@ class LoginActivity : BaseActivity() {
 
     companion object {
         const val PROCESS_PHONENUM = 0
-        const val PROCESS_AUTHNUM = 2
-        const val PROCESS_JOIN = 3
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -96,14 +94,16 @@ class LoginActivity : BaseActivity() {
             val encResult: String =
                 comm!!.defaultPhoneNumber!!.substring(comm!!.defaultPhoneNumber!!.length - 2)
             // 암호화
-            val resultText: String? = if (encResult.contains("==")) {
-                AESAdapter.decAES(prefs.getEncIv()!!, prefs.getEncKey()!!, comm!!.defaultPhoneNumber)
-            } // Base64
-            else if (encResult.contains("=")) {
-                Base64Util.decode(comm!!.defaultPhoneNumber)
-            } // plane text
-            else {
-                comm!!.defaultPhoneNumber
+            val resultText: String? = when {
+                encResult.contains("==") -> {
+                    AESAdapter.decAES(prefs.getEncIv()!!, prefs.getEncKey()!!, comm!!.defaultPhoneNumber)
+                } // Base64
+                encResult.contains("=") -> {
+                    Base64Util.decode(comm!!.defaultPhoneNumber)
+                } // plane text
+                else -> {
+                    comm!!.defaultPhoneNumber
+                }
             }
             mViewModel!!.setPhoneNum(resultText)
         }
@@ -189,6 +189,11 @@ class LoginActivity : BaseActivity() {
         if (mBinding.btnOk2.visibility == View.GONE) {
             mBinding.btnOk2.visibility = View.VISIBLE
         }
+
+        if(mBinding.clAuthNumParent.visibility == View.VISIBLE) {
+            mBinding.clAuthNumParent.visibility = View.GONE
+            mBinding.tvPhonenumAuth.text = mBinding.etPhonenum.text.toString()
+        }
         mBinding.btnOk.text = getString(R.string.ok)
         mBinding.clOk.visibility = View.GONE
         mBinding.clOk2.visibility = View.VISIBLE
@@ -212,33 +217,32 @@ class LoginActivity : BaseActivity() {
     }
 
     private fun authrequest() {
-        val data = LoginSend(mBinding.etPhonenum.text.toString())
-        apiServices.getLogin(data).enqueue(object : Callback<LoginSend> {
+        val phone = LoginSend(phone = mBinding.etPhonenum.text.toString())
+        apiServices.getLogin(phone).enqueue(object : Callback<LoginSend> {
             override fun onResponse(call: Call<LoginSend>, response: Response<LoginSend>) {
                 val result = response.body()
-                if(response.isSuccessful&& result!= null) {
-                    Log.d(TAG,"authrequest API SUCCESS -> $result")
-                    getJoin(result)
+                if(response.isSuccessful&&result!=null) {
                     moveMain()
                 }
                 else {
-                    Log.d(TAG,"authrequest API ERROR -> ${response.errorBody()}")
-                    phoneThrid()
-                    Toast.makeText(this@LoginActivity,"회원가입이 필요합니다.",Toast.LENGTH_SHORT).show()
+                    if (response.code() == 404) {
+                        sendsms()
+                        phoneSecond()
+                    }
                 }
             }
-
             override fun onFailure(call: Call<LoginSend>, t: Throwable) {
                 Log.d(TAG,"authrequest ERROR -> $t")
             }
         })
     }
 
-    private fun signrequest() {
+    private fun signrequest(termsVersion: String) {
         val phone = mBinding.etPhonenum.text.toString()
         val birth = mBinding.etBitrhday.text.toString()
         val name = mBinding.etName.text.toString()
-        val signdata = LoginResult(phone,birth,name)
+        val terms = termsVersion
+        val signdata = LoginResult(phone = phone, birth = birth, name=name, term=terms)
         apiServices.getSignUp(signdata).enqueue(object : Callback<LoginResult>{
             override fun onResponse(call: Call<LoginResult>, response: Response<LoginResult>) {
                 val result = response.body()
@@ -259,12 +263,6 @@ class LoginActivity : BaseActivity() {
         })
     }
 
-    private fun getJoin(result: LoginSend) {
-        val to_token: String? = result.token
-        prefs.mytoken = to_token
-        Log.d(TAG,"PREFS Token ->${prefs.mytoken}")
-    }
-
     private fun sendsms() {
         val data = LoginSMS(mBinding.etPhonenum.text.toString())
         apiServices.getSMS(data).enqueue(object : Callback<LoginSMS> {
@@ -274,7 +272,6 @@ class LoginActivity : BaseActivity() {
                     Log.d(TAG,"sendsms API SUCCESS -> $result")
                     prefs.mysms  = result.user_auth_number
                     Log.d(TAG,"SMS ->${prefs.mysms}")
-                    phoneSecond()
                 }
                 else {
                     Log.d(TAG,"sendsms API ERROR -> ${response.errorBody()}")
@@ -303,10 +300,10 @@ class LoginActivity : BaseActivity() {
         val et_auth = mBinding.etAuthnum.text.toString()
         if (prefs.mysms.equals(et_auth)) {
             if (et_auth.isEmpty()) {
-                Toast.makeText(this,"인증번호 6자리를 입력해 주세요",Toast.LENGTH_LONG).show()
+                Toast.makeText(this,"인증번호 4자리를 입력해 주세요",Toast.LENGTH_LONG).show()
             }
             else {
-                authrequest()
+                phoneThrid()
             }
         }
     }
@@ -314,8 +311,6 @@ class LoginActivity : BaseActivity() {
     fun onOkClick(v: View?) {
         val et_birth = mBinding.etBitrhday.text.toString()
         val et_name = mBinding.etName.text.toString()
-        val check_term = mBinding.btnAgree
-
         when {
             et_birth.length<6 -> {
                 Toast.makeText(this,"생년월일 6자리를 입력해 주세요",Toast.LENGTH_LONG).show()
@@ -325,12 +320,20 @@ class LoginActivity : BaseActivity() {
                 Toast.makeText(this,"이름을 입력해 주세요",Toast.LENGTH_LONG).show()
                 return
             }
-            check_term.isSelected -> {
-                signrequest()
-            }
-            else -> {
-                Toast.makeText(this,"약관동의를 체크 해주세요.",Toast.LENGTH_LONG).show()
-                return
+            else ->{
+                realm.executeTransaction { realm ->
+                    var termsVersion = "Y"
+                    for (rPolicy in realm.where(Policy::class.java)
+                        .equalTo("id", "TERMS_VER").findAll()) {
+                        termsVersion = rPolicy.value.toString()
+                    }
+                    if (termsVersion == "N") {
+                        Toast.makeText(this,"약관 버전이 유효하지 않습니다.",Toast.LENGTH_SHORT).show()
+                        return@executeTransaction
+                    }
+                    signrequest(termsVersion)
+                }
+
             }
         }
 
@@ -340,10 +343,9 @@ class LoginActivity : BaseActivity() {
         val et_phone = mBinding.etPhonenum.text.toString()
         if (et_phone.length<10) {
             Toast.makeText(this,"핸드폰 번호를 다시 입력해 주세요.",Toast.LENGTH_SHORT).show()
-            return
         }
         else {
-            sendsms()
+           authrequest()
         }
     }
 }

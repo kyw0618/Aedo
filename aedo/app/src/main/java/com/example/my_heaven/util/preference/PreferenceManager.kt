@@ -3,6 +3,7 @@ package com.example.my_heaven.util.preference
 import android.content.Context
 import android.content.SharedPreferences
 import com.example.my_heaven.util.`object`.Constant
+import com.example.my_heaven.util.`object`.Constant.PREF_CODE
 import com.example.my_heaven.util.`object`.Constant.PREF_KEY_APP_TOKEN
 import com.example.my_heaven.util.`object`.Constant.PREF_KEY_AUTH_TOKEN
 import com.example.my_heaven.util.`object`.Constant.PREF_KEY_ENCTYPT_IV
@@ -117,6 +118,10 @@ class PreferenceManager (context: Context) : PreferenceAdapter() {
     var mysms : String?
         get() = prefs.getString(PREF_SMS,"")
         set(value) = prefs.edit().putString(PREF_SMS, value).apply()
+
+    var mycode : String?
+        get() = prefs.getString(PREF_CODE,"")
+        set(value) = prefs.edit().putString(PREF_CODE, value).apply()
 
 
 
