@@ -275,6 +275,12 @@
     <string name="activity_shop_tab_2">근조바구니</string>
     <string name="activity_shop_tab_3">근조장구/오브제</string>
     <string name="item_activity_shop_won">원</string>
+    <string name="text_dialog_send_obituary">문자 메세지</string>
+    <string name="text_dialog_send_obituary_kakao">카카오톡</string>
+    <string name="text_dialog_send_obituary_title">부고 보내기</string>
+    <string name="text_dialog_edit_obituary_title">부고관리</string>
+    <string name="text_dialog_edit_obituary_remove">삭제</string>
+    <string name="text_dialog_edit_obituary_edit">수정</string>
 
 
 </resources>
