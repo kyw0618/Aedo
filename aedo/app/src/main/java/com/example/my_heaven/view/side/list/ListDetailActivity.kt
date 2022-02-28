@@ -35,7 +35,7 @@ class ListDetailActivity : BaseActivity() {
     }
 
     private fun inRecycler() {
-        val vercall: Call<RecyclerList> = apiServices.getCreateGet("Bearer ${MyApplication.prefs.mytoken}")
+        val vercall: Call<RecyclerList> = apiServices.getCreateGet()
         vercall.enqueue(object : Callback<RecyclerList> {
             override fun onResponse(call: Call<RecyclerList>, response: Response<RecyclerList>) {
                 val result = response.body()

@@ -215,7 +215,7 @@ class MakeActivity : BaseActivity() {
         val mytoken = prefs.mytoken.toString()
         val bear = "Bearer"
 
-        apiServices.getCreate("qwer", "Bearer ${prefs.mytoken}",data).enqueue(object : Callback<CreateModel> {
+        apiServices.getCreate(data).enqueue(object : Callback<CreateModel> {
             override fun onResponse(call: Call<CreateModel>, response: Response<CreateModel>) {
                 val result = response.body()
                 if(response.isSuccessful&& result!= null) {
