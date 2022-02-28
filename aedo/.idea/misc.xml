@@ -83,6 +83,7 @@
         <entry key="..\:/Users/hopan/Desktop/client/code/app/src/main/res/xml/d.xml" value="0.3625" />
         <entry key="..\:/Users/hopan/Downloads/code/app/src/main/res/layout/activity_login.xml" value="0.16530054644808742" />
         <entry key="..\:/Users/hopan/Downloads/code/app/src/main/res/layout/activity_search.xml" value="0.25" />
+        <entry key="app/src/main/res/drawable/bg_activity_report_edittext.xml" value="0.3140625" />
         <entry key="app/src/main/res/drawable/bg_nocolor.xml" value="0.3140625" />
         <entry key="app/src/main/res/drawable/bg_shopping_search_btn.xml" value="0.3140625" />
         <entry key="app/src/main/res/layout/activity_center.xml" value="0.10941086457536343" />
@@ -90,6 +91,9 @@
         <entry key="app/src/main/res/layout/activity_listdetail.xml" value="0.2526837324525186" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.11953125" />
+        <entry key="app/src/main/res/layout/activity_notice.xml" value="0.18840579710144928" />
+        <entry key="app/src/main/res/layout/activity_permission.xml" value="0.18840579710144928" />
+        <entry key="app/src/main/res/layout/activity_report.xml" value="0.335" />
         <entry key="app/src/main/res/layout/activity_shop.xml" value="0.20295557571884407" />
         <entry key="app/src/main/res/layout/activity_terms_reconsent.xml" value="0.14488348530901723" />
         <entry key="app/src/main/res/layout/dialog_edit_obituary.xml" value="0.1816123188405797" />

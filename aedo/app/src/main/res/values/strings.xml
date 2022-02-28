@@ -281,6 +281,9 @@
     <string name="text_dialog_edit_obituary_title">부고관리</string>
     <string name="text_dialog_edit_obituary_remove">삭제</string>
     <string name="text_dialog_edit_obituary_edit">수정</string>
+    <string name="text_activity_report_button">제출하기</string>
+    <string name="hint_activity_report_edittext">신고 사유를 입력해주세요.</string>
+    <string name="hint_activity_report_edittext_name">대표상주 이름을 입력해 주세요.</string>
 
 
 </resources>

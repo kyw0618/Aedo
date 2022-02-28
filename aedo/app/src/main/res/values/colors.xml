@@ -64,5 +64,7 @@
     <color name="btn_dialog_send_obituary_message">#643D19</color>
     <color name="btn_dialog_send_obituary_kakao">#8A664B</color>
 
+    <color name="btn_activity_report_button">#8A664B</color>
+
 
 </resources>
