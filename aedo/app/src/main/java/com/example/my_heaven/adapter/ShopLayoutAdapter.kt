@@ -16,7 +16,7 @@ data class Sample(
     val rate: String
 )
 
-class ShopGridLayoutAdapter : RecyclerView.Adapter<ShopGridLayoutAdapter.ViewHolder>() {
+class ShopLayoutAdapter : RecyclerView.Adapter<ShopLayoutAdapter.ViewHolder>() {
 
     private val differCallback = object : DiffUtil.ItemCallback<Sample>() {
 
