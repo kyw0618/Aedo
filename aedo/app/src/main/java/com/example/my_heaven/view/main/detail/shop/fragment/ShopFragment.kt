@@ -5,11 +5,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout.HORIZONTAL
 import androidx.databinding.DataBindingUtil
 import com.example.my_heaven.R
-import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.my_heaven.adapter.Sample
-import com.example.my_heaven.adapter.ShopGridLayoutAdapter
+import com.example.my_heaven.adapter.ShopLayoutAdapter
 import com.example.my_heaven.databinding.FragmentShopBinding
 
 
@@ -24,7 +25,7 @@ class ShopFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
-    private lateinit var gridLayoutAdapter: ShopGridLayoutAdapter
+    private lateinit var layoutAdapter: ShopLayoutAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,18 +50,18 @@ class ShopFragment : Fragment() {
     }
 
     private fun setupGridLayout() {
-        val gridLayout = mBinding.rvFragmentShop
-        gridLayoutAdapter = ShopGridLayoutAdapter()
-        gridLayout.adapter = gridLayoutAdapter
+        val layout = mBinding.rvFragmentShop
+        layoutAdapter = ShopLayoutAdapter()
+        layout.adapter = layoutAdapter
 
-        val gridLayoutManager = GridLayoutManager(requireContext(), 2)
-        gridLayout.layoutManager = gridLayoutManager
+        val layoutManager = LinearLayoutManager(requireContext())
+        layout.layoutManager = layoutManager
 
         sampleSubmitList()
     }
 
     private fun sampleSubmitList() {
-        gridLayoutAdapter.submitList(listOf(
+        layoutAdapter.submitList(listOf(
             Sample("", "", "", ""),
             Sample("", "", "", ""),
             Sample("", "", "", ""),
