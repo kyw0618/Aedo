@@ -10,14 +10,12 @@ import android.os.*
 import android.util.Log
 import android.view.View
 import android.view.WindowManager
+import android.widget.Toast
 import com.example.my_heaven.R
 import com.example.my_heaven.api.APIService
 import com.example.my_heaven.api.ApiUtils
 import com.example.my_heaven.databinding.ActivitySplashBinding
-import com.example.my_heaven.model.restapi.base.AppPolicy
-import com.example.my_heaven.model.restapi.base.Encrypt
-import com.example.my_heaven.model.restapi.base.Policy
-import com.example.my_heaven.model.restapi.base.Verification
+import com.example.my_heaven.model.restapi.base.*
 import com.example.my_heaven.util.`object`.ActivityControlManager
 import com.example.my_heaven.util.`object`.Constant
 import com.example.my_heaven.util.`object`.Constant.RESULT_TRUE
@@ -112,6 +110,7 @@ class SplashActivity : BaseActivity() {
                     result.encrypt
                     result.app_token
                     result.policy_ver
+                    Log.d(TAG,"Vertification result SUCESS -> $result")
                     if (result.result == RESULT_TRUE) {
                         devpolicyversion = result.policy_ver.toString()
                         getinformation(result, listener)
@@ -153,21 +152,39 @@ class SplashActivity : BaseActivity() {
     }
 
     private fun requestPolicy(listener: ResultListener) {
-        val vercall: Call<AppPolicy> = apiServices.getPolicy("qwer")
+        val vercall: Call<AppPolicy> = apiServices.getPolicy()
         vercall.enqueue(object : Callback<AppPolicy> {
             override fun onResponse(call: Call<AppPolicy>, response: Response<AppPolicy>) {
                 val result = response.body()
                 if (response.isSuccessful && result != null) {
                     Log.d(TAG,"Policy response SUCCESS -> $result")
-                    moveLogin()
+                    requestLogin()
                 }
                 else {
                     Log.d(TAG,"Policy response ERROR -> $result")
-                    finish()
                 }
             }
             override fun onFailure(call: Call<AppPolicy>, t: Throwable) {
                 Log.d(TAG, "Policy error -> $t")
+            }
+        })
+    }
+
+    private fun requestLogin() {
+        val vercall: Call<AutoLogin> = apiServices.getautoLogin()
+        vercall.enqueue(object : Callback<AutoLogin> {
+            override fun onResponse(call: Call<AutoLogin>, response: Response<AutoLogin>) {
+                if (response.code() == 404 || response.code() == 401) {
+                    moveLogin()
+                    Toast.makeText(this@SplashActivity,"회원가입이 필요합니다.",Toast.LENGTH_SHORT).show()
+                }
+                else if(response.code() == 200){
+                    moveMain()
+                    Toast.makeText(this@SplashActivity,"자동로그인이 되었습니다.",Toast.LENGTH_SHORT).show()
+                }
+            }
+            override fun onFailure(call: Call<AutoLogin>, t: Throwable) {
+                Log.d(TAG, "requestLogin error -> $t")
                 finishAffinity()
             }
         })
@@ -286,14 +303,6 @@ class SplashActivity : BaseActivity() {
             }
         }
     }
-
-    private fun moveActivity() {
-        ActivityControlManager.delayRun({
-            moveAndFinishActivity(MainActivity::class.java)
-            overridePendingTransition(0, 0)
-        }, Constant.SPLASH_WAIT)
-    }
-
     private fun moveLogin() {
         ActivityControlManager.delayRun({
             moveAndFinishActivity(LoginActivity::class.java) },

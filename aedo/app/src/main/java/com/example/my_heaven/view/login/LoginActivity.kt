@@ -322,12 +322,12 @@ class LoginActivity : BaseActivity() {
             }
             else ->{
                 realm.executeTransaction { realm ->
-                    var termsVersion = "Y"
+                    var termsVersion = "N"
                     for (rPolicy in realm.where(Policy::class.java)
                         .equalTo("id", "TERMS_VER").findAll()) {
                         termsVersion = rPolicy.value.toString()
                     }
-                    if (termsVersion == "N") {
+                    if (termsVersion == "Y") {
                         Toast.makeText(this,"약관 버전이 유효하지 않습니다.",Toast.LENGTH_SHORT).show()
                         return@executeTransaction
                     }

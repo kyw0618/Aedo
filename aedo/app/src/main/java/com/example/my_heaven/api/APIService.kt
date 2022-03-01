@@ -17,7 +17,10 @@ interface APIService {
     fun getVerification(@Header("abcd-ef")abcdef: String?): Call<Verification>
 
     @GET("v1/app/policy")
-    fun getPolicy(@Header("abcd-ef")abcdef: String?): Call<AppPolicy>
+    fun getPolicy(): Call<AppPolicy>
+
+    @GET("v1/user/autologin")
+    fun getautoLogin(): Call<AutoLogin>
 
     @POST("v1/user/login")
     fun getLogin(@Body loginSend: LoginSend):Call<LoginSend>
