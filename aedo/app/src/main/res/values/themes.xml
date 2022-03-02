@@ -29,6 +29,17 @@
         <item name="android:foreground">?attr/selectableItemBackground</item>
         <item name="android:outlineProvider">background</item>
     </style>
+
+    <style name="CommonButtonStyle_second" parent="Widget.AppCompat.Button">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">17dp</item>
+        <item name="android:background">@drawable/color_common_btn_second</item>
+        <item name="android:foreground">?attr/selectableItemBackground</item>
+        <item name="android:outlineProvider">background</item>
+    </style>
+
     <style name="CommonButtonCardStyle" parent="CardView">
         <item name="android:layout_height">47dp</item>
         <item name="cardCornerRadius">9dp</item>

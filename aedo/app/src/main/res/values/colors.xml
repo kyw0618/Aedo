@@ -10,6 +10,8 @@
 
     <color name="transparent">#00000000</color>
 
+    <color name="colorupdate">#643D19</color>
+
     <color name="gray1">#AAAAAA</color>
     <color name="gray2">#888888</color>
     <color name="gray3">#DDDDDD</color>

@@ -52,6 +52,9 @@
     <string name="warning_rooting">안전한 앱 이용과 고객님의 정보보호를 위해 탈옥이나 루팅을 통한 비정상 단말은 지원되지 않습니다.</string>
     <string name="warning_repackaging">정상적이지 않은 경로로 설치된 앱입니다.\n앱 제거 후 스토어에서 다시 다운로드 해주세요.</string>
 
+    <string name="update_cancle">종료</string>
+    <string name="update_start">업데이트</string>
+
     <string name="login_authnum">인증번호</string>
 
     <string name="login_desc1">휴대전화 번호를 입력해주세요.</string>
@@ -137,6 +140,10 @@
     <string name="menu_find">장례식장 찾기</string>
     <string name="menu_center">고객센터</string>
     <string name="menu_setting">설정</string>
+
+    <string name="server_check">서버 점검중입니다.\n잠시 후에 이용해 주세요.</string>
+    <string name="update_check">앱 업데이트가 필요합니다.\n업데이트를 진행해주세요.</string>
+    <string name="network_check">네트워크 연결이 원활하지 않습니다.\n다시 시도해 주세요.</string>
 
     <string-array name="spinner_relationship">
         <item>배우자</item>

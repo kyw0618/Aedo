@@ -54,10 +54,7 @@ class SplashActivity : BaseActivity() {
     private fun checknetwork() {
         LLog.e("1. 네트워크 확인")
         if (!isNetworkAvailable) {
-            alert?.showDialog(
-                getString(R.string.error_network_connectivity)) {
-                finishAffinity()
-            }?.cancelable(false)
+            networkDialog()
             return
         }
         checkLoot()
@@ -68,10 +65,7 @@ class SplashActivity : BaseActivity() {
     private fun checkLoot() {
         LLog.e("2. 루팅 확인")
         if (!BuildConfig.DEBUG && RootUtil.isDeviceRooted) {
-            alert?.showDialog(
-                getString(R.string.warning_rooting)) {
-                finishAffinity()
-            }?.cancelable(false)
+            rootingDialog()
             return
         }
     }
@@ -108,7 +102,6 @@ class SplashActivity : BaseActivity() {
                     encrypt.iv.toString()
                     result.result
                     result.encrypt
-                    result.app_token
                     result.policy_ver
                     Log.d(TAG,"Vertification result SUCESS -> $result")
                     if (result.result == RESULT_TRUE) {
@@ -135,17 +128,13 @@ class SplashActivity : BaseActivity() {
     }
 
     private fun getinformation(result: Verification?, networkListener: ResultListener) {
-        var app_token: String? = result?.app_token.toString()
         val aes_iv: String? = Encrypt().iv
         val aes_key: String? = Encrypt().key
-        if (app_token != null) {
-            app_token = app_token.substring(8)
-        }
-        prefs.myapptoken = app_token
         prefs.myeniv = aes_iv
         prefs.myenkey = aes_key
         prefs.mylangcode = "LANG_0001"
-        Log.d(TAG,"Prefs AppToken SUCCESS -> ${prefs.myapptoken}")
+        prefs.myhashKey = hash.toString()
+        Log.d(TAG,"Prefs AppToken SUCCESS -> $hash")
         Log.d(TAG,"Prefs MyEnIv SUCCESS -> ${prefs.myeniv}")
         Log.d(TAG,"Prefs MyEnKey SUCCESS -> ${prefs.myenkey}")
         networkListener.onSuccess()
@@ -195,13 +184,11 @@ class SplashActivity : BaseActivity() {
         val popupText = realm.where(Policy::class.java).equalTo("id","APP_ENABLE_CONTENT").findFirst()
         if (useYn != null) {
             if (useYn.value.equals("Y")) {
-                alert!!.showDialog(if (popupText != null) popupText.value else getString(R.string.service_disable_error)) {
-                    finishAffinity()
-                }!!.cancelable(false)
+                serverDialog()
                 return
             }
         } else {
-            alert!!.showDialog(getString(R.string.error_policy_update_db)) { v -> finishAffinity() }!!.cancelable(false)
+            serverDialog()
             return
         }
         emergencyPopup()
@@ -240,8 +227,7 @@ class SplashActivity : BaseActivity() {
                 return
             }
         } else {
-            alert!!.showDialog(getString(R.string.error_policy_update_db)) { v -> finishAffinity() }!!
-                .cancelable(false)
+            serverDialog()
             return
         }
         emergencyPopup()

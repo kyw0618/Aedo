@@ -2,6 +2,7 @@ package com.example.my_heaven.util.base
 
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.app.AlertDialog
 import android.app.Dialog
 import android.content.BroadcastReceiver
 import android.content.Intent
@@ -20,6 +21,7 @@ import android.view.*
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.appcompat.app.AppCompatActivity
@@ -45,6 +47,8 @@ import com.example.my_heaven.view.main.detail.send.SendActivity
 import com.example.my_heaven.view.main.detail.shop.ShopActivity
 import com.example.my_heaven.view.side.list.ListActivity
 import io.realm.Realm
+import kotlinx.android.synthetic.main.one_button_dialog.view.*
+import kotlinx.android.synthetic.main.two_button_dialog.view.*
 import org.json.JSONException
 import org.json.JSONObject
 import java.security.MessageDigest
@@ -216,99 +220,6 @@ open class BaseActivity : AppCompatActivity() {
             }
             return cert
         }
-    val hashKey: String
-        get() {
-            var result = ""
-            try {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-                    @SuppressLint("WrongConstant") val packageInfo = packageManager.getPackageInfo(
-                        packageName, PackageManager.GET_SIGNING_CERTIFICATES
-                    )
-                    val signatures = packageInfo.signingInfo.apkContentsSigners
-                    val md = MessageDigest.getInstance("SHA")
-                    for (signature in signatures) {
-                        md.update(signature.toByteArray())
-                        val signatureBase64 = String(Base64.encode(md.digest(), Base64.DEFAULT))
-                        Log.d("Signature Base64", signatureBase64)
-                        result = signatureBase64
-                    }
-                } else {
-                    @SuppressLint("PackageManagerGetSignatures") val info =
-                        packageManager.getPackageInfo(
-                            packageName, PackageManager.GET_SIGNATURES
-                        )
-                    for (signature in info.signatures) {
-                        val md = MessageDigest.getInstance("SHA")
-                        md.update(signature.toByteArray())
-                        val str = Base64.encodeToString(md.digest(), Base64.DEFAULT)
-                        Log.d("KeyHash:", str)
-                        result = str
-                    }
-                }
-            } catch (e: NoSuchAlgorithmException) {
-                e(e.localizedMessage)
-                return ""
-            } catch (e: PackageManager.NameNotFoundException) {
-                e(e.localizedMessage)
-                return ""
-            }
-            return result
-        }
-
-    fun userLogout() {
-        prefs.setBool(Constant.PREF_LOGIN_YN, false)
-        prefs.setSecureString(Constant.PREF_KEY_USER_TOKEN, "")
-    }
-
-    open fun trimMessage(json: String?, key: String?): String? {
-        val trimmedString: String = try {
-            val obj = JSONObject(json)
-            obj.getString(key)
-        } catch (e: JSONException) {
-            return null
-        }
-        return trimmedString
-    }
-
-    open fun showProgress() {
-        if (this.isFinishing) {
-            return
-        }
-        //if ( (progress != null && progress.isShowing()) || this.isFinishing() || getApplicationContext() == null) {
-        if (progress != null && progress!!.isShowing || this.isFinishing || applicationContext == null) {
-            return
-        } else {
-            progress = AppCompatDialog(this)
-            progress!!.setCancelable(false)
-            progress!!.requestWindowFeature(Window.FEATURE_NO_TITLE)
-            progress!!.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-            progress!!.window!!.setDimAmount(0f)
-            //            progress.getWindow().setNavigationBarContrastEnforced(true);
-            progress!!.setContentView(R.layout.custom_loading)
-            progress!!.show()
-
-            // 타임아웃 설정
-            val looper = Looper.myLooper()
-            mTimeoutHandler = null
-            mTimeoutHandler = Handler(looper!!)
-            mTimeoutHandler!!.postDelayed({
-                if (progress != null && progress!!.isShowing) {
-                    if (mTimeoutHandler != null) {
-                        mTimeoutHandler!!.removeMessages(0)
-                    }
-                    //progressTimeout();
-                    if (!this.isFinishing) {
-                        progress!!.dismiss()
-                        progress = null
-                    }
-                }
-            }, Constant.PROGRESS_TIMEOUT.toLong())
-        }
-        val imgLoading = progress!!.findViewById<ImageView>(R.id.iv_loading)
-        val frameAnimation = imgLoading!!.background as AnimationDrawable
-        imgLoading!!.post { frameAnimation.start() }
-    }
-
 
     companion object {
         fun setWindowFlag(activity: Activity, bits: Int, on: Boolean) {
@@ -320,6 +231,76 @@ open class BaseActivity : AppCompatActivity() {
                 winParams.flags = winParams.flags and bits.inv()
             }
             win.attributes = winParams
+        }
+    }
+
+    @SuppressLint("ResourceType")
+    internal fun serverDialog() {
+        val myLayout = layoutInflater.inflate(R.layout.one_button_dialog, null)
+        val build = AlertDialog.Builder(this).apply {
+            setView(myLayout)
+        }
+        val textView : TextView = myLayout.findViewById(R.id.popTv)
+        textView.text = getString(R.string.server_check)
+        val dialog = build.create()
+        dialog.show()
+
+        myLayout.ok_btn.setOnClickListener {
+            finish()
+            dialog.dismiss()
+        }
+
+    }
+
+    internal fun networkDialog() {
+        val myLayout = layoutInflater.inflate(R.layout.one_button_dialog, null)
+        val build = AlertDialog.Builder(this).apply {
+            setView(myLayout)
+        }
+        val textView : TextView = myLayout.findViewById(R.id.popTv)
+        textView.text = getString(R.string.network_check)
+        val dialog = build.create()
+        dialog.show()
+
+        myLayout.ok_btn.setOnClickListener {
+            finish()
+            dialog.dismiss()
+        }
+    }
+
+    internal fun rootingDialog() {
+        val myLayout = layoutInflater.inflate(R.layout.one_button_dialog, null)
+        val build = AlertDialog.Builder(this).apply {
+            setView(myLayout)
+        }
+        val textView : TextView = myLayout.findViewById(R.id.popTv)
+        textView.text = getString(R.string.warning_rooting)
+        val dialog = build.create()
+        dialog.show()
+
+        myLayout.ok_btn.setOnClickListener {
+            finish()
+            dialog.dismiss()
+        }
+    }
+
+    internal fun UpdateDialog() {
+        val myLayout = layoutInflater.inflate(R.layout.two_button_dialog, null)
+        val build = AlertDialog.Builder(this).apply {
+            setView(myLayout)
+        }
+        val textView : TextView = myLayout.findViewById(R.id.popTv)
+        textView.text = getString(R.string.update_check)
+        val dialog = build.create()
+        dialog.show()
+
+        myLayout.finish_btn.setOnClickListener {
+            finish()
+            dialog.dismiss()
+        }
+        myLayout.update_btn.setOnClickListener {
+            finish()
+            dialog.dismiss()
         }
     }
 

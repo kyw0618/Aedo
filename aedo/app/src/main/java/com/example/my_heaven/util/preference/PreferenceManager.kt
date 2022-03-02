@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import com.example.my_heaven.util.`object`.Constant
 import com.example.my_heaven.util.`object`.Constant.PREF_CODE
+import com.example.my_heaven.util.`object`.Constant.PREF_HASH_KEY
 import com.example.my_heaven.util.`object`.Constant.PREF_KEY_APP_TOKEN
 import com.example.my_heaven.util.`object`.Constant.PREF_KEY_AUTH_TOKEN
 import com.example.my_heaven.util.`object`.Constant.PREF_KEY_ENCTYPT_IV
@@ -83,13 +84,9 @@ class PreferenceManager (context: Context) : PreferenceAdapter() {
         return securePreferences!!.getString(Constant.PREF_KEY_ENC_IV, "")
     }
 
-
-    val autoLogin: Boolean
-        get() = getBoolean(Constant.PREF_AUTO_LOGIN, true)
-
-    var phonepref : String?
-        get() = prefs.getString(PREF_PHONE,"")
-        set(value) = prefs.edit().putString(PREF_PHONE, value).apply()
+    var myhashKey : String?
+        get() = prefs.getString(PREF_HASH_KEY,"")
+        set(value) = prefs.edit().putString(PREF_HASH_KEY, value).apply()
 
     var myapptoken : String?
         get() = prefs.getString(PREF_KEY_APP_TOKEN,"")
