@@ -57,7 +57,7 @@ class SplashActivity : BaseActivity() {
             networkDialog()
             return
         }
-        checkLoot()
+//        checkLoot()
         checkVerification()
     }
 
@@ -117,12 +117,12 @@ class SplashActivity : BaseActivity() {
                     }
                 }
                 else {
-                    finish()
+                    serverDialog()
                 }
             }
             override fun onFailure(call: Call<Verification>, t: Throwable) {
                 Log.d(TAG, "loadVerAPI error -> $t")
-                finishAffinity()
+                serverDialog()
             }
         })
     }
@@ -151,10 +151,12 @@ class SplashActivity : BaseActivity() {
                 }
                 else {
                     Log.d(TAG,"Policy response ERROR -> $result")
+                    serverDialog()
                 }
             }
             override fun onFailure(call: Call<AppPolicy>, t: Throwable) {
                 Log.d(TAG, "Policy error -> $t")
+                serverDialog()
             }
         })
     }
@@ -174,7 +176,7 @@ class SplashActivity : BaseActivity() {
             }
             override fun onFailure(call: Call<AutoLogin>, t: Throwable) {
                 Log.d(TAG, "requestLogin error -> $t")
-                finishAffinity()
+                serverDialog()
             }
         })
     }
