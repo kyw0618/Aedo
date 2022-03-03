@@ -163,6 +163,9 @@ class LoginActivity : BaseActivity() {
         if (mBinding.tvTitleSub.visibility == View.GONE) {
             mBinding.tvTitleSub.visibility = View.VISIBLE
         }
+        if(mBinding.btnOk2.visibility == View.GONE) {
+            mBinding.btnOk2.visibility = View.GONE
+        }
         mBinding.btnOk.text = getString(R.string.ok)
         mBinding.etAuthnum.requestFocus()
         val imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager

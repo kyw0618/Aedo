@@ -59,18 +59,9 @@ open class BaseActivity : AppCompatActivity() {
     internal open var instance: BaseActivity?=null
     var ResultView: ActivityResultLauncher<Intent>? = null
     var comm: CommonData? = CommonData().getInstance()
-    var webViewResultLauncher: ActivityResultLauncher<Intent>? = null
-    var progress: AppCompatDialog? = null
     var alert: AlertDialogManager? = null
 
-    private var mTimeoutHandler: Handler? = null
-    private var mLocationReceiver: BroadcastReceiver? = null
-    private var mLocationManager: LocationManager? = null
-    private var mLocationTimeoutHandler: Handler? = null
     internal var dialog : Dialog ?= null
-
-
-    private val mockLocations: List<Location> = ArrayList()
 
     internal val realm by lazy {
         Realm.getDefaultInstance()
@@ -94,6 +85,14 @@ open class BaseActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         realm.close()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (!isNetworkAvailable) {
+            networkDialog()
+            return
+        }
     }
 
     open fun onTitleLeftClick(v: View?) {}
@@ -124,41 +123,6 @@ open class BaseActivity : AppCompatActivity() {
             val inputMethodManager = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
             inputMethodManager.hideSoftInputFromWindow(v.windowToken, 0)
         }
-    }
-
-    open fun checkfield(textfield: EditText) : Boolean {
-        val valid = if (textfield.text.toString().isEmpty()) {
-            textfield.error = "필수 입력"
-            false
-        } else {
-            true
-        }
-        return valid
-    }
-
-    private fun isValidName(nickname: String?):Boolean{
-        val trimmedNickname = nickname?.trim().toString()
-        val exp = Regex("^[가-힣ㄱ-ㅎa-zA-Z0-9._ -]{2,}\$")
-        return trimmedNickname.isNotEmpty() && exp.matches(trimmedNickname)
-    }
-
-    open fun isNull(string: String?): Boolean {
-        return string == null || string == ""
-    }
-
-    open fun showToast(text: String?) {
-        val binding: ToastCustomBinding =
-            DataBindingUtil.inflate(LayoutInflater.from(this), R.layout.toast_custom, null, false)
-        binding.tvContent.text = text
-        val toast = Toast(this)
-        toast.setGravity(
-            Gravity.BOTTOM,
-            0,
-            resources.getDimensionPixelSize(R.dimen.common_toast_bottom_margin)
-        )
-        toast.duration = Toast.LENGTH_LONG
-        toast.view = binding.root
-        toast.show()
     }
 
     val isNetworkAvailable: Boolean
