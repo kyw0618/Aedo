@@ -78,7 +78,7 @@ open class BaseActivity : AppCompatActivity() {
 
     internal fun inStatusBar() {
         setWindowFlag(this, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, false)
-        window.statusBarColor = getColor(R.color.transparent)
+        window.statusBarColor = getColor(R.color.progress)
     }
 
     override fun onDestroy() {
