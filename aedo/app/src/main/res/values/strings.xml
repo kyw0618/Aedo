@@ -145,6 +145,27 @@
     <string name="update_check">앱 업데이트가 필요합니다.\n업데이트를 진행해주세요.</string>
     <string name="network_check">네트워크 연결이 원활하지 않습니다.\n다시 시도해 주세요.</string>
 
+    <string name="setting_section_setting">기능설정</string>
+    <string name="setting_section_terms">약관상세</string>
+    <string name="setting_section_account">계정</string>
+    <string name="setting_section_version">버전</string>
+
+    <string name="setting_item_auto_login">자동 로그인</string>
+    <string name="setting_item_receive_push">푸시 수신</string>
+    <string name="setting_item_receive_admin_push">관리자 푸시 수신</string>
+    <string name="setting_item_app_language">언어설정</string>
+
+    <string name="setting_item_terms_user">이용약관</string>
+    <string name="setting_item_terms_private">개인정보이용동의</string>
+    <string name="setting_item_terms_third">제3자정보제공이용동의</string>
+    <string name="setting_item_terms_location">위치정보활용동의</string>
+
+    <string name="setting_item_logout">로그아웃</string>
+    <string name="setting_item_member_resign">회원탈퇴</string>
+    <string name="setting_item_version">버전</string>
+
+    <string name="setting_item_logout_complete">로그아웃이 완료되었습니다.</string>
+
     <string-array name="spinner_relationship">
         <item>배우자</item>
         <item>아들</item>

@@ -109,47 +109,49 @@ class MakeActivity : BaseActivity() {
         val dofp_time = mBinding.dofpTextTime.text.toString()
         val buried = mBinding.makeTxPlace.text.toString()
 
-        if (spinner_text.isEmpty()) {
-            mBinding.spinnerText.error = "관계를 선택해 주세요"
-        }
-        else if(make_person.isEmpty()) {
-            mBinding.makeTxName.error = "대표 상주 이름을 입력해 주세요"
-        }
-        else if(make_phone.isEmpty()) {
-            mBinding.makeTxPhone.error = "대표 상주 번호를 입력해 주세요"
-        }
-        else if(place.isEmpty()) {
-            mBinding.spinnerInfoTextTt.error="장례식장을 선택해주세요"
-        }
-        else if(deceased_name.isEmpty()) {
-            mBinding.makeTxPersonName.error = "고인의 성함을 입력해 주세요"
-        }
-        else if(deceased_age.isEmpty()) {
-            mBinding.makeTxAge.error = "고인의 나이를 입력해주세요"
-        }
-        else if(eod_date.isEmpty()) {
-            mBinding.eodText.error = "임종 날짜를 선택해 주세요"
-        }
-        else if(eod_time.isEmpty()) {
-            mBinding.eodTextTime.error = "임종 시간을 선택해 주세요"
-        }
-        else if(coffin_date.isEmpty()) {
-            mBinding.coffinText.error = "입관 날짜를 선택해 주세요"
-        }
-        else if(coffin_time.isEmpty()) {
-            mBinding.coffinTextTime.error = "입관 시간을 선택해 주세요"
-        }
-        else if (dofp_date.isEmpty()) {
-            mBinding.dofpText.error = "발인 날짜를 선택해 주세요"
-        }
-        else if(dofp_time.isEmpty()) {
-            mBinding.dofpTextTime.error = "발인 시간을 선택해 주세요"
-        }
-        else{
+        when {
+            spinner_text.isEmpty() -> {
+                mBinding.spinnerText.error = "관계를 선택해 주세요"
+            }
+            make_person.isEmpty() -> {
+                mBinding.makeTxName.error = "대표 상주 이름을 입력해 주세요"
+            }
+            make_phone.isEmpty() -> {
+                mBinding.makeTxPhone.error = "대표 상주 번호를 입력해 주세요"
+            }
+            place.isEmpty() -> {
+                mBinding.spinnerInfoTextTt.error="장례식장을 선택해주세요"
+            }
+            deceased_name.isEmpty() -> {
+                mBinding.makeTxPersonName.error = "고인의 성함을 입력해 주세요"
+            }
+            deceased_age.isEmpty() -> {
+                mBinding.makeTxAge.error = "고인의 나이를 입력해주세요"
+            }
+            eod_date.isEmpty() -> {
+                mBinding.eodText.error = "임종 날짜를 선택해 주세요"
+            }
+            eod_time.isEmpty() -> {
+                mBinding.eodTextTime.error = "임종 시간을 선택해 주세요"
+            }
+            coffin_date.isEmpty() -> {
+                mBinding.coffinText.error = "입관 날짜를 선택해 주세요"
+            }
+            coffin_time.isEmpty() -> {
+                mBinding.coffinTextTime.error = "입관 시간을 선택해 주세요"
+            }
+            dofp_date.isEmpty() -> {
+                mBinding.dofpText.error = "발인 날짜를 선택해 주세요"
+            }
+            dofp_time.isEmpty() -> {
+                mBinding.dofpTextTime.error = "발인 시간을 선택해 주세요"
+            }
+            else -> {
 
-            dialog?.show()
-            callCreateAPI()
-            uploadItem(spinner_text,make_person,make_phone,place,deceased_age,deceased_name,eod_date,eod_time,coffin_date,coffin_time,dofp_date,dofp_time,buried)
+                dialog?.show()
+                callCreateAPI()
+                uploadItem(spinner_text,make_person,make_phone,place,deceased_age,deceased_name,eod_date,eod_time,coffin_date,coffin_time,dofp_date,dofp_time,buried)
+            }
         }
     }
 

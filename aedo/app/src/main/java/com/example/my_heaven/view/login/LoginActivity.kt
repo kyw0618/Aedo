@@ -231,6 +231,7 @@ class LoginActivity : BaseActivity() {
                     if (response.code() == 404) {
                         sendsms()
                         phoneSecond()
+                        prefs.myaccesstoken = result?.accesstoken.toString()
                     }
                 }
             }
@@ -251,6 +252,7 @@ class LoginActivity : BaseActivity() {
                 val result = response.body()
                 if(response.isSuccessful&& result!= null) {
                     Log.d(TAG,"signrequest API SUCCESS -> $result")
+                    prefs.myaccesstoken = result.accesstoken.toString()
                     Toast.makeText(this@LoginActivity,"회원가입이 완료되었습니다.",Toast.LENGTH_SHORT).show()
                     moveMain()
                 }

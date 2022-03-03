@@ -19,10 +19,10 @@ interface APIService {
     @GET("v1/app/policy")
     fun getPolicy(): Call<AppPolicy>
 
-    @GET("v1/user/autologin")
-    fun getautoLogin(): Call<AutoLogin>
+    @PUT("v1/user/autologin")
+    fun getautoLogin(@Header("Accesstoken")accesstoken: String?): Call<AutoLogin>
 
-    @POST("v1/user/login")
+    @PUT("v1/user/login")
     fun getLogin(@Body loginSend: LoginSend):Call<LoginSend>
 
     @POST("v1/user/signup")

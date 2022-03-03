@@ -18,6 +18,7 @@ import com.example.my_heaven.databinding.ActivitySplashBinding
 import com.example.my_heaven.model.restapi.base.*
 import com.example.my_heaven.util.`object`.ActivityControlManager
 import com.example.my_heaven.util.`object`.Constant
+import com.example.my_heaven.util.`object`.Constant.PREF_ACCESS_TOKEN
 import com.example.my_heaven.util.`object`.Constant.RESULT_TRUE
 import com.example.my_heaven.util.alert.CustomDialog
 import com.example.my_heaven.util.base.BaseActivity
@@ -162,14 +163,17 @@ class SplashActivity : BaseActivity() {
     }
 
     private fun requestLogin() {
-        val vercall: Call<AutoLogin> = apiServices.getautoLogin()
+        val vercall: Call<AutoLogin> = apiServices.getautoLogin(prefs.myaccesstoken)
         vercall.enqueue(object : Callback<AutoLogin> {
             override fun onResponse(call: Call<AutoLogin>, response: Response<AutoLogin>) {
+                val result = response.body()
                 if (response.code() == 404 || response.code() == 401) {
                     moveLogin()
                     Toast.makeText(this@SplashActivity,"회원가입이 필요합니다.",Toast.LENGTH_SHORT).show()
                 }
                 else if(response.code() == 200){
+                    getPreferences(0).edit().remove("PREF_ACCESS_TOKEN").apply()
+                    prefs.newaccesstoken=result?.accesstoken
                     moveMain()
                     Toast.makeText(this@SplashActivity,"자동로그인이 되었습니다.",Toast.LENGTH_SHORT).show()
                 }

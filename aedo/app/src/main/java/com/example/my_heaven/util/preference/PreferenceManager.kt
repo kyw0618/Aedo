@@ -3,7 +3,7 @@ package com.example.my_heaven.util.preference
 import android.content.Context
 import android.content.SharedPreferences
 import com.example.my_heaven.util.`object`.Constant
-import com.example.my_heaven.util.`object`.Constant.PREF_CODE
+import com.example.my_heaven.util.`object`.Constant.PREF_ACCESS_TOKEN
 import com.example.my_heaven.util.`object`.Constant.PREF_HASH_KEY
 import com.example.my_heaven.util.`object`.Constant.PREF_KEY_APP_TOKEN
 import com.example.my_heaven.util.`object`.Constant.PREF_KEY_AUTH_TOKEN
@@ -12,6 +12,7 @@ import com.example.my_heaven.util.`object`.Constant.PREF_KEY_ENCTYPT_KEY
 import com.example.my_heaven.util.`object`.Constant.PREF_KEY_LANG
 import com.example.my_heaven.util.`object`.Constant.PREF_KEY_LANG_CODE
 import com.example.my_heaven.util.`object`.Constant.PREF_KEY_TOKEN
+import com.example.my_heaven.util.`object`.Constant.PREF_NEW_ACCESS_TOKEN
 import com.example.my_heaven.util.`object`.Constant.PREF_PHONE
 import com.example.my_heaven.util.`object`.Constant.PREF_SMS
 import com.securepreferences.SecurePreferences
@@ -116,9 +117,13 @@ class PreferenceManager (context: Context) : PreferenceAdapter() {
         get() = prefs.getString(PREF_SMS,"")
         set(value) = prefs.edit().putString(PREF_SMS, value).apply()
 
-    var mycode : String?
-        get() = prefs.getString(PREF_CODE,"")
-        set(value) = prefs.edit().putString(PREF_CODE, value).apply()
+    var myaccesstoken : String?
+        get() = prefs.getString(PREF_ACCESS_TOKEN,"")
+        set(value) = prefs.edit().putString(PREF_ACCESS_TOKEN, value).apply()
+
+    var newaccesstoken : String?
+        get() = prefs.getString(PREF_NEW_ACCESS_TOKEN,"")
+        set(value) = prefs.edit().putString(PREF_NEW_ACCESS_TOKEN, value).apply()
 
 
 

@@ -68,9 +68,6 @@
             android:name=".view.main.SideMenuActivity"
             android:exported="false" />
         <activity
-            android:name=".view.login.TermsReconsentActivity"
-            android:exported="false" />
-        <activity
             android:name=".view.login.LoginActivity"
             android:exported="false" />
         <activity
