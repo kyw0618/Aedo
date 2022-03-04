@@ -269,6 +269,9 @@ class LoginActivity : BaseActivity() {
     }
 
     private fun sendsms() {
+        if (mBinding.clOk.visibility == View.VISIBLE) {
+            mBinding.clOk.visibility = View.GONE
+        }
         val data = LoginSMS(mBinding.etPhonenum.text.toString())
         apiServices.getSMS(data).enqueue(object : Callback<LoginSMS> {
             override fun onResponse(call: Call<LoginSMS>, response: Response<LoginSMS>) {
@@ -304,12 +307,10 @@ class LoginActivity : BaseActivity() {
     fun onCheckClick(v: View) {
         val et_auth = mBinding.etAuthnum.text.toString()
         if (prefs.mysms.equals(et_auth)) {
-            if (et_auth.isEmpty()) {
-                Toast.makeText(this,"인증번호 4자리를 입력해 주세요",Toast.LENGTH_LONG).show()
-            }
-            else {
-                phoneThrid()
-            }
+            phoneThrid()
+        }
+        else {
+            smscheck()
         }
     }
 
@@ -347,7 +348,7 @@ class LoginActivity : BaseActivity() {
     fun onSendClick(v:View?){
         val et_phone = mBinding.etPhonenum.text.toString()
         if (et_phone.length<10) {
-            Toast.makeText(this,"핸드폰 번호를 다시 입력해 주세요.",Toast.LENGTH_SHORT).show()
+            phonecheck()
         }
         else {
            authrequest()

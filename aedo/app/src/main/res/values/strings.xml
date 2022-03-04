@@ -117,7 +117,8 @@
 
     <string name="gender_male">남</string>
     <string name="gender_female">여</string>
-
+    <string name="term_check">이용약관 동의를 체크해주세요.</string>
+    <string name="phone_check">핸드폰 번호를 정확하게 입력해주세요.</string>
 
     <string name="login_picker_year">yyyy년</string>
     <string name="login_picker_month">MM월</string>

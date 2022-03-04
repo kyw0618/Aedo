@@ -247,6 +247,51 @@ open class BaseActivity : AppCompatActivity() {
         }
     }
 
+    internal fun smscheck() {
+        val myLayout = layoutInflater.inflate(R.layout.one_button_dialog, null)
+        val build = AlertDialog.Builder(this).apply {
+            setView(myLayout)
+        }
+        val textView : TextView = myLayout.findViewById(R.id.popTv)
+        textView.text = getString(R.string.auth_num_wrong_text)
+        val dialog = build.create()
+        dialog.show()
+
+        myLayout.ok_btn.setOnClickListener {
+            dialog.dismiss()
+        }
+    }
+
+    internal fun termcheck() {
+        val myLayout = layoutInflater.inflate(R.layout.one_button_dialog, null)
+        val build = AlertDialog.Builder(this).apply {
+            setView(myLayout)
+        }
+        val textView : TextView = myLayout.findViewById(R.id.popTv)
+        textView.text = getString(R.string.term_check)
+        val dialog = build.create()
+        dialog.show()
+
+        myLayout.ok_btn.setOnClickListener {
+            dialog.dismiss()
+        }
+    }
+
+    internal fun phonecheck() {
+        val myLayout = layoutInflater.inflate(R.layout.one_button_dialog, null)
+        val build = AlertDialog.Builder(this).apply {
+            setView(myLayout)
+        }
+        val textView : TextView = myLayout.findViewById(R.id.popTv)
+        textView.text = getString(R.string.phone_check)
+        val dialog = build.create()
+        dialog.show()
+
+        myLayout.ok_btn.setOnClickListener {
+            dialog.dismiss()
+        }
+    }
+
     internal fun UpdateDialog() {
         val myLayout = layoutInflater.inflate(R.layout.two_button_dialog, null)
         val build = AlertDialog.Builder(this).apply {
