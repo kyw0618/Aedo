@@ -32,9 +32,9 @@ interface APIService {
     fun getSMS(@Body loginSMS: LoginSMS): Call<LoginSMS>
 
     @POST("v1/obituary/create")
-    fun getCreate(@Body resident: CreateModel): Call<CreateModel>
+    fun getCreate(@Header("Accesstoken")accesstoken: String?,@Body resident: CreateModel): Call<CreateModel>
 
     @GET("v1/obituary/myobituary")
-    fun getCreateGet(): Call<RecyclerList>
+    fun getCreateGet(@Header("Accesstoken")accesstoken: String?): Call<RecyclerList>
 
 }

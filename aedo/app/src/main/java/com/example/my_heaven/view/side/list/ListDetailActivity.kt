@@ -14,6 +14,7 @@ import com.example.my_heaven.model.list.RecyclerList
 import com.example.my_heaven.util.alert.LoadingDialog
 import com.example.my_heaven.util.base.BaseActivity
 import com.example.my_heaven.util.base.MyApplication
+import com.example.my_heaven.util.base.MyApplication.Companion.prefs
 import com.example.my_heaven.util.log.LLog
 import retrofit2.Call
 import retrofit2.Callback
@@ -35,7 +36,7 @@ class ListDetailActivity : BaseActivity() {
     }
 
     private fun inRecycler() {
-        val vercall: Call<RecyclerList> = apiServices.getCreateGet()
+        val vercall: Call<RecyclerList> = apiServices.getCreateGet(prefs.myaccesstoken)
         vercall.enqueue(object : Callback<RecyclerList> {
             override fun onResponse(call: Call<RecyclerList>, response: Response<RecyclerList>) {
                 val result = response.body()
