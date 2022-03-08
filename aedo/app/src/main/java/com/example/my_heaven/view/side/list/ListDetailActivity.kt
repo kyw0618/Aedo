@@ -13,7 +13,6 @@ import com.example.my_heaven.model.list.Obituaray
 import com.example.my_heaven.model.list.RecyclerList
 import com.example.my_heaven.util.alert.LoadingDialog
 import com.example.my_heaven.util.base.BaseActivity
-import com.example.my_heaven.util.base.MyApplication
 import com.example.my_heaven.util.base.MyApplication.Companion.prefs
 import com.example.my_heaven.util.log.LLog
 import retrofit2.Call
@@ -42,7 +41,7 @@ class ListDetailActivity : BaseActivity() {
                 val result = response.body()
                 if (response.isSuccessful && result != null) {
                     Log.d(LLog.TAG,"List response SUCCESS -> $result")
-                    putIntent()
+                    putIntent(result.obituary)
                 }
                 else {
                     Log.d(LLog.TAG,"List response ERROR -> $result")
@@ -54,7 +53,7 @@ class ListDetailActivity : BaseActivity() {
         })
     }
 
-    private fun putIntent() {
+    private fun putIntent(obituary: List<Obituaray>?) {
 
         if(item!=null) {
             mBinding.textInfo.text = item!!.place?.place_name.toString()
