@@ -19,15 +19,7 @@ class RecyclerAdapter(val postList : List<Obituaray>, val context : Context)
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.list_item, parent, false)
 
-        return ViewHolder(view).apply {
-            btn_show?.setOnClickListener {
-                Intent(context, ListDetailActivity::class.java).apply {
-                    addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                }.run {
-                    context.startActivity(this)
-                }
-            }
-        }
+        return ViewHolder(view)
 
     }
 
@@ -67,6 +59,15 @@ class RecyclerAdapter(val postList : List<Obituaray>, val context : Context)
             tx_top_name?.text = itemPhoto?.deceased?.name
             tx_body_name?.text = itemPhoto?.resident?.name
             tx_body_info?.text=itemPhoto?.place?.place_name
+
+            btn_show?.setOnClickListener {
+                Intent(context, ListDetailActivity::class.java).apply {
+                    putExtra("data",itemPhoto.toString())
+                    addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                }.run {
+                    context.startActivity(this)
+                }
+            }
 
         }
 

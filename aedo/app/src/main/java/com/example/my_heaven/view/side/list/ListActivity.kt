@@ -71,13 +71,6 @@ class ListActivity : BaseActivity() {
         mBinding.recyclerView.setHasFixedSize(true)
         mBinding.recyclerView.addItemDecoration(
             DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
-
-        Intent(this, ListDetailActivity::class.java).apply {
-            putExtra("data", obituary.toString())
-            addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-        }.run {
-            baseContext.startActivity(this)
-        }
     }
 
     fun onBackClick(v: View) {
