@@ -22,7 +22,7 @@ import retrofit2.Response
 class ListDetailActivity : BaseActivity() {
     private lateinit var mBinding: ActivityListdetailBinding
     private lateinit var apiServices: APIService
-    private var item : Obituaray?=null
+    private lateinit var datas : Obituaray
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,39 +35,16 @@ class ListDetailActivity : BaseActivity() {
     }
 
     private fun inRecycler() {
-        val vercall: Call<RecyclerList> = apiServices.getCreateGet(prefs.myaccesstoken)
-        vercall.enqueue(object : Callback<RecyclerList> {
-            override fun onResponse(call: Call<RecyclerList>, response: Response<RecyclerList>) {
-                val result = response.body()
-                if (response.isSuccessful && result != null) {
-                    Log.d(LLog.TAG,"List response SUCCESS -> $result")
-                    putIntent(result.obituary)
-                }
-                else {
-                    Log.d(LLog.TAG,"List response ERROR -> $result")
-                }
-            }
-            override fun onFailure(call: Call<RecyclerList>, t: Throwable) {
-                Log.d(LLog.TAG, "List error -> $t")
-            }
-        })
-    }
+        datas = intent.getSerializableExtra("data") as Obituaray
 
-    private fun putIntent(obituary: List<Obituaray>?) {
-
-        if(item!=null) {
-            mBinding.textInfo.text = item!!.place?.place_name.toString()
-            mBinding.txPersonName.text = item!!.deceased?.name.toString()
-            mBinding.txData.text = item!!.eod?.date.toString()
-            mBinding.txCenterName.text = item!!.resident?.name.toString()
-            mBinding.txInfo.text = item!!.place?.place_name.toString()
-            mBinding.txDetailCoffin.text = item!!.eod?.date.toString()
-            mBinding.txDetailDofp.text = item!!.dofp?.date.toString()
-            mBinding.txBuried.text = item!!.buried.toString()
-        }
-        else {
-            Toast.makeText(this,"다시 시도해 주세요",Toast.LENGTH_SHORT).show()
-        }
+        mBinding.textInfo.text = datas.place?.place_name.toString()
+        mBinding.txPersonName.text = datas.deceased?.name.toString()
+        mBinding.txData.text = datas.eod?.date.toString()
+        mBinding.txCenterName.text = datas.resident?.name.toString()
+        mBinding.txInfo.text = datas.place?.place_name.toString()
+        mBinding.txDetailCoffin.text = datas.coffin?.date.toString()
+        mBinding.txDetailDofp.text = datas.dofp?.date.toString()
+        mBinding.txBuried.text = datas.buried.toString()
 
     }
 

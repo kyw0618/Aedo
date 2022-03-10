@@ -2,6 +2,7 @@ package com.example.my_heaven.view.side.list
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -70,6 +71,13 @@ class ListActivity : BaseActivity() {
         mBinding.recyclerView.setHasFixedSize(true)
         mBinding.recyclerView.addItemDecoration(
             DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
+
+        Intent(this, ListDetailActivity::class.java).apply {
+            putExtra("data", obituary.toString())
+            addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        }.run {
+            baseContext.startActivity(this)
+        }
     }
 
     fun onBackClick(v: View) {

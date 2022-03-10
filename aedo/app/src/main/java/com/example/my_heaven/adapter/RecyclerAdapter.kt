@@ -67,6 +67,7 @@ class RecyclerAdapter(val postList : List<Obituaray>, val context : Context)
             tx_top_name?.text = itemPhoto?.deceased?.name
             tx_body_name?.text = itemPhoto?.resident?.name
             tx_body_info?.text=itemPhoto?.place?.place_name
+
         }
 
     }
