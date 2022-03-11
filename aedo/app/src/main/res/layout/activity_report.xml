@@ -95,18 +95,21 @@
                     android:hint="@string/hint_activity_report_edittext_name" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <Button
-                android:id="@+id/btn_activity_report"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/btn_activity_report_button"
-                android:text="@string/text_activity_report_button"
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cv_confirm"
+                style="@style/CommonButtonCardStyle"
+                android:layout_width="0dp"
+                android:layout_marginBottom="30dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.498"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textInputLayout2"
-                app:layout_constraintVertical_bias="1.0" />
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_permission_confrim"
+                    style="@style/CommonButtonStyle"
+                    android:text="@string/ok"
+                    android:onClick="onConfirmClick"/>
+            </androidx.cardview.widget.CardView>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

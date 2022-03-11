@@ -50,6 +50,25 @@ object  Constant {
 
     const val DEFATULT_TIMEOUT = 20000
 
+    const val RESIDENT_NAME = "RESIDENT_NAME"
+    const val RESIDENT_RELATION = "RESIDENT_RELATION"
+    const val RESIDENT_PHONE = "RESIDENT_PHONE"
+
+    const val PLACE_NAME = "PLACE_NAME"
+
+    const val DECEASED_NAME = "DECEASED_NAME"
+    const val DECEASED_AGE = "DECEASED_AGE"
+
+    const val EOD_NAME = "EOD_NAME"
+    const val EOD_DATE = "EOD_DATE"
+
+    const val COFFIN_DATE = "COFFIN_DATE"
+    const val COFFIN_TIME = "COFFIN_TIME"
+
+    const val DOFP_DATE = "DOFP_DATE"
+    const val DOFP_TIME = "DOFP_TIME"
+
+    const val BURIED = "BURIED"
 
     // Splash
     const val SPLASH_WAIT = 2500
