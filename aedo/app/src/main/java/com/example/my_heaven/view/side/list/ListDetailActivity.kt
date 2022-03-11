@@ -48,7 +48,7 @@ class ListDetailActivity : BaseActivity(),OnMapReadyCallback {
     }
 
     private fun inRecycler() {
-        datas = intent.getSerializableExtra("data") as Obituaray
+        datas = intent.getStringExtra("data") as Obituaray
 
         mBinding.textInfo.text = datas.place?.place_name.toString()
         mBinding.txPersonName.text = datas.deceased?.name.toString()

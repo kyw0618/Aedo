@@ -62,7 +62,18 @@ class RecyclerAdapter(val postList : List<Obituaray>, val context : Context)
 
             btn_show?.setOnClickListener {
                 Intent(context, ListDetailActivity::class.java).apply {
-                    putExtra("data",itemPhoto.toString())
+                    putExtra("resident_name",itemPhoto?.resident?.name)
+                    putExtra("resident_relation",itemPhoto?.resident?.relation)
+                    putExtra("place_name",itemPhoto?.place?.place_name)
+                    putExtra("deceased_name",itemPhoto?.deceased?.name)
+                    putExtra("deceased_age",itemPhoto?.deceased?.age)
+                    putExtra("eod_date",itemPhoto?.eod?.date)
+                    putExtra("eod_name",itemPhoto?.eod?.time)
+                    putExtra("coffin_date",itemPhoto?.coffin?.date)
+                    putExtra("coffin_name",itemPhoto?.coffin?.time)
+                    putExtra("dofp_date",itemPhoto?.dofp?.date)
+                    putExtra("dofp_time",itemPhoto?.dofp?.time)
+                    putExtra("buried",itemPhoto?.buried.toString())
                     addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                 }.run {
                     context.startActivity(this)

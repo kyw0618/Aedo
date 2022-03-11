@@ -34,7 +34,7 @@ interface APIService {
     @POST("v1/obituary/create")
     fun getCreate(@Header("Accesstoken")accesstoken: String?,@Body resident: CreateModel): Call<CreateModel>
 
-    @GET("v1/obituary/myobituary")
+    @GET("v1/obituary/my")
     fun getCreateGet(@Header("Accesstoken")accesstoken: String?): Call<RecyclerList>
 
 }
