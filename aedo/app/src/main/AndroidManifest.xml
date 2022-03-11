@@ -29,6 +29,15 @@
         android:usesCleartextTraffic="false"
         tools:targetApi="n">
         <activity
+            android:name=".view.side.list.detail.MessageUploadActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.side.list.detail.MessageActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.side.list.detail.WaringActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.side.list.ListDetailActivity"
             android:exported="false" />
         <activity

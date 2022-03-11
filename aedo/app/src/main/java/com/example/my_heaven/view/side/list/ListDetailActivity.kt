@@ -2,6 +2,7 @@ package com.example.my_heaven.view.side.list
 
 import android.os.Bundle
 import android.util.Log
+import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
@@ -15,11 +16,14 @@ import com.example.my_heaven.util.alert.LoadingDialog
 import com.example.my_heaven.util.base.BaseActivity
 import com.example.my_heaven.util.base.MyApplication.Companion.prefs
 import com.example.my_heaven.util.log.LLog
+import com.naver.maps.map.MapFragment
+import com.naver.maps.map.NaverMap
+import com.naver.maps.map.OnMapReadyCallback
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class ListDetailActivity : BaseActivity() {
+class ListDetailActivity : BaseActivity(),OnMapReadyCallback {
     private lateinit var mBinding: ActivityListdetailBinding
     private lateinit var apiServices: APIService
     private lateinit var datas : Obituaray
@@ -32,6 +36,15 @@ class ListDetailActivity : BaseActivity() {
         dialog = LoadingDialog(this)
         inStatusBar()
         inRecycler()
+        initView()
+    }
+
+    private fun initView() {
+        val mapFragment = supportFragmentManager.findFragmentById(R.id.naver_map) as MapFragment?
+            ?: MapFragment.newInstance().also {
+                supportFragmentManager.beginTransaction().add(R.id.naver_map, it).commit()
+            }
+        mapFragment.getMapAsync(this)
     }
 
     private fun inRecycler() {
@@ -48,7 +61,34 @@ class ListDetailActivity : BaseActivity() {
 
     }
 
+    override fun onOptionsItemSelected(item: MenuItem) =
+        if (item.itemId == android.R.id.home) {
+            finish()
+            true
+        } else {
+            super.onOptionsItemSelected(item)
+        }
+
+    override fun onMapReady(naverMap: NaverMap) {
+    }
+
     fun onBackClick(v: View) {
         moveMain()
+    }
+
+    fun onDataSendClick(v: View) {
+        moveMessage()
+    }
+
+    fun onWaringClick(v: View) {
+        moveWaring()
+    }
+
+    fun onMainClick(v: View) {
+        moveMain()
+    }
+
+    fun onSideClick(v : View) {
+        listdelete()
     }
 }

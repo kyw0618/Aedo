@@ -180,10 +180,33 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/side_menu_settings"
+                android:id="@+id/side_menu_company"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="120dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:layout_width="129dp"
+                    android:layout_height="27dp"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="23dp"
+                    android:onClick='@{activity::onCompany}'
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/side_compay" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/side_menu_settings"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="180dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">

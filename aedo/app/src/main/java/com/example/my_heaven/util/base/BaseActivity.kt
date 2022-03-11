@@ -46,6 +46,10 @@ import com.example.my_heaven.view.main.detail.search.SearchActivity
 import com.example.my_heaven.view.main.detail.send.SendActivity
 import com.example.my_heaven.view.main.detail.shop.ShopActivity
 import com.example.my_heaven.view.side.list.ListActivity
+import com.example.my_heaven.view.side.list.detail.MessageActivity
+import com.example.my_heaven.view.side.list.detail.MessageUploadActivity
+import com.example.my_heaven.view.side.list.detail.WaringActivity
+import com.example.my_heaven.view.side.setting.SettingActivity
 import io.realm.Realm
 import kotlinx.android.synthetic.main.one_button_dialog.view.*
 import kotlinx.android.synthetic.main.two_button_dialog.view.*
@@ -312,6 +316,29 @@ open class BaseActivity : AppCompatActivity() {
         }
     }
 
+    internal fun listdelete() {
+        val myLayout = layoutInflater.inflate(R.layout.two_button_dialog, null)
+        val build = AlertDialog.Builder(this).apply {
+            setView(myLayout)
+        }
+        val textView : TextView = myLayout.findViewById(R.id.popTv)
+        textView.text = getString(R.string.update_check)
+        val dialog = build.create()
+        dialog.show()
+
+        myLayout.finish_btn.text = getString(R.string.btn_delete)
+        myLayout.update_btn.text = getString(R.string.btn_modify)
+
+        myLayout.finish_btn.setOnClickListener {
+            finish()
+            dialog.dismiss()
+        }
+        myLayout.update_btn.setOnClickListener {
+            finish()
+            dialog.dismiss()
+        }
+    }
+
     internal fun moveSide() {
         val intent = Intent(this, SideMenuActivity::class.java)
         startActivity(intent)
@@ -389,6 +416,38 @@ open class BaseActivity : AppCompatActivity() {
         finish()
     }
 
+    internal fun moveWaring() {
+        val intent = Intent(this, WaringActivity::class.java)
+        startActivity(intent)
+        overridePendingTransition(0, 0)
+        dialog?.dismiss()
+        finish()
+    }
 
-    open fun removeGps() {}
+
+    internal fun moveMessage() {
+        val intent = Intent(this, MessageActivity::class.java)
+        startActivity(intent)
+        overridePendingTransition(0, 0)
+        dialog?.dismiss()
+        finish()
+    }
+
+    internal fun moveMessageUpload() {
+        val intent = Intent(this, MessageUploadActivity::class.java)
+        startActivity(intent)
+        overridePendingTransition(0, 0)
+        dialog?.dismiss()
+        finish()
+    }
+
+    internal fun moveSetting() {
+        val intent = Intent(this, SettingActivity::class.java)
+        startActivity(intent)
+        overridePendingTransition(0, 0)
+        dialog?.dismiss()
+        finish()
+    }
+
+
 }

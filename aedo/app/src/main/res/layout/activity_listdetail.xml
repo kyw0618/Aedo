@@ -49,6 +49,29 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+            <ImageView
+                android:id="@+id/detail_waring"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:onClick='@{activity::onWaringClick}'
+                android:layout_marginStart="60dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/detail_home"
+                app:layout_constraintStart_toEndOf="@+id/text_info"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/detail_waring" />
+
+            <ImageView
+                android:id="@+id/detail_home"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_marginEnd="15dp"
+                android:onClick='@{activity::onMainClick}'
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/detail_home" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <ScrollView
@@ -124,6 +147,19 @@
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
+
+                        <ImageView
+                            android:id="@+id/detail_side"
+                            android:layout_width="4dp"
+                            android:layout_height="18dp"
+                            android:layout_marginTop="30dp"
+                            android:layout_marginEnd="20dp"
+                            android:onClick='@{activity::onSideClick}'
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/detail_side" />
+
+
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </LinearLayout>
 
@@ -337,34 +373,74 @@
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
-                        <ImageView
-                            android:id="@+id/imageView15"
-                            android:layout_width="267dp"
-                            android:layout_height="177dp"
-                            android:layout_marginTop="84dp"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:srcCompat="@drawable/center_body" />
 
                         <androidx.constraintlayout.widget.ConstraintLayout
-                            android:id="@+id/constraintLayout15"
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
-                            android:layout_marginTop="286dp"
-                            app:layout_constraintBottom_toTopOf="@+id/constraintLayout16"
+                            android:layout_margin="10dp"
+                            android:layout_marginTop="6dp"
+                            app:layout_constraintBottom_toTopOf="@+id/constraintLayout15"
+                            app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent">
+                            app:layout_constraintTop_toBottomOf="@+id/textView25">
 
-                            <TextView
-                                android:id="@+id/textView16"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="TextView"
+                            <FrameLayout
+                                android:id="@+id/naver_map"
+                                android:layout_width="0dp"
+                                android:layout_height="0dp"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent" />
+                                app:layout_constraintTop_toTopOf="parent">
+
+                            </FrameLayout>
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/constraintLayout15"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="286dp"
+                            app:layout_constraintBottom_toTopOf="@+id/constraintLayout16"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:id="@+id/constraintLayout17"
+                                android:layout_width="358dp"
+                                android:layout_height="44dp"
+                                android:layout_margin="20dp"
+                                android:background="@drawable/detail_box"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent">
+
+                                <ImageView
+                                    android:id="@+id/imageView15"
+                                    android:layout_width="14dp"
+                                    android:layout_height="19dp"
+                                    android:layout_marginTop="13dp"
+                                    android:layout_marginStart="15dp"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    app:srcCompat="@drawable/detail_marker" />
+
+                                <TextView
+                                    android:id="@+id/tv_map_detail"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="전라북도 길동시 관통로 27"
+                                    android:textColor="@color/black"
+                                    android:textSize="15dp"
+                                    android:fontFamily="@font/gyeonggititle_light"
+                                    android:layout_marginStart="10dp"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintStart_toEndOf="@+id/imageView15"
+                                    app:layout_constraintTop_toTopOf="parent" />
+                            </androidx.constraintlayout.widget.ConstraintLayout>
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
                         <androidx.constraintlayout.widget.ConstraintLayout
@@ -448,12 +524,62 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="31dp"
                                 android:text="조문 메세지"
-                                android:textSize="20dp"
                                 android:textColor="@color/black"
+                                android:textSize="20dp"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
                         </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/constraintLayout14">
+
+                            <ImageView
+                                android:id="@+id/imageView20"
+                                android:layout_width="35dp"
+                                android:layout_height="35dp"
+                                android:layout_marginStart="20dp"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:srcCompat="@drawable/detail_logo" />
+
+                            <TextView
+                                android:id="@+id/textView21"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="10dp"
+                                android:text="@string/detail_text"
+                                android:textSize="14dp"
+                                android:fontFamily="@font/gyeonggititle_light"
+                                app:layout_constraintStart_toEndOf="@+id/imageView20"
+                                app:layout_constraintTop_toTopOf="parent" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/cl_ok"
+                            style="@style/CommonButtonCardStyle"
+                            android:layout_width="200dp"
+                            android:layout_marginLeft="30dp"
+                            android:layout_marginRight="30dp"
+                            android:layout_marginBottom="20dp"
+                            android:visibility="visible"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent">
+
+                            <androidx.appcompat.widget.AppCompatButton
+                                android:id="@+id/btn_ok"
+                                style="@style/CommonButtonStyle"
+                                android:onClick='@{activity::onDataSendClick}'
+                                android:text="조문 메세지 모두 보기"
+                                android:textSize="15dp"/>
+
+                        </androidx.cardview.widget.CardView>
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </LinearLayout>

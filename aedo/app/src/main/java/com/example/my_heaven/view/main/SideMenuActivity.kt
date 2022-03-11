@@ -33,6 +33,10 @@ class SideMenuActivity : BaseActivity() {
     }
 
     fun onSetClick(v: View) {
+        moveSetting()
+    }
+
+    fun onCompany(v: View) {
 
     }
 }

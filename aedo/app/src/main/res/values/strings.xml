@@ -126,7 +126,7 @@
     <string name="login_picker_year_suffix">년</string>
     <string name="login_picker_month_suffix">월</string>
     <string name="login_picker_day_suffix">일</string>
-
+    <string name="detail_text">㈜애도 임직원 일동\n삼가 고인의 명복을 빕니다.</string>
     <!-- 약관 -->
     <string name="term_agree_again_popup">회원님은 약관 재동의 대상입니다.\n약관 재동의 화면으로 이동합니다.</string>
     <string name="term_agree_again_title">이용약관 및 개인정보 수집 및\n이용 재동의 안내</string>
@@ -145,6 +145,11 @@
     <string name="server_check">서버 점검중입니다.\n잠시 후에 이용해 주세요.</string>
     <string name="update_check">앱 업데이트가 필요합니다.\n업데이트를 진행해주세요.</string>
     <string name="network_check">네트워크 연결이 원활하지 않습니다.\n다시 시도해 주세요.</string>
+    <string name="list_delete">부고 관리</string>
+    
+    <string name="btn_delete">삭제</string>
+    <string name="btn_modify">수정</string>
+
 
     <string name="setting_section_setting">기능설정</string>
     <string name="setting_section_terms">약관상세</string>
