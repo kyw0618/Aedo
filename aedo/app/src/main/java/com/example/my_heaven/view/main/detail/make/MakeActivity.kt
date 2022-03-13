@@ -157,13 +157,13 @@ class MakeActivity : BaseActivity() {
                 mBinding.dofpTextTime.error = "발인 시간을 선택해 주세요"
             }
             else -> {
-
                 dialog?.show()
                 callCreateAPI()
                 uploadItem(spinner_text,make_person,make_phone,place,deceased_age,deceased_name,eod_date,eod_time,coffin_date,coffin_time,dofp_date,dofp_time,buried)
+                addList()
             }
         }
-        addList()
+        finish()
     }
 
     private fun addList() {

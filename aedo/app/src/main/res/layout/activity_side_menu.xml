@@ -200,10 +200,8 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/side_menu_settings"
+                android:id="@+id/side_menu_settsings"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="180dp"
@@ -212,10 +210,31 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView
+                    android:layout_width="142dp"
+                    android:layout_height="27dp"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="18dp"
+                    android:onClick='@{activity::onThanksClick}'
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/side_thanks" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/side_menu_settings"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="240dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
                     android:layout_width="72dp"
                     android:layout_height="26dp"
                     android:layout_marginStart="34dp"
-                    android:layout_marginTop="18dp"
+                    android:layout_marginTop="8dp"
                     android:onClick='@{activity::onSetClick}'
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"

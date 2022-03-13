@@ -146,7 +146,7 @@
     <string name="update_check">앱 업데이트가 필요합니다.\n업데이트를 진행해주세요.</string>
     <string name="network_check">네트워크 연결이 원활하지 않습니다.\n다시 시도해 주세요.</string>
     <string name="list_delete">부고 관리</string>
-    
+
     <string name="btn_delete">삭제</string>
     <string name="btn_modify">수정</string>
 

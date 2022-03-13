@@ -29,6 +29,9 @@
         android:usesCleartextTraffic="false"
         tools:targetApi="n">
         <activity
+            android:name=".view.side.ThanksActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.side.list.detail.MessageUploadActivity"
             android:exported="false" />
         <activity

@@ -45,6 +45,7 @@ import com.example.my_heaven.view.main.detail.modify.ModifyActivity
 import com.example.my_heaven.view.main.detail.search.SearchActivity
 import com.example.my_heaven.view.main.detail.send.SendActivity
 import com.example.my_heaven.view.main.detail.shop.ShopActivity
+import com.example.my_heaven.view.side.information.InforMationActivity
 import com.example.my_heaven.view.side.list.ListActivity
 import com.example.my_heaven.view.side.list.detail.MessageActivity
 import com.example.my_heaven.view.side.list.detail.MessageUploadActivity
@@ -443,6 +444,14 @@ open class BaseActivity : AppCompatActivity() {
 
     internal fun moveSetting() {
         val intent = Intent(this, SettingActivity::class.java)
+        startActivity(intent)
+        overridePendingTransition(0, 0)
+        dialog?.dismiss()
+        finish()
+    }
+
+    internal fun moveInfor() {
+        val intent = Intent(this, InforMationActivity::class.java)
         startActivity(intent)
         overridePendingTransition(0, 0)
         dialog?.dismiss()

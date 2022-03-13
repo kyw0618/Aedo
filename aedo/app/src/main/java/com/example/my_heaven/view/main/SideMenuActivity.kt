@@ -37,6 +37,10 @@ class SideMenuActivity : BaseActivity() {
     }
 
     fun onCompany(v: View) {
+        moveInfor()
+    }
+
+    fun onThanksClick(v: View) {
 
     }
 }
