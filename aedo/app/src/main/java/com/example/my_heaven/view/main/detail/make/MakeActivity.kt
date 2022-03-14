@@ -33,6 +33,7 @@ import com.example.my_heaven.util.base.MyApplication.Companion.prefs
 import com.example.my_heaven.util.firebase.FirebaseViewModel
 import com.example.my_heaven.util.log.LLog.TAG
 import com.example.my_heaven.view.main.MainActivity
+import com.example.my_heaven.view.side.list.ListDetailActivity
 import com.google.android.material.textfield.TextInputEditText
 import retrofit2.Call
 import retrofit2.Callback
@@ -160,32 +161,9 @@ class MakeActivity : BaseActivity() {
                 dialog?.show()
                 callCreateAPI()
                 uploadItem(spinner_text,make_person,make_phone,place,deceased_age,deceased_name,eod_date,eod_time,coffin_date,coffin_time,dofp_date,dofp_time,buried)
-                addList()
             }
         }
         finish()
-    }
-
-    private fun addList() {
-        val resultIntent = Intent()
-
-        val deceased = mBinding.makeTxPersonName.text.toString()
-        val eod_data = mBinding.eodText.text.toString()
-        val resident = mBinding.makeTxName.text.toString()
-        val place = mBinding.spinnerInfoTextTt.text.toString()
-        val coffin = mBinding.coffinText.text.toString()
-        val dofp = mBinding.dofpText.text.toString()
-        val buried = mBinding.makeTxPlace.text.toString()
-
-        resultIntent.putExtra(DECEASED_NAME,deceased)
-        resultIntent.putExtra(EOD_DATE,eod_data)
-        resultIntent.putExtra(RESIDENT_NAME,resident)
-        resultIntent.putExtra(PLACE_NAME,place)
-        resultIntent.putExtra(COFFIN_DATE,coffin)
-        resultIntent.putExtra(DOFP_DATE,dofp)
-        resultIntent.putExtra(BURIED,buried)
-        setResult(Activity.RESULT_OK, resultIntent)
-
     }
 
     private fun uploadItem(

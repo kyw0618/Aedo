@@ -16,6 +16,13 @@ import com.example.my_heaven.api.ApiUtils
 import com.example.my_heaven.databinding.ActivityListBinding
 import com.example.my_heaven.model.list.Obituaray
 import com.example.my_heaven.model.list.RecyclerList
+import com.example.my_heaven.util.`object`.Constant.BURIED
+import com.example.my_heaven.util.`object`.Constant.COFFIN_DATE
+import com.example.my_heaven.util.`object`.Constant.DECEASED_NAME
+import com.example.my_heaven.util.`object`.Constant.DOFP_DATE
+import com.example.my_heaven.util.`object`.Constant.EOD_DATE
+import com.example.my_heaven.util.`object`.Constant.PLACE_NAME
+import com.example.my_heaven.util.`object`.Constant.RESIDENT_NAME
 import com.example.my_heaven.util.alert.LoadingDialog
 import com.example.my_heaven.util.base.BaseActivity
 import com.example.my_heaven.util.base.MyApplication.Companion.prefs
@@ -39,7 +46,6 @@ class ListActivity : BaseActivity() {
         mBinding.activity=this@ListActivity
         apiServices = ApiUtils.apiService
         dialog = LoadingDialog(this)
-
         inStatusBar()
         inRecycler()
     }
@@ -53,6 +59,7 @@ class ListActivity : BaseActivity() {
                 if (response.isSuccessful && result != null) {
                     Log.d(TAG,"List response SUCCESS -> $result")
                     setAdapter(result.obituary)
+
                 }
                 else {
                     Log.d(TAG,"List response ERROR -> $result")
@@ -65,12 +72,13 @@ class ListActivity : BaseActivity() {
     }
 
     private fun setAdapter(obituary: List<Obituaray>?) {
-        val mAdapter = obituary?.let { RecyclerAdapter(it,this) }
+        val mAdapter = obituary?.let {
+            RecyclerAdapter(it,this)
+        }
         mBinding.recyclerView.adapter = mAdapter
         mBinding.recyclerView.layoutManager = LinearLayoutManager(this)
         mBinding.recyclerView.setHasFixedSize(true)
-        mBinding.recyclerView.addItemDecoration(
-            DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
+        mBinding.recyclerView.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
     }
 
     fun onBackClick(v: View) {

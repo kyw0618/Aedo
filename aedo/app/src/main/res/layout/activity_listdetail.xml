@@ -55,6 +55,7 @@
                 android:layout_height="18dp"
                 android:onClick='@{activity::onWaringClick}'
                 android:layout_marginStart="60dp"
+                android:layout_marginEnd="20dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/detail_home"
                 app:layout_constraintStart_toEndOf="@+id/text_info"
@@ -227,6 +228,7 @@
                             app:srcCompat="@drawable/line" />
 
                         <TextView
+                            android:id="@+id/tv_one"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="빈소"
@@ -243,17 +245,17 @@
                             android:id="@+id/tx_info"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="성남장례식장"
+                            android:text="구례산림조합장례식장"
                             android:textColor="@color/black"
                             android:textSize="18dp"
                             android:layout_marginBottom="20dp"
-                            android:layout_marginEnd="100dp"
+                            android:layout_marginStart="55dp"
                             app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/tv_one"
                             app:layout_constraintTop_toTopOf="parent" />
 
                         <TextView
+                            android:id="@+id/tv_two"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="입관"
@@ -273,15 +275,14 @@
                             android:text="2022년 02월 04일"
                             android:textColor="@color/black"
                             android:textSize="18dp"
-                            android:layout_marginStart="40dp"
+                            android:layout_marginStart="55dp"
                             android:layout_marginTop="60dp"
-                            android:layout_marginEnd="100dp"
                             app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/tv_two"
                             app:layout_constraintTop_toTopOf="parent" />
 
                         <TextView
+                            android:id="@+id/tv_three"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="발인"
@@ -301,15 +302,14 @@
                             android:text="2022년 02월 04일"
                             android:textColor="@color/black"
                             android:textSize="18dp"
-                            android:layout_marginStart="40dp"
+                            android:layout_marginStart="55dp"
                             android:layout_marginTop="140dp"
-                            android:layout_marginEnd="100dp"
                             app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/tv_three"
                             app:layout_constraintTop_toTopOf="parent" />
 
                         <TextView
+                            android:id="@+id/tv_four"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="장지"
@@ -330,10 +330,9 @@
                             android:textColor="@color/black"
                             android:textSize="18dp"
                             android:layout_marginTop="220dp"
-                            android:layout_marginEnd="168dp"
+                            android:layout_marginStart="55dp"
                             app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/tv_four"
                             app:layout_constraintTop_toTopOf="parent" />
 
                         <ImageView

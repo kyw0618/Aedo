@@ -7,9 +7,17 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.my_heaven.R
 import com.example.my_heaven.model.list.Obituaray
+import com.example.my_heaven.util.`object`.Constant.BURIED
+import com.example.my_heaven.util.`object`.Constant.COFFIN_DATE
+import com.example.my_heaven.util.`object`.Constant.DECEASED_NAME
+import com.example.my_heaven.util.`object`.Constant.DOFP_DATE
+import com.example.my_heaven.util.`object`.Constant.EOD_DATE
+import com.example.my_heaven.util.`object`.Constant.PLACE_NAME
+import com.example.my_heaven.util.`object`.Constant.RESIDENT_NAME
 import com.example.my_heaven.view.side.list.ListDetailActivity
 
 class RecyclerAdapter(val postList : List<Obituaray>, val context : Context)
@@ -61,25 +69,16 @@ class RecyclerAdapter(val postList : List<Obituaray>, val context : Context)
             tx_body_info?.text=itemPhoto?.place?.place_name
 
             btn_show?.setOnClickListener {
-                Intent(context, ListDetailActivity::class.java).apply {
-                    putExtra("resident_name",itemPhoto?.resident?.name)
-                    putExtra("resident_relation",itemPhoto?.resident?.relation)
-                    putExtra("place_name",itemPhoto?.place?.place_name)
-                    putExtra("deceased_name",itemPhoto?.deceased?.name)
-                    putExtra("deceased_age",itemPhoto?.deceased?.age)
-                    putExtra("eod_date",itemPhoto?.eod?.date)
-                    putExtra("eod_name",itemPhoto?.eod?.time)
-                    putExtra("coffin_date",itemPhoto?.coffin?.date)
-                    putExtra("coffin_name",itemPhoto?.coffin?.time)
-                    putExtra("dofp_date",itemPhoto?.dofp?.date)
-                    putExtra("dofp_time",itemPhoto?.dofp?.time)
-                    putExtra("buried",itemPhoto?.buried.toString())
-                    addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                }.run {
-                    context.startActivity(this)
-                }
+                val intent = Intent(context, ListDetailActivity::class.java)
+                intent.putExtra(DECEASED_NAME,itemPhoto?.deceased?.name.toString())
+                intent.putExtra(EOD_DATE,itemPhoto?.eod?.date.toString())
+                intent.putExtra(RESIDENT_NAME,itemPhoto?.resident?.name.toString())
+                intent.putExtra(PLACE_NAME,itemPhoto?.place?.place_name.toString())
+                intent.putExtra(COFFIN_DATE,itemPhoto?.coffin?.date.toString())
+                intent.putExtra(DOFP_DATE,itemPhoto?.dofp?.date.toString())
+                intent.putExtra(BURIED,itemPhoto?.buried.toString())
+                ContextCompat.startActivity(itemView.context, intent, null)
             }
-
         }
 
     }

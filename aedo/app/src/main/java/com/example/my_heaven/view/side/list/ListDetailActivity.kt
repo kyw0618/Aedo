@@ -1,5 +1,6 @@
 package com.example.my_heaven.view.side.list
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
@@ -12,6 +13,13 @@ import com.example.my_heaven.api.ApiUtils
 import com.example.my_heaven.databinding.ActivityListdetailBinding
 import com.example.my_heaven.model.list.Obituaray
 import com.example.my_heaven.model.list.RecyclerList
+import com.example.my_heaven.util.`object`.Constant.BURIED
+import com.example.my_heaven.util.`object`.Constant.COFFIN_DATE
+import com.example.my_heaven.util.`object`.Constant.DECEASED_NAME
+import com.example.my_heaven.util.`object`.Constant.DOFP_DATE
+import com.example.my_heaven.util.`object`.Constant.EOD_DATE
+import com.example.my_heaven.util.`object`.Constant.PLACE_NAME
+import com.example.my_heaven.util.`object`.Constant.RESIDENT_NAME
 import com.example.my_heaven.util.alert.LoadingDialog
 import com.example.my_heaven.util.base.BaseActivity
 import com.example.my_heaven.util.base.MyApplication.Companion.prefs
@@ -47,29 +55,27 @@ class ListDetailActivity : BaseActivity(),OnMapReadyCallback {
         mapFragment.getMapAsync(this)
     }
 
+    @SuppressLint("SetTextI18n")
     private fun inRecycler() {
-        datas = intent.getStringExtra("data") as Obituaray
-
-        mBinding.textInfo.text = datas.place?.place_name.toString()
-        mBinding.txPersonName.text = datas.deceased?.name.toString()
-        mBinding.txData.text = datas.eod?.date.toString()
-        mBinding.txCenterName.text = datas.resident?.name.toString()
-        mBinding.txInfo.text = datas.place?.place_name.toString()
-        mBinding.txDetailCoffin.text = datas.coffin?.date.toString()
-        mBinding.txDetailDofp.text = datas.dofp?.date.toString()
-        mBinding.txBuried.text = datas.buried.toString()
-
+        val decase_name = intent.getStringExtra(DECEASED_NAME)
+        val place_name = intent.getStringExtra(PLACE_NAME)
+        val tx_data = intent.getStringExtra(EOD_DATE)
+        val tv_center_name = intent.getStringExtra(RESIDENT_NAME)
+        val coffin = intent.getStringExtra(COFFIN_DATE)
+        val dofp = intent.getStringExtra(DOFP_DATE)
+        val buried = intent.getStringExtra(BURIED)
+        mBinding.txPersonName.text = decase_name.toString()
+        mBinding.textInfo.text = place_name.toString()
+        mBinding.txData.text = "$tx_data 별세"
+        mBinding.txCenterName.text = tv_center_name.toString()
+        mBinding.txInfo.text = place_name.toString()
+        mBinding.txDetailCoffin.text = coffin.toString()
+        mBinding.txDetailDofp.text = dofp.toString()
+        mBinding.txBuried.text = buried.toString()
     }
 
-    override fun onOptionsItemSelected(item: MenuItem) =
-        if (item.itemId == android.R.id.home) {
-            finish()
-            true
-        } else {
-            super.onOptionsItemSelected(item)
-        }
-
     override fun onMapReady(naverMap: NaverMap) {
+
     }
 
     fun onBackClick(v: View) {
