@@ -45,6 +45,8 @@ import com.example.my_heaven.view.main.detail.modify.ModifyActivity
 import com.example.my_heaven.view.main.detail.search.SearchActivity
 import com.example.my_heaven.view.main.detail.send.SendActivity
 import com.example.my_heaven.view.main.detail.shop.ShopActivity
+import com.example.my_heaven.view.side.coun.CounselingActivity
+import com.example.my_heaven.view.side.coun.UploadCounselingActivity
 import com.example.my_heaven.view.side.information.InforMationActivity
 import com.example.my_heaven.view.side.list.ListActivity
 import com.example.my_heaven.view.side.list.detail.MessageActivity
@@ -455,6 +457,20 @@ open class BaseActivity : AppCompatActivity() {
         startActivity(intent)
         overridePendingTransition(0, 0)
         dialog?.dismiss()
+        finish()
+    }
+
+    internal fun moveCounseling() {
+        val intent = Intent(this, CounselingActivity::class.java)
+        startActivity(intent)
+        overridePendingTransition(0, 0)
+        finish()
+    }
+
+    internal fun moveUploadCoun() {
+        val intent = Intent(this, UploadCounselingActivity::class.java)
+        startActivity(intent)
+        overridePendingTransition(0, 0)
         finish()
     }
 

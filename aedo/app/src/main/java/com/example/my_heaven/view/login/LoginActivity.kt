@@ -3,6 +3,7 @@ package com.example.my_heaven.view.login
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Rect
 import android.os.Bundle
@@ -22,6 +23,7 @@ import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import com.example.my_heaven.R
 import com.example.my_heaven.api.APIService
@@ -38,6 +40,7 @@ import com.example.my_heaven.util.encrypt.Base64Util
 import com.example.my_heaven.util.log.LLog.TAG
 import com.example.my_heaven.util.observable.LoginObservable
 import com.example.my_heaven.view.intro.permission.PermissionManager
+import com.example.my_heaven.view.main.SideMenuActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -342,7 +345,6 @@ class LoginActivity : BaseActivity() {
 
             }
         }
-
     }
 
     fun onSendClick(v:View?){

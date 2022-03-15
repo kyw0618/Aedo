@@ -38,7 +38,7 @@ class MainActivity : BaseActivity() {
     }
 
     fun onSendClick(v: View) {
-        moveSend()
+        moveList()
     }
 
     fun onReClick(v: View) {

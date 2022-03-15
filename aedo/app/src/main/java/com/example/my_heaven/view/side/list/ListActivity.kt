@@ -90,6 +90,10 @@ class ListActivity : BaseActivity() {
         finish()
     }
 
+    fun onMainClick(v: View) {
+        moveMain()
+    }
+
     @SuppressLint("NotifyDataSetChanged")
     override fun onResume() {
         super.onResume()

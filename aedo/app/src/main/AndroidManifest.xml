@@ -29,6 +29,12 @@
         android:usesCleartextTraffic="false"
         tools:targetApi="n">
         <activity
+            android:name=".view.side.coun.UploadCounselingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.side.coun.CounselingActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.side.ThanksActivity"
             android:exported="false" />
         <activity

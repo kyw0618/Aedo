@@ -37,4 +37,10 @@ interface APIService {
     @GET("v1/obituary/my")
     fun getCreateGet(@Header("Accesstoken")accesstoken: String?): Call<RecyclerList>
 
+    @GET("v1/condole/create")
+    fun getCondole(@Body condole: Condole): Call<Condole>
+
+    @GET("v1/condole/:id")
+    fun getConID() : Call<ConID>
+
 }

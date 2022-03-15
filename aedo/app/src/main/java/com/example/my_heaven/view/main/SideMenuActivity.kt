@@ -1,5 +1,6 @@
 package com.example.my_heaven.view.main
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.databinding.DataBindingUtil
@@ -26,6 +27,7 @@ class SideMenuActivity : BaseActivity() {
     }
 
     fun onInfoClick(v:View) {
+        moveInfor()
     }
 
     fun onListClick(v:View) {
@@ -42,5 +44,10 @@ class SideMenuActivity : BaseActivity() {
 
     fun onThanksClick(v: View) {
 
+    }
+
+    override fun onBackPressed() {
+        startActivity(Intent(this, MainActivity::class.java))
+        finish()
     }
 }

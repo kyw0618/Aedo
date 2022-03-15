@@ -9,6 +9,10 @@
 
     <string name="backpress_exit">\'뒤로\' 버튼을 한 번 더 누르시면 앱이 종료됩니다.</string>
 
+    <string name="agree_service">서비스 이용약관</string>
+    <string name="agree_get">개인정보 수집 및 이용동의</string>
+    <string name="agree_three">제3자 제공 동의</string>
+
 
     <!-- 접근 권한 동의 -->
     <string name="permission_title">앱 접근 권한 동의</string>

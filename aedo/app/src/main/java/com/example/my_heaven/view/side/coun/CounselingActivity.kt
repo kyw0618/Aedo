@@ -1,6 +1,5 @@
-package com.example.my_heaven.view.side.setting
+package com.example.my_heaven.view.side.coun
 
-import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -9,31 +8,26 @@ import androidx.databinding.DataBindingUtil
 import com.example.my_heaven.R
 import com.example.my_heaven.api.APIService
 import com.example.my_heaven.api.ApiUtils
-import com.example.my_heaven.databinding.ActivitySettingBinding
+import com.example.my_heaven.databinding.ActivityCounselingBinding
 import com.example.my_heaven.util.base.BaseActivity
 
-class SettingActivity : BaseActivity() {
-    private lateinit var mBinding: ActivitySettingBinding
+class CounselingActivity : BaseActivity() {
+    private lateinit var mBinding: ActivityCounselingBinding
     private lateinit var apiServices: APIService
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        mBinding=DataBindingUtil.setContentView(this, R.layout.activity_setting)
-        mBinding.activity = this@SettingActivity
+        mBinding = DataBindingUtil.setContentView(this, R.layout.activity_counseling)
+        mBinding.activity = this
         apiServices = ApiUtils.apiService
         inStatusBar()
     }
 
-    fun onLogOutClick(v: View) {
-
-    }
-
-    fun onOutClick(v: View) {
-
-    }
-
-    fun onBackClick(v: View) {
+    fun onBackPressed(v: View) {
         moveMain()
     }
 
+    fun onCounClick(v: View) {
+        moveUploadCoun()
+    }
 }

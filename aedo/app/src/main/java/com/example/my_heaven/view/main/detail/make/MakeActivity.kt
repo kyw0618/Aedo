@@ -46,7 +46,6 @@ class MakeActivity : BaseActivity() {
     private lateinit var apiServices: APIService
     private var mViewModel: MakeViewModel? = null
     private var itemDTO = ItemDTO()
-    private val firebaseViewModel : FirebaseViewModel by viewModels()
     private var valid = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -160,47 +159,9 @@ class MakeActivity : BaseActivity() {
             else -> {
                 dialog?.show()
                 callCreateAPI()
-                uploadItem(spinner_text,make_person,make_phone,place,deceased_age,deceased_name,eod_date,eod_time,coffin_date,coffin_time,dofp_date,dofp_time,buried)
             }
         }
         finish()
-    }
-
-    private fun uploadItem(
-        spinnerText: String,
-        makePerson: String,
-        makePhone: String,
-        place: String,
-        deceasedAge: String,
-        deceasedName: String,
-        eodDate: String,
-        eodTime: String,
-        coffinDate: String,
-        coffinTime: String,
-        dofpDate: String,
-        dofpTime: String,
-        buried: String
-    ) {
-
-        val time = System.currentTimeMillis()
-        itemDTO.spinner_text = spinnerText
-        itemDTO.make_person = makePerson
-        itemDTO.make_phone = makePhone
-        itemDTO.place = place
-        itemDTO.deceased_age = deceasedAge
-        itemDTO.deceased_name = deceasedName
-        itemDTO.eod_date = eodDate
-        itemDTO.eod_time = eodTime
-        itemDTO.coffin_date = coffinDate
-        itemDTO.coffin_time = coffinTime
-        itemDTO.dofp_date = dofpDate
-        itemDTO.dofp_time = dofpTime
-        itemDTO.timestamp = time
-        itemDTO.buried = buried
-        firebaseViewModel.uploadItem(itemDTO)
-        dialog?.dismiss()
-        finish()
-
     }
 
     private fun callCreateAPI() {
