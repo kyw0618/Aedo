@@ -13,33 +13,43 @@ import retrofit2.http.*
 import java.util.HashMap
 
 interface APIService {
+    //검증 API
     @GET("v1/app/verification")
     fun getVerification(@Header("abcd-ef")abcdef: String?): Call<Verification>
 
+    //정책 API
     @GET("v1/app/policy")
     fun getPolicy(): Call<AppPolicy>
 
-    @PUT("v1/user/autologin")
+    //자동로그인 API
+    @PUT("v1/user/auto")
     fun getautoLogin(@Header("Accesstoken")accesstoken: String?): Call<AutoLogin>
 
-    @PUT("v1/user/login")
+    //로그인 API
+    @PUT("v1/user")
     fun getLogin(@Body loginSend: LoginSend):Call<LoginSend>
 
-    @POST("v1/user/signup")
+    //회원가입 API
+    @POST("v1/user")
     fun getSignUp(@Body loginResult:LoginResult):Call<LoginResult>
 
+    //문자인증 API
     @POST("v1/user/sms")
     fun getSMS(@Body loginSMS: LoginSMS): Call<LoginSMS>
 
-    @POST("v1/obituary/create")
+    //부고작성 API
+    @POST("v1/obituary")
     fun getCreate(@Header("Accesstoken")accesstoken: String?,@Body resident: CreateModel): Call<CreateModel>
 
+    //나의부고 API
     @GET("v1/obituary/my")
     fun getCreateGet(@Header("Accesstoken")accesstoken: String?): Call<RecyclerList>
 
-    @GET("v1/condole/create")
+    //조문메세지 API
+    @GET("v1/condole")
     fun getCondole(@Body condole: Condole): Call<Condole>
 
+    //조문메세지 조회 API
     @GET("v1/condole/:id")
     fun getConID() : Call<ConID>
 
