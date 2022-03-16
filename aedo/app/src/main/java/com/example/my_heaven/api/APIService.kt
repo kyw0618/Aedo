@@ -3,10 +3,7 @@ package com.example.my_heaven.api
 import android.widget.EditText
 import com.example.my_heaven.model.list.RecyclerList
 import com.example.my_heaven.model.restapi.base.*
-import com.example.my_heaven.model.restapi.login.LogOut
-import com.example.my_heaven.model.restapi.login.LoginResult
-import com.example.my_heaven.model.restapi.login.LoginSMS
-import com.example.my_heaven.model.restapi.login.LoginSend
+import com.example.my_heaven.model.restapi.login.*
 import com.google.gson.JsonArray
 import com.google.gson.JsonObject
 import retrofit2.Call
@@ -37,6 +34,10 @@ interface APIService {
     //문자인증 API
     @POST("v1/user/sms")
     fun getSMS(@Body loginSMS: LoginSMS): Call<LoginSMS>
+
+    //회원정보 API
+    @GET("v1/user")
+    fun getUser(): Call<GetUser>
 
     //약관보기 API
     @GET("v1/user/terms")
