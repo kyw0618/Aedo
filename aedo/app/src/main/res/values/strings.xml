@@ -323,5 +323,16 @@
     <string name="hint_activity_report_edittext">신고 사유를 입력해주세요.</string>
     <string name="hint_activity_report_edittext_name">대표상주 이름을 입력해 주세요.</string>
 
+    <string name="thanks_first">1. 조문감사</string>
+    <string name="thanks_first_detail">바쁘신 중에도 장례에 오셔서 위로해주셔서 정말 감사드립니다\n건강 하시길 기도 드리며 다시 한번 더 감사의 인사를 드립니다.</string>
+    <string name="thanks_second">2. 조문감사</string>
+    <string name="thanks_second_detail">기도와 위로 주시고 슬픔을 함께 해주셔서 장례를 잘 마칠 수 있었습니다.\n고마운 마음 잊지 않고 오래도록 기억 하겠습니다.\n다시 한번 감사의 인사드립니다.</string>
+    <string name="thanks_third">3. 조문감사</string>
+    <string name="thanks_third_detail">바쁘신 와중에도 참석하여 따뜻한 위로의 말씀을 해주신 점 깊이 감사드립니다.\n덕분에 장례는 무사히 마치게 되었습니다.\n정말 큰 위로와 힘이 되었으며 감사한 마음을 오래토록 잊지 않고 간직 하겠습니다.</string>
+    <string name="thanks_four">4. 조문감사</string>
+    <string name="thanks_four_detail">먼곳에서 조문을 와주시고 따뜻한 조위와 후의를 베풀어 주시어 무사히 장례를 마칠 수 있었습니다.\n깊은 감사드립니다.</string>
+    <string name="thanks_five">5. 조문감사</string>
+    <string name="thanks_five_detail">직접 찾아뵙지 않고 문자를 통해서 감사의 인사를 드리는 부분 양해 부탁드립니다.\n다시 한번 감사 드리고 가정의 평안과 행운이 가득 하시길 기원 하겠습니다.</string>
+
 
 </resources>
