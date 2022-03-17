@@ -38,6 +38,7 @@ import com.google.android.material.textfield.TextInputEditText
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.time.LocalDate
 import java.util.*
 
 
@@ -54,6 +55,9 @@ class MakeActivity : BaseActivity() {
         mBinding.activity = this@MakeActivity
         apiServices = ApiUtils.apiService
         mBinding.viewModel = mViewModel
+        val onlyDate: LocalDate = LocalDate.now()
+        mBinding.tvMakeData.text = onlyDate.toString()
+
         inStatusBar()
         makeTop()
         setupSpinnerHandler()
@@ -118,43 +122,47 @@ class MakeActivity : BaseActivity() {
         val dofp_date = mBinding.dofpText.text.toString()
         val dofp_time = mBinding.dofpTextTime.text.toString()
         val buried = mBinding.makeTxPlace.text.toString()
+        val word = mBinding.makeTxTex.text.toString()
 
         when {
             spinner_text.isEmpty() -> {
-                mBinding.spinnerText.error = "관계를 선택해 주세요"
+                mBinding.spinnerText.error = "미입력"
             }
             make_person.isEmpty() -> {
-                mBinding.makeTxName.error = "대표 상주 이름을 입력해 주세요"
+                mBinding.makeTxName.error = "대미입력"
             }
             make_phone.isEmpty() -> {
-                mBinding.makeTxPhone.error = "대표 상주 번호를 입력해 주세요"
+                mBinding.makeTxPhone.error = "미입력"
             }
             place.isEmpty() -> {
-                mBinding.spinnerInfoTextTt.error="장례식장을 선택해주세요"
+                mBinding.spinnerInfoTextTt.error="미입력"
             }
             deceased_name.isEmpty() -> {
-                mBinding.makeTxPersonName.error = "고인의 성함을 입력해 주세요"
+                mBinding.makeTxPersonName.error = "미입력"
             }
             deceased_age.isEmpty() -> {
-                mBinding.makeTxAge.error = "고인의 나이를 입력해주세요"
+                mBinding.makeTxAge.error = "미입력"
             }
             eod_date.isEmpty() -> {
-                mBinding.eodText.error = "임종 날짜를 선택해 주세요"
+                mBinding.eodText.error = "미입력"
             }
             eod_time.isEmpty() -> {
-                mBinding.eodTextTime.error = "임종 시간을 선택해 주세요"
+                mBinding.eodTextTime.error = "미입력"
             }
             coffin_date.isEmpty() -> {
-                mBinding.coffinText.error = "입관 날짜를 선택해 주세요"
+                mBinding.coffinText.error = "미입력"
             }
             coffin_time.isEmpty() -> {
-                mBinding.coffinTextTime.error = "입관 시간을 선택해 주세요"
+                mBinding.coffinTextTime.error = "미입력"
             }
             dofp_date.isEmpty() -> {
-                mBinding.dofpText.error = "발인 날짜를 선택해 주세요"
+                mBinding.dofpText.error = "미입력"
             }
             dofp_time.isEmpty() -> {
-                mBinding.dofpTextTime.error = "발인 시간을 선택해 주세요"
+                mBinding.dofpTextTime.error = "미입력"
+            }
+            word.isEmpty() -> {
+                mBinding.makeTxTex.error = "미입력"
             }
             else -> {
                 dialog?.show()
@@ -184,7 +192,9 @@ class MakeActivity : BaseActivity() {
 
         val word = mBinding.makeTxTex.text.toString()
 
-        val data = CreateModel(resident,place,deceased,eod,coffin,dofp, buried, word)
+         val created =mBinding.tvMakeData.text.toString()
+
+        val data = CreateModel(resident,place,deceased,eod,coffin,dofp, buried, word, created)
 
         val mytoken = prefs.mytoken.toString()
         val bear = "Bearer"
@@ -199,7 +209,54 @@ class MakeActivity : BaseActivity() {
                 else {
                     Log.d(TAG,"callCreateAPI API ERROR -> ${response.errorBody()}")
                     Log.d(TAG,"callCreateAPI API ERROR TWO-> $bear+$mytoken")
+                    otherAPI()
+                }
+            }
 
+            override fun onFailure(call: Call<CreateModel>, t: Throwable) {
+                Log.d(TAG,"callCreate ERROR -> $t")
+                Log.d(TAG,"Bearer $mytoken")
+                Toast.makeText(this@MakeActivity,"다시 시도해 주세요",Toast.LENGTH_SHORT).show()
+            }
+        })
+    }
+
+    private fun otherAPI() {
+        val resident = Resident(mBinding.spinnerText.text.toString(),
+            mBinding.makeTxName.text.toString(),mBinding.makeTxPhone.text.toString())
+
+        val place = Place(mBinding.spinnerInfoTextTt.text.toString())
+
+        val deceased = Deceased(mBinding.makeTxPersonName.text.toString(),
+            mBinding.makeTxAge.text.toString())
+
+        val eod = Eod(mBinding.eodText.text.toString(),mBinding.eodTextTime.text.toString())
+
+        val coffin =Coffin(mBinding.coffinText.text.toString(),mBinding.coffinTextTime.text.toString())
+
+        val dofp = Dofp(mBinding.dofpText.text.toString(),mBinding.dofpTextTime.text.toString())
+
+        val buried = mBinding.makeTxPlace.text.toString()
+
+        val word = mBinding.makeTxTex.text.toString()
+
+        val created =mBinding.tvMakeData.text.toString()
+
+        val data = CreateModel(resident,place,deceased,eod,coffin,dofp, buried, word, created)
+
+        val mytoken = prefs.mytoken.toString()
+        val bear = "Bearer"
+
+        apiServices.getCreate(prefs.newaccesstoken,data).enqueue(object : Callback<CreateModel> {
+            override fun onResponse(call: Call<CreateModel>, response: Response<CreateModel>) {
+                val result = response.body()
+                if(response.isSuccessful&& result!= null) {
+                    Log.d(TAG,"callCreateAPI API SUCCESS -> $result")
+                    moveList()
+                }
+                else {
+                    Log.d(TAG,"callCreateAPI API ERROR -> ${response.errorBody()}")
+                    Log.d(TAG,"callCreateAPI API ERROR TWO-> $bear+$mytoken")
                 }
             }
 

@@ -37,6 +37,7 @@ import retrofit2.Response
 class ListActivity : BaseActivity() {
     private lateinit var mBinding: ActivityListBinding
     private lateinit var apiServices: APIService
+    private var playerList: ArrayList<RecyclerList>?=null
     private var readapter: RecyclerAdapter?=null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -58,14 +59,33 @@ class ListActivity : BaseActivity() {
                 if (response.isSuccessful && result != null) {
                     Log.d(TAG,"List response SUCCESS -> $result")
                     setAdapter(result.obituary)
+                }
+                else {
+                    Log.d(TAG,"List response ERROR -> $result")
+                    otherAPI()
+                }
+            }
+            override fun onFailure(call: Call<RecyclerList>, t: Throwable) {
+                Log.d(TAG, "List error -> $t")
+            }
+        })
+    }
 
+    private fun otherAPI() {
+        val vercall: Call<RecyclerList> = apiServices.getCreateGet(prefs.newaccesstoken)
+        vercall.enqueue(object : Callback<RecyclerList> {
+            override fun onResponse(call: Call<RecyclerList>, response: Response<RecyclerList>) {
+                val result = response.body()
+                if (response.isSuccessful && result != null) {
+                    Log.d(TAG,"List response SUCCESS -> $result")
+                    setAdapter(result.obituary)
                 }
                 else {
                     Log.d(TAG,"List response ERROR -> $result")
                 }
             }
             override fun onFailure(call: Call<RecyclerList>, t: Throwable) {
-                Log.d(LLog.TAG, "List error -> $t")
+                Log.d(TAG, "List error -> $t")
             }
         })
     }

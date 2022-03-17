@@ -1,14 +1,11 @@
 package com.example.my_heaven.api
 
-import android.widget.EditText
+import com.example.my_heaven.model.list.Condole
 import com.example.my_heaven.model.list.RecyclerList
 import com.example.my_heaven.model.restapi.base.*
 import com.example.my_heaven.model.restapi.login.*
-import com.google.gson.JsonArray
-import com.google.gson.JsonObject
 import retrofit2.Call
 import retrofit2.http.*
-import java.util.HashMap
 
 interface APIService {
     //검증 API
@@ -37,7 +34,7 @@ interface APIService {
 
     //회원정보 API
     @GET("v1/user")
-    fun getUser(): Call<GetUser>
+    fun getUser(@Header("Accesstoken")accesstoken: String?): Call<GetUser>
 
     //약관보기 API
     @GET("v1/user/terms")
@@ -53,7 +50,7 @@ interface APIService {
 
     //부고조회 API
     @GET("v1/obituary?name=")
-    fun getCreateName() : Call<CreateName>
+    fun getCreateName(@Header("Accesstoken")accesstoken: String?) : Call<CreateName>
 
     //나의부고 API
     @GET("v1/obituary/my")
@@ -61,46 +58,46 @@ interface APIService {
 
     //부고수정 API
     @PUT("v1/obituary/:id")
-    fun getCreatePut()
+    fun getCreatePut(@Header("Accesstoken")accesstoken: String?)
 
     //부고삭제
     @DELETE("v1/obituary/:id")
-    fun getCreateDelete()
+    fun getCreateDelete(@Header("Accesstoken")accesstoken: String?)
 
     //조문메세지 API
-    @GET("v1/condole")
-    fun getCondole(@Body condole: Condole): Call<Condole>
+    @POST("v1/condole")
+    fun getCondole(@Header("Accesstoken")accesstoken: String?, @Body createMessage: CreateMessage): Call<CreateMessage>
 
     //조문메세지 조회 API
     @GET("v1/condole/:id")
-    fun getConID() : Call<ConID>
+    fun getConID(@Query("id")id: String?=null,@Header("Accesstoken")accesstoken: String?) : Call<Condole>
 
     //조문메세지 수정 API
     @PUT("v1/condole/:id")
-    fun getConPut()
+    fun getConPut(@Header("Accesstoken")accesstoken: String?)
 
     //조문메세지 삭제 API
     @DELETE("v1/condole/:id")
-    fun getConDelete()
+    fun getConDelete(@Header("Accesstoken")accesstoken: String?)
 
     //공지사항 모두조회 API
     @GET("v1/center/announcement")
-    fun getNoti()
+    fun getNoti(@Header("Accesstoken")accesstoken: String?)
 
     //공지사항 세부조회 API
     @GET("v1/center/announcement/:id")
-    fun getNotiDetail()
+    fun getNotiDetail(@Header("Accesstoken")accesstoken: String?)
 
     //공지사항 작성
     @POST("v1/center/announcement")
-    fun getNotiPost()
+    fun getNotiPost(@Header("Accesstoken")accesstoken: String?)
 
     //공지사항 수정
     @PUT("v1/center/announcement:id")
-    fun getNotiPut()
+    fun getNotiPut(@Header("Accesstoken")accesstoken: String?)
 
     //공지사항 삭제
     @DELETE("v1/center/announcement:id")
-    fun getNotiDelete()
+    fun getNotiDelete(@Header("Accesstoken")accesstoken: String?)
 
 }

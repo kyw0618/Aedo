@@ -38,6 +38,7 @@ import com.example.my_heaven.util.common.CommonData
 import com.example.my_heaven.util.log.LLog.e
 import com.example.my_heaven.view.login.LoginActivity
 import com.example.my_heaven.view.main.MainActivity
+import com.example.my_heaven.view.main.PushActivity
 import com.example.my_heaven.view.main.SideMenuActivity
 import com.example.my_heaven.view.main.detail.center.CenterActivity
 import com.example.my_heaven.view.main.detail.make.MakeActivity
@@ -469,6 +470,13 @@ open class BaseActivity : AppCompatActivity() {
 
     internal fun moveUploadCoun() {
         val intent = Intent(this, UploadCounselingActivity::class.java)
+        startActivity(intent)
+        overridePendingTransition(0, 0)
+        finish()
+    }
+
+    internal fun movePush() {
+        val intent = Intent(this, PushActivity::class.java)
         startActivity(intent)
         overridePendingTransition(0, 0)
         finish()

@@ -18,9 +18,10 @@ import com.example.my_heaven.util.`object`.Constant.DOFP_DATE
 import com.example.my_heaven.util.`object`.Constant.EOD_DATE
 import com.example.my_heaven.util.`object`.Constant.PLACE_NAME
 import com.example.my_heaven.util.`object`.Constant.RESIDENT_NAME
+import com.example.my_heaven.util.base.MyApplication.Companion.prefs
 import com.example.my_heaven.view.side.list.ListDetailActivity
 
-class RecyclerAdapter(val postList : List<Obituaray>, val context : Context)
+class RecyclerAdapter(private val postList : List<Obituaray>, val context : Context)
     : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -66,6 +67,7 @@ class RecyclerAdapter(val postList : List<Obituaray>, val context : Context)
             tx_top_name?.text = itemPhoto?.deceased?.name
             tx_body_name?.text = itemPhoto?.resident?.name
             tx_body_info?.text=itemPhoto?.place?.place_name
+            prefs.myListId = itemPhoto?.id.toString()
 
             btn_show?.setOnClickListener {
                 val intent = Intent(context, ListDetailActivity::class.java)

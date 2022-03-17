@@ -9,7 +9,7 @@ data class CreateModel(
     var dofp: Dofp?=null,
     var buried: String?= null,
     var word: String?= null,
-    var agreement: String? = null,
+    var created: String? = null,
 )
 
 data class Resident (

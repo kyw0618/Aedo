@@ -1,6 +1,5 @@
 package com.example.my_heaven.view.side.list.detail
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -9,13 +8,15 @@ import androidx.databinding.DataBindingUtil
 import com.example.my_heaven.R
 import com.example.my_heaven.api.APIService
 import com.example.my_heaven.api.ApiUtils
-import com.example.my_heaven.databinding.ActivityMessageBinding
 import com.example.my_heaven.databinding.ActivityMessageUploadBinding
-import com.example.my_heaven.model.restapi.base.Condole
-import com.example.my_heaven.model.restapi.base.CreateModel
+import com.example.my_heaven.model.list.*
+import com.example.my_heaven.model.restapi.base.*
+import com.example.my_heaven.model.restapi.base.Content
+import com.example.my_heaven.model.restapi.base.Created
+import com.example.my_heaven.model.restapi.base.Obld
+import com.example.my_heaven.model.restapi.base.Title
 import com.example.my_heaven.util.base.BaseActivity
-import com.example.my_heaven.util.base.MyApplication
-import com.example.my_heaven.util.log.LLog
+import com.example.my_heaven.util.base.MyApplication.Companion.prefs
 import com.example.my_heaven.util.log.LLog.TAG
 import retrofit2.Call
 import retrofit2.Callback
@@ -43,13 +44,13 @@ class MessageUploadActivity : BaseActivity() {
     }
 
     private fun condleAPI() {
-        val title = mBinding.messageTitle.text.toString()
-        val content = null
-        val created = mBinding.tvMessageTimestamp.text.toString()
-        val obld = mBinding.messageDetailName.text.toString()
-        val data = Condole(title,content, created, obld)
-        apiServices.getCondole(data).enqueue(object : Callback<Condole> {
-            override fun onResponse(call: Call<Condole>, response: Response<Condole>) {
+        val title = Title(mBinding.messageTitle.text.toString())
+        val content = Content(null)
+        val created = Created(mBinding.tvMessageTimestamp.text.toString())
+        val obld = Obld(mBinding.messageDetailName.text.toString())
+        val data = CreateMessage(title, content, created, obld)
+        apiServices.getCondole(prefs.myaccesstoken,data).enqueue(object : Callback<CreateMessage> {
+            override fun onResponse(call: Call<CreateMessage>, response: Response<CreateMessage>) {
                 val result = response.body()
                 if(response.isSuccessful&& result!= null) {
                     Log.d(TAG,"condleAPI SUCCESS -> $result")
@@ -57,14 +58,37 @@ class MessageUploadActivity : BaseActivity() {
                 }
                 else {
                     Log.d(TAG,"condleAPI ERROR -> ${response.errorBody()}")
-
+                    otherAPI()
                 }
             }
-            override fun onFailure(call: Call<Condole>, t: Throwable) {
+            override fun onFailure(call: Call<CreateMessage>, t: Throwable) {
                 Log.d(TAG,"condleAPI FAIL -> $t")
             }
         })
 
+    }
+
+    private fun otherAPI() {
+        val title = Title(mBinding.messageTitle.text.toString())
+        val content = Content(null)
+        val created = Created(mBinding.tvMessageTimestamp.text.toString())
+        val obld = Obld(mBinding.messageDetailName.text.toString())
+        val data = CreateMessage(title, content, created, obld)
+        apiServices.getCondole(prefs.newaccesstoken,data).enqueue(object : Callback<CreateMessage> {
+            override fun onResponse(call: Call<CreateMessage>, response: Response<CreateMessage>) {
+                val result = response.body()
+                if(response.isSuccessful&& result!= null) {
+                    Log.d(TAG,"condleAPI SUCCESS -> $result")
+                    moveMessage()
+                }
+                else {
+                    Log.d(TAG,"condleAPI ERROR -> ${response.errorBody()}")
+                }
+            }
+            override fun onFailure(call: Call<CreateMessage>, t: Throwable) {
+                Log.d(TAG,"condleAPI FAIL -> $t")
+            }
+        })
     }
 
     fun onBackClick(v: View) {

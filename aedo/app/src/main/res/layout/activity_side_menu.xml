@@ -92,6 +92,7 @@
                 android:layout_height="60dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
+                android:onClick='@{activity::onKAKAOClick}'
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/side_kakao" />
@@ -102,6 +103,7 @@
                 android:layout_height="61dp"
                 android:layout_marginStart="120dp"
                 android:layout_marginTop="19dp"
+                android:onClick='@{activity::onFAQClick}'
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/side_faq" />
@@ -112,6 +114,7 @@
                 android:layout_height="59dp"
                 android:layout_marginStart="240dp"
                 android:layout_marginTop="20dp"
+                android:onClick='@{activity::onCounClick}'
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/side_one" />

@@ -12,6 +12,7 @@ import com.example.my_heaven.util.`object`.Constant.PREF_KEY_ENCTYPT_KEY
 import com.example.my_heaven.util.`object`.Constant.PREF_KEY_LANG
 import com.example.my_heaven.util.`object`.Constant.PREF_KEY_LANG_CODE
 import com.example.my_heaven.util.`object`.Constant.PREF_KEY_TOKEN
+import com.example.my_heaven.util.`object`.Constant.PREF_LIST_ID
 import com.example.my_heaven.util.`object`.Constant.PREF_NEW_ACCESS_TOKEN
 import com.example.my_heaven.util.`object`.Constant.PREF_PHONE
 import com.example.my_heaven.util.`object`.Constant.PREF_SMS
@@ -124,6 +125,11 @@ class PreferenceManager (context: Context) : PreferenceAdapter() {
     var newaccesstoken : String?
         get() = prefs.getString(PREF_NEW_ACCESS_TOKEN,"")
         set(value) = prefs.edit().putString(PREF_NEW_ACCESS_TOKEN, value).apply()
+
+    var myListId : String?
+        get() = prefs.getString(PREF_LIST_ID,"")
+        set(value) = prefs.edit().putString(PREF_LIST_ID, value).apply()
+
 
 
 

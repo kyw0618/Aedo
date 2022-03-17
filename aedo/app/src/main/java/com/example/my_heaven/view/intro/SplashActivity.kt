@@ -169,7 +169,6 @@ class SplashActivity : BaseActivity() {
                 val result = response.body()
                 if (response.code() == 404 || response.code() == 401) {
                     moveLogin()
-                    Toast.makeText(this@SplashActivity,"회원가입이 필요합니다.",Toast.LENGTH_SHORT).show()
                 }
                 else if(response.code() == 200){
                     getPreferences(0).edit().remove("PREF_ACCESS_TOKEN").apply()

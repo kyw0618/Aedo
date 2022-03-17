@@ -31,6 +31,7 @@ object  Constant {
     const val PREF_ACCESS_TOKEN = "PREF_ACCESS_TOKEN"
     const val PREF_NEW_ACCESS_TOKEN = "PREF_NEW_ACCESS_TOKEN"
     const val PREF_HASH_KEY = "PREF_HASH_KEY"
+    const val PREF_LIST_ID = "PREF_LIST_ID"
 
     const val PREF_KEY_ENC_KEY = "PREF_KEY_ENC_KEY"
     const val PREF_KEY_ENC_IV = "PREF_KEY_ENC_IV"

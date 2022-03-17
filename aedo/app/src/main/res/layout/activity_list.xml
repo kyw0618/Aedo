@@ -76,7 +76,6 @@
             app:reverseLayout="true"
             app:stackFromEnd="true"
             tools:listitem="@layout/list_item">
-
         </androidx.recyclerview.widget.RecyclerView>
 
 

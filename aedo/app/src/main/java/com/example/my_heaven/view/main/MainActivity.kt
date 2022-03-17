@@ -53,6 +53,10 @@ class MainActivity : BaseActivity() {
         moveShop()
     }
 
+    fun onPushClick(v: View) {
+        movePush()
+    }
+
     private fun runDelayed(millis: Long, function: () -> Unit) {
         Handler(Looper.getMainLooper()).postDelayed(function, millis)
     }
