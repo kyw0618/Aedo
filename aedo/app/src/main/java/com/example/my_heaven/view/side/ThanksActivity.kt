@@ -26,4 +26,49 @@ class ThanksActivity : BaseActivity() {
     fun onBackClick(v: View) {
         moveSide()
     }
+
+    fun onFirstClick(v: View) {
+        if (mBinding.clThanksFirst.visibility == View.GONE) {
+            mBinding.clThanksFirst.visibility = View.VISIBLE
+        }
+        else {
+            mBinding.clThanksFirst.visibility = View.GONE
+        }
+    }
+
+    fun onSecondClick(v: View) {
+        if (mBinding.clThanksSecond.visibility == View.GONE) {
+            mBinding.clThanksSecond.visibility = View.VISIBLE
+        }
+        else {
+            mBinding.clThanksSecond.visibility = View.GONE
+        }
+    }
+
+    fun onThridClick(v: View) {
+        if(mBinding.clThanksThrid.visibility == View.GONE) {
+            mBinding.clThanksThrid.visibility = View.VISIBLE
+        }
+        else {
+            mBinding.clThanksThrid.visibility = View.GONE
+        }
+    }
+
+    fun onFourClick(v: View) {
+        if(mBinding.clThanksFour.visibility == View.GONE) {
+            mBinding.clThanksFour.visibility = View.VISIBLE
+        }
+        else {
+            mBinding.clThanksFour.visibility = View.GONE
+        }
+    }
+
+    fun onFiveClick(v: View){
+        if (mBinding.clThanksFive.visibility == View.GONE) {
+            mBinding.clThanksFive.visibility = View.VISIBLE
+        }
+        else {
+            mBinding.clThanksFive.visibility = View.GONE
+        }
+    }
 }
