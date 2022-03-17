@@ -60,7 +60,6 @@ class RecyclerAdapter(val postList : List<Obituaray>, val context : Context)
         val tx_body_name  = itemView?.findViewById<TextView>(R.id.tx_body_name)
         val tx_body_info =   itemView?.findViewById<TextView>(R.id.tx_body_info)
         val btn_show = itemView?.findViewById<Button>(R.id.btn_list_show)
-        val btn_send = itemView?.findViewById<Button>(R.id.btn_list_send)
 
         fun bind(itemPhoto : Obituaray? , context: Context){
             tx_date?.text = itemPhoto?.eod?.date
