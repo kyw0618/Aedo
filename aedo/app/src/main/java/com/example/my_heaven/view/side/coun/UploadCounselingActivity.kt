@@ -11,6 +11,7 @@ import com.example.my_heaven.api.ApiUtils
 import com.example.my_heaven.databinding.ActivityUploadCounselingBinding
 import com.example.my_heaven.util.base.BaseActivity
 import com.example.my_heaven.viewmodel.AgreeViewModel
+import java.time.LocalDate
 
 class UploadCounselingActivity : BaseActivity() {
     private lateinit var mBinding: ActivityUploadCounselingBinding
@@ -24,6 +25,12 @@ class UploadCounselingActivity : BaseActivity() {
         mBinding.vm = mViewModel
         apiServices = ApiUtils.apiService
         inStatusBar()
+        initView()
+    }
+
+    private fun initView() {
+        val onlyDate: LocalDate = LocalDate.now()
+        mBinding.tvTime.text = onlyDate.toString()
     }
 
     fun onBackPressed(v: View) {
