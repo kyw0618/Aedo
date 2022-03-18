@@ -3,6 +3,8 @@ package com.example.my_heaven.api
 import com.example.my_heaven.model.list.Condole
 import com.example.my_heaven.model.list.ListDelete
 import com.example.my_heaven.model.list.RecyclerList
+import com.example.my_heaven.model.notice.NoticeDetailModel
+import com.example.my_heaven.model.notice.NoticeModel
 import com.example.my_heaven.model.restapi.base.*
 import com.example.my_heaven.model.restapi.login.*
 import retrofit2.Call
@@ -83,22 +85,10 @@ interface APIService {
 
     //공지사항 모두조회 API
     @GET("v1/center/announcement")
-    fun getNoti(@Header("Accesstoken")accesstoken: String?)
+    fun getNoti(@Header("Accesstoken")accesstoken: String?) : Call<NoticeModel>
 
     //공지사항 세부조회 API
     @GET("v1/center/announcement/:id")
-    fun getNotiDetail(@Header("Accesstoken")accesstoken: String?)
-
-    //공지사항 작성
-    @POST("v1/center/announcement")
-    fun getNotiPost(@Header("Accesstoken")accesstoken: String?)
-
-    //공지사항 수정
-    @PUT("v1/center/announcement:id")
-    fun getNotiPut(@Header("Accesstoken")accesstoken: String?)
-
-    //공지사항 삭제
-    @DELETE("v1/center/announcement:id")
-    fun getNotiDelete(@Header("Accesstoken")accesstoken: String?)
+    fun getNotiDetail(@Header("Accesstoken")accesstoken: String?) : Call<NoticeDetailModel>
 
 }

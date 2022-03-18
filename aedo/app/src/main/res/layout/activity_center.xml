@@ -121,6 +121,7 @@
                 android:layout_marginStart="19dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="19dp"
+                android:onClick='@{activity::onNoticeClick}'
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">

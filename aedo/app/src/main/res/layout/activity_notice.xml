@@ -36,15 +36,7 @@
                 android:onClick='@{activity::onBackClick}'
                 app:srcCompat="@drawable/back" />
 
-            <ImageView
-                android:id="@+id/imageView11"
-                android:layout_width="77dp"
-                android:layout_height="28dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/re_top" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -56,11 +48,19 @@
             app:layout_constraintStart_toStartOf="parent">
 
             <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/medical_recyclerView"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="0dp"
+                android:nestedScrollingEnabled="false"
+                android:overScrollMode="never"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
                 app:reverseLayout="true"
                 app:stackFromEnd="true"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager">
+                tools:listitem="@layout/view_item_notice">
 
             </androidx.recyclerview.widget.RecyclerView>
 

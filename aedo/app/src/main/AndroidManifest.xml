@@ -29,6 +29,9 @@
         android:usesCleartextTraffic="false"
         tools:targetApi="n">
         <activity
+            android:name=".view.notice.NoticeDetailActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.main.PushActivity"
             android:exported="false" />
         <activity
