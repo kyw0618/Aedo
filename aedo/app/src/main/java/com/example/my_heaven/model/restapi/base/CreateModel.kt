@@ -10,6 +10,7 @@ data class CreateModel(
     var buried: String?= null,
     var word: String?= null,
     var created: String? = null,
+    val id: String? = null
 )
 
 data class Resident (

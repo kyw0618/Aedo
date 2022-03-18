@@ -10,6 +10,7 @@ import com.example.my_heaven.api.APIService
 import com.example.my_heaven.api.ApiUtils
 import com.example.my_heaven.databinding.ActivityMessageUploadBinding
 import com.example.my_heaven.model.restapi.base.*
+import com.example.my_heaven.util.`object`.Constant
 import com.example.my_heaven.util.base.BaseActivity
 import com.example.my_heaven.util.base.MyApplication.Companion.prefs
 import com.example.my_heaven.util.log.LLog.TAG
@@ -39,49 +40,51 @@ class MessageUploadActivity : BaseActivity() {
     }
 
     private fun condleAPI() {
+        val id = intent.getStringExtra(Constant.MESSAGE_DETAIL_LLIST_ID)
         val title = mBinding.messageTitle.text.toString()
-        val content = null
+        val content = mBinding.messageDetailName.text.toString()
         val created = mBinding.tvMessageTimestamp.text.toString()
-        val obld = mBinding.messageDetailName.text.toString()
+        val obld = id
         val data = CreateMessage(title, content, created, obld)
         apiServices.getCondole(prefs.newaccesstoken,data).enqueue(object : Callback<CreateMessage> {
             override fun onResponse(call: Call<CreateMessage>, response: Response<CreateMessage>) {
                 val result = response.body()
                 if(response.isSuccessful&& result!= null) {
-                    Log.d(TAG,"condleAPI SUCCESS -> $result")
+                    Log.d(TAG,"CreateMessage SUCCESS -> $result")
                     moveMessage()
                 }
                 else {
-                    Log.d(TAG,"condleAPI ERROR -> ${response.errorBody()}")
+                    Log.d(TAG,"CreateMessage ERROR -> ${response.errorBody()}")
                     otherAPI()
                 }
             }
             override fun onFailure(call: Call<CreateMessage>, t: Throwable) {
-                Log.d(TAG,"condleAPI FAIL -> $t")
+                Log.d(TAG,"CreateMessage FAIL -> $t")
             }
         })
 
     }
 
     private fun otherAPI() {
+        val id = intent.getStringExtra(Constant.MESSAGE_DETAIL_LLIST_ID)
         val title = mBinding.messageTitle.text.toString()
-        val content = null
+        val content = mBinding.messageDetailName.text.toString()
         val created = mBinding.tvMessageTimestamp.text.toString()
-        val obld = mBinding.messageDetailName.text.toString()
+        val obld = id.toString()
         val data = CreateMessage(title, content, created, obld)
         apiServices.getCondole(prefs.newaccesstoken,data).enqueue(object : Callback<CreateMessage> {
             override fun onResponse(call: Call<CreateMessage>, response: Response<CreateMessage>) {
                 val result = response.body()
                 if(response.isSuccessful&& result!= null) {
-                    Log.d(TAG,"condleAPI SUCCESS -> $result")
+                    Log.d(TAG,"CreateMessage Second SUCCESS -> $result")
                     moveMessage()
                 }
                 else {
-                    Log.d(TAG,"condleAPI ERROR -> ${response.errorBody()}")
+                    Log.d(TAG,"CreateMessage Second ERROR -> ${response.errorBody()}")
                 }
             }
             override fun onFailure(call: Call<CreateMessage>, t: Throwable) {
-                Log.d(TAG,"condle Second API FAIL -> $t")
+                Log.d(TAG,"CreateMessage Second API FAIL -> $t")
             }
         })
     }
@@ -96,8 +99,6 @@ class MessageUploadActivity : BaseActivity() {
 
     fun onOkClick(v: View) {
         val title = mBinding.messageTitle.text.toString()
-        val content = null
-        val created = mBinding.tvMessageTimestamp.text.toString()
         val obld = mBinding.messageDetailName.text.toString()
         when {
             title.isEmpty() -> {

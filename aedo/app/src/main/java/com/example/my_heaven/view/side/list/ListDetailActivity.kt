@@ -3,12 +3,14 @@ package com.example.my_heaven.view.side.list
 import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import com.example.my_heaven.R
 import com.example.my_heaven.adapter.MessageRecyclerAdapter
@@ -25,13 +27,15 @@ import com.example.my_heaven.util.`object`.Constant.COFFIN_DATE
 import com.example.my_heaven.util.`object`.Constant.DECEASED_NAME
 import com.example.my_heaven.util.`object`.Constant.DOFP_DATE
 import com.example.my_heaven.util.`object`.Constant.EOD_DATE
-import com.example.my_heaven.util.`object`.Constant.LIST_ID
+import com.example.my_heaven.util.`object`.Constant.LLIST_ID
+import com.example.my_heaven.util.`object`.Constant.MESSAGE_LLIST_ID
 import com.example.my_heaven.util.`object`.Constant.PLACE_NAME
 import com.example.my_heaven.util.`object`.Constant.RESIDENT_NAME
 import com.example.my_heaven.util.alert.LoadingDialog
 import com.example.my_heaven.util.base.BaseActivity
 import com.example.my_heaven.util.base.MyApplication.Companion.prefs
 import com.example.my_heaven.util.log.LLog
+import com.example.my_heaven.view.side.list.detail.MessageActivity
 import com.naver.maps.map.MapFragment
 import com.naver.maps.map.NaverMap
 import com.naver.maps.map.OnMapReadyCallback
@@ -93,7 +97,7 @@ class ListDetailActivity : BaseActivity(),OnMapReadyCallback {
     }
 
     fun onDataSendClick(v: View) {
-        moveMessage()
+        putID()
     }
 
     fun onWaringClick(v: View) {
@@ -129,7 +133,7 @@ class ListDetailActivity : BaseActivity(),OnMapReadyCallback {
     }
 
     private fun delete() {
-        val id = intent.getStringExtra(LIST_ID)
+        val id = intent.getStringExtra(LLIST_ID)
         val vercall: Call<ListDelete> = apiServices.getCreateDelete(id, prefs.myaccesstoken)
         vercall.enqueue(object : Callback<ListDelete> {
             override fun onResponse(call: Call<ListDelete>, response: Response<ListDelete>) {
@@ -150,7 +154,7 @@ class ListDetailActivity : BaseActivity(),OnMapReadyCallback {
     }
 
     private fun otherAPI() {
-        val id = intent.getStringExtra(LIST_ID)
+        val id = intent.getStringExtra(LLIST_ID)
         val vercall: Call<Condole> = apiServices.getConID(id, prefs.newaccesstoken)
         vercall.enqueue(object : Callback<Condole> {
             override fun onResponse(call: Call<Condole>, response: Response<Condole>) {
@@ -168,4 +172,13 @@ class ListDetailActivity : BaseActivity(),OnMapReadyCallback {
             }
         })
     }
+
+    private fun putID() {
+        val id = intent.getStringExtra(LLIST_ID)
+        val listid = id
+        val intent = Intent(this, MessageActivity::class.java)
+        intent.putExtra(MESSAGE_LLIST_ID,listid.toString())
+        startActivity(intent)
+    }
+
 }

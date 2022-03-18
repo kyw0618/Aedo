@@ -37,7 +37,6 @@ import retrofit2.Response
 class ListActivity : BaseActivity() {
     private lateinit var mBinding: ActivityListBinding
     private lateinit var apiServices: APIService
-    private var playerList: ArrayList<RecyclerList>?=null
     private var readapter: RecyclerAdapter?=null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -98,6 +97,7 @@ class ListActivity : BaseActivity() {
         mBinding.recyclerView.layoutManager = LinearLayoutManager(this)
         mBinding.recyclerView.setHasFixedSize(true)
         mBinding.recyclerView.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
+        return
     }
 
     fun onBackClick(v: View) {

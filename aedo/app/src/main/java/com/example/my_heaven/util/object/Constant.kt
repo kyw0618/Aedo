@@ -60,7 +60,10 @@ object  Constant {
     const val DECEASED_NAME = "DECEASED_NAME"
     const val DECEASED_AGE = "DECEASED_AGE"
 
-    const val LIST_ID = "LIST_ID"
+    const val LLIST_ID = "LLIST_ID"
+    const val MESSAGE_LLIST_ID = "MESSAGE_LLIST_ID"
+    const val MESSAGE_DETAIL_LLIST_ID = "MESSAGE_DETAIL_LLIST_ID"
+
 
     const val EOD_NAME = "EOD_NAME"
     const val EOD_DATE = "EOD_DATE"

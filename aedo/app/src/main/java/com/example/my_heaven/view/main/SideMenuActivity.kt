@@ -97,7 +97,7 @@ class SideMenuActivity : BaseActivity() {
     }
 
     fun onThanksClick(v: View) {
-
+        moveThanks()
     }
 
     fun onFAQClick(v: View) {

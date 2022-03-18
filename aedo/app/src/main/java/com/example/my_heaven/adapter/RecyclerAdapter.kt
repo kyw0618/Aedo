@@ -16,7 +16,7 @@ import com.example.my_heaven.util.`object`.Constant.COFFIN_DATE
 import com.example.my_heaven.util.`object`.Constant.DECEASED_NAME
 import com.example.my_heaven.util.`object`.Constant.DOFP_DATE
 import com.example.my_heaven.util.`object`.Constant.EOD_DATE
-import com.example.my_heaven.util.`object`.Constant.LIST_ID
+import com.example.my_heaven.util.`object`.Constant.LLIST_ID
 import com.example.my_heaven.util.`object`.Constant.PLACE_NAME
 import com.example.my_heaven.util.`object`.Constant.RESIDENT_NAME
 import com.example.my_heaven.util.base.MyApplication.Companion.prefs
@@ -28,9 +28,7 @@ class RecyclerAdapter(private val postList : List<Obituaray>, val context : Cont
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.list_item, parent, false)
-
         return ViewHolder(view)
-
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -72,7 +70,7 @@ class RecyclerAdapter(private val postList : List<Obituaray>, val context : Cont
 
             btn_show?.setOnClickListener {
                 val intent = Intent(context, ListDetailActivity::class.java)
-                intent.putExtra(LIST_ID,itemPhoto?.id.toString())
+                intent.putExtra(LLIST_ID,itemPhoto?.id.toString())
                 intent.putExtra(DECEASED_NAME,itemPhoto?.deceased?.name.toString())
                 intent.putExtra(EOD_DATE,itemPhoto?.eod?.date.toString())
                 intent.putExtra(RESIDENT_NAME,itemPhoto?.resident?.name.toString())

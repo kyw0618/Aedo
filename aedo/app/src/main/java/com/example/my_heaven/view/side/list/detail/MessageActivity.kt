@@ -2,10 +2,12 @@ package com.example.my_heaven.view.side.list.detail
 
 import android.annotation.SuppressLint
 import android.content.ContentValues.TAG
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -18,6 +20,7 @@ import com.example.my_heaven.databinding.ActivityMessageBinding
 import com.example.my_heaven.model.restapi.base.ConID
 import com.example.my_heaven.model.list.Condole
 import com.example.my_heaven.model.list.CondoleList
+import com.example.my_heaven.util.`object`.Constant
 import com.example.my_heaven.util.base.BaseActivity
 import com.example.my_heaven.util.base.MyApplication.Companion.prefs
 import com.example.my_heaven.util.log.LLog
@@ -42,26 +45,22 @@ class MessageActivity : BaseActivity() {
         inRecycler()
     }
 
-    private fun initView() {
-        TODO("Not yet implemented")
-    }
-
     private fun inRecycler() {
         val vercall: Call<Condole> = apiServices.getConID(prefs.myListId, prefs.myaccesstoken)
         vercall.enqueue(object : Callback<Condole> {
             override fun onResponse(call: Call<Condole>, response: Response<Condole>) {
                 val result = response.body()
                 if (response.isSuccessful && result != null) {
-                    Log.d(LLog.TAG,"ConID response SUCCESS -> $result")
+                    Log.d(LLog.TAG,"Condole response SUCCESS -> $result")
                     setAdapter(result.condole)
                 }
                 else {
-                    Log.d(LLog.TAG,"ConID response ERROR -> $result")
+                    Log.d(LLog.TAG,"Condole response ERROR -> $result")
                     otherAPI()
                 }
             }
             override fun onFailure(call: Call<Condole>, t: Throwable) {
-                Log.d(LLog.TAG, "ConID FAIL -> $t")
+                Log.d(LLog.TAG, "Condole FAIL -> $t")
                 Log.d(TAG,"parms ->${prefs.myListId}")
             }
         })
@@ -73,29 +72,28 @@ class MessageActivity : BaseActivity() {
             override fun onResponse(call: Call<Condole>, response: Response<Condole>) {
                 val result = response.body()
                 if (response.isSuccessful && result != null) {
-                    Log.d(LLog.TAG,"ConID second response SUCCESS -> $result")
+                    Log.d(LLog.TAG,"Condole second response SUCCESS -> $result")
                     setAdapter(result.condole)
                 }
                 else {
-                    Log.d(LLog.TAG,"ConID second response ERROR -> $result")
+                    Log.d(LLog.TAG,"Condole second response ERROR -> $result")
                 }
             }
             override fun onFailure(call: Call<Condole>, t: Throwable) {
-                Log.d(LLog.TAG, "ConID second FAIL -> $t")
+                Log.d(LLog.TAG, "Condole second FAIL -> $t")
             }
         })
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private fun setAdapter(condole: List<CondoleList>?) {
         val mAdapter = condole?.let {
             MessageRecyclerAdapter(it,this)
         }
-        val layoutManager = LinearLayoutManager(this)
-        mBinding.rcMessage.apply {
-            this.setHasFixedSize(true)
-            this.layoutManager = layoutManager
-            this.adapter = mAdapter
-        }
+        mBinding.rcMessage.adapter = mAdapter
+        mBinding.rcMessage.layoutManager = LinearLayoutManager(this)
+        mBinding.rcMessage.setHasFixedSize(true)
+        mBinding.rcMessage.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
     }
 
     fun onBackClick(v: View) {
@@ -107,8 +105,18 @@ class MessageActivity : BaseActivity() {
     }
 
     fun onFabMainClick(v: View) {
-        moveMessageUpload()
+        putID()
     }
+
+    private fun putID() {
+        val id = intent.getStringExtra(Constant.MESSAGE_LLIST_ID)
+        val listid = id
+        val intent = Intent(this, MessageUploadActivity::class.java)
+        intent.putExtra(Constant.MESSAGE_DETAIL_LLIST_ID,listid.toString())
+        startActivity(intent)
+
+    }
+
 
     override fun onBackPressed() {
         startActivity(Intent(this, ListActivity::class.java))

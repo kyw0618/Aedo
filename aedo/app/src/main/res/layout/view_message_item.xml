@@ -5,9 +5,6 @@
 
     <data>
         <import type="android.view.View"/>
-        <variable
-            name="activity"
-            type="com.example.my_heaven.view.side.list.detail.MessageActivity" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

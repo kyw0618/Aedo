@@ -48,6 +48,7 @@ import com.example.my_heaven.view.main.detail.send.SendActivity
 import com.example.my_heaven.view.main.detail.shop.ShopActivity
 import com.example.my_heaven.view.notice.NoticeActivity
 import com.example.my_heaven.view.notice.NoticeDetailActivity
+import com.example.my_heaven.view.side.ThanksActivity
 import com.example.my_heaven.view.side.coun.CounselingActivity
 import com.example.my_heaven.view.side.coun.UploadCounselingActivity
 import com.example.my_heaven.view.side.information.InforMationActivity
@@ -493,6 +494,13 @@ open class BaseActivity : AppCompatActivity() {
 
     internal fun moveNoticeDetail() {
         val intent = Intent(this, NoticeDetailActivity::class.java)
+        startActivity(intent)
+        overridePendingTransition(0, 0)
+        finish()
+    }
+
+    internal fun moveThanks() {
+        val intent = Intent(this, ThanksActivity::class.java)
         startActivity(intent)
         overridePendingTransition(0, 0)
         finish()

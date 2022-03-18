@@ -74,8 +74,15 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rc_message"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="0dp"
+                android:nestedScrollingEnabled="false"
+                android:scrollbars="vertical"
+                android:overScrollMode="never"
+                app:reverseLayout="true"
+                app:stackFromEnd="true"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/view_message_item"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
