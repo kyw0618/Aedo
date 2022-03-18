@@ -89,6 +89,6 @@ interface APIService {
 
     //공지사항 세부조회 API
     @GET("v1/center/announcement/:id")
-    fun getNotiDetail(@Header("Accesstoken")accesstoken: String?) : Call<NoticeDetailModel>
+    fun getNotiDetail(@Header("Accesstoken")accesstoken: String?,@Query("id")id: String?=null) : Call<NoticeDetailModel>
 
 }
