@@ -9,12 +9,7 @@ import com.example.my_heaven.R
 import com.example.my_heaven.api.APIService
 import com.example.my_heaven.api.ApiUtils
 import com.example.my_heaven.databinding.ActivityMessageUploadBinding
-import com.example.my_heaven.model.list.*
 import com.example.my_heaven.model.restapi.base.*
-import com.example.my_heaven.model.restapi.base.Content
-import com.example.my_heaven.model.restapi.base.Created
-import com.example.my_heaven.model.restapi.base.Obld
-import com.example.my_heaven.model.restapi.base.Title
 import com.example.my_heaven.util.base.BaseActivity
 import com.example.my_heaven.util.base.MyApplication.Companion.prefs
 import com.example.my_heaven.util.log.LLog.TAG
@@ -44,12 +39,12 @@ class MessageUploadActivity : BaseActivity() {
     }
 
     private fun condleAPI() {
-        val title = Title(mBinding.messageTitle.text.toString())
-        val content = Content(null)
-        val created = Created(mBinding.tvMessageTimestamp.text.toString())
-        val obld = Obld(mBinding.messageDetailName.text.toString())
+        val title = mBinding.messageTitle.text.toString()
+        val content = null
+        val created = mBinding.tvMessageTimestamp.text.toString()
+        val obld = mBinding.messageDetailName.text.toString()
         val data = CreateMessage(title, content, created, obld)
-        apiServices.getCondole(prefs.myaccesstoken,data).enqueue(object : Callback<CreateMessage> {
+        apiServices.getCondole(prefs.newaccesstoken,data).enqueue(object : Callback<CreateMessage> {
             override fun onResponse(call: Call<CreateMessage>, response: Response<CreateMessage>) {
                 val result = response.body()
                 if(response.isSuccessful&& result!= null) {
@@ -69,10 +64,10 @@ class MessageUploadActivity : BaseActivity() {
     }
 
     private fun otherAPI() {
-        val title = Title(mBinding.messageTitle.text.toString())
-        val content = Content(null)
-        val created = Created(mBinding.tvMessageTimestamp.text.toString())
-        val obld = Obld(mBinding.messageDetailName.text.toString())
+        val title = mBinding.messageTitle.text.toString()
+        val content = null
+        val created = mBinding.tvMessageTimestamp.text.toString()
+        val obld = mBinding.messageDetailName.text.toString()
         val data = CreateMessage(title, content, created, obld)
         apiServices.getCondole(prefs.newaccesstoken,data).enqueue(object : Callback<CreateMessage> {
             override fun onResponse(call: Call<CreateMessage>, response: Response<CreateMessage>) {
@@ -86,7 +81,7 @@ class MessageUploadActivity : BaseActivity() {
                 }
             }
             override fun onFailure(call: Call<CreateMessage>, t: Throwable) {
-                Log.d(TAG,"condleAPI FAIL -> $t")
+                Log.d(TAG,"condle Second API FAIL -> $t")
             }
         })
     }

@@ -1,6 +1,7 @@
 package com.example.my_heaven.api
 
 import com.example.my_heaven.model.list.Condole
+import com.example.my_heaven.model.list.ListDelete
 import com.example.my_heaven.model.list.RecyclerList
 import com.example.my_heaven.model.restapi.base.*
 import com.example.my_heaven.model.restapi.login.*
@@ -62,7 +63,7 @@ interface APIService {
 
     //부고삭제
     @DELETE("v1/obituary/:id")
-    fun getCreateDelete(@Header("Accesstoken")accesstoken: String?)
+    fun getCreateDelete(@Header("Accesstoken")accesstoken: String?,@Query("id")id: String?=null) : Call<ListDelete>
 
     //조문메세지 API
     @POST("v1/condole")

@@ -7,18 +7,15 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.my_heaven.R
-import com.example.my_heaven.model.list.Condole
 import com.example.my_heaven.model.list.CondoleList
 
 class MessageRecyclerAdapter(private val messageList : List<CondoleList>, val context: Context) :
     RecyclerView.Adapter<MessageRecyclerAdapter.ViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MessageRecyclerAdapter.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.list_item, parent, false)
-
+            .inflate(R.layout.view_message_item, parent, false)
         return ViewHolder(view)
-
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -35,7 +32,7 @@ class MessageRecyclerAdapter(private val messageList : List<CondoleList>, val co
     private var itemClickListener: OnItemClickListener?=null
 
     override fun getItemCount(): Int {
-        return messageList.count()
+        return messageList.size
     }
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {

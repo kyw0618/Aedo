@@ -326,7 +326,7 @@ open class BaseActivity : AppCompatActivity() {
             setView(myLayout)
         }
         val textView : TextView = myLayout.findViewById(R.id.popTv)
-        textView.text = getString(R.string.update_check)
+        textView.text = getString(R.string.list_delete)
         val dialog = build.create()
         dialog.show()
 
