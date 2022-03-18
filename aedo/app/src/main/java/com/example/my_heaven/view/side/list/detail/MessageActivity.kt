@@ -42,6 +42,10 @@ class MessageActivity : BaseActivity() {
         inRecycler()
     }
 
+    private fun initView() {
+        TODO("Not yet implemented")
+    }
+
     private fun inRecycler() {
         val vercall: Call<Condole> = apiServices.getConID(prefs.myListId, prefs.myaccesstoken)
         vercall.enqueue(object : Callback<Condole> {
@@ -84,12 +88,14 @@ class MessageActivity : BaseActivity() {
 
     private fun setAdapter(condole: List<CondoleList>?) {
         val mAdapter = condole?.let {
-            MessageRecyclerAdapter(it,baseContext)
+            MessageRecyclerAdapter(it,this)
         }
-        mBinding.messageRecyclerView.adapter = mAdapter
-        mBinding.messageRecyclerView.layoutManager = LinearLayoutManager(this)
-        mBinding.messageRecyclerView.setHasFixedSize(true)
-        mBinding.messageRecyclerView.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
+        val layoutManager = LinearLayoutManager(this)
+        mBinding.rcMessage.apply {
+            this.setHasFixedSize(true)
+            this.layoutManager = layoutManager
+            this.adapter = mAdapter
+        }
     }
 
     fun onBackClick(v: View) {

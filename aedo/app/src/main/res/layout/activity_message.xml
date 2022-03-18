@@ -73,19 +73,14 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/message_recyclerView"
-                android:layout_width="match_parent"
+                android:id="@+id/rc_message"
+                android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:nestedScrollingEnabled="false"
-                android:overScrollMode="never"
-                app:reverseLayout="true"
-                app:stackFromEnd="true"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:listitem="@layout/view_message_item"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
+
             </androidx.recyclerview.widget.RecyclerView>
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -93,14 +88,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="24dp"
-                android:src="@drawable/fab_icon"
-                app:fabSize="auto"
                 android:backgroundTint="@color/colorStationCharge"
-                app:rippleColor="@color/colorStationCharge"
-                app:borderWidth="0dp"
                 android:onClick='@{activity::onFabMainClick}'
+                android:src="@drawable/fab_icon"
+                app:borderWidth="0dp"
+                app:fabSize="auto"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:rippleColor="@color/colorStationCharge"
                 tools:ignore="ContentDescription" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

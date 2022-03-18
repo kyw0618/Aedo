@@ -10,32 +10,23 @@ import com.example.my_heaven.R
 import com.example.my_heaven.model.list.CondoleList
 
 class MessageRecyclerAdapter(private val messageList : List<CondoleList>, val context: Context) :
-    RecyclerView.Adapter<MessageRecyclerAdapter.ViewHolder>() {
+    RecyclerView.Adapter<MessageRecyclerAdapter.MessageViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MessageViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.view_message_item, parent, false)
-        return ViewHolder(view)
+        return MessageViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: MessageViewHolder, position: Int) {
         holder.bind(messageList[position],context)
-        holder.itemView.setOnClickListener {
-            itemClickListener?.onClick(it,position)
-        }
     }
-
-    interface OnItemClickListener{
-        fun onClick(v:View,position: Int)
-    }
-
-    private var itemClickListener: OnItemClickListener?=null
 
     override fun getItemCount(): Int {
-        return messageList.size
+        return if (messageList.isNullOrEmpty()) 0 else messageList.size
     }
 
-    inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    inner class MessageViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
         private val message_title : TextView = itemView.findViewById(R.id.tv_message_title)
         private val message_name : TextView = itemView.findViewById(R.id.tv_message_name)
