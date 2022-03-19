@@ -10,17 +10,19 @@ import com.example.my_heaven.R
 import com.example.my_heaven.model.notice.Announcement
 
 
-class NoticeAdapter(private val noticeList : List<Announcement>, val context: Context)
+class NoticeAdapter(private val noticeList : List<Announcement>,private val context: Context)
     : RecyclerView.Adapter<NoticeAdapter.ViewHolder>(){
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.view_item_notice, parent, false)
-        return ViewHolder(view)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NoticeAdapter.ViewHolder {
+        val context = parent.context
+        val inflater = LayoutInflater.from(context)
+        val contactView = inflater.inflate(R.layout.view_item_notice, parent, false)
+        return ViewHolder(contactView)
     }
 
     override fun onBindViewHolder(holder: NoticeAdapter.ViewHolder, position: Int) {
         holder.bind(noticeList[position],context)
+
     }
 
     override fun getItemCount(): Int {
@@ -29,12 +31,12 @@ class NoticeAdapter(private val noticeList : List<Announcement>, val context: Co
 
     inner class ViewHolder (itemView: View? ) : RecyclerView.ViewHolder(itemView!!){
 
-        val notice_title = itemView?.findViewById<TextView>(R.id.list_tx_date)
-        val notice_timestamp = itemView?.findViewById<TextView>(R.id.tx_top_name)
+        val notice_title = itemView?.findViewById<TextView>(R.id.tv_counseling_title)
+        val notice_timestamp = itemView?.findViewById<TextView>(R.id.tv_counseling_timestamp)
 
-        fun bind(itemPhoto : Announcement?, context: Context){
-            notice_title?.text = itemPhoto?.title.toString()
-            notice_timestamp?.text = itemPhoto?.time.toString()
+        fun bind(list: Announcement?,context: Context) {
+            notice_title?.text = list?.title
+            notice_timestamp?.text = list?.created
         }
     }
 }

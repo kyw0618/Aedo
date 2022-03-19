@@ -1,12 +1,12 @@
 package com.example.my_heaven.model.notice
 
 data class NoticeModel(
-    val announcement : List<Announcement>
+    val result : List<Announcement>? = null
 )
 
 data class Announcement(
     val id : String? = null,
     val title : String? = null,
-    val value : String? = null,
-    val time : String? = null
+    val content : String? = null,
+    val created : String? = null
 )

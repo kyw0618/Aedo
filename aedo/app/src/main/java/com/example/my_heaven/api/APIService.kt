@@ -1,5 +1,7 @@
 package com.example.my_heaven.api
 
+import com.example.my_heaven.model.coun.CounGet
+import com.example.my_heaven.model.coun.CounPost
 import com.example.my_heaven.model.list.Condole
 import com.example.my_heaven.model.list.ListDelete
 import com.example.my_heaven.model.list.RecyclerList
@@ -72,8 +74,8 @@ interface APIService {
     fun getCondole(@Header("Accesstoken")accesstoken: String?, @Body createMessage: CreateMessage): Call<CreateMessage>
 
     //조문메세지 조회 API
-    @GET("v1/condole/:id")
-    fun getConID(@Query("id")id: String?=null,@Header("Accesstoken")accesstoken: String?) : Call<Condole>
+    @GET("v1/condole")
+    fun getConID(@Query("id")id: String? ,@Header("Accesstoken")accesstoken: String?) : Call<Condole>
 
     //조문메세지 수정 API
     @PUT("v1/condole/:id")
@@ -90,5 +92,11 @@ interface APIService {
     //공지사항 세부조회 API
     @GET("v1/center/announcement/:id")
     fun getNotiDetail(@Header("Accesstoken")accesstoken: String?,@Query("id")id: String?=null) : Call<NoticeDetailModel>
+
+    @GET("v1/center/request")
+    fun getCounRequest(@Header("Accesstoken")accesstoken: String?) : Call<CounGet>
+
+    @POST("v1/center/request")
+    fun getCounPost(@Header("Accesstoken")accesstoken: String?) : Call<CounPost>
 
 }

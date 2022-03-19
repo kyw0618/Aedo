@@ -13,25 +13,52 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout"
-            android:layout_width="match_parent"
-            android:layout_height="55dp"
-            android:background="@color/white"
+            android:id="@+id/cl_top"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:background="@drawable/header_bg"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="visible">
 
             <ImageView
-                android:id="@+id/back_press"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:id="@+id/imageView8"
+                android:layout_width="19dp"
+                android:layout_height="14dp"
                 android:layout_marginStart="20dp"
-                android:src="@drawable/back_pressed"
-                android:onClick='@{activity::onBackPressed}'
+                android:onClick='@{activity::onBackClick}'
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/back" />
+
+            <TextView
+                android:id="@+id/text_info"
+                android:layout_width="wrap_content"
+                android:layout_height="28dp"
+                android:gravity="center"
+                android:text="1:1문의"
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                android:fontFamily="@font/gyeonggititle_bold_title"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/detail_home"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_marginEnd="15dp"
+                android:onClick='@{activity::onMainClick}'
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/detail_home" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -43,7 +70,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
+            app:layout_constraintTop_toBottomOf="@+id/cl_top">
 
             <LinearLayout
                 android:layout_width="match_parent"

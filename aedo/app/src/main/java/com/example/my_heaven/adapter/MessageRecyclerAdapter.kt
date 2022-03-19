@@ -14,9 +14,10 @@ class MessageRecyclerAdapter(private val messageList : List<CondoleList>, val co
     RecyclerView.Adapter<MessageRecyclerAdapter.MessageViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MessageViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.view_message_item, parent, false)
-        return MessageViewHolder(view.rootView)
+        val context = parent.context
+        val inflater = LayoutInflater.from(context)
+        val contactView = inflater.inflate(R.layout.view_message_item, parent, false)
+        return MessageViewHolder(contactView)
     }
 
     override fun onBindViewHolder(holder: MessageViewHolder, position: Int) {
@@ -34,9 +35,9 @@ class MessageRecyclerAdapter(private val messageList : List<CondoleList>, val co
         val message_time = view?.findViewById<TextView>(R.id.tv_message_time)
 
         fun bind(item: CondoleList, context: Context) {
-            message_title?.text = item.title?.title
-            message_name?.text = item.content?.content
-            message_time?.text = item.created?.created
+            message_title?.text = item.title
+            message_name?.text = item.content
+            message_time?.text = item.created
         }
     }
 }

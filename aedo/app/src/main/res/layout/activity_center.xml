@@ -162,6 +162,7 @@
                 android:layout_marginStart="19dp"
                 android:layout_marginTop="80dp"
                 android:layout_marginEnd="19dp"
+                android:onClick='@{activity::onFAQClick}'
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -203,6 +204,7 @@
                 android:layout_marginStart="19dp"
                 android:layout_marginTop="140dp"
                 android:layout_marginEnd="19dp"
+                android:onClick='@{activity::onCounCLick}'
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">

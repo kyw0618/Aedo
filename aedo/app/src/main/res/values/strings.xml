@@ -334,5 +334,17 @@
     <string name="thanks_five">5. 조문감사</string>
     <string name="thanks_five_detail">직접 찾아뵙지 않고 문자를 통해서 감사의 인사를 드리는 부분 양해 부탁드립니다.\n다시 한번 감사 드리고 가정의 평안과 행운이 가득 하시길 기원 하겠습니다.</string>
 
+    <string name="FAQ_first">1. 화한 주문 결제</string>
+    <string name="FAQ_first_detail">화한주문 페이지를 클릭한 뒤\n원하시는 화한을 선택 후 결제해주시면 됩니다.</string>
+    <string name="FAQ_second">2. 화한 주문 환불</string>
+    <string name="FAQ_second_detail">고객센터로 문의해주세요</string>
+    <string name="FAQ_third">3. 부고 공유가 되지 않아요</string>
+    <string name="FAQ_third_detail">고객센터로 문의해주세요</string>
+    <string name="FAQ_four">4. 길찾기</string>
+    <string name="FAQ_four_detail">고객센터로 문의해주세요</string>
+    <string name="FAQ_five">5. 부고 작성</string>
+    <string name="FAQ_five_detail">고객센터로 문의해주세요</string>
+
+
 
 </resources>

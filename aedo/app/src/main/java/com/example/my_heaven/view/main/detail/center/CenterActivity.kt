@@ -31,6 +31,14 @@ class CenterActivity : BaseActivity() {
         moveNotice()
     }
 
+    fun onFAQClick(v: View) {
+        moveFAQ()
+    }
+
+    fun onCounCLick(v: View) {
+        moveCounseling()
+    }
+
     override fun onBackPressed() {
         startActivity(Intent(this, MainActivity::class.java))
         finish()

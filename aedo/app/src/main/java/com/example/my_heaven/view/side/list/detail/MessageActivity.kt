@@ -8,8 +8,10 @@ import android.view.View
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.my_heaven.R
 import com.example.my_heaven.adapter.MessageRecyclerAdapter
+import com.example.my_heaven.adapter.NoticeAdapter
 import com.example.my_heaven.api.APIService
 import com.example.my_heaven.api.ApiUtils
 import com.example.my_heaven.databinding.ActivityMessageBinding
@@ -49,7 +51,7 @@ class MessageActivity : BaseActivity() {
                 val result = response.body()
                 if (response.isSuccessful && result != null) {
                     Log.d(TAG,"Condole response SUCCESS -> $result")
-                    setAdapter(result.condole)
+                    setAdapter(result.condoleMessage!!)
                 }
                 else {
                     Log.d(TAG,"Condole response ERROR -> $result")
@@ -71,7 +73,7 @@ class MessageActivity : BaseActivity() {
                 val result = response.body()
                 if (response.isSuccessful && result != null) {
                     Log.d(TAG,"Condole second response SUCCESS -> $result")
-                    SecondsetAdapter(result.condole)
+                    setAdapter(result.condoleMessage!!)
                 }
                 else {
                     Log.d(TAG,"Condole second response ERROR -> $result")
@@ -83,27 +85,15 @@ class MessageActivity : BaseActivity() {
         })
     }
 
-    private fun setAdapter(condoleList: List<CondoleList>?) {
-        LLog.e("리사이클러뷰")
-        val mAdapter = condoleList?.let {
-            MessageRecyclerAdapter(it,this)
-        }
-        mBinding.rcMessage.adapter = mAdapter
-        mBinding.rcMessage.layoutManager = LinearLayoutManager(this)
-        mBinding.rcMessage.setHasFixedSize(true)
-        mBinding.rcMessage.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
+    private fun setAdapter(list: List<CondoleList>) {
+        val adapter = MessageRecyclerAdapter(list,this)
+        val rv = findViewById<View>(R.id.rc_message) as RecyclerView
+        rv.adapter = adapter
+        rv.layoutManager = LinearLayoutManager(this)
+        rv.setHasFixedSize(true)
+        rv.addItemDecoration(DividerItemDecoration(this,DividerItemDecoration.VERTICAL))
     }
 
-    private fun SecondsetAdapter(condoleList: List<CondoleList>?) {
-        LLog.e("리사이클러뷰 두번째")
-        val message = condoleList?.let {
-            MessageRecyclerAdapter(it,this)
-        }
-        mBinding.rcMessage.adapter = message
-        mBinding.rcMessage.layoutManager = LinearLayoutManager(this)
-        mBinding.rcMessage.setHasFixedSize(true)
-        mBinding.rcMessage.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
-    }
 
     fun onBackClick(v: View) {
         moveList()

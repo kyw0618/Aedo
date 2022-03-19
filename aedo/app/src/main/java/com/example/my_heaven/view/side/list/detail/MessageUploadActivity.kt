@@ -44,9 +44,9 @@ class MessageUploadActivity : BaseActivity() {
         val title = mBinding.messageTitle.text.toString()
         val content = mBinding.messageDetailName.text.toString()
         val created = mBinding.tvMessageTimestamp.text.toString()
-        val obld = id
-        val data = CreateMessage(title, content, created, obld)
-        apiServices.getCondole(prefs.newaccesstoken,data).enqueue(object : Callback<CreateMessage> {
+        val obId = id.toString()
+        val data = CreateMessage(title, content, created, obId)
+        apiServices.getCondole(prefs.myaccesstoken,data).enqueue(object : Callback<CreateMessage> {
             override fun onResponse(call: Call<CreateMessage>, response: Response<CreateMessage>) {
                 val result = response.body()
                 if(response.isSuccessful&& result!= null) {
@@ -70,12 +70,13 @@ class MessageUploadActivity : BaseActivity() {
         val title = mBinding.messageTitle.text.toString()
         val content = mBinding.messageDetailName.text.toString()
         val created = mBinding.tvMessageTimestamp.text.toString()
-        val obld = id
-        val data = CreateMessage(title, content, created, obld)
+        val obId = id.toString()
+        val data = CreateMessage(title, content, created, obId)
         apiServices.getCondole(prefs.newaccesstoken,data).enqueue(object : Callback<CreateMessage> {
             override fun onResponse(call: Call<CreateMessage>, response: Response<CreateMessage>) {
                 val result = response.body()
                 if(response.isSuccessful&& result!= null) {
+                    Log.d(TAG,"CreateMessage id -> ${id.toString()}")
                     Log.d(TAG,"CreateMessage Second SUCCESS -> $result")
                     moveMessage()
                 }

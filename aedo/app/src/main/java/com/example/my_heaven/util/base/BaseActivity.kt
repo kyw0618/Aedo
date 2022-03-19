@@ -36,6 +36,7 @@ import com.example.my_heaven.util.alert.LoadingDialog
 import com.example.my_heaven.util.base.MyApplication.Companion.prefs
 import com.example.my_heaven.util.common.CommonData
 import com.example.my_heaven.util.log.LLog.e
+import com.example.my_heaven.view.faq.FAQActivity
 import com.example.my_heaven.view.login.LoginActivity
 import com.example.my_heaven.view.main.MainActivity
 import com.example.my_heaven.view.main.PushActivity
@@ -501,6 +502,13 @@ open class BaseActivity : AppCompatActivity() {
 
     internal fun moveThanks() {
         val intent = Intent(this, ThanksActivity::class.java)
+        startActivity(intent)
+        overridePendingTransition(0, 0)
+        finish()
+    }
+
+    internal fun moveFAQ() {
+        val intent = Intent(this, FAQActivity::class.java)
         startActivity(intent)
         overridePendingTransition(0, 0)
         finish()
