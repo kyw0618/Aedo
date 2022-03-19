@@ -106,6 +106,7 @@
                             app:layout_constraintTop_toTopOf="parent"
                             app:srcCompat="@drawable/line" />
                         <TextView
+                            android:id="@+id/tv_blank"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/notosans_cjkkr_bold"
@@ -127,12 +128,10 @@
                             android:text="박권자"
                             android:textColor="@color/white"
                             android:textSize="25dp"
-                            android:layout_marginStart="130dp"
-                            android:layout_marginEnd="100dp"
+                            android:layout_marginStart="5dp"
                             android:layout_marginBottom="30dp"
                             app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/tv_blank"
                             app:layout_constraintTop_toTopOf="parent" />
 
                         <TextView

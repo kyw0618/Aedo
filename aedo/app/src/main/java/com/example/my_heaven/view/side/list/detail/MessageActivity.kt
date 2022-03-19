@@ -42,7 +42,8 @@ class MessageActivity : BaseActivity() {
     }
 
     private fun inRecycler() {
-        val vercall: Call<Condole> = apiServices.getConID(prefs.myListId, prefs.myaccesstoken)
+        val listId = intent.getStringExtra(Constant.MESSAGE_LLIST_ID)
+        val vercall: Call<Condole> = apiServices.getConID(listId, prefs.myaccesstoken)
         vercall.enqueue(object : Callback<Condole> {
             override fun onResponse(call: Call<Condole>, response: Response<Condole>) {
                 val result = response.body()
@@ -63,13 +64,13 @@ class MessageActivity : BaseActivity() {
     }
 
     private fun otherAPI() {
-        val vercall: Call<Condole> = apiServices.getConID(prefs.myListId, prefs.newaccesstoken)
+        val listId = intent.getStringExtra(Constant.MESSAGE_LLIST_ID)
+        val vercall: Call<Condole> = apiServices.getConID(listId, prefs.newaccesstoken)
         vercall.enqueue(object : Callback<Condole> {
             override fun onResponse(call: Call<Condole>, response: Response<Condole>) {
                 val result = response.body()
                 if (response.isSuccessful && result != null) {
                     Log.d(TAG,"Condole second response SUCCESS -> $result")
-                    Log.d(TAG,"prefs sss -> ${prefs.myListId.toString()}")
                     SecondsetAdapter(result.condole)
                 }
                 else {
@@ -94,6 +95,7 @@ class MessageActivity : BaseActivity() {
     }
 
     private fun SecondsetAdapter(condoleList: List<CondoleList>?) {
+        LLog.e("리사이클러뷰 두번째")
         val message = condoleList?.let {
             MessageRecyclerAdapter(it,this)
         }
@@ -101,8 +103,6 @@ class MessageActivity : BaseActivity() {
         mBinding.rcMessage.layoutManager = LinearLayoutManager(this)
         mBinding.rcMessage.setHasFixedSize(true)
         mBinding.rcMessage.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
-        LLog.e("리사이클러뷰 두번째")
-
     }
 
     fun onBackClick(v: View) {

@@ -76,16 +76,15 @@ class ListActivity : BaseActivity() {
             override fun onResponse(call: Call<RecyclerList>, response: Response<RecyclerList>) {
                 val result = response.body()
                 if (response.isSuccessful && result != null) {
-                    Log.d(TAG,"List response SUCCESS -> $result")
+                    Log.d(TAG,"List Second response SUCCESS -> $result")
                     setAdapter(result.obituary)
-                    prefs.myListId = result.id.toString()
                 }
                 else {
-                    Log.d(TAG,"List response ERROR -> $result")
+                    Log.d(TAG,"List Second esponse ERROR -> $result")
                 }
             }
             override fun onFailure(call: Call<RecyclerList>, t: Throwable) {
-                Log.d(TAG, "List error -> $t")
+                Log.d(TAG, "List Second Fail -> $t")
             }
         })
     }

@@ -46,8 +46,6 @@ class MakeActivity : BaseActivity() {
     private lateinit var mBinding: ActivityMakeBinding
     private lateinit var apiServices: APIService
     private var mViewModel: MakeViewModel? = null
-    private var itemDTO = ItemDTO()
-    private var valid = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,6 +53,7 @@ class MakeActivity : BaseActivity() {
         mBinding.activity = this@MakeActivity
         apiServices = ApiUtils.apiService
         mBinding.viewModel = mViewModel
+
         val onlyDate: LocalDate = LocalDate.now()
         mBinding.tvMakeData.text = onlyDate.toString()
 
@@ -214,7 +213,7 @@ class MakeActivity : BaseActivity() {
             }
 
             override fun onFailure(call: Call<CreateModel>, t: Throwable) {
-                Log.d(TAG,"callCreate ERROR -> $t")
+                Log.d(TAG,"callCreate Fail -> $t")
                 Log.d(TAG,"Bearer $mytoken")
                 Toast.makeText(this@MakeActivity,"다시 시도해 주세요",Toast.LENGTH_SHORT).show()
             }
@@ -251,17 +250,17 @@ class MakeActivity : BaseActivity() {
             override fun onResponse(call: Call<CreateModel>, response: Response<CreateModel>) {
                 val result = response.body()
                 if(response.isSuccessful&& result!= null) {
-                    Log.d(TAG,"callCreateAPI API SUCCESS -> $result")
+                    Log.d(TAG,"callCreateAPI Second API SUCCESS -> $result")
                     moveList()
                 }
                 else {
-                    Log.d(TAG,"callCreateAPI API ERROR -> ${response.errorBody()}")
-                    Log.d(TAG,"callCreateAPI API ERROR TWO-> $bear+$mytoken")
+                    Log.d(TAG,"callCreateAPI Second API ERROR -> ${response.errorBody()}")
+                    Log.d(TAG,"callCreateAPI Second API ERROR TWO-> $bear+$mytoken")
                 }
             }
 
             override fun onFailure(call: Call<CreateModel>, t: Throwable) {
-                Log.d(TAG,"callCreate ERROR -> $t")
+                Log.d(TAG,"callCreateAPI Second Fail -> $t")
                 Log.d(TAG,"Bearer $mytoken")
                 Toast.makeText(this@MakeActivity,"다시 시도해 주세요",Toast.LENGTH_SHORT).show()
             }

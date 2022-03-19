@@ -1,5 +1,6 @@
 package com.example.my_heaven.model.notice
 
+import com.google.gson.annotations.SerializedName
+
 data class NoticeDetailModel(
-    val id: String? = null
-)
+    var id: String?=null,)

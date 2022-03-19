@@ -4,12 +4,12 @@ import com.google.gson.annotations.SerializedName
 import io.realm.RealmObject
 
 data class AppPolicy (
-    @SerializedName("_id")
     var id: String?=null,
     var result : String?= null,
     var policy : List<Policy>?= null,
     var code : List<Code>?= null,
-    var app_menu : List<AppMenu>?= null
+    var app_menu : List<AppMenu>?= null,
+    var coordinates : List<Coordinates>?=null
 )
 
 open class Policy : RealmObject() {
@@ -42,4 +42,11 @@ open class AppMenu : RealmObject() {
     var category_name : String?= null
     var icon_name : String?= null
     var use_yn : String?= null
+}
+
+open class Coordinates : RealmObject() {
+    var id : String? = null
+    var name : String? = null
+    var xvalue : Double? = null
+    var yvalue : Double? = null
 }

@@ -148,6 +148,7 @@ class SplashActivity : BaseActivity() {
                 val result = response.body()
                 if (response.isSuccessful && result != null) {
                     Log.d(TAG,"Policy response SUCCESS -> $result")
+                    realmPolicy(result,listener)
                     requestLogin()
                 }
                 else {
@@ -160,6 +161,20 @@ class SplashActivity : BaseActivity() {
                 serverDialog()
             }
         })
+    }
+
+    private fun realmPolicy(result: AppPolicy, listener: ResultListener) {
+        realm.executeTransaction {
+            realm.where(Policy::class.java).findAll().deleteAllFromRealm()
+            realm.where(Code::class.java).findAll().deleteAllFromRealm()
+            realm.where(AppMenu::class.java).findAll().deleteAllFromRealm()
+            realm.where(Coordinates::class.java).findAll().deleteAllFromRealm()
+            realm.copyToRealm(result.policy!!)
+            realm.copyToRealm(result.code!!)
+            realm.copyToRealm(result.app_menu!!)
+            realm.copyToRealm(result.coordinates!!)
+        }
+
     }
 
     private fun requestLogin() {

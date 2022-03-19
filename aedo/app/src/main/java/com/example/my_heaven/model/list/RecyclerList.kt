@@ -6,11 +6,9 @@ import kotlinx.android.parcel.Parcelize
 
 data class RecyclerList(
     var obituary : List<Obituaray>?=null,
-    @SerializedName("_id")
-    val id : String? = null,
-
 )
 data class Obituaray(
+    var id: String? = null,
     var resident : Resident?=null,
     var place : Place?=null,
     var deceased : Deceased?=null,

@@ -1,5 +1,7 @@
 package com.example.my_heaven.model.restapi.base
 
+import com.google.gson.annotations.SerializedName
+
 data class CreateModel(
     var resident: Resident?=null,
     var place: Place ?=null,
@@ -10,7 +12,6 @@ data class CreateModel(
     var buried: String?= null,
     var word: String?= null,
     var created: String? = null,
-    val id: String? = null
 )
 
 data class Resident (

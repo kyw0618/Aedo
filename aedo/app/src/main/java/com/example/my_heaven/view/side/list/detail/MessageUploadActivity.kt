@@ -70,7 +70,7 @@ class MessageUploadActivity : BaseActivity() {
         val title = mBinding.messageTitle.text.toString()
         val content = mBinding.messageDetailName.text.toString()
         val created = mBinding.tvMessageTimestamp.text.toString()
-        val obld = id.toString()
+        val obld = id
         val data = CreateMessage(title, content, created, obld)
         apiServices.getCondole(prefs.newaccesstoken,data).enqueue(object : Callback<CreateMessage> {
             override fun onResponse(call: Call<CreateMessage>, response: Response<CreateMessage>) {

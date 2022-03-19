@@ -66,9 +66,11 @@ class RecyclerAdapter(private val postList : List<Obituaray>, val context : Cont
             tx_top_name?.text = itemPhoto?.deceased?.name
             tx_body_name?.text = itemPhoto?.resident?.name
             tx_body_info?.text=itemPhoto?.place?.place_name
+            prefs.myListId = itemPhoto?.id
 
             btn_show?.setOnClickListener {
                 val intent = Intent(context, ListDetailActivity::class.java)
+                intent.putExtra(LLIST_ID,itemPhoto?.id.toString())
                 intent.putExtra(DECEASED_NAME,itemPhoto?.deceased?.name.toString())
                 intent.putExtra(EOD_DATE,itemPhoto?.eod?.date.toString())
                 intent.putExtra(RESIDENT_NAME,itemPhoto?.resident?.name.toString())
@@ -79,6 +81,5 @@ class RecyclerAdapter(private val postList : List<Obituaray>, val context : Cont
                 ContextCompat.startActivity(itemView.context, intent, null)
             }
         }
-
     }
 }

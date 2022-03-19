@@ -31,6 +31,7 @@ import com.example.my_heaven.util.`object`.Constant.LLIST_ID
 import com.example.my_heaven.util.`object`.Constant.MESSAGE_LLIST_ID
 import com.example.my_heaven.util.`object`.Constant.PLACE_NAME
 import com.example.my_heaven.util.`object`.Constant.RESIDENT_NAME
+import com.example.my_heaven.util.`object`.Constant.TAG
 import com.example.my_heaven.util.alert.LoadingDialog
 import com.example.my_heaven.util.base.BaseActivity
 import com.example.my_heaven.util.base.MyApplication.Companion.prefs
@@ -59,6 +60,7 @@ class ListDetailActivity : BaseActivity(),OnMapReadyCallback {
         inStatusBar()
         inRecycler()
         initView()
+
     }
 
     private fun initView() {
