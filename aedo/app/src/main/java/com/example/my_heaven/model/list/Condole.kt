@@ -1,10 +1,13 @@
 package com.example.my_heaven.model.list
 
+import com.google.gson.annotations.SerializedName
+
 data class Condole (
     val condole : List<CondoleList>? = null
 )
 
 data class CondoleList(
+    @SerializedName("_id")
     val id : String? = null,
     val title : Title? = null,
     val content : Content? = null,

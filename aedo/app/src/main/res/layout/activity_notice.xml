@@ -36,6 +36,16 @@
                 android:onClick='@{activity::onBackClick}'
                 app:srcCompat="@drawable/back" />
 
+            <ImageView
+                android:id="@+id/imageView17"
+                android:layout_width="75dp"
+                android:layout_height="30dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/img_notice" />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

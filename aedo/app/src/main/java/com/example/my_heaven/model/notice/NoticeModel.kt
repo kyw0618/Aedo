@@ -6,6 +6,6 @@ data class NoticeModel(
 
 data class Announcement(
     val id : String? = null,
-    val name : String? = null,
+    val title : String? = null,
     val value : String? = null
 )

@@ -23,7 +23,7 @@ class MessageRecyclerAdapter(private val messageList : List<CondoleList>, val co
         holder.bind(messageList[position],context)
     }
 
-    override fun getItemCount(): Int {
+    override fun getItemCount() :Int{
         return messageList.count()
     }
 

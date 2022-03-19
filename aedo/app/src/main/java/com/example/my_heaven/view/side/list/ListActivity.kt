@@ -78,6 +78,7 @@ class ListActivity : BaseActivity() {
                 if (response.isSuccessful && result != null) {
                     Log.d(TAG,"List response SUCCESS -> $result")
                     setAdapter(result.obituary)
+                    prefs.myListId = result.id.toString()
                 }
                 else {
                     Log.d(TAG,"List response ERROR -> $result")

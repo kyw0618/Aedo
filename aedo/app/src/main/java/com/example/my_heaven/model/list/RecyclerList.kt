@@ -5,10 +5,12 @@ import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
 data class RecyclerList(
-    var obituary : List<Obituaray>?=null
+    var obituary : List<Obituaray>?=null,
+    @SerializedName("_id")
+    val id : String? = null,
+
 )
 data class Obituaray(
-    val id : String? = null,
     var resident : Resident?=null,
     var place : Place?=null,
     var deceased : Deceased?=null,

@@ -57,6 +57,10 @@ class MainActivity : BaseActivity() {
         movePush()
     }
 
+    fun onNoticeCLick(v: View) {
+        moveNotice()
+    }
+
     private fun runDelayed(millis: Long, function: () -> Unit) {
         Handler(Looper.getMainLooper()).postDelayed(function, millis)
     }
