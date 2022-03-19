@@ -38,6 +38,10 @@ class NoticeActivity : BaseActivity() {
         mBinding.activity = this@NoticeActivity
         apiServices = ApiUtils.apiService
         mBinding.medicalRecyclerView.adapter = noticeAdapter
+        mBinding.medicalRecyclerView.layoutManager = LinearLayoutManager(this)
+        mBinding.medicalRecyclerView.setHasFixedSize(true)
+        mBinding.medicalRecyclerView.addItemDecoration(DividerItemDecoration(this,DividerItemDecoration.VERTICAL))
+
         inStatusBar()
         inNoticeAPI()
     }
@@ -49,7 +53,6 @@ class NoticeActivity : BaseActivity() {
                 val result = response.body()
                 if (response.isSuccessful && result != null) {
                     Log.d(LLog.TAG,"NoticeModel response SUCCESS -> $result")
-                    setAdapter(result.announcement)
                 }
                 else {
                     Log.d(LLog.TAG,"NoticeModel response ERROR -> $result")
@@ -69,7 +72,6 @@ class NoticeActivity : BaseActivity() {
                 val result = response.body()
                 if (response.isSuccessful && result != null) {
                     Log.d(LLog.TAG,"NoticeModel Second response SUCCESS -> $result")
-                    setAdapter(result.announcement)
                 }
                 else {
                     Log.d(LLog.TAG,"NoticeModel Second response ERROR -> $result")
@@ -81,15 +83,7 @@ class NoticeActivity : BaseActivity() {
         })
     }
 
-    private fun setAdapter(announcement: List<Announcement>?) {
-        val mAdapter = announcement?.let {
-            NoticeAdapter(it,this)
-        }
-        mBinding.medicalRecyclerView.adapter = mAdapter
-        mBinding.medicalRecyclerView.layoutManager = LinearLayoutManager(this)
-        mBinding.medicalRecyclerView.setHasFixedSize(true)
-        mBinding.medicalRecyclerView.addItemDecoration(DividerItemDecoration(this,DividerItemDecoration.VERTICAL))
-    }
+
 
     fun onBackClick(v: View) {
         moveMain()
