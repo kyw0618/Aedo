@@ -81,7 +81,7 @@ class SideMenuActivity : BaseActivity() {
     }
 
     fun onInfoClick(v:View) {
-        moveInfor()
+        moveTerms()
     }
 
     fun onListClick(v:View) {
@@ -101,7 +101,7 @@ class SideMenuActivity : BaseActivity() {
     }
 
     fun onFAQClick(v: View) {
-
+        moveFAQ()
     }
 
     fun onKAKAOClick(v: View) {

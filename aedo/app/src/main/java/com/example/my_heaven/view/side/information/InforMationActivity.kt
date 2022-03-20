@@ -1,5 +1,6 @@
 package com.example.my_heaven.view.side.information
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.databinding.DataBindingUtil
@@ -8,6 +9,7 @@ import com.example.my_heaven.api.APIService
 import com.example.my_heaven.api.ApiUtils
 import com.example.my_heaven.databinding.ActivityInforMationBinding
 import com.example.my_heaven.util.base.BaseActivity
+import com.example.my_heaven.view.main.MainActivity
 
 class InforMationActivity : BaseActivity() {
     private lateinit var mBinding: ActivityInforMationBinding
@@ -18,10 +20,15 @@ class InforMationActivity : BaseActivity() {
         mBinding = DataBindingUtil.setContentView(this,R.layout.activity_infor_mation)
         mBinding.activity = this
         apiServices = ApiUtils.apiService
-
+        inStatusBar()
     }
 
      fun onBackClick(v: View) {
          moveSide()
      }
+
+    override fun onBackPressed() {
+        startActivity(Intent(this, MainActivity::class.java))
+        finish()
+    }
 }

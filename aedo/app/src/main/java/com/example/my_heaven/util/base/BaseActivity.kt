@@ -58,6 +58,7 @@ import com.example.my_heaven.view.side.list.detail.MessageActivity
 import com.example.my_heaven.view.side.list.detail.MessageUploadActivity
 import com.example.my_heaven.view.side.list.detail.WaringActivity
 import com.example.my_heaven.view.side.setting.SettingActivity
+import com.example.my_heaven.view.term.TermActivity
 import io.realm.Realm
 import kotlinx.android.synthetic.main.one_button_dialog.view.*
 import kotlinx.android.synthetic.main.two_button_dialog.view.*
@@ -509,6 +510,13 @@ open class BaseActivity : AppCompatActivity() {
 
     internal fun moveFAQ() {
         val intent = Intent(this, FAQActivity::class.java)
+        startActivity(intent)
+        overridePendingTransition(0, 0)
+        finish()
+    }
+
+    internal fun moveTerms() {
+        val intent = Intent(this, TermActivity::class.java)
         startActivity(intent)
         overridePendingTransition(0, 0)
         finish()

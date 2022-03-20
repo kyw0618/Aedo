@@ -66,13 +66,13 @@
             android:layout_marginTop="50dp"
             android:nestedScrollingEnabled="false"
             android:overScrollMode="never"
+            app:reverseLayout="true"
+            app:stackFromEnd="true"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:reverseLayout="true"
-            app:stackFromEnd="true"
             tools:listitem="@layout/list_item">
         </androidx.recyclerview.widget.RecyclerView>
 

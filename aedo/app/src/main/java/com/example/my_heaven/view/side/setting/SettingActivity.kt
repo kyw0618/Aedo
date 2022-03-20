@@ -1,18 +1,16 @@
 package com.example.my_heaven.view.side.setting
 
 import android.content.Intent
-import android.graphics.Color
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.view.WindowManager
 import androidx.databinding.DataBindingUtil
 import com.example.my_heaven.R
 import com.example.my_heaven.api.APIService
 import com.example.my_heaven.api.ApiUtils
 import com.example.my_heaven.databinding.ActivitySettingBinding
-import com.example.my_heaven.model.restapi.login.GetUser
+import com.example.my_heaven.model.restapi.base.Coordinates
+import com.example.my_heaven.model.restapi.base.Policy
 import com.example.my_heaven.model.restapi.login.LogOut
 import com.example.my_heaven.util.base.BaseActivity
 import com.example.my_heaven.util.base.MyApplication
@@ -32,6 +30,12 @@ class SettingActivity : BaseActivity() {
         mBinding.activity = this@SettingActivity
         apiServices = ApiUtils.apiService
         inStatusBar()
+        initView()
+    }
+
+    private fun initView() {
+        val version = realm.where(Policy::class.java).equalTo("id","APP_VERSION").findFirst()
+        mBinding.tvVersion.text = version?.value
     }
 
     fun onLogOutClick(v: View) {
@@ -65,6 +69,18 @@ class SettingActivity : BaseActivity() {
 
     fun onBackClick(v: View) {
         moveMain()
+    }
+
+    fun onTermsClick(v: View) {
+        moveTerms()
+    }
+
+    fun ontermsinforClick(v: View) {
+        moveTerms()
+    }
+
+    fun ontermsotherClick(v: View) {
+        moveTerms()
     }
 
     override fun onBackPressed() {

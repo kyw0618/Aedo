@@ -10,16 +10,13 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.my_heaven.R
-import com.example.my_heaven.adapter.NoticeAdapter
 import com.example.my_heaven.adapter.SearchAdapter
 import com.example.my_heaven.api.APIService
 import com.example.my_heaven.api.ApiUtils
 import com.example.my_heaven.databinding.ActivitySearchBinding
-import com.example.my_heaven.model.notice.NoticeModel
 import com.example.my_heaven.model.restapi.base.CreateName
 import com.example.my_heaven.model.restapi.base.CreateSearch
 import com.example.my_heaven.util.base.BaseActivity
-import com.example.my_heaven.util.base.MyApplication
 import com.example.my_heaven.util.base.MyApplication.Companion.prefs
 import com.example.my_heaven.util.log.LLog
 import com.example.my_heaven.view.main.MainActivity
@@ -38,17 +35,17 @@ class SearchActivity : BaseActivity() {
         mBinding.activity = this@SearchActivity
         apiServices = ApiUtils.apiService
         inStatusBar()
-        initSearchAPI()
     }
 
     private fun initSearchAPI() {
-        val vercall: Call<CreateName> = apiServices.getCreateName(prefs.myaccesstoken)
+        val search = mBinding.etSearch.text.toString().trim()
+        val vercall: Call<CreateName> = apiServices.getCreateName(search,prefs.myaccesstoken)
         vercall.enqueue(object : Callback<CreateName> {
             override fun onResponse(call: Call<CreateName>, response: Response<CreateName>) {
                 val result = response.body()
                 if (response.isSuccessful && result != null) {
                     Log.d(LLog.TAG,"NoticeModel response SUCCESS -> $result")
-                    setAdapter(result.search!!)
+                    setAdapter(result.result)
                 }
                 else {
                     Log.d(LLog.TAG,"NoticeModel response ERROR -> $result")
@@ -62,13 +59,15 @@ class SearchActivity : BaseActivity() {
     }
 
     private fun otherAPI() {
-        val vercall: Call<CreateName> = apiServices.getCreateName(prefs.newaccesstoken)
+        val search = mBinding.etSearch.text.toString().trim()
+        val vercall: Call<CreateName> = apiServices.getCreateName(search,prefs.newaccesstoken)
         vercall.enqueue(object : Callback<CreateName> {
             override fun onResponse(call: Call<CreateName>, response: Response<CreateName>) {
                 val result = response.body()
                 if (response.isSuccessful && result != null) {
                     Log.d(LLog.TAG,"NoticeModel response SUCCESS -> $result")
-                    setAdapter(result.search!!)
+                    setAdapter(result.result)
+
                 }
                 else {
                     Log.d(LLog.TAG,"NoticeModel response ERROR -> $result")
@@ -80,8 +79,10 @@ class SearchActivity : BaseActivity() {
         })
     }
 
-    private fun setAdapter(search: List<CreateSearch>) {
-        val adapter = SearchAdapter(search,this)
+    private fun setAdapter(search: List<CreateSearch>?) {
+        val adapter = search?.let {
+            SearchAdapter(it,this)
+        }
         val rv = findViewById<View>(R.id.search_recyclerView) as RecyclerView
         rv.adapter = adapter
         rv.layoutManager = LinearLayoutManager(this)
@@ -91,6 +92,16 @@ class SearchActivity : BaseActivity() {
 
     fun onBackClick(v: View){
         moveMain()
+    }
+
+    fun onSearchClick(v: View) {
+        val search = mBinding.etSearch.text.toString()
+        if (search.isEmpty()) {
+            mBinding.etSearch.error = "미입력"
+        }
+        else {
+            initSearchAPI()
+        }
     }
 
     override fun onBackPressed() {

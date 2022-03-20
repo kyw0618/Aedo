@@ -90,6 +90,15 @@ object  Constant {
     const val GPS_ENABLE_REQUEST_CODE = 2001
     const val FINISH_INTERVAL_TIME: Long = 1500
 
+    //Search
+    const val SEARCH_RELATION_NAME = "SEARCH_RELATION_NAME"
+    const val SEARCH_EOD_DATA = "SEARCH_EOD_DATA"
+    const val SEARCH_DECEASED_NAME = "SEARCH_DECEASED_NAME"
+    const val SEARCH_COFFIN_DATA = "SEARCH_COFFIN_DATA"
+    const val SEARCH_DOFP_DATA = "SEARCH_DOFP_DATA"
+    const val SEARCH_BURIED = "SEARCH_BURIED"
+    const val SEARCH_PLACE = "SEARCH_PLACE"
+
 
     // Splash
     const val SPLASH_WAIT = 2500

@@ -77,18 +77,17 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout4"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="150dp"
                 app:layout_constraintBottom_toTopOf="@+id/constraintLayout5"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/constraintLayout3"
                     android:layout_width="280dp"
-                    android:layout_height="241dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginStart="40dp"
                     android:layout_marginTop="15dp"
                     android:layout_marginEnd="40dp"
@@ -258,7 +257,8 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout5"
                 android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="30dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -266,14 +266,9 @@
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/constraintLayout6"
-                    android:layout_width="350dp"
-                    android:layout_height="250dp"
-                    android:layout_marginStart="33dp"
-                    android:layout_marginTop="0dp"
-                    android:layout_marginEnd="33dp"
-                    android:layout_marginBottom="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
                     android:background="@drawable/main_body_second_box"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
@@ -310,6 +305,141 @@
                         android:onClick='@{activity::onNoticeCLick}'
                         app:srcCompat="@drawable/main_more" />
 
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/cl_notice_first"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="20dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/imageView23">
+
+                        <ImageView
+                            android:id="@+id/imageView20"
+                            android:layout_width="4dp"
+                            android:layout_height="4dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginStart="30dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/img_notice_icon" />
+
+                        <TextView
+                            android:id="@+id/tv_notice_first"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="15dp"
+                            android:text="전화상담 일시 중단"
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/gyeonggititle_medium"
+                            android:textSize="14dp"
+                            app:layout_constraintStart_toEndOf="@+id/imageView20"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/tv_notice_first_time"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/gyeonggititle_medium"
+                            android:text="2022.01.01"
+                            android:layout_marginEnd="20dp"
+                            android:textColor="@color/text_black"
+                            android:textSize="14dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/cl_notice_second"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="20dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/cl_notice_first">
+
+                        <ImageView
+                            android:id="@+id/imageView21"
+                            android:layout_width="4dp"
+                            android:layout_height="4dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginStart="30dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/img_notice_icon" />
+
+                        <TextView
+                            android:id="@+id/tv_notice_second"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="15dp"
+                            android:text="이용약관 변경"
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/gyeonggititle_medium"
+                            android:textSize="14dp"
+                            app:layout_constraintStart_toEndOf="@+id/imageView21"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/tv_notice_second_time"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/gyeonggititle_medium"
+                            android:layout_marginEnd="20dp"
+                            android:text="2022.01.01"
+                            android:textColor="@color/text_black"
+                            android:textSize="14dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/cl_notice_third"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="20dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/cl_notice_second">
+
+                        <ImageView
+                            android:id="@+id/icon_1"
+                            android:layout_width="4dp"
+                            android:layout_height="4dp"
+                            android:layout_marginStart="30dp"
+                            android:layout_marginTop="5dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/img_notice_icon" />
+
+                        <TextView
+                            android:id="@+id/tv_notice_third"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="15dp"
+                            android:fontFamily="@font/gyeonggititle_medium"
+                            android:text="결제 서비스 점검"
+                            android:textColor="@color/black"
+                            android:textSize="14dp"
+                            app:layout_constraintStart_toEndOf="@+id/icon_1"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/tv_notice_third_time"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="20dp"
+                            android:fontFamily="@font/gyeonggititle_medium"
+                            android:text="2022.01.01"
+                            android:textColor="@color/text_black"
+                            android:textSize="14dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 

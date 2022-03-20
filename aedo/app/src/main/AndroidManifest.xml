@@ -29,6 +29,9 @@
         android:usesCleartextTraffic="false"
         tools:targetApi="n">
         <activity
+            android:name=".view.term.TermActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.main.detail.search.SearchDetailActivity"
             android:exported="false" />
         <activity

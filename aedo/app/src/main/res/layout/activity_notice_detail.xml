@@ -125,6 +125,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
+                android:layout_margin="20dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -134,12 +135,13 @@
                     android:id="@+id/tv_notice_detail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="공지사항 상세 내용"
-                    android:fontFamily="@font/gyeonggititle_medium"
-                    android:textSize="15dp"
-                    android:textColor="@color/text_black"
                     android:layout_marginTop="20dp"
-                    android:layout_marginStart="20dp"
+                    android:gravity="left"
+                    android:fontFamily="@font/gyeonggititle_medium"
+                    android:text="sssssssssssssssss"
+                    android:textColor="@color/text_black"
+                    android:textSize="15dp"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>

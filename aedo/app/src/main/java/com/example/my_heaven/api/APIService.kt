@@ -55,7 +55,7 @@ interface APIService {
 
     // 부고조회 API
     @GET("v1/obituary?name=")
-    fun getCreateName(@Header("Accesstoken")accesstoken: String?) : Call<CreateName>
+    fun getCreateName(@Query("name")name: String?,@Header("Accesstoken")accesstoken: String?) : Call<CreateName>
 
     // 나의부고 API
     @GET("v1/obituary/my")

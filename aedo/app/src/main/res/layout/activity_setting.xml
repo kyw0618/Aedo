@@ -19,7 +19,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout9"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="248dp"
             android:background="@drawable/header_bg"
             app:layout_constraintEnd_toEndOf="parent"
@@ -38,6 +38,7 @@
                 app:srcCompat="@drawable/side_back" />
 
             <TextView
+                android:id="@+id/textView16"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -45,13 +46,14 @@
                 android:layout_marginEnd="232dp"
                 android:text="설정"
                 android:textColor="@color/white"
+                android:textSize="28dp"
+                android:textStyle="bold"
                 app:layout_constraintEnd_toStartOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:textSize="28dp"
-                android:textStyle="bold" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
+                android:id="@+id/textView27"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -59,16 +61,43 @@
                 android:layout_marginEnd="232dp"
                 android:text="기능설정"
                 android:textColor="@color/white"
+                android:textSize="16dp"
+                android:textStyle="bold"
                 app:layout_constraintEnd_toStartOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:textSize="16dp"
-                android:textStyle="bold"/>
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView28"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="5dp"
+                android:fontFamily="@font/gyeonggititle_medium"
+                android:text="버전정보 :"
+                android:textColor="@color/white"
+                android:textSize="15dp"
+                app:layout_constraintEnd_toStartOf="@+id/tv_version"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_version"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="@font/gyeonggititle_medium"
+                android:text="v 1.0"
+                android:textColor="@color/white"
+                android:textSize="15dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout8"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="160dp"
             android:layout_marginTop="130dp"
             android:background="@drawable/center_body"
@@ -128,7 +157,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="58dp"
                 android:layout_marginStart="19dp"
                 android:layout_marginTop="80dp"
@@ -206,6 +235,7 @@
                     android:layout_marginStart="19dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginEnd="19dp"
+                    android:onClick='@{activity::onTermsClick}'
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
@@ -252,6 +282,7 @@
                     android:layout_height="58dp"
                     android:layout_marginStart="19dp"
                     android:layout_marginEnd="19dp"
+                    android:onClick='@{activity::ontermsinforClick}'
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/constraintLayout38">
@@ -297,6 +328,7 @@
                     android:layout_height="58dp"
                     android:layout_marginStart="19dp"
                     android:layout_marginEnd="19dp"
+                    android:onClick='@{activity::ontermsotherClick}'
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/constraintLayout37">
@@ -353,7 +385,7 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="140dp"
+                android:layout_height="145dp"
                 android:layout_marginTop="25dp"
                 android:background="@drawable/center_body"
                 app:layout_constraintStart_toStartOf="parent"
@@ -443,63 +475,5 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="0dp"
-            android:layout_height="60dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout21">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:background="@drawable/center_body"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:layout_marginStart="19dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="19dp"
-                    android:layout_marginBottom="15dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="버전정보"
-                        android:layout_margin="10dp"
-                        android:textSize="13dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/textView32"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <TextView
-                        android:id="@+id/textView32"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginEnd="16dp"
-                        android:layout_marginBottom="1dp"
-                        android:text="v 1.0"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

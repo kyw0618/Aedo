@@ -1,5 +1,6 @@
 package com.example.my_heaven.view.faq
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -12,6 +13,7 @@ import com.example.my_heaven.databinding.ActivityFaqactivityBinding
 import com.example.my_heaven.databinding.ActivityListBinding
 import com.example.my_heaven.util.alert.LoadingDialog
 import com.example.my_heaven.util.base.BaseActivity
+import com.example.my_heaven.view.main.MainActivity
 
 class FAQActivity : BaseActivity() {
     private lateinit var mBinding: ActivityFaqactivityBinding
@@ -27,7 +29,7 @@ class FAQActivity : BaseActivity() {
     }
 
     fun onBackClick(v: View) {
-        moveSide()
+        moveMain()
     }
 
     fun onFirstClick(v: View) {
@@ -73,5 +75,10 @@ class FAQActivity : BaseActivity() {
         else {
             mBinding.clThanksFive.visibility = View.GONE
         }
+    }
+
+    override fun onBackPressed() {
+        startActivity(Intent(this, MainActivity::class.java))
+        finish()
     }
 }
