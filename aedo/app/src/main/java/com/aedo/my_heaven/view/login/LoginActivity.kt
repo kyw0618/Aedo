@@ -225,6 +225,7 @@ class LoginActivity : BaseActivity() {
             override fun onResponse(call: Call<LoginSend>, response: Response<LoginSend>) {
                 val result = response.body()
                 if(response.isSuccessful&&result!=null) {
+                    prefs.myaccesstoken = result.accesstoken.toString()
                     moveMain()
                 }
                 else {

@@ -58,16 +58,16 @@ class SideMenuActivity : BaseActivity() {
             override fun onResponse(call: Call<GetUser>, response: Response<GetUser>) {
                 val result = response.body()
                 if(response.isSuccessful&& result!= null) {
-                    Log.d(LLog.TAG,"GetUser API SUCCESS -> $result")
+                    Log.d(LLog.TAG,"GetUser Second API SUCCESS -> $result")
                     mBinding.sideTxName.text = result.user?.name.toString()
                 }
                 else {
-                    Log.d(LLog.TAG,"GetUser API ERROR -> ${response.errorBody()}")
+                    Log.d(LLog.TAG,"GetUser Second API ERROR -> ${response.errorBody()}")
                 }
             }
 
             override fun onFailure(call: Call<GetUser>, t: Throwable) {
-                Log.d(LLog.TAG,"GetUser ERROR -> $t")
+                Log.d(LLog.TAG,"GetUser Second ERROR -> $t")
 
             }
         })

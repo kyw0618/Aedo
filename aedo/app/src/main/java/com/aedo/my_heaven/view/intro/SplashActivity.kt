@@ -179,6 +179,7 @@ class SplashActivity : BaseActivity() {
             override fun onResponse(call: Call<AutoLogin>, response: Response<AutoLogin>) {
                 val result = response.body()
                 if (response.code() == 404 || response.code() == 401) {
+                    prefs.newaccesstoken=result?.accesstoken
                     moveLogin()
                 }
                 else if(response.code() == 200){
