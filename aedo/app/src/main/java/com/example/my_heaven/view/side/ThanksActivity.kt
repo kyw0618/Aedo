@@ -1,5 +1,6 @@
 package com.example.my_heaven.view.side
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -10,6 +11,7 @@ import com.example.my_heaven.api.ApiUtils
 import com.example.my_heaven.databinding.ActivitySideMenuBinding
 import com.example.my_heaven.databinding.ActivityThanksBinding
 import com.example.my_heaven.util.base.BaseActivity
+import com.example.my_heaven.view.main.MainActivity
 
 class ThanksActivity : BaseActivity() {
     private lateinit var mBinding: ActivityThanksBinding
@@ -70,5 +72,10 @@ class ThanksActivity : BaseActivity() {
         else {
             mBinding.clThanksFive.visibility = View.GONE
         }
+    }
+
+    override fun onBackPressed() {
+        startActivity(Intent(this, MainActivity::class.java))
+        finish()
     }
 }

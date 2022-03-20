@@ -1,13 +1,21 @@
 package com.example.my_heaven.adapter
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.my_heaven.R
 import com.example.my_heaven.model.notice.Announcement
+import com.example.my_heaven.util.`object`.Constant
+import com.example.my_heaven.util.`object`.Constant.NOTICE_CONTENT
+import com.example.my_heaven.util.`object`.Constant.NOTICE_CREATED
+import com.example.my_heaven.util.`object`.Constant.NOTICE_TITLE
+import com.example.my_heaven.view.notice.NoticeDetailActivity
 
 
 class NoticeAdapter(private val noticeList : List<Announcement>,private val context: Context)
@@ -31,12 +39,21 @@ class NoticeAdapter(private val noticeList : List<Announcement>,private val cont
 
     inner class ViewHolder (itemView: View? ) : RecyclerView.ViewHolder(itemView!!){
 
-        val notice_title = itemView?.findViewById<TextView>(R.id.tv_counseling_title)
-        val notice_timestamp = itemView?.findViewById<TextView>(R.id.tv_counseling_timestamp)
+        val notice_title = itemView?.findViewById<TextView>(R.id.tv_notice_item_title)
+        val notice_timestamp = itemView?.findViewById<TextView>(R.id.tv_notice_item_timestamp)
+        val btn_go = itemView?.findViewById<ImageView>(R.id.notice_img_go)
 
         fun bind(list: Announcement?,context: Context) {
             notice_title?.text = list?.title
             notice_timestamp?.text = list?.created
+
+            btn_go?.setOnClickListener {
+                val intent = Intent(context, NoticeDetailActivity::class.java)
+                intent.putExtra(NOTICE_TITLE,list?.title.toString())
+                intent.putExtra(NOTICE_CONTENT, list?.content.toString())
+                intent.putExtra(NOTICE_CREATED, list?.created.toString())
+                ContextCompat.startActivity(itemView.context, intent, null)
+            }
         }
     }
 }

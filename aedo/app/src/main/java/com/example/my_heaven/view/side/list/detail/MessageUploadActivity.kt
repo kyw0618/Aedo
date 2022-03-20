@@ -1,5 +1,6 @@
 package com.example.my_heaven.view.side.list.detail
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -14,6 +15,8 @@ import com.example.my_heaven.util.`object`.Constant
 import com.example.my_heaven.util.base.BaseActivity
 import com.example.my_heaven.util.base.MyApplication.Companion.prefs
 import com.example.my_heaven.util.log.LLog.TAG
+import com.example.my_heaven.view.main.MainActivity
+import okhttp3.internal.notify
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -51,7 +54,7 @@ class MessageUploadActivity : BaseActivity() {
                 val result = response.body()
                 if(response.isSuccessful&& result!= null) {
                     Log.d(TAG,"CreateMessage SUCCESS -> $result")
-                    moveMessage()
+                    moveMessage().notify()
                 }
                 else {
                     Log.d(TAG,"CreateMessage ERROR -> ${response.errorBody()}")
@@ -78,7 +81,7 @@ class MessageUploadActivity : BaseActivity() {
                 if(response.isSuccessful&& result!= null) {
                     Log.d(TAG,"CreateMessage id -> ${id.toString()}")
                     Log.d(TAG,"CreateMessage Second SUCCESS -> $result")
-                    moveMessage()
+                    moveMessage().notify()
                 }
                 else {
                     Log.d(TAG,"CreateMessage Second ERROR -> ${response.errorBody()}")
@@ -115,6 +118,10 @@ class MessageUploadActivity : BaseActivity() {
             }
 
         }
+    }
 
+    override fun onBackPressed() {
+        startActivity(Intent(this, MessageActivity::class.java))
+        finish()
     }
 }

@@ -173,8 +173,9 @@ class SplashActivity : BaseActivity() {
             realm.copyToRealm(result.code!!)
             realm.copyToRealm(result.app_menu!!)
             realm.copyToRealm(result.coordinates!!)
-        }
 
+            Log.d(TAG,"REALM TEST ->${realm.copyToRealm(result.coordinates!!)}")
+        }
     }
 
     private fun requestLogin() {

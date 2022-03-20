@@ -35,6 +35,7 @@ import com.example.my_heaven.util.log.LLog.TAG
 import com.example.my_heaven.view.main.MainActivity
 import com.example.my_heaven.view.side.list.ListDetailActivity
 import com.google.android.material.textfield.TextInputEditText
+import okhttp3.internal.notify
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -203,7 +204,7 @@ class MakeActivity : BaseActivity() {
                 val result = response.body()
                 if(response.isSuccessful&& result!= null) {
                     Log.d(TAG,"callCreateAPI API SUCCESS -> $result")
-                    moveList()
+                    moveList().notify()
                 }
                 else {
                     Log.d(TAG,"callCreateAPI API ERROR -> ${response.errorBody()}")
@@ -251,7 +252,7 @@ class MakeActivity : BaseActivity() {
                 val result = response.body()
                 if(response.isSuccessful&& result!= null) {
                     Log.d(TAG,"callCreateAPI Second API SUCCESS -> $result")
-                    moveList()
+                    moveList().notify()
                 }
                 else {
                     Log.d(TAG,"callCreateAPI Second API ERROR -> ${response.errorBody()}")

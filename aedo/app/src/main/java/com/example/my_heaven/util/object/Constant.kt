@@ -64,7 +64,6 @@ object  Constant {
     const val MESSAGE_LLIST_ID = "MESSAGE_LLIST_ID"
     const val MESSAGE_DETAIL_LLIST_ID = "MESSAGE_DETAIL_LLIST_ID"
 
-
     const val EOD_NAME = "EOD_NAME"
     const val EOD_DATE = "EOD_DATE"
 
@@ -75,6 +74,22 @@ object  Constant {
     const val DOFP_TIME = "DOFP_TIME"
 
     const val BURIED = "BURIED"
+
+    //Notice
+    const val NOTICE_TITLE = "NOTICE_TITLE"
+    const val NOTICE_CONTENT = "NOTICE_CONTENT"
+    const val NOTICE_CREATED = "NOTICE_CREATED"
+
+    //Coun
+    const val COUN_NAME = "COUN_NAME"
+    const val COUN_TITLE = "COUN_TITLE"
+    const val COUN_CONTENT = "COUN_CONTENT"
+    const val COUN_CREATED = "COUN_CREATED"
+
+    const val PERMISSION_REQUEST_CODE = 1000
+    const val GPS_ENABLE_REQUEST_CODE = 2001
+    const val FINISH_INTERVAL_TIME: Long = 1500
+
 
     // Splash
     const val SPLASH_WAIT = 2500

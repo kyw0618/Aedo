@@ -49,4 +49,5 @@ open class Coordinates : RealmObject() {
     var name : String? = null
     var xvalue : Double? = null
     var yvalue : Double? = null
+    var address : String? = null
 }

@@ -29,6 +29,12 @@
         android:usesCleartextTraffic="false"
         tools:targetApi="n">
         <activity
+            android:name=".view.main.detail.search.SearchDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.side.coun.CounSelingDetailActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.faq.FAQActivity"
             android:exported="false" />
         <activity

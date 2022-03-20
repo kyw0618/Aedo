@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
@@ -7,7 +6,7 @@
         <import type="android.view.View"/>
         <variable
             name="activity"
-            type="com.example.my_heaven.view.main.detail.modify.ModifyActivity" />
+            type="com.example.my_heaven.view.main.detail.search.SearchDetailActivity" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -30,10 +29,10 @@
                 android:layout_width="19dp"
                 android:layout_height="14dp"
                 android:layout_marginStart="20dp"
+                android:onClick='@{activity::onBackClick}'
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:onClick='@{activity::onBackClick}'
                 app:srcCompat="@drawable/back" />
 
             <ImageView
@@ -44,7 +43,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/img_re" />
+                app:srcCompat="@drawable/search_top" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

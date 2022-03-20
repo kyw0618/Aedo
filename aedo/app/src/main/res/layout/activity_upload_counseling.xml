@@ -148,7 +148,7 @@
                             android:background="@drawable/edit_box"
                             android:fontFamily="@font/notosans_medium"
                             android:hint="전화번호를 입력해 주세요."
-                            android:inputType="text"
+                            android:inputType="phone"
                             android:maxLength="20"
                             android:paddingLeft="10dp"
                             android:paddingRight="10dp"

@@ -1,5 +1,6 @@
 package com.example.my_heaven.view.side.setting
 
+import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -16,6 +17,7 @@ import com.example.my_heaven.model.restapi.login.LogOut
 import com.example.my_heaven.util.base.BaseActivity
 import com.example.my_heaven.util.base.MyApplication
 import com.example.my_heaven.util.log.LLog
+import com.example.my_heaven.view.main.MainActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -58,11 +60,16 @@ class SettingActivity : BaseActivity() {
     }
 
     fun onOutClick(v: View) {
-
+        logOutAPI()
     }
 
     fun onBackClick(v: View) {
         moveMain()
+    }
+
+    override fun onBackPressed() {
+        startActivity(Intent(this, MainActivity::class.java))
+        finish()
     }
 
 }

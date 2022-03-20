@@ -33,6 +33,17 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+            <ImageView
+                android:id="@+id/imageView17"
+                android:layout_width="75dp"
+                android:layout_height="30dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/img_notice" />
+
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -53,20 +64,20 @@
 
                 <ImageView
                     android:id="@+id/img_notice_white"
-                    android:layout_width="30dp"
-                    android:layout_height="23dp"
+                    android:layout_width="18dp"
+                    android:layout_height="15dp"
                     android:layout_marginStart="20dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="15dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/btn_notice" />
+                    app:srcCompat="@drawable/icon_notice" />
 
                 <TextView
                     android:id="@+id/tv_notice_detail_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="12dp"
                     android:fontFamily="@font/gyeonggititle_bold_title"
                     android:text="공지사항 제목"
                     android:textColor="@color/text_black"
@@ -79,7 +90,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginTop="15dp"
                     android:fontFamily="@font/gyeonggititle_medium"
                     android:text="2022-03-15"
                     android:textColor="@color/gray2"
@@ -102,7 +113,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="3dp"
                     android:layout_marginStart="9dp"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginEnd="9dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
