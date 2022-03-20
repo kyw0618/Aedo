@@ -7,10 +7,10 @@
         <import type="android.view.View"/>
         <variable
             name="activity"
-            type="com.example.my_heaven.view.main.detail.make.MakeActivity" />
+            type="com.aedo.my_heaven.view.main.detail.make.MakeActivity" />
         <variable
             name="viewModel"
-            type="com.example.my_heaven.view.main.detail.make.MakeViewModel" />
+            type="com.aedo.my_heaven.view.main.detail.make.MakeViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

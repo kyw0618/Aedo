@@ -6,7 +6,7 @@
 
     <activity
         android:id="@+id/ListDetail"
-        android:name="com.example.my_heaven.view.side.list.ListActivity"
+        android:name="com.aedo.my_heaven.view.side.list.ListActivity"
         android:label="activity_list"
         tools:layout = "@layout/activity_list">
         <argument

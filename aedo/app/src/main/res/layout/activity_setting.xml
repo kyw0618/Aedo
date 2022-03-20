@@ -9,7 +9,7 @@
 
         <variable
             name="activity"
-            type="com.example.my_heaven.view.side.setting.SettingActivity" />
+            type="com.aedo.my_heaven.view.side.setting.SettingActivity" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

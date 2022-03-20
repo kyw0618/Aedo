@@ -5,10 +5,10 @@
     <data>
         <variable
             name="activity"
-            type="com.example.my_heaven.view.side.coun.UploadCounselingActivity" />
+            type="com.aedo.my_heaven.view.side.coun.UploadCounselingActivity" />
         <variable
             name="vm"
-            type="com.example.my_heaven.viewmodel.AgreeViewModel" />
+            type="com.aedo.my_heaven.viewmodel.AgreeViewModel" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

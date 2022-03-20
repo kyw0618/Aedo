@@ -7,7 +7,7 @@
         <import type="android.view.View"/>
         <variable
             name="activity"
-            type="com.example.my_heaven.view.main.detail.send.SendActivity" />
+            type="com.aedo.my_heaven.view.main.detail.send.SendActivity" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

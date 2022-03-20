@@ -6,7 +6,7 @@
     <data>
         <variable
             name="activity"
-            type="com.example.my_heaven.view.intro.SplashActivity" />
+            type="com.aedo.my_heaven.view.intro.SplashActivity" />
 
     </data>
 

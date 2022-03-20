@@ -6,7 +6,7 @@
     <data>
         <variable
             name="activity"
-            type="com.example.my_heaven.view.notice.NoticeDetailActivity" />
+            type="com.aedo.my_heaven.view.notice.NoticeDetailActivity" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

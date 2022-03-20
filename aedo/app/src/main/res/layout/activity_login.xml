@@ -7,10 +7,10 @@
         <import type="android.view.View"/>
         <variable
             name="activity"
-            type="com.example.my_heaven.view.login.LoginActivity" />
+            type="com.aedo.my_heaven.view.login.LoginActivity" />
         <variable
             name="viewModel"
-            type="com.example.my_heaven.util.observable.LoginObservable" />
+            type="com.aedo.my_heaven.util.observable.LoginObservable" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

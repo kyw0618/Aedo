@@ -7,7 +7,7 @@
         <import type="android.view.View"/>
         <variable
             name="activity"
-            type="com.example.my_heaven.view.main.detail.shop.ShopActivity" />
+            type="com.aedo.my_heaven.view.main.detail.shop.ShopActivity" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

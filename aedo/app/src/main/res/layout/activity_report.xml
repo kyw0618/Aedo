@@ -7,7 +7,7 @@
         <import type="android.view.View"/>
         <variable
             name="activity"
-            type="com.example.my_heaven.view.notice.NoticeActivity" />
+            type="com.aedo.my_heaven.view.notice.NoticeActivity" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

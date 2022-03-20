@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.my_heaven">
+    package="com.aedo.my_heaven">
 
     <uses-sdk tools:overrideLibrary="com.google.zxing.client.android" />
 
@@ -18,7 +18,7 @@
     <uses-permission android:name="android.permission.READ_PHONE_NUMBERS" />
 
     <application
-        android:name=".util.base.MyApplication"
+        android:name="com.aedo.my_heaven.util.base.MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_app_logo"
         android:label="@string/app_name"
@@ -29,93 +29,93 @@
         android:usesCleartextTraffic="false"
         tools:targetApi="n">
         <activity
-            android:name=".view.term.TermActivity"
+            android:name="com.aedo.my_heaven.view.term.TermActivity"
             android:exported="false" />
         <activity
-            android:name=".view.main.detail.search.SearchDetailActivity"
+            android:name="com.aedo.my_heaven.view.main.detail.search.SearchDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".view.side.coun.CounSelingDetailActivity"
+            android:name="com.aedo.my_heaven.view.side.coun.CounSelingDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".view.faq.FAQActivity"
+            android:name="com.aedo.my_heaven.view.faq.FAQActivity"
             android:exported="false" />
         <activity
-            android:name=".view.notice.NoticeDetailActivity"
+            android:name="com.aedo.my_heaven.view.notice.NoticeDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".view.main.PushActivity"
+            android:name="com.aedo.my_heaven.view.main.PushActivity"
             android:exported="false" />
         <activity
-            android:name=".view.side.coun.UploadCounselingActivity"
+            android:name="com.aedo.my_heaven.view.side.coun.UploadCounselingActivity"
             android:exported="false" />
         <activity
-            android:name=".view.side.coun.CounselingActivity"
+            android:name="com.aedo.my_heaven.view.side.coun.CounselingActivity"
             android:exported="false" />
         <activity
-            android:name=".view.side.ThanksActivity"
+            android:name="com.aedo.my_heaven.view.side.ThanksActivity"
             android:exported="false" />
         <activity
-            android:name=".view.side.list.detail.MessageUploadActivity"
+            android:name="com.aedo.my_heaven.view.side.list.detail.MessageUploadActivity"
             android:exported="false" />
         <activity
-            android:name=".view.side.list.detail.MessageActivity"
+            android:name="com.aedo.my_heaven.view.side.list.detail.MessageActivity"
             android:exported="false" />
         <activity
-            android:name=".view.side.list.detail.WaringActivity"
+            android:name="com.aedo.my_heaven.view.side.list.detail.WaringActivity"
             android:exported="false" />
         <activity
-            android:name=".view.side.list.ListDetailActivity"
+            android:name="com.aedo.my_heaven.view.side.list.ListDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".view.notice.NoticeActivity"
+            android:name="com.aedo.my_heaven.view.notice.NoticeActivity"
             android:exported="false" />
         <activity
-            android:name=".view.main.detail.center.CenterActivity"
+            android:name="com.aedo.my_heaven.view.main.detail.center.CenterActivity"
             android:exported="false" />
         <activity
-            android:name=".view.main.detail.shop.ShopActivity"
+            android:name="com.aedo.my_heaven.view.main.detail.shop.ShopActivity"
             android:exported="false" />
         <activity
-            android:name=".view.main.detail.search.SearchActivity"
+            android:name="com.aedo.my_heaven.view.main.detail.search.SearchActivity"
             android:exported="false" />
         <activity
-            android:name=".view.main.detail.modify.ModifyActivity"
+            android:name="com.aedo.my_heaven.view.main.detail.modify.ModifyActivity"
             android:exported="false" />
         <activity
-            android:name=".view.main.detail.send.SendActivity"
+            android:name="com.aedo.my_heaven.view.main.detail.send.SendActivity"
             android:exported="false" />
         <activity
-            android:name=".view.main.detail.make.MakeActivity"
+            android:name="com.aedo.my_heaven.view.main.detail.make.MakeActivity"
             android:exported="false" />
         <activity
-            android:name=".view.side.setting.SettingActivity"
+            android:name="com.aedo.my_heaven.view.side.setting.SettingActivity"
             android:exported="false" />
         <activity
-            android:name=".view.side.FindActivity"
+            android:name="com.aedo.my_heaven.view.side.FindActivity"
             android:exported="false" />
         <activity
-            android:name=".view.side.list.ListActivity"
+            android:name="com.aedo.my_heaven.view.side.list.ListActivity"
             android:exported="false" />
         <activity
-            android:name=".view.side.information.InforMationActivity"
+            android:name="com.aedo.my_heaven.view.side.information.InforMationActivity"
             android:exported="false" />
         <activity
-            android:name=".view.main.SideMenuActivity"
+            android:name="com.aedo.my_heaven.view.main.SideMenuActivity"
             android:exported="false" />
         <activity
-            android:name=".view.login.LoginActivity"
+            android:name="com.aedo.my_heaven.view.login.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".view.intro.SplashActivity"
+            android:name="com.aedo.my_heaven.view.intro.SplashActivity"
             android:exported="false" />
         <activity
-            android:name=".view.intro.permission.PermissionActivity"
+            android:name="com.aedo.my_heaven.view.intro.permission.PermissionActivity"
             android:exported="false" />
-        <activity android:name=".view.main.MainActivity" />
-        <activity android:name=".util.base.BaseActivity" />
+        <activity android:name="com.aedo.my_heaven.view.main.MainActivity" />
+        <activity android:name="com.aedo.my_heaven.util.base.BaseActivity" />
         <activity
-            android:name=".util.activity.ActivityController"
+            android:name="com.aedo.my_heaven.util.activity.ActivityController"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

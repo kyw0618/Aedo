@@ -8,10 +8,10 @@
         <import type="android.view.View" />
         <variable
             name="activity"
-            type="com.example.my_heaven.view.main.MainActivity" />
+            type="com.aedo.my_heaven.view.main.MainActivity" />
         <variable
             name="viewModel"
-            type="com.example.my_heaven.util.observable.MainObservable" />
+            type="com.aedo.my_heaven.util.observable.MainObservable" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
