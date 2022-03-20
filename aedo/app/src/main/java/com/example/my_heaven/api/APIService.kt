@@ -67,7 +67,7 @@ interface APIService {
 
     // 부고삭제
     @DELETE("v1/obituary/:id")
-    fun getCreateDelete(@Header("Accesstoken")accesstoken: String?,@Query("id")id: String?=null) : Call<ListDelete>
+    fun getCreateDelete(@Header("Accesstoken")accesstoken: String?,@Query("id")id: String?) : Call<ListDelete>
 
     // 조문메세지 API
     @POST("v1/condole")

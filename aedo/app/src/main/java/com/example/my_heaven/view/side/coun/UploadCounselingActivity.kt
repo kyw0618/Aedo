@@ -92,7 +92,7 @@ class UploadCounselingActivity : BaseActivity() {
                 val result = response.body()
                 if(response.isSuccessful&& result!= null) {
                     Log.d(LLog.TAG,"CounPost  API SUCCESS -> $result")
-                    moveCounseling().notify()
+                    moveCounseling()
                 }
                 else {
                     Log.d(LLog.TAG,"CounPost  API ERROR -> ${response.errorBody()}")
@@ -118,7 +118,7 @@ class UploadCounselingActivity : BaseActivity() {
                 val result = response.body()
                 if(response.isSuccessful&& result!= null) {
                     Log.d(LLog.TAG,"CounPost Second API SUCCESS -> $result")
-                    moveCounseling().notify()
+                    moveCounseling()
                 }
                 else {
                     Log.d(LLog.TAG,"CounPost Second API ERROR -> ${response.errorBody()}")

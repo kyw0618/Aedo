@@ -204,7 +204,7 @@ class MakeActivity : BaseActivity() {
                 val result = response.body()
                 if(response.isSuccessful&& result!= null) {
                     Log.d(TAG,"callCreateAPI API SUCCESS -> $result")
-                    moveList().notify()
+                    moveList()
                 }
                 else {
                     Log.d(TAG,"callCreateAPI API ERROR -> ${response.errorBody()}")
@@ -252,7 +252,7 @@ class MakeActivity : BaseActivity() {
                 val result = response.body()
                 if(response.isSuccessful&& result!= null) {
                     Log.d(TAG,"callCreateAPI Second API SUCCESS -> $result")
-                    moveList().notify()
+                    moveList()
                 }
                 else {
                     Log.d(TAG,"callCreateAPI Second API ERROR -> ${response.errorBody()}")
