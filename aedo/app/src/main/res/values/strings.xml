@@ -310,8 +310,8 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="activity_shop_tab_1">근조화환</string>
-    <string name="activity_shop_tab_2">근조바구니</string>
-    <string name="activity_shop_tab_3">근조장구/오브제</string>
+    <string name="activity_shop_tab_2">바구니/오브제</string>
+    <string name="activity_shop_tab_3">리본교체</string>
     <string name="item_activity_shop_won">원</string>
     <string name="text_dialog_send_obituary">문자 메세지</string>
     <string name="text_dialog_send_obituary_kakao">카카오톡</string>
@@ -344,6 +344,17 @@
     <string name="FAQ_four_detail">고객센터로 문의해주세요</string>
     <string name="FAQ_five">5. 부고 작성</string>
     <string name="FAQ_five_detail">고객센터로 문의해주세요</string>
+
+    <string name="shop_first_first">근조화한 3단(기본)</string>
+    <string name="shop_first_second">근조화한 3단(특)</string>
+    <string name="shop_first_third">근조화한 3단(특대)</string>
+    <string name="shop_first_four">근조화한 4단</string>
+
+    <string name="shop_second_first">근조바구니</string>
+    <string name="shop_second_second">근조 장구 오브제 1단</string>
+    <string name="shop_second_third">근조 장구 오브제 2단</string>
+
+
 
 
 </resources>

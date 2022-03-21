@@ -4,20 +4,24 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.aedo.my_heaven.view.main.detail.shop.fragment.ShopFragment
+import com.aedo.my_heaven.view.main.detail.shop.fragment.ShopFirstFragment
+import com.aedo.my_heaven.view.main.detail.shop.fragment.ShopSecondFragment
+import com.aedo.my_heaven.view.main.detail.shop.fragment.ShopThridFragment
 
-class ViewPagerAdapter(
-    fragmentManager: FragmentManager,
-    lifecycle: Lifecycle
-) : FragmentStateAdapter(fragmentManager, lifecycle) {
+private const val NUM_TABS = 3
 
-    private val fragmentList = listOf(ShopFragment(), ShopFragment(), ShopFragment())
+class ViewPagerAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycle) : FragmentStateAdapter(fragmentManager, lifecycle) {
 
     override fun getItemCount(): Int {
-        return fragmentList.size
+        return NUM_TABS
     }
 
     override fun createFragment(position: Int): Fragment {
-        return fragmentList[position]
+        when (position) {
+            0 -> return ShopFirstFragment()
+            1 -> return ShopSecondFragment()
+            2 -> return ShopThridFragment()
+        }
+        return ShopThridFragment()
     }
 }

@@ -79,13 +79,13 @@
                 app:reverseLayout="true"
                 app:stackFromEnd="true"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                android:backgroundTint="@color/tabLayoutBackgroundColor"
+                android:backgroundTint="@color/white"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:tabIndicatorColor="@color/white"
+                app:tabIndicatorColor="@color/colorStationCharge"
                 app:tabSelectedTextColor="@color/black"
-                app:tabTextColor="@color/black">
+                app:tabTextColor="@color/colorStationCharge">
 
                 <com.google.android.material.tabs.TabItem
                     android:layout_width="wrap_content"
