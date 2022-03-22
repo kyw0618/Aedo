@@ -46,6 +46,29 @@
                             android:layout_height="wrap_content">
 
                             <TextView
+                                android:id="@+id/tv_activity_shop_sales_rates"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="5dp"
+                                android:textColor="@color/colorAccentDark"
+                                android:textSize="16sp"
+                                app:layout_constraintBottom_toBottomOf="@+id/tv_activity_shop_sales_price"
+                                app:layout_constraintStart_toEndOf="@+id/tv_won"
+                                app:layout_constraintTop_toTopOf="@+id/tv_activity_shop_sales_price"
+                                android:text="15%" />
+
+                            <TextView
+                                android:id="@+id/tv_activity_shop_original_price"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:textColor="@color/item_activity_shop_originalPrice"
+                                android:textSize="10dp"
+                                app:layout_constraintStart_toStartOf="@+id/tv_activity_shop_sales_price"
+                                app:layout_constraintTop_toBottomOf="@+id/tv_activity_shop_sales_price"
+                                android:text="75,000원" />
+
+                            <TextView
                                 android:id="@+id/tv_activity_shop_sales_price"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -154,6 +177,29 @@
                             android:layout_height="wrap_content">
 
                             <TextView
+                                android:id="@+id/tss"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="5dp"
+                                android:textColor="@color/colorAccentDark"
+                                android:textSize="16sp"
+                                app:layout_constraintBottom_toBottomOf="@+id/tv_money_second"
+                                app:layout_constraintStart_toEndOf="@+id/tv_second_second"
+                                app:layout_constraintTop_toTopOf="@+id/tv_money_second"
+                                android:text="15%" />
+
+                            <TextView
+                                android:id="@+id/tssa"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:textColor="@color/item_activity_shop_originalPrice"
+                                android:textSize="10dp"
+                                app:layout_constraintStart_toStartOf="@+id/tv_money_second"
+                                app:layout_constraintTop_toBottomOf="@+id/tv_money_second"
+                                android:text="100,000원" />
+
+                            <TextView
                                 android:id="@+id/tv_money_second"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -166,6 +212,7 @@
                                 android:text="85,000" />
 
                             <TextView
+                                android:id="@+id/tv_second_second"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="2dp"
@@ -249,6 +296,29 @@
                             android:layout_height="wrap_content">
 
                             <TextView
+                                android:id="@+id/asd"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="5dp"
+                                android:textColor="@color/colorAccentDark"
+                                android:textSize="16sp"
+                                app:layout_constraintBottom_toBottomOf="@+id/tv_money_thrid"
+                                app:layout_constraintStart_toEndOf="@+id/tv_second_third"
+                                app:layout_constraintTop_toTopOf="@+id/tv_money_thrid"
+                                android:text="20%" />
+
+                            <TextView
+                                android:id="@+id/zxc"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:textColor="@color/item_activity_shop_originalPrice"
+                                android:textSize="10dp"
+                                app:layout_constraintStart_toStartOf="@+id/tv_money_thrid"
+                                app:layout_constraintTop_toBottomOf="@+id/tv_money_thrid"
+                                android:text="130,000원" />
+
+                            <TextView
                                 android:id="@+id/tv_money_thrid"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -261,6 +331,7 @@
                                 android:text="105,000" />
 
                             <TextView
+                                android:id="@+id/tv_second_third"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="2dp"

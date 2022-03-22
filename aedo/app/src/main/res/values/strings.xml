@@ -345,15 +345,16 @@
     <string name="FAQ_five">5. 부고 작성</string>
     <string name="FAQ_five_detail">고객센터로 문의해주세요</string>
 
-    <string name="shop_first_first">근조화한 3단(기본)</string>
-    <string name="shop_first_second">근조화한 3단(특)</string>
-    <string name="shop_first_third">근조화한 3단(특대)</string>
-    <string name="shop_first_four">근조화한 4단</string>
+    <string name="shop_first_first">[근조] 3단화한 1호</string>
+    <string name="shop_first_second">[근조] 3단화한 2호</string>
+    <string name="shop_first_third">[근조] 3단화한 3호</string>
+    <string name="shop_first_four">[근조] 4단화한 1호</string>
 
-    <string name="shop_second_first">근조바구니</string>
-    <string name="shop_second_second">근조 장구 오브제 1단</string>
-    <string name="shop_second_third">근조 장구 오브제 2단</string>
-    <string name="change_flower">리본 교체</string>
+    <string name="shop_second_first">영정바구니</string>
+    <string name="shop_second_second">오브제,장구 1단</string>
+    <string name="shop_second_third">오브제2단, 장구 2단</string>
+    <string name="change_flower_first">1줄 리본 교체</string>
+    <string name="change_flower_second">2줄 리본 교체</string>
 
 
 
