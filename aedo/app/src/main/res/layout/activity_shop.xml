@@ -56,19 +56,15 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cl_top">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/vp_activity_shop"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
+                android:layoutDirection="ltr"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tl_activity_shop">
-
-                <androidx.viewpager2.widget.ViewPager2
-                    android:id="@+id/vp_activity_shop"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tl_activity_shop" />
 
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/tl_activity_shop"

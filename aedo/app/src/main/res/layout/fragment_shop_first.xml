@@ -12,14 +12,13 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
         <ScrollView
             android:id="@+id/scrollView2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
             android:background="@color/white"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -38,7 +37,6 @@
                             android:layout_height="wrap_content"
                             app:cardCornerRadius="15dp"
                             android:layout_margin="5dp"
-                            app:cardElevation="8dp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
@@ -58,7 +56,7 @@
                                     android:textStyle="bold"
                                     app:layout_constraintStart_toStartOf="@+id/tv_activity_shop_title"
                                     app:layout_constraintTop_toBottomOf="@+id/tv_activity_shop_title"
-                                    tools:text="77,000" />
+                                    android:text="77,000" />
 
                                 <TextView
                                     android:id="@+id/tv_won"
@@ -85,7 +83,7 @@
                                     app:layout_constraintStart_toStartOf="parent"
                                     app:layout_constraintTop_toTopOf="parent"
                                     app:layout_constraintVertical_bias="0.0"
-                                    tools:srcCompat="@drawable/third_basic" />
+                                    app:srcCompat="@drawable/third_basic" />
 
                                 <TextView
                                     android:id="@+id/tv_activity_shop_title"
@@ -94,11 +92,13 @@
                                     android:layout_marginTop="20dp"
                                     android:textColor="@color/black"
                                     android:textSize="14sp"
+                                    android:fontFamily="@font/gyeonggititle_medium"
+                                    android:text="@string/shop_first_first"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintHorizontal_bias="0.147"
                                     app:layout_constraintStart_toEndOf="@+id/iv_activity_shop_item"
                                     app:layout_constraintTop_toTopOf="parent"
-                                    tools:text="3단 기본형 근조화환" />
+                                    />
 
                                 <androidx.appcompat.widget.AppCompatButton
                                     android:id="@+id/btn_activity_shop_purchase"
@@ -145,7 +145,6 @@
                         android:layout_height="wrap_content"
                         app:cardCornerRadius="15dp"
                         android:layout_margin="5dp"
-                        app:cardElevation="8dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -165,7 +164,7 @@
                                 android:textStyle="bold"
                                 app:layout_constraintStart_toStartOf="@+id/tv_name_second"
                                 app:layout_constraintTop_toBottomOf="@+id/tv_name_second"
-                                tools:text="77,000" />
+                                android:text="88,000" />
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -226,12 +225,199 @@
                                 app:layout_constraintTop_toTopOf="parent" />
 
                         </androidx.constraintlayout.widget.ConstraintLayout>
-
                     </androidx.cardview.widget.CardView>
+                </LinearLayout>
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="vertical">
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/cardView5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:cardCornerRadius="15dp"
+                        android:layout_margin="5dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:id="@+id/tv_money_thrid"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:textColor="@color/item_activity_shop_salesPrice"
+                                android:textSize="20sp"
+                                android:textStyle="bold"
+                                app:layout_constraintStart_toStartOf="@+id/tv_name_third"
+                                app:layout_constraintTop_toBottomOf="@+id/tv_name_third"
+                                android:text="99,000" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="2dp"
+                                android:text="@string/item_activity_shop_won"
+                                android:textColor="@color/black"
+                                android:textSize="20sp"
+                                app:layout_constraintBottom_toBottomOf="@+id/tv_money_thrid"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintHorizontal_bias="0.0"
+                                app:layout_constraintStart_toEndOf="@+id/tv_money_thrid"
+                                app:layout_constraintTop_toTopOf="@+id/tv_money_thrid"
+                                app:layout_constraintVertical_bias="0.0" />
+
+                            <ImageView
+                                android:id="@+id/img_third"
+                                android:layout_width="100dp"
+                                android:layout_height="100dp"
+                                android:layout_marginStart="15dp"
+                                android:scaleType="centerInside"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintVertical_bias="0.0"
+                                app:srcCompat="@drawable/third_xlarge" />
+
+                            <TextView
+                                android:id="@+id/tv_name_third"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="20dp"
+                                android:textColor="@color/black"
+                                android:textSize="14sp"
+                                android:fontFamily="@font/gyeonggititle_medium"
+                                android:text="@string/shop_first_third"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintHorizontal_bias="0.147"
+                                app:layout_constraintStart_toEndOf="@+id/img_third"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <androidx.appcompat.widget.AppCompatButton
+                                android:id="@+id/btn_third"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="10dp"
+                                android:backgroundTint="@color/white"
+                                android:drawableTop="@drawable/ic_shopping_cart"
+                                android:drawableTint="@color/black"
+                                android:fontFamily="sans-serif-condensed"
+                                android:paddingVertical="20dp"
+                                android:text="주문하기"
+                                android:textColor="@color/btn_shopping_text"
+                                android:textSize="12sp"
+                                android:textStyle="bold"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </androidx.cardview.widget.CardView>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="vertical">
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/cardView6"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:cardCornerRadius="15dp"
+                        android:layout_margin="5dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:id="@+id/tv_money_four"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:textColor="@color/item_activity_shop_salesPrice"
+                                android:textSize="20sp"
+                                android:textStyle="bold"
+                                app:layout_constraintStart_toStartOf="@+id/tv_name_four"
+                                app:layout_constraintTop_toBottomOf="@+id/tv_name_four"
+                                android:text="145,000" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="2dp"
+                                android:text="@string/item_activity_shop_won"
+                                android:textColor="@color/black"
+                                android:textSize="20sp"
+                                app:layout_constraintBottom_toBottomOf="@+id/tv_money_four"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintHorizontal_bias="0.0"
+                                app:layout_constraintStart_toEndOf="@+id/tv_money_four"
+                                app:layout_constraintTop_toTopOf="@+id/tv_money_four"
+                                app:layout_constraintVertical_bias="0.0" />
+
+                            <ImageView
+                                android:id="@+id/img_four"
+                                android:layout_width="100dp"
+                                android:layout_height="100dp"
+                                android:layout_marginStart="15dp"
+                                android:scaleType="centerInside"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintVertical_bias="0.0"
+                                app:srcCompat="@drawable/four_basic" />
+
+                            <TextView
+                                android:id="@+id/tv_name_four"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="20dp"
+                                android:textColor="@color/black"
+                                android:textSize="14sp"
+                                android:fontFamily="@font/gyeonggititle_medium"
+                                android:text="@string/shop_first_four"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintHorizontal_bias="0.147"
+                                app:layout_constraintStart_toEndOf="@+id/img_four"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <androidx.appcompat.widget.AppCompatButton
+                                android:id="@+id/btn_four"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="10dp"
+                                android:backgroundTint="@color/white"
+                                android:drawableTop="@drawable/ic_shopping_cart"
+                                android:drawableTint="@color/black"
+                                android:fontFamily="sans-serif-condensed"
+                                android:paddingVertical="20dp"
+                                android:text="주문하기"
+                                android:textColor="@color/btn_shopping_text"
+                                android:textSize="12sp"
+                                android:textStyle="bold"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </androidx.cardview.widget.CardView>
                 </LinearLayout>
             </LinearLayout>
         </ScrollView>
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

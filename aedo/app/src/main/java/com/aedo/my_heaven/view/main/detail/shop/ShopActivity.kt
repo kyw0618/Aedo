@@ -33,15 +33,11 @@ class ShopActivity : BaseActivity(){
         inStatusBar()
     }
 
-
-
     private fun setupViewPager() {
         val viewPager = mBinding.vpActivityShop
         val tabLayout = mBinding.tlActivityShop
         val titles = listOf(R.string.activity_shop_tab_1, R.string.activity_shop_tab_2, R.string.activity_shop_tab_3)
-
         viewPager.adapter = ViewPagerAdapter(supportFragmentManager, lifecycle)
-
         TabLayoutMediator(tabLayout, viewPager) { tab: TabLayout.Tab, i: Int ->
             tab.text = getString(titles[i])
         }.attach()
