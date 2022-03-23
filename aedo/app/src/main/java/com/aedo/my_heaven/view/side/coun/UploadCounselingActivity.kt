@@ -79,6 +79,8 @@ class UploadCounselingActivity : BaseActivity() {
         val content = mBinding.etConDetail.text.toString()
         val time = mBinding.tvTime.toString()
         val data = CounPost(name, title,content,time)
+
+        LLog.e("1:1문의 작성_첫번째 API")
         apiServices.getCounPost(prefs.myaccesstoken,data).enqueue(object :
             Callback<CounPost> {
             override fun onResponse(call: Call<CounPost>, response: Response<CounPost>) {
@@ -105,6 +107,8 @@ class UploadCounselingActivity : BaseActivity() {
         val content = mBinding.etConDetail.text.toString()
         val time = mBinding.tvTime.toString()
         val data = CounPost(name, title,content,time)
+
+        LLog.e("1:1문의 작성_두번째 API")
         apiServices.getCounPost(prefs.newaccesstoken,data).enqueue(object :
             Callback<CounPost> {
             override fun onResponse(call: Call<CounPost>, response: Response<CounPost>) {

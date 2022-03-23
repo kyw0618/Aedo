@@ -39,6 +39,7 @@ class NoticeActivity : BaseActivity() {
     }
 
     private fun inNoticeAPI() {
+        LLog.e("공지사항_첫번째 API")
         val vercall: Call<NoticeModel> = apiServices.getNoti(prefs.myaccesstoken)
         vercall.enqueue(object : Callback<NoticeModel> {
             override fun onResponse(call: Call<NoticeModel>, response: Response<NoticeModel>) {
@@ -59,6 +60,7 @@ class NoticeActivity : BaseActivity() {
     }
 
     private fun otherAPI() {
+        LLog.e("공지사항_두번째 API")
         val vercall: Call<NoticeModel> = apiServices.getNoti(prefs.newaccesstoken)
         vercall.enqueue(object : Callback<NoticeModel> {
             override fun onResponse(call: Call<NoticeModel>, response: Response<NoticeModel>) {

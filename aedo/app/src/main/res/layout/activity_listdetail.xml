@@ -311,7 +311,7 @@
                             android:id="@+id/tx_buried"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="추후"
+                            android:text="미입력"
                             android:textColor="@color/black"
                             android:textSize="18dp"
                             android:layout_marginTop="220dp"

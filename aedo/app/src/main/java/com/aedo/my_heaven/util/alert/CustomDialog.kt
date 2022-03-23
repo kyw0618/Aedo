@@ -76,7 +76,7 @@ class CustomDialog(context: Activity) {
     fun text(text: CharSequence?): CustomDialog? {
         if (context != null && binding != null) {
             //view.textView.setText(text);
-            binding!!.popTv.text = text
+            binding!!.popTvDefail.text = text
         }
         return this
     }

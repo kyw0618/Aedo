@@ -3,9 +3,11 @@ package com.aedo.my_heaven.util.base
 import android.app.Activity
 import android.app.Application
 import android.os.Bundle
+import com.aedo.my_heaven.R
 import com.clj.fastble.BleManager
 import com.aedo.my_heaven.util.common.CommonData
 import com.aedo.my_heaven.util.preference.PreferenceManager
+import com.kakao.sdk.common.KakaoSdk
 import io.realm.Realm
 import io.realm.RealmConfiguration
 
@@ -63,5 +65,6 @@ class MyApplication : Application() {
             override fun onActivitySaveInstanceState(activity: Activity, outState: Bundle) {}
             override fun onActivityDestroyed(activity: Activity) {}
         })
+        KakaoSdk.init(this, getString(R.string.kakao_key))
     }
 }

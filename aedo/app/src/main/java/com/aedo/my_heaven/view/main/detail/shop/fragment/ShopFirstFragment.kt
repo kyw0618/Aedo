@@ -18,11 +18,6 @@ class ShopFirstFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         mBinding = DataBindingUtil.inflate(inflater,R.layout.fragment_shop_first,container,false)
-        initRecycler()
         return mBinding.root
-    }
-
-    private fun initRecycler() {
-
     }
 }

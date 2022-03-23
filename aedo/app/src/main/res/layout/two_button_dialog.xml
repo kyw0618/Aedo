@@ -104,12 +104,13 @@
                         app:layout_constraintTop_toTopOf="parent">
 
                         <TextView
-                            android:id="@+id/popTv"
+                            android:id="@+id/popTv_second"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:gravity="center"
                             android:padding="20dp"
                             android:textColor="@color/black"
+                            android:fontFamily="@font/gyeonggititle_medium"
                             android:textSize="@dimen/common_font_text"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -117,7 +118,7 @@
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
                             app:layout_constraintVertical_bias="0.0"
-                            tools:text="안녕하세요 백제씽씽입니다." />
+                            tools:text="안녕하세요" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
 

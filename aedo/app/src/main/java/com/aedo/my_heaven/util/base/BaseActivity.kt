@@ -200,7 +200,7 @@ open class BaseActivity : AppCompatActivity() {
         val build = AlertDialog.Builder(this).apply {
             setView(myLayout)
         }
-        val textView : TextView = myLayout.findViewById(R.id.popTv)
+        val textView : TextView = myLayout.findViewById(R.id.popTv_one)
         textView.text = getString(R.string.server_check)
         val dialog = build.create()
         dialog.show()
@@ -217,7 +217,7 @@ open class BaseActivity : AppCompatActivity() {
         val build = AlertDialog.Builder(this).apply {
             setView(myLayout)
         }
-        val textView : TextView = myLayout.findViewById(R.id.popTv)
+        val textView : TextView = myLayout.findViewById(R.id.popTv_one)
         textView.text = getString(R.string.network_check)
         val dialog = build.create()
         dialog.show()
@@ -233,7 +233,7 @@ open class BaseActivity : AppCompatActivity() {
         val build = AlertDialog.Builder(this).apply {
             setView(myLayout)
         }
-        val textView : TextView = myLayout.findViewById(R.id.popTv)
+        val textView : TextView = myLayout.findViewById(R.id.popTv_one)
         textView.text = getString(R.string.warning_rooting)
         val dialog = build.create()
         dialog.show()
@@ -249,7 +249,7 @@ open class BaseActivity : AppCompatActivity() {
         val build = AlertDialog.Builder(this).apply {
             setView(myLayout)
         }
-        val textView : TextView = myLayout.findViewById(R.id.popTv)
+        val textView : TextView = myLayout.findViewById(R.id.popTv_one)
         textView.text = getString(R.string.auth_num_wrong_text)
         val dialog = build.create()
         dialog.show()
@@ -264,7 +264,7 @@ open class BaseActivity : AppCompatActivity() {
         val build = AlertDialog.Builder(this).apply {
             setView(myLayout)
         }
-        val textView : TextView = myLayout.findViewById(R.id.popTv)
+        val textView : TextView = myLayout.findViewById(R.id.popTv_one)
         textView.text = getString(R.string.term_check)
         val dialog = build.create()
         dialog.show()
@@ -279,7 +279,7 @@ open class BaseActivity : AppCompatActivity() {
         val build = AlertDialog.Builder(this).apply {
             setView(myLayout)
         }
-        val textView : TextView = myLayout.findViewById(R.id.popTv)
+        val textView : TextView = myLayout.findViewById(R.id.popTv_one)
         textView.text = getString(R.string.phone_check)
         val dialog = build.create()
         dialog.show()
@@ -294,7 +294,7 @@ open class BaseActivity : AppCompatActivity() {
         val build = AlertDialog.Builder(this).apply {
             setView(myLayout)
         }
-        val textView : TextView = myLayout.findViewById(R.id.popTv)
+        val textView : TextView = myLayout.findViewById(R.id.popTv_second)
         textView.text = getString(R.string.update_check)
         val dialog = build.create()
         dialog.show()
@@ -314,7 +314,7 @@ open class BaseActivity : AppCompatActivity() {
         val build = AlertDialog.Builder(this).apply {
             setView(myLayout)
         }
-        val textView : TextView = myLayout.findViewById(R.id.popTv)
+        val textView : TextView = myLayout.findViewById(R.id.popTv_second)
         textView.text = getString(R.string.list_delete)
         val dialog = build.create()
         dialog.show()

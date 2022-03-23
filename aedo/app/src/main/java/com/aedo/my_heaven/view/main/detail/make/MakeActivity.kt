@@ -19,6 +19,7 @@ import com.aedo.my_heaven.model.restapi.base.*
 import com.aedo.my_heaven.util.base.BaseActivity
 import com.aedo.my_heaven.util.base.MyApplication
 import com.aedo.my_heaven.util.base.MyApplication.Companion.prefs
+import com.aedo.my_heaven.util.log.LLog
 import com.aedo.my_heaven.util.log.LLog.TAG
 import com.aedo.my_heaven.view.main.MainActivity
 import retrofit2.Call
@@ -184,6 +185,7 @@ class MakeActivity : BaseActivity() {
         val mytoken = prefs.mytoken.toString()
         val bear = "Bearer"
 
+        LLog.e("만들기_첫번째 API")
         apiServices.getCreate(prefs.myaccesstoken,data).enqueue(object : Callback<CreateModel> {
             override fun onResponse(call: Call<CreateModel>, response: Response<CreateModel>) {
                 val result = response.body()
@@ -232,6 +234,7 @@ class MakeActivity : BaseActivity() {
         val mytoken = prefs.mytoken.toString()
         val bear = "Bearer"
 
+        LLog.e("만들기_두번째 API")
         apiServices.getCreate(prefs.newaccesstoken,data).enqueue(object : Callback<CreateModel> {
             override fun onResponse(call: Call<CreateModel>, response: Response<CreateModel>) {
                 val result = response.body()

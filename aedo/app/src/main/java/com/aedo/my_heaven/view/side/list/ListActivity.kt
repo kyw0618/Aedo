@@ -18,8 +18,10 @@ import com.aedo.my_heaven.model.list.RecyclerList
 import com.aedo.my_heaven.util.alert.LoadingDialog
 import com.aedo.my_heaven.util.base.BaseActivity
 import com.aedo.my_heaven.util.base.MyApplication.Companion.prefs
+import com.aedo.my_heaven.util.log.LLog
 import com.aedo.my_heaven.util.log.LLog.TAG
 import com.aedo.my_heaven.view.main.MainActivity
+import com.kakao.sdk.common.KakaoSdk
 import kotlinx.android.synthetic.main.list_item.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -36,12 +38,14 @@ class ListActivity : BaseActivity() {
         mBinding.activity=this@ListActivity
         apiServices = ApiUtils.apiService
         dialog = LoadingDialog(this)
+        KakaoSdk.init(this, getString(R.string.kakao_key))
         inStatusBar()
         inRecycler()
     }
 
 
     private fun inRecycler() {
+        LLog.e("부고조회_첫번째 API")
         val vercall: Call<RecyclerList> = apiServices.getCreateGet(prefs.myaccesstoken)
         vercall.enqueue(object : Callback<RecyclerList> {
             override fun onResponse(call: Call<RecyclerList>, response: Response<RecyclerList>) {
@@ -62,6 +66,7 @@ class ListActivity : BaseActivity() {
     }
 
     private fun otherAPI() {
+        LLog.e("부고조회_두번째 API")
         val vercall: Call<RecyclerList> = apiServices.getCreateGet(prefs.newaccesstoken)
         vercall.enqueue(object : Callback<RecyclerList> {
             override fun onResponse(call: Call<RecyclerList>, response: Response<RecyclerList>) {

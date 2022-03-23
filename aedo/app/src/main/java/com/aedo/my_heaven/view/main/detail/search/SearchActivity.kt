@@ -38,6 +38,7 @@ class SearchActivity : BaseActivity() {
     }
 
     private fun initSearchAPI() {
+        LLog.e("검색_첫번째 API")
         val search = mBinding.etSearch.text.toString().trim()
         val vercall: Call<CreateName> = apiServices.getCreateName(search,prefs.myaccesstoken)
         vercall.enqueue(object : Callback<CreateName> {
@@ -59,6 +60,7 @@ class SearchActivity : BaseActivity() {
     }
 
     private fun otherAPI() {
+        LLog.e("검색_두번째 API")
         val search = mBinding.etSearch.text.toString().trim()
         val vercall: Call<CreateName> = apiServices.getCreateName(search,prefs.newaccesstoken)
         vercall.enqueue(object : Callback<CreateName> {

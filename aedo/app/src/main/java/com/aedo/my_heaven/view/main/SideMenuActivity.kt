@@ -31,6 +31,7 @@ class SideMenuActivity : BaseActivity() {
     }
 
     private fun initAPI() {
+        LLog.e("사이드_회원정보_첫번째 API")
         apiServices.getUser(prefs.myaccesstoken).enqueue(object :
             Callback<GetUser> {
             override fun onResponse(call: Call<GetUser>, response: Response<GetUser>) {
@@ -53,6 +54,7 @@ class SideMenuActivity : BaseActivity() {
     }
 
     private fun otherAPI() {
+        LLog.e("사이드_회원정보_두번째 API")
         apiServices.getUser(prefs.newaccesstoken).enqueue(object :
             Callback<GetUser> {
             override fun onResponse(call: Call<GetUser>, response: Response<GetUser>) {

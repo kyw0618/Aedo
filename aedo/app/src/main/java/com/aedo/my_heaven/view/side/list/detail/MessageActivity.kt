@@ -19,6 +19,7 @@ import com.aedo.my_heaven.model.list.CondoleList
 import com.aedo.my_heaven.util.`object`.Constant
 import com.aedo.my_heaven.util.base.BaseActivity
 import com.aedo.my_heaven.util.base.MyApplication.Companion.prefs
+import com.aedo.my_heaven.util.log.LLog
 import com.aedo.my_heaven.util.log.LLog.TAG
 import com.aedo.my_heaven.view.side.list.ListActivity
 import retrofit2.Call
@@ -42,6 +43,7 @@ class MessageActivity : BaseActivity() {
     }
 
     private fun inRecycler() {
+        LLog.e("조문메세지 조회_첫번째 API")
         val listId = intent.getStringExtra(Constant.MESSAGE_LLIST_ID)
         val vercall: Call<Condole> = apiServices.getConID(listId, prefs.myaccesstoken)
         vercall.enqueue(object : Callback<Condole> {
@@ -64,6 +66,7 @@ class MessageActivity : BaseActivity() {
     }
 
     private fun otherAPI() {
+        LLog.e("조문메세지 조회_두번째 API")
         val listId = intent.getStringExtra(Constant.MESSAGE_LLIST_ID)
         val vercall: Call<Condole> = apiServices.getConID(listId, prefs.newaccesstoken)
         vercall.enqueue(object : Callback<Condole> {

@@ -59,9 +59,7 @@ class ListDetailActivity : BaseActivity(),OnMapReadyCallback {
     private lateinit var mBinding: ActivityListdetailBinding
     private lateinit var apiServices: APIService
     private lateinit var datas : Obituaray
-    private var readapter: RecyclerAdapter?=null
     private var locationSource: FusedLocationSource? = null
-
     private var mMap: NaverMap?=null
 
 
@@ -351,7 +349,7 @@ class ListDetailActivity : BaseActivity(),OnMapReadyCallback {
         val build = AlertDialog.Builder(this).apply {
             setView(myLayout)
         }
-        val textView : TextView = myLayout.findViewById(R.id.popTv)
+        val textView : TextView = myLayout.findViewById(R.id.popTv_second)
         textView.text = getString(R.string.list_delete)
         val dialog = build.create()
         dialog.show()

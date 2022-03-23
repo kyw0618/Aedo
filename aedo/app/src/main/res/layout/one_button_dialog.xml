@@ -94,7 +94,7 @@
                         app:layout_constraintTop_toTopOf="parent">
 
                         <TextView
-                            android:id="@+id/popTv"
+                            android:id="@+id/popTv_one"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:gravity="center"

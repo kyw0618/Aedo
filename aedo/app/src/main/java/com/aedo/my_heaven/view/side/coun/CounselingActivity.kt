@@ -39,6 +39,7 @@ class CounselingActivity : BaseActivity() {
     }
 
     private fun initRecycler() {
+        LLog.e("1:1문의_첫번째 API")
         val vercall: Call<CounGet> = apiServices.getCounRequest(prefs.myaccesstoken)
         vercall.enqueue(object : Callback<CounGet> {
             override fun onResponse(call: Call<CounGet>, response: Response<CounGet>) {
@@ -59,6 +60,7 @@ class CounselingActivity : BaseActivity() {
     }
 
     private fun otherAPI() {
+        LLog.e("1:1문의_두번째 API")
         val vercall: Call<CounGet> = apiServices.getCounRequest(prefs.newaccesstoken)
         vercall.enqueue(object : Callback<CounGet> {
             override fun onResponse(call: Call<CounGet>, response: Response<CounGet>) {

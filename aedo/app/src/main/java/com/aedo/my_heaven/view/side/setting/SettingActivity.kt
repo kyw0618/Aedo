@@ -42,6 +42,7 @@ class SettingActivity : BaseActivity() {
     }
 
     private fun logOutAPI() {
+        LLog.e("로그아웃_첫번째 API")
         apiServices.getLogOut(MyApplication.prefs.myaccesstoken).enqueue(object :
             Callback<LogOut> {
             override fun onResponse(call: Call<LogOut>, response: Response<LogOut>) {
@@ -52,7 +53,29 @@ class SettingActivity : BaseActivity() {
                 }
                 else {
                     Log.d(LLog.TAG,"GetUser API ERROR -> ${response.errorBody()}")
+                    otherAPI()
+                }
+            }
+            override fun onFailure(call: Call<LogOut>, t: Throwable) {
+                Log.d(LLog.TAG,"GetUser ERROR -> $t")
 
+            }
+        })
+    }
+
+    private fun otherAPI() {
+        LLog.e("로그아웃_두번째 API")
+        apiServices.getLogOut(MyApplication.prefs.newaccesstoken).enqueue(object :
+            Callback<LogOut> {
+            override fun onResponse(call: Call<LogOut>, response: Response<LogOut>) {
+                val result = response.body()
+                if(response.isSuccessful&& result!= null) {
+                    Log.d(LLog.TAG,"GetUser API SUCCESS -> $result")
+                    moveLogins()
+                }
+                else {
+                    Log.d(LLog.TAG,"GetUser API ERROR -> ${response.errorBody()}")
+                    otherAPI()
                 }
             }
             override fun onFailure(call: Call<LogOut>, t: Throwable) {

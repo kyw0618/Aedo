@@ -14,6 +14,7 @@ import com.aedo.my_heaven.model.restapi.base.*
 import com.aedo.my_heaven.util.`object`.Constant
 import com.aedo.my_heaven.util.base.BaseActivity
 import com.aedo.my_heaven.util.base.MyApplication.Companion.prefs
+import com.aedo.my_heaven.util.log.LLog
 import com.aedo.my_heaven.util.log.LLog.TAG
 import retrofit2.Call
 import retrofit2.Callback
@@ -47,6 +48,8 @@ class MessageUploadActivity : BaseActivity() {
         val created = mBinding.tvMessageTimestamp.text.toString()
         val obId = id.toString()
         val data = CreateMessage(title, content, created, obId)
+
+        LLog.e("조문메세지 작성_첫번째 API")
         apiServices.getCondole(prefs.myaccesstoken,data).enqueue(object : Callback<CreateMessage> {
             override fun onResponse(call: Call<CreateMessage>, response: Response<CreateMessage>) {
                 val result = response.body()
@@ -73,7 +76,9 @@ class MessageUploadActivity : BaseActivity() {
         val created = mBinding.tvMessageTimestamp.text.toString()
         val obId = id.toString()
         val data = CreateMessage(title, content, created, obId)
-        apiServices.getCondole(prefs.newaccesstoken,data).enqueue(object : Callback<CreateMessage> {
+
+        LLog.e("조문메세지 작성_두번째째 API")
+       apiServices.getCondole(prefs.newaccesstoken,data).enqueue(object : Callback<CreateMessage> {
             override fun onResponse(call: Call<CreateMessage>, response: Response<CreateMessage>) {
                 val result = response.body()
                 if(response.isSuccessful&& result!= null) {

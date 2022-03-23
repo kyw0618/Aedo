@@ -6,6 +6,9 @@
     <string name="update">업데이트</string>
     <string name="exit">종료</string>
     <string name="not_show_again">다시보지않기</string>
+    <string name="kakao_key">fb6d89598fd7acc40272f792dfa0dc1e</string>
+    <string name="kakao_scheme">kakaofb6d89598fd7acc40272f792dfa0dc1e</string>
+    <string name="kakao_link">kakaolink</string>
 
     <string name="backpress_exit">\'뒤로\' 버튼을 한 번 더 누르시면 앱이 종료됩니다.</string>
 
@@ -177,6 +180,7 @@
     <string name="setting_item_logout_complete">로그아웃이 완료되었습니다.</string>
 
     <string-array name="spinner_relationship">
+        <item>관계 선택</item>
         <item>배우자</item>
         <item>아들</item>
         <item>딸</item>
@@ -211,6 +215,7 @@
     </string-array>
 
     <string-array name="spinner_place">
+        <item>장례식장 선택</item>
         <item>구례산림조합장례식장</item>
         <item>구례병원장례식장</item>
         <item>구례효사랑요양병원장례식장</item>

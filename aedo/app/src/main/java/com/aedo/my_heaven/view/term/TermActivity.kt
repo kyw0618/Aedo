@@ -32,6 +32,7 @@ class TermActivity : BaseActivity() {
     }
 
     private fun initTermAPI() {
+        LLog.e("이용약관 API")
         apiServices.getTerms().enqueue(object : Callback<TremModel> {
             override fun onResponse(call: Call<TremModel>, response: Response<TremModel>) {
                 val result = response.body()

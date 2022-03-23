@@ -30,7 +30,7 @@ object LLog {
     }
 
     // Log Level Debug
-    fun d(message: String?) {
+    fun d(message: String?, s: String) {
         if (BuildConfig.DEBUG) {
             Log.e(TAG, buildLogMessage(message)!!)
         }

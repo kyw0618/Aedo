@@ -26,6 +26,7 @@ import com.aedo.my_heaven.util.root.RootUtil
 import com.aedo.my_heaven.util.style.TextStyle
 import com.aedo.my_heaven.view.login.LoginActivity
 import com.getkeepsafe.relinker.BuildConfig
+import com.kakao.sdk.common.util.Utility
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -87,7 +88,7 @@ class SplashActivity : BaseActivity() {
     }
 
     private fun requestVerificationJson(listener: ResultListener) {
-        LLog.e("APP HASH: $hash")
+        LLog.e("검증 API")
         val vercall: Call<Verification> = apiServices.getVerification("qwer")
         vercall.enqueue(object : Callback<Verification> {
             override fun onResponse(call: Call<Verification>, response: Response<Verification>) {
@@ -105,7 +106,6 @@ class SplashActivity : BaseActivity() {
                         getinformation(result, listener)
                     }
                     else {
-                        Log.d(TAG,"Vertification result ERROR -> ${result.result.equals("true")}")
                         alert?.showDialog(
                             getString(R.string.warning_repackaging)) {
                             finishAffinity()
@@ -124,19 +124,18 @@ class SplashActivity : BaseActivity() {
     }
 
     private fun getinformation(result: Verification?, networkListener: ResultListener) {
+        LLog.e("프리프런스")
         val aes_iv: String? = Encrypt().iv
         val aes_key: String? = Encrypt().key
         prefs.myeniv = aes_iv
         prefs.myenkey = aes_key
         prefs.mylangcode = "LANG_0001"
         prefs.myhashKey = hash.toString()
-        Log.d(TAG,"Prefs AppToken SUCCESS -> $hash")
-        Log.d(TAG,"Prefs MyEnIv SUCCESS -> ${prefs.myeniv}")
-        Log.d(TAG,"Prefs MyEnKey SUCCESS -> ${prefs.myenkey}")
         networkListener.onSuccess()
     }
 
     private fun requestPolicy(listener: ResultListener) {
+        LLog.e("정책 API")
         val vercall: Call<AppPolicy> = apiServices.getPolicy()
         vercall.enqueue(object : Callback<AppPolicy> {
             override fun onResponse(call: Call<AppPolicy>, response: Response<AppPolicy>) {
@@ -159,6 +158,7 @@ class SplashActivity : BaseActivity() {
     }
 
     private fun realmPolicy(result: AppPolicy, listener: ResultListener) {
+        LLog.e("렐름")
         realm.executeTransaction {
             realm.where(Policy::class.java).findAll().deleteAllFromRealm()
             realm.where(Code::class.java).findAll().deleteAllFromRealm()
@@ -169,11 +169,11 @@ class SplashActivity : BaseActivity() {
             realm.copyToRealm(result.app_menu!!)
             realm.copyToRealm(result.coordinates!!)
 
-            Log.d(TAG,"REALM TEST ->${realm.copyToRealm(result.coordinates!!)}")
         }
     }
 
     private fun requestLogin() {
+        LLog.e("자동 로그인 API")
         val vercall: Call<AutoLogin> = apiServices.getautoLogin(prefs.myaccesstoken)
         vercall.enqueue(object : Callback<AutoLogin> {
             override fun onResponse(call: Call<AutoLogin>, response: Response<AutoLogin>) {

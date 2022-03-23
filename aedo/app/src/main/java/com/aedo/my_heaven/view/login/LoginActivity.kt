@@ -35,6 +35,7 @@ import com.aedo.my_heaven.util.base.BaseActivity
 import com.aedo.my_heaven.util.base.MyApplication.Companion.prefs
 import com.aedo.my_heaven.util.encrypt.AESAdapter
 import com.aedo.my_heaven.util.encrypt.Base64Util
+import com.aedo.my_heaven.util.log.LLog
 import com.aedo.my_heaven.util.log.LLog.TAG
 import com.aedo.my_heaven.util.observable.LoginObservable
 import com.aedo.my_heaven.view.intro.permission.PermissionManager
@@ -220,6 +221,7 @@ class LoginActivity : BaseActivity() {
     }
 
     private fun authrequest() {
+        LLog.e("로그인_로그인 API")
         val phone = LoginSend(phone = mBinding.etPhonenum.text.toString())
         apiServices.getLogin(phone).enqueue(object : Callback<LoginSend> {
             override fun onResponse(call: Call<LoginSend>, response: Response<LoginSend>) {
@@ -243,6 +245,7 @@ class LoginActivity : BaseActivity() {
     }
 
     private fun signrequest(termsVersion: String) {
+        LLog.e("로그인_회원가입 API")
         val phone = mBinding.etPhonenum.text.toString()
         val birth = mBinding.etBitrhday.text.toString()
         val name = mBinding.etName.text.toString()
@@ -270,6 +273,7 @@ class LoginActivity : BaseActivity() {
     }
 
     private fun sendsms() {
+        LLog.e("로그인_문자메세지 API")
         if (mBinding.clOk.visibility == View.VISIBLE) {
             mBinding.clOk.visibility = View.GONE
         }
