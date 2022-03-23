@@ -9,7 +9,6 @@ import java.util.ArrayList
 object  Constant {
     const val TAG = "My_Heaven"
     const val BASE_URL="http://49.50.165.23:8080/"
-    const val PREF_KEY_USER_TOKEN = "PREF_KEY_USER_TOKEN"
     const val PREF_KEY_APP_TOKEN = "myAppToken"
     const val PREF_KEY_ENCTYPT_IV = "myEncryptIv"
     const val PREF_KEY_ENCTYPT_KEY = "myEncryptKey"
@@ -19,10 +18,7 @@ object  Constant {
     const val PREF_KEY_TOKEN = "myTOKEN"
     const val RESULT_TRUE = "true"
     const val PREF_PERMISSION_GRANTED = "PREF_PERMISSION_GRANTED"
-    const val PREF_PHONE = "myphone"
     const val PREF_EMERGENCY_NOTICE_NOT_SHOW = "PREF_EMERGENCY_NOTICE_NOT_SHOW"
-    const val PREF_LOGIN_YN = "PREF_LOGIN_YN"
-    const val PREF_AUTO_LOGIN = "PREF_AUTO_LOGIN"
     const val PREF_KEY_LANGUAGE = "PREF_KEY_LANGUAGE"
     const val PREF_KEY_LANGUAGE_CODE = "PREF_KEY_LANGUAGE_CODE"
     const val PREF_SMS = "PREF_SMS"
@@ -37,21 +33,13 @@ object  Constant {
     const val ONE_PERMISSION_REQUEST_CODE = 1
     const val ALL_PERMISSION_REQUEST_CODE = 2
 
-    const val PROGRESS_TIMEOUT = 15000
     const val BACKPRESS_CLOSE_TIME = 1500
 
-    var phoneAuthNum: String = ""
-    var tel: String = ""
-    const val headerKey: String = ""
-
-    private val notrhEast = LatLng(39.788312, 132.893671)
-    private val southWest = LatLng(30.664915, 122.628502)
+    const val ALBUM_REQUEST_CODE = 302
 
     const val DEFATULT_TIMEOUT = 20000
 
     const val RESIDENT_NAME = "RESIDENT_NAME"
-    const val RESIDENT_RELATION = "RESIDENT_RELATION"
-    const val RESIDENT_PHONE = "RESIDENT_PHONE"
 
     const val PLACE_NAME = "PLACE_NAME"
 

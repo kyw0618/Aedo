@@ -1,10 +1,13 @@
 package com.aedo.my_heaven.view.main.detail.make
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
 import android.util.Log
 import android.view.View
 import android.widget.AdapterView
@@ -16,6 +19,7 @@ import com.aedo.my_heaven.api.APIService
 import com.aedo.my_heaven.api.ApiUtils
 import com.aedo.my_heaven.databinding.ActivityMakeBinding
 import com.aedo.my_heaven.model.restapi.base.*
+import com.aedo.my_heaven.util.`object`.Constant.ALBUM_REQUEST_CODE
 import com.aedo.my_heaven.util.base.BaseActivity
 import com.aedo.my_heaven.util.base.MyApplication
 import com.aedo.my_heaven.util.base.MyApplication.Companion.prefs
@@ -25,6 +29,7 @@ import com.aedo.my_heaven.view.main.MainActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.lang.Exception
 import java.time.LocalDate
 import java.util.*
 
@@ -32,6 +37,7 @@ import java.util.*
 class MakeActivity : BaseActivity() {
     private lateinit var mBinding: ActivityMakeBinding
     private lateinit var apiServices: APIService
+    private var uriList: ArrayList<Uri> = ArrayList()
     private var mViewModel: MakeViewModel? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -327,6 +333,30 @@ class MakeActivity : BaseActivity() {
             mBinding.dofpTextTime.text = timeString
         }
         TimePickerDialog(this, timeSetListener, cal.get(Calendar.HOUR_OF_DAY), cal.get(Calendar.MINUTE), true).show()
+    }
+
+    fun onPickClick(v: View) {
+        cameraPermission()
+    }
+    private fun cameraPermission() {
+        val intent = Intent(Intent.ACTION_GET_CONTENT)
+        intent.type = "image/*"
+        startActivityForResult(intent,ALBUM_REQUEST_CODE)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if(resultCode == RESULT_OK && requestCode ==ALBUM_REQUEST_CODE) {
+            uriList.clear()
+            val ImnageData: Uri? = data?.data
+            try {
+                val bitmap = MediaStore.Images.Media.getBitmap(contentResolver, ImnageData)
+                mBinding.imgPake.setImageBitmap(bitmap)
+            }
+            catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
     }
 
     override fun onBackPressed() {

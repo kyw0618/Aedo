@@ -91,7 +91,7 @@ class RecyclerAdapter(private val postList : List<Obituaray>, val context : Cont
                 intent.putExtra(COFFIN_DATE,itemPhoto?.coffin?.date.toString())
                 intent.putExtra(DOFP_DATE,itemPhoto?.dofp?.date.toString())
                 intent.putExtra(BURIED,itemPhoto?.buried.toString())
-                ContextCompat.startActivity(itemView.context, intent, null)
+                startActivity(itemView.context, intent, null)
             }
 
             btn_share?.setOnClickListener {
@@ -111,18 +111,18 @@ class RecyclerAdapter(private val postList : List<Obituaray>, val context : Cont
                     dialog.dismiss()
                 }
                 myLayout.update_btn.setOnClickListener {
-                    kakaoShare(this)
+                    kakaoShare(itemPhoto)
                     dialog.dismiss()
                 }
             }
         }
     }
 
-    private fun kakaoShare(holder: RecyclerAdapter.ViewHolder) {
+    private fun kakaoShare(itemPhoto: Obituaray?) {
         val defaultFeed = FeedTemplate(
             content = Content(
-                title = "테스트",
-                description = "테스트 내용",
+                title = "故 ${itemPhoto?.deceased?.name.toString()}님 별세(${itemPhoto?.place?.place_name.toString()})",
+                description = "임종 : ${itemPhoto?.coffin?.date.toString()}",
                 imageUrl = "http://k.kakaocdn.net/dn/Q2iNx/btqgeRgV54P/VLdBs9cvyn8BJXB3o7N8UK/kakaolink40_original.png",
                 link = Link(
                     webUrl = "https://developers.kakao.com",
