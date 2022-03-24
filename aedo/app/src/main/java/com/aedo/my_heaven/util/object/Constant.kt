@@ -4,6 +4,10 @@ import android.Manifest
 import android.os.Handler
 import android.os.Looper
 import com.naver.maps.geometry.LatLng
+import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.MultipartBody
+import okhttp3.RequestBody.Companion.asRequestBody
+import java.io.File
 import java.util.ArrayList
 
 object  Constant {
@@ -76,6 +80,11 @@ object  Constant {
     const val GPS_ENABLE_REQUEST_CODE = 2001
     const val FINISH_INTERVAL_TIME: Long = 1500
 
+    const val PICK_FROM_CAMERA = 0
+    const val PICK_FROM_ALBUM = 1
+    const val REQUEST_IMAGE_CROP = 2
+
+
     //Search
     const val SEARCH_RELATION_NAME = "SEARCH_RELATION_NAME"
     const val SEARCH_EOD_DATA = "SEARCH_EOD_DATA"
@@ -108,6 +117,26 @@ object  Constant {
             val handler = Handler(loop)
             handler.postDelayed(r!!, delay.toLong())
         }
+    }
+
+    fun getBody(key : String, value : Any) : MultipartBody.Part {
+        return MultipartBody.Part.createFormData(key, value.toString())
+    }
+
+    fun getImageBody(key: String, file: File): MultipartBody.Part {
+        return MultipartBody.Part.createFormData(
+            name = key,
+            filename = file.name,
+            body = file.asRequestBody("image/*".toMediaType())
+        )
+    }
+
+    fun getVideoBody(key: String, file: File): MultipartBody.Part {
+        return MultipartBody.Part.createFormData(
+            name = key,
+            filename = file.name,
+            body = file.asRequestBody("video/*".toMediaType())
+        )
     }
 
 

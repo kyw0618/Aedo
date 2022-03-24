@@ -131,5 +131,7 @@ dependencies {
     implementation "com.kakao.sdk:v2-link:2.9.0" // 메시지(카카오링크)
     implementation "com.kakao.sdk:v2-navi:2.9.0" // 카카오내비
 
+    implementation 'gun0912.ted:tedpermission:2.2.3'
+
 
 }

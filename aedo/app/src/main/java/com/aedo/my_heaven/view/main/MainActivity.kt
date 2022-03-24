@@ -3,6 +3,7 @@ package com.aedo.my_heaven.view.main
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
@@ -11,6 +12,8 @@ import com.aedo.my_heaven.api.APIService
 import com.aedo.my_heaven.api.ApiUtils
 import com.aedo.my_heaven.databinding.ActivityMainBinding
 import com.aedo.my_heaven.util.base.BaseActivity
+import com.aedo.my_heaven.util.base.MyApplication.Companion.prefs
+import com.aedo.my_heaven.util.log.LLog.TAG
 
 class MainActivity : BaseActivity() {
     private lateinit var mBinding: ActivityMainBinding

@@ -37,7 +37,6 @@ import java.util.*
 class MakeActivity : BaseActivity() {
     private lateinit var mBinding: ActivityMakeBinding
     private lateinit var apiServices: APIService
-    private var uriList: ArrayList<Uri> = ArrayList()
     private var mViewModel: MakeViewModel? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,6 +48,7 @@ class MakeActivity : BaseActivity() {
 
         val onlyDate: LocalDate = LocalDate.now()
         mBinding.tvMakeData.text = onlyDate.toString()
+        mBinding.imgPake.clipToOutline = true
 
         inStatusBar()
         makeTop()
@@ -161,11 +161,9 @@ class MakeActivity : BaseActivity() {
                 callCreateAPI()
             }
         }
-        finish()
     }
 
     private fun callCreateAPI() {
-
         val resident = Resident(mBinding.spinnerText.text.toString(),
             mBinding.makeTxName.text.toString(),mBinding.makeTxPhone.text.toString())
 
@@ -184,12 +182,9 @@ class MakeActivity : BaseActivity() {
 
         val word = mBinding.makeTxTex.text.toString()
 
-         val created =mBinding.tvMakeData.text.toString()
+        val created =mBinding.tvMakeData.text.toString()
 
         val data = CreateModel(resident,place,deceased,eod,coffin,dofp, buried, word, created)
-
-        val mytoken = prefs.mytoken.toString()
-        val bear = "Bearer"
 
         LLog.e("만들기_첫번째 API")
         apiServices.getCreate(prefs.myaccesstoken,data).enqueue(object : Callback<CreateModel> {
@@ -201,14 +196,12 @@ class MakeActivity : BaseActivity() {
                 }
                 else {
                     Log.d(TAG,"callCreateAPI API ERROR -> ${response.errorBody()}")
-                    Log.d(TAG,"callCreateAPI API ERROR TWO-> $bear+$mytoken")
                     otherAPI()
                 }
             }
 
             override fun onFailure(call: Call<CreateModel>, t: Throwable) {
                 Log.d(TAG,"callCreate Fail -> $t")
-                Log.d(TAG,"Bearer $mytoken")
                 Toast.makeText(this@MakeActivity,"다시 시도해 주세요",Toast.LENGTH_SHORT).show()
             }
         })
@@ -236,10 +229,6 @@ class MakeActivity : BaseActivity() {
         val created =mBinding.tvMakeData.text.toString()
 
         val data = CreateModel(resident,place,deceased,eod,coffin,dofp, buried, word, created)
-
-        val mytoken = prefs.mytoken.toString()
-        val bear = "Bearer"
-
         LLog.e("만들기_두번째 API")
         apiServices.getCreate(prefs.newaccesstoken,data).enqueue(object : Callback<CreateModel> {
             override fun onResponse(call: Call<CreateModel>, response: Response<CreateModel>) {
@@ -250,13 +239,11 @@ class MakeActivity : BaseActivity() {
                 }
                 else {
                     Log.d(TAG,"callCreateAPI Second API ERROR -> ${response.errorBody()}")
-                    Log.d(TAG,"callCreateAPI Second API ERROR TWO-> $bear+$mytoken")
                 }
             }
 
             override fun onFailure(call: Call<CreateModel>, t: Throwable) {
                 Log.d(TAG,"callCreateAPI Second Fail -> $t")
-                Log.d(TAG,"Bearer $mytoken")
                 Toast.makeText(this@MakeActivity,"다시 시도해 주세요",Toast.LENGTH_SHORT).show()
             }
         })
@@ -336,9 +323,10 @@ class MakeActivity : BaseActivity() {
     }
 
     fun onPickClick(v: View) {
-        cameraPermission()
+        getAlbum()
     }
-    private fun cameraPermission() {
+
+    private fun getAlbum() {
         val intent = Intent(Intent.ACTION_GET_CONTENT)
         intent.type = "image/*"
         startActivityForResult(intent,ALBUM_REQUEST_CODE)
@@ -346,15 +334,16 @@ class MakeActivity : BaseActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if(resultCode == RESULT_OK && requestCode ==ALBUM_REQUEST_CODE) {
-            uriList.clear()
-            val ImnageData: Uri? = data?.data
-            try {
-                val bitmap = MediaStore.Images.Media.getBitmap(contentResolver, ImnageData)
-                mBinding.imgPake.setImageBitmap(bitmap)
-            }
-            catch (e: Exception) {
-                e.printStackTrace()
+        if( resultCode == Activity.RESULT_OK) {
+            if( requestCode == ALBUM_REQUEST_CODE) {
+                val ImnageData: Uri? = data?.data
+                try {
+                    val bitmap = MediaStore.Images.Media.getBitmap(contentResolver, ImnageData)
+                    mBinding.imgPake.setImageBitmap(bitmap)
+                }
+                catch (e:Exception) {
+                    e.printStackTrace()
+                }
             }
         }
     }

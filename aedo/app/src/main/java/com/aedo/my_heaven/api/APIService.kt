@@ -9,6 +9,7 @@ import com.aedo.my_heaven.model.notice.NoticeDetailModel
 import com.aedo.my_heaven.model.notice.NoticeModel
 import com.aedo.my_heaven.model.restapi.base.*
 import com.aedo.my_heaven.model.restapi.login.*
+import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.http.*
@@ -51,9 +52,9 @@ interface APIService {
     fun getLogOut(@Header("Accesstoken")accesstoken: String?): Call<LogOut>
 
     // 부고작성 API
-    @Multipart
+
     @POST("v1/obituary")
-    fun getCreate(@Header("Accesstoken")accesstoken: String?,@Part resident: RequestBody): Call<CreateModel>
+    fun getCreate(@Header("Accesstoken")accesstoken: String?, @Body resident: CreateModel): Call<CreateModel>
 
     // 부고조회 API
     @GET("v1/obituary?name=")

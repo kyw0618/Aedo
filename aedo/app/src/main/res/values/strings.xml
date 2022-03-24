@@ -15,6 +15,8 @@
     <string name="agree_service">서비스 이용약관</string>
     <string name="agree_get">개인정보 수집 및 이용동의</string>
     <string name="agree_three">제3자 제공 동의</string>
+    <string name="permission_1">[설정] > [권한] 에서 권한을 허용할 수 있습니다.</string>
+    <string name="permission_2">사진 및 파일을 저장하기 위하여 접근 권한이 필요합니다.</string>
 
 
     <!-- 접근 권한 동의 -->

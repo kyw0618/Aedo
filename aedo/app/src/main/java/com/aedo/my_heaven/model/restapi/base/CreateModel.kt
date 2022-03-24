@@ -1,5 +1,7 @@
 package com.aedo.my_heaven.model.restapi.base
 
+import android.net.Uri
+
 data class CreateModel(
     var resident: Resident?=null,
     var place: Place ?=null,
