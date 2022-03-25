@@ -23,7 +23,12 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fillViewport="true"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -47,10 +52,10 @@
                             android:layout_width="19dp"
                             android:layout_height="14dp"
                             android:layout_marginStart="20dp"
+                            android:onClick='@{activity::onBackClick}'
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
-                            android:onClick='@{activity::onBackClick}'
                             app:srcCompat="@drawable/back" />
 
                         <ImageView
@@ -76,10 +81,8 @@
                     android:orientation="vertical">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/cl_header"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        tools:visibility="visible">
+                        android:layout_height="match_parent">
 
                         <ImageView
                             android:id="@+id/imageView25"
@@ -103,69 +106,87 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="10dp"
-                            android:text="2022.01.01"
-                            android:textSize="14dp"
                             android:layout_marginTop="5dp"
                             android:fontFamily="@font/gyeonggititle_medium"
+                            android:text="2022.01.01"
                             android:textColor="@color/text_black"
+                            android:textSize="14dp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toEndOf="@+id/imageView25"
                             app:layout_constraintTop_toTopOf="parent" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
-                    <Spinner
-                        android:id="@+id/make_tx_spinner"
-                        android:layout_width="250dp"
-                        android:layout_height="28dp"
-                        android:layout_marginTop="10dp"
-                        android:spinnerMode="dropdown"
-                        android:background="@drawable/bg_spinner">
-                    </Spinner>
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="10dp">
 
-                    <TextView
-                        android:id="@+id/spinner_text"
-                        android:layout_width="90dp"
-                        android:layout_height="31dp"
-                        android:layout_marginStart="260dp"
-                        android:layout_marginTop="-30dp"
-                        android:background="@drawable/edit_box"
-                        android:gravity="center"
-                        android:text="관계"
-                        android:textColor="@color/semi_black"/>
+                        <Spinner
+                            android:id="@+id/make_tx_spinner"
+                            android:layout_width="250dp"
+                            android:layout_height="28dp"
+                            android:background="@drawable/bg_spinner"
+                            android:spinnerMode="dropdown"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
 
-                    <EditText
-                        android:id="@+id/make_tx_name"
-                        android:layout_width="90dp"
-                        android:layout_height="40dp"
-                        android:layout_marginStart="1dp"
-                        android:layout_marginTop="10dp"
-                        android:background="@drawable/edit_box"
-                        android:fontFamily="@font/noto_sans_kr_bold"
-                        android:gravity="left"
-                        android:hint="이름"
-                        android:importantForAutofill="no"
-                        android:inputType="text"
-                        android:textColor="@color/black"
-                        android:textSize="14dp"
-                        tools:targetApi="o" />
+                        </Spinner>
 
-                    <EditText
-                        android:id="@+id/make_tx_phone"
-                        android:layout_width="250dp"
-                        android:layout_height="40dp"
-                        android:layout_marginStart="100dp"
-                        android:layout_marginTop="-40dp"
-                        android:autofillHints="phone"
-                        android:background="@drawable/edit_box"
-                        android:fontFamily="@font/noto_sans_kr_bold"
-                        android:gravity="left"
-                        android:hint="연락처"
-                        android:importantForAutofill="no"
-                        android:inputType="phone"
-                        android:maxLength="11"
-                        android:textColor="@color/black"
-                        android:textSize="14dp"
-                        tools:targetApi="o" />
+                        <TextView
+                            android:id="@+id/spinner_text"
+                            android:layout_width="90dp"
+                            android:layout_height="31dp"
+                            android:background="@drawable/edit_box"
+                            android:gravity="center"
+                            android:text="관계"
+                            android:textColor="@color/semi_black"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="10dp">
+
+                        <EditText
+                            android:id="@+id/make_tx_name"
+                            android:layout_width="90dp"
+                            android:layout_height="40dp"
+                            android:background="@drawable/edit_box"
+                            android:fontFamily="@font/noto_sans_kr_bold"
+                            android:gravity="left"
+                            android:hint="이름"
+                            android:importantForAutofill="no"
+                            android:inputType="text"
+                            android:textColor="@color/black"
+                            android:textSize="14dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:targetApi="o" />
+
+                        <EditText
+                            android:id="@+id/make_tx_phone"
+                            android:layout_width="250dp"
+                            android:layout_height="40dp"
+                            android:autofillHints="phone"
+                            android:background="@drawable/edit_box"
+                            android:fontFamily="@font/noto_sans_kr_bold"
+                            android:gravity="left"
+                            android:hint="연락처"
+                            android:importantForAutofill="no"
+                            android:inputType="phone"
+                            android:maxLength="11"
+                            android:textColor="@color/black"
+                            android:textSize="14dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:targetApi="o" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
 
                 </LinearLayout>
 
@@ -191,25 +212,46 @@
                             app:srcCompat="@drawable/make_infor" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
-                    <Spinner
-                        android:id="@+id/make_tx_spinner_infor"
+                    <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
-                        android:layout_height="28dp"
-                        android:layout_marginTop="10dp"
-                        android:spinnerMode="dropdown"
-                        android:background="@drawable/bg_spinner">
-                    </Spinner>
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp">
 
-                    <TextView
-                        android:id="@+id/spinner_info_text_tt"
+                        <Spinner
+                            android:id="@+id/make_tx_spinner_infor"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/bg_spinner"
+                            android:spinnerMode="dropdown"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                        </Spinner>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
-                        android:layout_height="31dp"
-                        android:layout_marginTop="5dp"
-                        android:background="@drawable/edit_box"
-                        android:gravity="left|center"
-                        android:text="장례식장 이름"
-                        android:textColor="@color/semi_black"
-                        tools:ignore="RtlHardcoded" />
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp">
+
+                        <TextView
+                            android:id="@+id/spinner_info_text_tt"
+                            android:layout_width="match_parent"
+                            android:layout_height="31dp"
+                            android:layout_marginTop="5dp"
+                            android:background="@drawable/edit_box"
+                            android:gravity="left|center"
+                            android:text="장례식장 이름"
+                            android:textColor="@color/semi_black"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:ignore="RtlHardcoded" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
                 </LinearLayout>
 
@@ -235,49 +277,59 @@
                             app:srcCompat="@drawable/make_person" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp">
 
-                    <EditText
-                        android:id="@+id/make_tx_person_name"
-                        android:layout_width="120dp"
-                        android:layout_height="40dp"
-                        android:layout_marginStart="1dp"
-                        android:layout_marginTop="10dp"
-                        android:background="@drawable/edit_box"
-                        android:fontFamily="@font/noto_sans_kr_bold"
-                        android:gravity="left"
-                        android:hint="(필수)고인 성함"
-                        android:importantForAutofill="no"
-                        android:inputType="text"
-                        android:textColor="@color/black"
-                        android:textSize="14dp"
-                        tools:targetApi="o" />
+                        <EditText
+                            android:id="@+id/make_tx_person_name"
+                            android:layout_width="120dp"
+                            android:layout_height="40dp"
+                            android:background="@drawable/edit_box"
+                            android:fontFamily="@font/noto_sans_kr_bold"
+                            android:gravity="left"
+                            android:hint="(필수)고인 성함"
+                            android:importantForAutofill="no"
+                            android:inputType="text"
+                            android:textColor="@color/black"
+                            android:textSize="14dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:targetApi="o" />
 
-                    <EditText
-                        android:id="@+id/make_tx_age"
-                        android:layout_width="80dp"
-                        android:layout_height="40dp"
-                        android:layout_marginStart="130dp"
-                        android:layout_marginTop="-40dp"
-                        android:background="@drawable/edit_box"
-                        android:fontFamily="@font/noto_sans_kr_bold"
-                        android:gravity="left"
-                        android:hint="나이"
-                        android:importantForAutofill="no"
-                        android:inputType="number"
-                        android:maxLength="11"
-                        android:textColor="@color/black"
-                        android:textSize="14dp"
-                        tools:targetApi="o" />
+                        <EditText
+                            android:id="@+id/make_tx_age"
+                            android:layout_width="80dp"
+                            android:layout_height="40dp"
+                            android:layout_marginStart="10dp"
+                            android:background="@drawable/edit_box"
+                            android:fontFamily="@font/noto_sans_kr_bold"
+                            android:gravity="left"
+                            android:hint="나이"
+                            android:importantForAutofill="no"
+                            android:inputType="number"
+                            android:maxLength="11"
+                            android:textColor="@color/black"
+                            android:textSize="14dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/make_tx_person_name"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:targetApi="o" />
 
-                    <TextView
-                        android:layout_width="25dp"
-                        android:layout_height="35dp"
-                        android:layout_marginStart="215dp"
-                        android:layout_marginTop="-40dp"
-                        android:fontFamily="@font/noto_sans_kr_bold"
-                        android:text="세"
-                        android:textColor="@color/black"
-                        android:textSize="15dp" />
+                        <TextView
+                            android:layout_width="25dp"
+                            android:layout_height="35dp"
+                            android:layout_marginStart="5dp"
+                            android:fontFamily="@font/noto_sans_kr_bold"
+                            android:text="세"
+                            android:textColor="@color/black"
+                            android:textSize="15dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/make_tx_age"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
                 </LinearLayout>
 
                 <LinearLayout
@@ -287,6 +339,7 @@
                     android:layout_marginTop="30dp"
                     android:layout_marginRight="30dp"
                     android:orientation="vertical">
+
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
@@ -324,6 +377,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:orientation="vertical">
+
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent">
@@ -374,13 +428,14 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/title">
 
+
                         <ImageView
                             android:id="@+id/eod_image"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="@drawable/bg_nocolor_left_rounded"
-                            android:padding="10dp"
                             android:onClick='@{activity::onEodDataClick}'
+                            android:padding="10dp"
                             app:srcCompat="@drawable/ic_kalender" />
 
                         <TextView
@@ -398,10 +453,10 @@
 
                     <LinearLayout
                         android:id="@+id/eod_date_time"
-                        android:layout_width="160dp"
+                        android:layout_width="120dp"
                         android:layout_height="40dp"
-                        android:layout_marginTop="-40dp"
                         android:layout_marginStart="180dp"
+                        android:layout_marginTop="-40dp"
                         android:background="@drawable/bg_nocolor"
                         android:orientation="horizontal"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -470,8 +525,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="@drawable/bg_nocolor_left_rounded"
-                            android:padding="10dp"
                             android:onClick='@{activity::onCoffinDataClick}'
+                            android:padding="10dp"
                             app:srcCompat="@drawable/ic_kalender" />
 
                         <TextView
@@ -489,10 +544,10 @@
 
                     <LinearLayout
                         android:id="@+id/coffin_data_time"
-                        android:layout_width="160dp"
+                        android:layout_width="120dp"
                         android:layout_height="40dp"
-                        android:layout_marginTop="-40dp"
                         android:layout_marginStart="180dp"
+                        android:layout_marginTop="-40dp"
                         android:background="@drawable/bg_nocolor"
                         android:orientation="horizontal"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -504,8 +559,8 @@
                             android:layout_width="40dp"
                             android:layout_height="wrap_content"
                             android:background="@drawable/bg_nocolor_left_rounded"
-                            android:padding="10dp"
                             android:onClick='@{activity::onCoffinTimeClick}'
+                            android:padding="10dp"
                             app:srcCompat="@drawable/clock" />
 
                         <TextView
@@ -561,8 +616,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="@drawable/bg_nocolor_left_rounded"
-                            android:padding="10dp"
                             android:onClick='@{activity::onDofpDataClick}'
+                            android:padding="10dp"
                             app:srcCompat="@drawable/ic_kalender" />
 
                         <TextView
@@ -580,10 +635,10 @@
 
                     <LinearLayout
                         android:id="@+id/dofp_data_time"
-                        android:layout_width="160dp"
+                        android:layout_width="120dp"
                         android:layout_height="40dp"
-                        android:layout_marginTop="-40dp"
                         android:layout_marginStart="180dp"
+                        android:layout_marginTop="-40dp"
                         android:background="@drawable/bg_nocolor"
                         android:orientation="horizontal"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -595,8 +650,8 @@
                             android:layout_width="40dp"
                             android:layout_height="wrap_content"
                             android:background="@drawable/bg_nocolor_left_rounded"
-                            android:padding="10dp"
                             android:onClick='@{activity::onDofpTimeClick}'
+                            android:padding="10dp"
                             app:srcCompat="@drawable/clock" />
 
                         <TextView
@@ -637,21 +692,29 @@
                             app:srcCompat="@drawable/make_place" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
-                    <EditText
-                        android:id="@+id/make_tx_place"
+                    <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:layout_marginStart="1dp"
-                        android:layout_marginTop="10dp"
-                        android:background="@drawable/edit_box"
-                        android:fontFamily="@font/noto_sans_kr_bold"
-                        android:gravity="left"
-                        android:hint="장지를 입력 해주세요"
-                        android:importantForAutofill="no"
-                        android:inputType="text"
-                        android:textColor="@color/black"
-                        android:textSize="14dp"
-                        tools:targetApi="o" />
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="10dp">
+
+                        <EditText
+                            android:id="@+id/make_tx_place"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/edit_box"
+                            android:fontFamily="@font/noto_sans_kr_bold"
+                            android:gravity="left"
+                            android:hint="장지를 입력 해주세요"
+                            android:importantForAutofill="no"
+                            android:inputType="text"
+                            android:textColor="@color/black"
+                            android:textSize="14dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:targetApi="o" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
                 </LinearLayout>
 
                 <LinearLayout
@@ -676,22 +739,32 @@
                             app:srcCompat="@drawable/make_tx_send" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
-                    <EditText
-                        android:id="@+id/make_tx_tex"
+                    <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
-                        android:layout_height="75dp"
-                        android:layout_marginStart="1dp"
-                        android:layout_marginTop="10dp"
-                        android:background="@drawable/edit_box"
-                        android:fontFamily="@font/noto_sans_kr_bold"
-                        android:gravity="left"
-                        android:hint=""
-                        android:importantForAutofill="no"
-                        android:inputType="text"
-                        android:maxLength="200"
-                        android:textColor="@color/black"
-                        android:textSize="14dp"
-                        tools:targetApi="o" />
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="10dp">
+
+                        <EditText
+                            android:id="@+id/make_tx_tex"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="1dp"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/edit_box"
+                            android:fontFamily="@font/noto_sans_kr_bold"
+                            android:gravity="left"
+                            android:hint=""
+                            android:importantForAutofill="no"
+                            android:inputType="text"
+                            android:maxLength="200"
+                            android:textColor="@color/black"
+                            android:textSize="14dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:targetApi="o" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
                 </LinearLayout>
 
 
@@ -727,13 +800,14 @@
                         </androidx.cardview.widget.CardView>
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </LinearLayout>
+
                 <ProgressBar
                     android:id="@+id/progress"
                     style="?android:attr/progressBarStyle"
                     android:layout_width="wrap_content"
-                    android:visibility="gone"
                     android:layout_height="wrap_content"
                     android:indeterminateDuration="1000"
+                    android:visibility="gone"
                     tools:ignore="TooManyViews" />
 
             </LinearLayout>

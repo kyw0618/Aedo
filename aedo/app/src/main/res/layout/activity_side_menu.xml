@@ -101,10 +101,10 @@
                 android:id="@+id/side_faq"
                 android:layout_width="82dp"
                 android:layout_height="61dp"
-                android:layout_marginStart="120dp"
+                android:layout_marginStart="30dp"
                 android:layout_marginTop="19dp"
                 android:onClick='@{activity::onFAQClick}'
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/side_kakao"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/side_faq" />
 
@@ -112,10 +112,10 @@
                 android:id="@+id/side_one"
                 android:layout_width="48dp"
                 android:layout_height="59dp"
-                android:layout_marginStart="240dp"
+                android:layout_marginStart="40dp"
                 android:layout_marginTop="20dp"
                 android:onClick='@{activity::onCounClick}'
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/side_faq"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/side_one" />
 
@@ -123,21 +123,20 @@
                 android:id="@+id/side_call"
                 android:layout_width="50dp"
                 android:layout_height="53dp"
-                android:layout_marginStart="330dp"
                 android:layout_marginTop="25dp"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/side_one"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/side_call" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="290dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="10dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout7">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/side_menu_information"

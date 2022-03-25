@@ -26,10 +26,12 @@ import com.aedo.my_heaven.util.base.MyApplication.Companion.prefs
 import com.aedo.my_heaven.util.log.LLog
 import com.aedo.my_heaven.util.log.LLog.TAG
 import com.aedo.my_heaven.view.main.MainActivity
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.RequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.lang.Exception
 import java.time.LocalDate
 import java.util.*
 
@@ -158,7 +160,7 @@ class MakeActivity : BaseActivity() {
             }
             else -> {
                 dialog?.show()
-                callCreateAPI()
+                testAPI()
             }
         }
     }
@@ -196,12 +198,13 @@ class MakeActivity : BaseActivity() {
                 }
                 else {
                     Log.d(TAG,"callCreateAPI API ERROR -> ${response.errorBody()}")
-                    otherAPI()
+                    testAPI()
                 }
             }
 
             override fun onFailure(call: Call<CreateModel>, t: Throwable) {
                 Log.d(TAG,"callCreate Fail -> $t")
+                testAPI()
                 Toast.makeText(this@MakeActivity,"다시 시도해 주세요",Toast.LENGTH_SHORT).show()
             }
         })
@@ -231,6 +234,54 @@ class MakeActivity : BaseActivity() {
         val data = CreateModel(resident,place,deceased,eod,coffin,dofp, buried, word, created)
         LLog.e("만들기_두번째 API")
         apiServices.getCreate(prefs.newaccesstoken,data).enqueue(object : Callback<CreateModel> {
+            override fun onResponse(call: Call<CreateModel>, response: Response<CreateModel>) {
+                val result = response.body()
+                if(response.isSuccessful&& result!= null) {
+                    Log.d(TAG,"callCreateAPI Second API SUCCESS -> $result")
+                    moveList()
+                }
+                else {
+                    Log.d(TAG,"callCreateAPI Second API ERROR -> ${response.errorBody()}")
+                }
+            }
+
+            override fun onFailure(call: Call<CreateModel>, t: Throwable) {
+                Log.d(TAG,"callCreateAPI Second Fail -> $t")
+                Toast.makeText(this@MakeActivity,"다시 시도해 주세요",Toast.LENGTH_SHORT).show()
+            }
+        })
+    }
+
+    private fun testAPI() {
+        val resident = Resident(mBinding.spinnerText.text.toString(),
+            mBinding.makeTxName.text.toString(),mBinding.makeTxPhone.text.toString())
+        val place = Place(mBinding.spinnerInfoTextTt.text.toString())
+        val deceased = Deceased(mBinding.makeTxPersonName.text.toString(),
+            mBinding.makeTxAge.text.toString())
+        val eod = Eod(mBinding.eodText.text.toString(),mBinding.eodTextTime.text.toString())
+        val coffin =Coffin(mBinding.coffinText.text.toString(),mBinding.coffinTextTime.text.toString())
+        val dofp = Dofp(mBinding.dofpText.text.toString(),mBinding.dofpTextTime.text.toString())
+        val buried = mBinding.makeTxPlace.text.toString()
+        val word = mBinding.makeTxTex.text.toString()
+        val created =mBinding.tvMakeData.text.toString()
+
+        val requestHashMap : HashMap<String, RequestBody> = HashMap()
+        requestHashMap["img"] = "sssss".toRequestBody("multipart/form-data".toMediaTypeOrNull())
+        requestHashMap["relation"] = resident.relation!!.toRequestBody("multipart/form-data".toMediaTypeOrNull())
+        requestHashMap["relationName"] = resident.name!!.toRequestBody("multipart/form-data".toMediaTypeOrNull())
+        requestHashMap["relationphone"] = resident.phone!!.toRequestBody("multipart/form-data".toMediaTypeOrNull())
+        requestHashMap["deceasedName"] = deceased.name!!.toRequestBody("multipart/form-data".toMediaTypeOrNull())
+        requestHashMap["deceasedAge"] = deceased.age!!.toRequestBody("multipart/form-data".toMediaTypeOrNull())
+        requestHashMap["place"] = place.place_name!!.toRequestBody("multipart/form-data".toMediaTypeOrNull())
+        requestHashMap["eod"] = eod.date!!.toRequestBody("multipart/form-data".toMediaTypeOrNull())
+        requestHashMap["coffin"] = coffin.date!!.toRequestBody("multipart/form-data".toMediaTypeOrNull())
+        requestHashMap["dofp"] = dofp.date!!.toRequestBody("multipart/form-data".toMediaTypeOrNull())
+        requestHashMap["buried"] = buried.toRequestBody("multipart/form-data".toMediaTypeOrNull())
+        requestHashMap["word"] = word.toRequestBody("multipart/form-data".toMediaTypeOrNull())
+        requestHashMap["created"] =created.toRequestBody("multipart/form-data".toMediaTypeOrNull())
+
+        LLog.e("만들기_두번째 API")
+        apiServices.getImgCreate(prefs.newaccesstoken,requestHashMap).enqueue(object : Callback<CreateModel> {
             override fun onResponse(call: Call<CreateModel>, response: Response<CreateModel>) {
                 val result = response.body()
                 if(response.isSuccessful&& result!= null) {

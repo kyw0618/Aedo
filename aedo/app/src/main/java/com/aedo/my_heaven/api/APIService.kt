@@ -52,9 +52,14 @@ interface APIService {
     fun getLogOut(@Header("Accesstoken")accesstoken: String?): Call<LogOut>
 
     // 부고작성 API
-
     @POST("v1/obituary")
     fun getCreate(@Header("Accesstoken")accesstoken: String?, @Body resident: CreateModel): Call<CreateModel>
+
+    // 부고작성 API(test)
+    @Multipart
+    @POST("v1/obituary")
+    fun getImgCreate(@Header("Accesstoken")accesstoken: String?, @PartMap data: HashMap<String, RequestBody>): Call<CreateModel>
+
 
     // 부고조회 API
     @GET("v1/obituary?name=")
