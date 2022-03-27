@@ -5,6 +5,7 @@ import android.app.Activity
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.content.Intent
+import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
@@ -23,15 +24,20 @@ import com.aedo.my_heaven.util.`object`.Constant.ALBUM_REQUEST_CODE
 import com.aedo.my_heaven.util.base.BaseActivity
 import com.aedo.my_heaven.util.base.MyApplication
 import com.aedo.my_heaven.util.base.MyApplication.Companion.prefs
+import com.aedo.my_heaven.util.file.FileUtil
 import com.aedo.my_heaven.util.log.LLog
 import com.aedo.my_heaven.util.log.LLog.TAG
 import com.aedo.my_heaven.view.main.MainActivity
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
 import okhttp3.RequestBody
+import okhttp3.RequestBody.Companion.asRequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.io.ByteArrayOutputStream
+import java.io.File
 import java.time.LocalDate
 import java.util.*
 
@@ -39,7 +45,15 @@ import java.util.*
 class MakeActivity : BaseActivity() {
     private lateinit var mBinding: ActivityMakeBinding
     private lateinit var apiServices: APIService
+    private var imageUri : Uri?=null
+    private var photoURI  : Uri?=null
+    private var albumURI : Uri?=null
+    private var mFileName : String?=null
+    private var mCurrentPhotoPath : String?=null
     private var mViewModel: MakeViewModel? = null
+    private val fileUtil = FileUtil()
+    private var files4: MutableList<Uri> = ArrayList()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -160,12 +174,14 @@ class MakeActivity : BaseActivity() {
             }
             else -> {
                 dialog?.show()
-                testAPI()
+//                callCreateAPI()
+                testAPI(photoURI)
             }
         }
     }
 
     private fun callCreateAPI() {
+        val img = mBinding.imgPake.toString()
         val resident = Resident(mBinding.spinnerText.text.toString(),
             mBinding.makeTxName.text.toString(),mBinding.makeTxPhone.text.toString())
 
@@ -186,7 +202,7 @@ class MakeActivity : BaseActivity() {
 
         val created =mBinding.tvMakeData.text.toString()
 
-        val data = CreateModel(resident,place,deceased,eod,coffin,dofp, buried, word, created)
+        val data = CreateModel(img,resident,place,deceased,eod,coffin,dofp, buried, word, created)
 
         LLog.e("만들기_첫번째 API")
         apiServices.getCreate(prefs.myaccesstoken,data).enqueue(object : Callback<CreateModel> {
@@ -198,19 +214,19 @@ class MakeActivity : BaseActivity() {
                 }
                 else {
                     Log.d(TAG,"callCreateAPI API ERROR -> ${response.errorBody()}")
-                    testAPI()
                 }
             }
 
             override fun onFailure(call: Call<CreateModel>, t: Throwable) {
                 Log.d(TAG,"callCreate Fail -> $t")
-                testAPI()
+//                otherAPI()
                 Toast.makeText(this@MakeActivity,"다시 시도해 주세요",Toast.LENGTH_SHORT).show()
             }
         })
     }
 
     private fun otherAPI() {
+        val img = mBinding.imgPake.toString()
         val resident = Resident(mBinding.spinnerText.text.toString(),
             mBinding.makeTxName.text.toString(),mBinding.makeTxPhone.text.toString())
 
@@ -231,7 +247,7 @@ class MakeActivity : BaseActivity() {
 
         val created =mBinding.tvMakeData.text.toString()
 
-        val data = CreateModel(resident,place,deceased,eod,coffin,dofp, buried, word, created)
+        val data = CreateModel(img,resident,place,deceased,eod,coffin,dofp, buried, word, created)
         LLog.e("만들기_두번째 API")
         apiServices.getCreate(prefs.newaccesstoken,data).enqueue(object : Callback<CreateModel> {
             override fun onResponse(call: Call<CreateModel>, response: Response<CreateModel>) {
@@ -252,7 +268,14 @@ class MakeActivity : BaseActivity() {
         })
     }
 
-    private fun testAPI() {
+    private fun testAPI(uri: Uri?) {
+        val img: MutableList<MultipartBody.Part?> =  ArrayList()
+
+        for (uri:Uri in files4) {
+            uri.path?.let { Log.i("uris", it) }
+            img.add(prepareFilePart("files", uri))
+        }
+
         val resident = Resident(mBinding.spinnerText.text.toString(),
             mBinding.makeTxName.text.toString(),mBinding.makeTxPhone.text.toString())
         val place = Place(mBinding.spinnerInfoTextTt.text.toString())
@@ -264,9 +287,8 @@ class MakeActivity : BaseActivity() {
         val buried = mBinding.makeTxPlace.text.toString()
         val word = mBinding.makeTxTex.text.toString()
         val created =mBinding.tvMakeData.text.toString()
-
         val requestHashMap : HashMap<String, RequestBody> = HashMap()
-        requestHashMap["img"] = "sssss".toRequestBody("multipart/form-data".toMediaTypeOrNull())
+
         requestHashMap["relation"] = resident.relation!!.toRequestBody("multipart/form-data".toMediaTypeOrNull())
         requestHashMap["relationName"] = resident.name!!.toRequestBody("multipart/form-data".toMediaTypeOrNull())
         requestHashMap["relationphone"] = resident.phone!!.toRequestBody("multipart/form-data".toMediaTypeOrNull())
@@ -281,23 +303,86 @@ class MakeActivity : BaseActivity() {
         requestHashMap["created"] =created.toRequestBody("multipart/form-data".toMediaTypeOrNull())
 
         LLog.e("만들기_두번째 API")
-        apiServices.getImgCreate(prefs.newaccesstoken,requestHashMap).enqueue(object : Callback<CreateModel> {
+        apiServices.getImgCreate(prefs.myaccesstoken,img,requestHashMap).enqueue(object : Callback<CreateModel> {
             override fun onResponse(call: Call<CreateModel>, response: Response<CreateModel>) {
                 val result = response.body()
                 if(response.isSuccessful&& result!= null) {
-                    Log.d(TAG,"callCreateAPI Second API SUCCESS -> $result")
+                    Log.d(TAG,"testAPI  API SUCCESS -> $result")
                     moveList()
                 }
                 else {
-                    Log.d(TAG,"callCreateAPI Second API ERROR -> ${response.errorBody()}")
+                    Log.d(TAG,"testAPI  API ERROR -> ${response.errorBody()}")
+                    testOtherAPI(photoURI)
                 }
             }
 
             override fun onFailure(call: Call<CreateModel>, t: Throwable) {
-                Log.d(TAG,"callCreateAPI Second Fail -> $t")
+                Log.d(TAG,"testAPI Fail -> $t")
                 Toast.makeText(this@MakeActivity,"다시 시도해 주세요",Toast.LENGTH_SHORT).show()
             }
         })
+    }
+
+    private fun testOtherAPI(uri: Uri?) {
+        val img: MutableList<MultipartBody.Part?> =  ArrayList()
+
+        for (uri:Uri in files4) {
+            uri.path?.let { Log.i("img", it) }
+            img.add(prepareFilePart("img", uri))
+        }
+
+        val resident = Resident(mBinding.spinnerText.text.toString(),
+            mBinding.makeTxName.text.toString(),mBinding.makeTxPhone.text.toString())
+        val place = Place(mBinding.spinnerInfoTextTt.text.toString())
+        val deceased = Deceased(mBinding.makeTxPersonName.text.toString(),
+            mBinding.makeTxAge.text.toString())
+        val eod = Eod(mBinding.eodText.text.toString(),mBinding.eodTextTime.text.toString())
+        val coffin =Coffin(mBinding.coffinText.text.toString(),mBinding.coffinTextTime.text.toString())
+        val dofp = Dofp(mBinding.dofpText.text.toString(),mBinding.dofpTextTime.text.toString())
+        val buried = mBinding.makeTxPlace.text.toString()
+        val word = mBinding.makeTxTex.text.toString()
+        val created =mBinding.tvMakeData.text.toString()
+        val requestHashMap : HashMap<String, RequestBody> = HashMap()
+
+        requestHashMap["relation"] = resident.relation!!.toRequestBody("multipart/form-data".toMediaTypeOrNull())
+        requestHashMap["relationName"] = resident.name!!.toRequestBody("multipart/form-data".toMediaTypeOrNull())
+        requestHashMap["relationphone"] = resident.phone!!.toRequestBody("multipart/form-data".toMediaTypeOrNull())
+        requestHashMap["deceasedName"] = deceased.name!!.toRequestBody("multipart/form-data".toMediaTypeOrNull())
+        requestHashMap["deceasedAge"] = deceased.age!!.toRequestBody("multipart/form-data".toMediaTypeOrNull())
+        requestHashMap["place"] = place.place_name!!.toRequestBody("multipart/form-data".toMediaTypeOrNull())
+        requestHashMap["eod"] = eod.date!!.toRequestBody("multipart/form-data".toMediaTypeOrNull())
+        requestHashMap["coffin"] = coffin.date!!.toRequestBody("multipart/form-data".toMediaTypeOrNull())
+        requestHashMap["dofp"] = dofp.date!!.toRequestBody("multipart/form-data".toMediaTypeOrNull())
+        requestHashMap["buried"] = buried.toRequestBody("multipart/form-data".toMediaTypeOrNull())
+        requestHashMap["word"] = word.toRequestBody("multipart/form-data".toMediaTypeOrNull())
+        requestHashMap["created"] =created.toRequestBody("multipart/form-data".toMediaTypeOrNull())
+
+        LLog.e("만들기_두번째 API")
+        apiServices.getImgCreate(prefs.newaccesstoken,img,requestHashMap).enqueue(object : Callback<CreateModel> {
+            override fun onResponse(call: Call<CreateModel>, response: Response<CreateModel>) {
+                val result = response.body()
+                if(response.isSuccessful&& result!= null) {
+                    Log.d(TAG,"testAPI Second API SUCCESS -> $result")
+                    moveList()
+                }
+                else {
+                    Log.d(TAG,"testAPI Second API ERROR -> ${response.errorBody()}")
+                }
+            }
+
+            override fun onFailure(call: Call<CreateModel>, t: Throwable) {
+                Log.d(TAG,"testAPI Second Fail -> $t")
+                Toast.makeText(this@MakeActivity,"다시 시도해 주세요",Toast.LENGTH_SHORT).show()
+            }
+        })
+    }
+
+    private fun prepareFilePart(partName: String, fileUri: Uri): MultipartBody.Part {
+        val file = File(fileUri.path)
+        Log.i("here is error", file.absolutePath)
+        val requestFile: RequestBody = file
+            .asRequestBody("image/*".toMediaTypeOrNull())
+        return MultipartBody.Part.createFormData(partName, file.name, requestFile)
     }
 
     fun onBackClick(v: View){
@@ -387,10 +472,16 @@ class MakeActivity : BaseActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         if( resultCode == Activity.RESULT_OK) {
             if( requestCode == ALBUM_REQUEST_CODE) {
-                val ImnageData: Uri? = data?.data
                 try {
-                    val bitmap = MediaStore.Images.Media.getBitmap(contentResolver, ImnageData)
-                    mBinding.imgPake.setImageBitmap(bitmap)
+                    val img = data?.data
+                    mBinding.imgPake.setImageURI(img)
+                    val imgPath = img.let {
+                        fileUtil.getPath(this@MakeActivity, it)
+                    }
+                    files4.add(Uri.parse(imgPath))
+                    if (imgPath != null) {
+                        Log.e("img", imgPath)
+                    }
                 }
                 catch (e:Exception) {
                     e.printStackTrace()
@@ -403,5 +494,6 @@ class MakeActivity : BaseActivity() {
         startActivity(Intent(this, MainActivity::class.java))
         finish()
     }
+
 
 }

@@ -53,17 +53,21 @@ interface APIService {
 
     // 부고작성 API
     @POST("v1/obituary")
-    fun getCreate(@Header("Accesstoken")accesstoken: String?, @Body resident: CreateModel): Call<CreateModel>
+    fun getCreate(@Header("Accesstoken")accesstoken: String?,
+                  @Body resident: CreateModel): Call<CreateModel>
 
     // 부고작성 API(test)
     @Multipart
     @POST("v1/obituary")
-    fun getImgCreate(@Header("Accesstoken")accesstoken: String?, @PartMap data: HashMap<String, RequestBody>): Call<CreateModel>
+    fun getImgCreate(@Header("Accesstoken") accesstoken: String?,
+                     @Part img: MutableList<MultipartBody.Part?>,
+                     @PartMap data: HashMap<String, RequestBody>): Call<CreateModel>
 
 
     // 부고조회 API
     @GET("v1/obituary?name=")
-    fun getCreateName(@Query("name")name: String?,@Header("Accesstoken")accesstoken: String?) : Call<CreateName>
+    fun getCreateName(@Query("name")name: String?,
+                      @Header("Accesstoken")accesstoken: String?) : Call<CreateName>
 
     // 나의부고 API
     @GET("v1/obituary/my")
@@ -75,15 +79,18 @@ interface APIService {
 
     // 부고삭제
     @DELETE("v1/obituary/:id")
-    fun getCreateDelete(@Header("Accesstoken")accesstoken: String?,@Query("id")id: String?) : Call<ListDelete>
+    fun getCreateDelete(@Header("Accesstoken")accesstoken: String?,
+                        @Query("id")id: String?) : Call<ListDelete>
 
     // 조문메세지 API
     @POST("v1/condole")
-    fun getCondole(@Header("Accesstoken")accesstoken: String?, @Body createMessage: CreateMessage): Call<CreateMessage>
+    fun getCondole(@Header("Accesstoken")accesstoken: String?,
+                   @Body createMessage: CreateMessage): Call<CreateMessage>
 
     // 조문메세지 조회 API
     @GET("v1/condole")
-    fun getConID(@Query("id")id: String? ,@Header("Accesstoken")accesstoken: String?) : Call<Condole>
+    fun getConID(@Query("id")id: String? ,
+                 @Header("Accesstoken")accesstoken: String?) : Call<Condole>
 
     // 조문메세지 수정 API
     @PUT("v1/condole/:id")
@@ -99,7 +106,8 @@ interface APIService {
 
     // 공지사항 세부조회 API
     @GET("v1/center/announcement/:id")
-    fun getNotiDetail(@Header("Accesstoken")accesstoken: String?,@Query("id")id: String?) : Call<NoticeDetailModel>
+    fun getNotiDetail(@Header("Accesstoken")accesstoken: String?,
+                      @Query("id")id: String?) : Call<NoticeDetailModel>
 
     // 1:1문의 조회
     @GET("v1/center/request")
@@ -107,6 +115,7 @@ interface APIService {
 
     // 1:1문의 작성
     @POST("v1/center/request")
-    fun getCounPost(@Header("Accesstoken")accesstoken: String?,@Body counPost: CounPost) : Call<CounPost>
+    fun getCounPost(@Header("Accesstoken")accesstoken: String?,
+                    @Body counPost: CounPost) : Call<CounPost>
 
 }

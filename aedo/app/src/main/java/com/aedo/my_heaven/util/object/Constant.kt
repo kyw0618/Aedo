@@ -13,6 +13,7 @@ import java.util.ArrayList
 object  Constant {
     const val TAG = "My_Heaven"
     const val BASE_URL="http://49.50.165.23:8080/"
+    const val BASE_URL_TEST="http://118.67.128.124:8080/"
     const val PREF_KEY_APP_TOKEN = "myAppToken"
     const val PREF_KEY_ENCTYPT_IV = "myEncryptIv"
     const val PREF_KEY_ENCTYPT_KEY = "myEncryptKey"

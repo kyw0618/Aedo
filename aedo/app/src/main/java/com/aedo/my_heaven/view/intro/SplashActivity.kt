@@ -26,7 +26,6 @@ import com.aedo.my_heaven.util.root.RootUtil
 import com.aedo.my_heaven.util.style.TextStyle
 import com.aedo.my_heaven.view.login.LoginActivity
 import com.getkeepsafe.relinker.BuildConfig
-import com.kakao.sdk.common.util.Utility
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

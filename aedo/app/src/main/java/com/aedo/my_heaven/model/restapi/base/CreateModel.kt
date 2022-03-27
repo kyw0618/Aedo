@@ -3,6 +3,7 @@ package com.aedo.my_heaven.model.restapi.base
 import android.net.Uri
 
 data class CreateModel(
+    var img : String? = null,
     var resident: Resident?=null,
     var place: Place ?=null,
     var deceased: Deceased ?=null,

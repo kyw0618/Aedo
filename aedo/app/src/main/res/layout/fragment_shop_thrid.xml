@@ -82,7 +82,7 @@
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
                                 app:layout_constraintVertical_bias="0.0"
-                                app:srcCompat="@drawable/third_basic" />
+                                app:srcCompat="@drawable/revon_change" />
 
                             <TextView
                                 android:id="@+id/tv_activity_shop_title"
@@ -110,7 +110,7 @@
                                 android:fontFamily="sans-serif-condensed"
                                 android:paddingVertical="20dp"
                                 android:text="주문하기"
-                                android:textColor="@color/btn_shopping_text"
+                                android:textColor="@color/colorAccent"
                                 android:textSize="12sp"
                                 android:textStyle="bold"
                                 app:layout_constraintBottom_toBottomOf="parent"
@@ -126,6 +126,19 @@
                                 android:visibility="gone"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/textView32"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/gyeonggititle_bold_title"
+                                android:text="리본교체"
+                                android:textColor="@color/black"
+                                android:textSize="20dp"
+                                app:layout_constraintBottom_toBottomOf="@+id/iv_activity_shop_item"
+                                app:layout_constraintEnd_toEndOf="@+id/iv_activity_shop_item"
+                                app:layout_constraintStart_toStartOf="@+id/iv_activity_shop_item"
+                                app:layout_constraintTop_toTopOf="@+id/iv_activity_shop_item" />
 
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -189,7 +202,20 @@
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
                                 app:layout_constraintVertical_bias="0.0"
-                                app:srcCompat="@drawable/basket_third" />
+                                app:srcCompat="@drawable/revon_change" />
+
+                            <TextView
+                                android:id="@+id/textView32s"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/gyeonggititle_bold_title"
+                                android:text="리본교체"
+                                android:textColor="@color/black"
+                                android:textSize="20dp"
+                                app:layout_constraintBottom_toBottomOf="@+id/img_second"
+                                app:layout_constraintEnd_toEndOf="@+id/img_second"
+                                app:layout_constraintStart_toStartOf="@+id/img_second"
+                                app:layout_constraintTop_toTopOf="@+id/img_second" />
 
                             <TextView
                                 android:id="@+id/tv_name_second"
@@ -216,7 +242,7 @@
                                 android:fontFamily="sans-serif-condensed"
                                 android:paddingVertical="20dp"
                                 android:text="주문하기"
-                                android:textColor="@color/btn_shopping_text"
+                                android:textColor="@color/colorAccent"
                                 android:textSize="12sp"
                                 android:textStyle="bold"
                                 app:layout_constraintBottom_toBottomOf="parent"
