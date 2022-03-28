@@ -16,21 +16,15 @@ import java.io.File
 
 
 class FileUtil {
-    val AUTHORITY = "com.ianhanniballake.localstorage.documents"
+    val AUTHORITY = "com.aedo.my_heaven"
     val MIME_TYPE_AUDIO = "audio/*"
     val MIME_TYPE_TEXT = "text/*"
     val MIME_TYPE_IMAGE = "image/*"
     val MIME_TYPE_VIDEO = "video/*"
     val MIME_TYPE_APP = "application/*"
     val HIDDEN_PREFIX = "."
-
-    /**
-     * TAG for log messages.
-     */
     val TAG = "FileUtils"
-    private val DEBUG = false // Set to true to enable logging
-
-    fun FileUtil() {} //private constructor to enforce Singleton pattern
+    private val DEBUG = false
 
     private fun getExtension(uri: String?): String? {
         if (uri == null) {
@@ -40,7 +34,6 @@ class FileUtil {
         return if (dot >= 0) {
             uri.substring(dot)
         } else {
-            // No extension.
             ""
         }
     }
@@ -134,11 +127,8 @@ class FileUtil {
         )
         val isKitKat = Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT
 
-        // DocumentProvider
         if (isKitKat && DocumentsContract.isDocumentUri(context, uri)) {
-            // LocalStorageProvider
             if (isLocalStorageDocument(uri)) {
-                // The path is the id
                 return DocumentsContract.getDocumentId(uri)
             } else if (isExternalStorageDocument(uri)) {
                 val docId = DocumentsContract.getDocumentId(uri)
@@ -179,7 +169,6 @@ class FileUtil {
             }
         } else if ("content".equals(uri!!.scheme, ignoreCase = true)) {
 
-            // Return the remote address
             return if (isGooglePhotosUri(uri)) uri.lastPathSegment else getDataColumn(
                 (context)!!,
                 uri,

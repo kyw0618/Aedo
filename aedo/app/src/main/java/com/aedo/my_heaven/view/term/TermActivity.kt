@@ -14,6 +14,7 @@ import com.aedo.my_heaven.model.restapi.base.TremModel
 import com.aedo.my_heaven.util.base.BaseActivity
 import com.aedo.my_heaven.util.log.LLog
 import com.aedo.my_heaven.view.main.MainActivity
+import com.aedo.my_heaven.view.side.setting.SettingActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -66,9 +67,8 @@ class TermActivity : BaseActivity() {
         moveSide()
     }
 
-
     override fun onBackPressed() {
-        startActivity(Intent(this, MainActivity::class.java))
+        startActivity(Intent(this, SettingActivity::class.java))
         finish()
     }
 }

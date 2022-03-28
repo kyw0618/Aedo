@@ -1,10 +1,13 @@
 package com.aedo.my_heaven.view.side.setting
 
+import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.databinding.DataBindingUtil
+import com.aedo.my_heaven.BuildConfig
 import com.aedo.my_heaven.R
 import com.aedo.my_heaven.api.APIService
 import com.aedo.my_heaven.api.ApiUtils
@@ -15,6 +18,7 @@ import com.aedo.my_heaven.util.base.BaseActivity
 import com.aedo.my_heaven.util.base.MyApplication
 import com.aedo.my_heaven.util.log.LLog
 import com.aedo.my_heaven.view.main.MainActivity
+import com.aedo.my_heaven.view.main.SideMenuActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -32,10 +36,12 @@ class SettingActivity : BaseActivity() {
         initView()
     }
 
+    @SuppressLint("SetTextI18n")
     private fun initView() {
-        val version = realm.where(Policy::class.java).equalTo("id","APP_VERSION").findFirst()
-        mBinding.tvVersion.text = version?.value
+        val versionNames = BuildConfig.VERSION_NAME
+        mBinding.tvVersion.text = "v $versionNames"
     }
+
 
     fun onLogOutClick(v: View) {
         logOutAPI()
@@ -75,7 +81,6 @@ class SettingActivity : BaseActivity() {
                 }
                 else {
                     Log.d(LLog.TAG,"GetUser API ERROR -> ${response.errorBody()}")
-                    otherAPI()
                 }
             }
             override fun onFailure(call: Call<LogOut>, t: Throwable) {
@@ -106,7 +111,7 @@ class SettingActivity : BaseActivity() {
     }
 
     override fun onBackPressed() {
-        startActivity(Intent(this, MainActivity::class.java))
+        startActivity(Intent(this, SideMenuActivity::class.java))
         finish()
     }
 

@@ -159,7 +159,6 @@ open class BaseActivity : AppCompatActivity() {
                             Objects.requireNonNull(System.getProperty("line.separator")).toRegex(),
                             ""
                         )
-                        Log.i("test", "Cert=$cert")
                     }
                 } else {
                     @SuppressLint("PackageManagerGetSignatures") val packageInfo =

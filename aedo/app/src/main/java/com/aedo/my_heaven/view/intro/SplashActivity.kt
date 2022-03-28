@@ -1,5 +1,6 @@
 package com.aedo.my_heaven.view.intro
 
+import android.app.AlertDialog
 import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.content.pm.PackageInfo
@@ -7,6 +8,7 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.*
 import android.util.Log
+import android.widget.TextView
 import android.widget.Toast
 import com.aedo.my_heaven.R
 import com.aedo.my_heaven.api.APIService
@@ -26,6 +28,12 @@ import com.aedo.my_heaven.util.root.RootUtil
 import com.aedo.my_heaven.util.style.TextStyle
 import com.aedo.my_heaven.view.login.LoginActivity
 import com.getkeepsafe.relinker.BuildConfig
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.play.core.appupdate.AppUpdateManager
+import com.google.android.play.core.appupdate.AppUpdateManagerFactory
+import com.google.android.play.core.install.model.AppUpdateType.IMMEDIATE
+import com.google.android.play.core.install.model.UpdateAvailability
+import kotlinx.android.synthetic.main.one_button_dialog.view.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -35,6 +43,7 @@ class SplashActivity : BaseActivity() {
     private lateinit var apiServices: APIService
     private var devpolicyversion: String? = null
     private var prefs = MyApplication.prefs
+    private var appUpdate : AppUpdateManager?=null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -213,70 +222,52 @@ class SplashActivity : BaseActivity() {
 
     // App 버전 체크
     private fun checkAppVersion() {
+        LLog.e("앱 버전체크")
         val versionCode: Policy? =
-            realm.where(Policy::class.java).equalTo("id", "APP_VER_ANDROID").findFirst()
+            realm.where(Policy::class.java).equalTo("id", "APP_VERSION").findFirst()
+        val androidVersion = com.aedo.my_heaven.BuildConfig.VERSION_NAME
         if (versionCode != null) {
-            val refrenceCode: Int = versionCode.value!!.toInt()
-            var currentCode: Int
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-                currentCode = try {
-                    packageManager.getPackageInfo(
-                        this.packageName,
-                        PackageManager.GET_ACTIVITIES
-                    ).longVersionCode
-                        .toInt()
-                } catch (e: PackageManager.NameNotFoundException) {
-                    -1
-                }
-            } else {
-                val manager = this.packageManager
-                val info: PackageInfo
-                try {
-                    info = manager.getPackageInfo(this.packageName, PackageManager.GET_ACTIVITIES)
-                    currentCode = info.versionCode
-                } catch (e: PackageManager.NameNotFoundException) {
-                    currentCode = -1
-                }
-            }
-            if (currentCode < refrenceCode) {
+            if (versionCode.equals(androidVersion)) {
+                Log.d(TAG,"Android Version SAME")
+        } else {
                 showAppUpdate()
                 return
             }
-        } else {
-            serverDialog()
-            return
         }
-        emergencyPopup()
+        else {
+            serverDialog()
+        }
     }
 
+    //앱 업데이트
     private fun showAppUpdate() {
-        val upadateDialog = CustomDialog(this)
-        upadateDialog.text(getString(R.string.need_update_app))
-            ?.positive(getString(R.string.update)) { v ->
-                val appPackageName =
-                    packageName
-                try {
-                    startActivity(
-                        Intent(
-                            Intent.ACTION_VIEW,
-                            Uri.parse("market://details?id=$appPackageName")
-                        )
-                    )
-                    finish()
-                } catch (anfe: ActivityNotFoundException) {
-                    startActivity(
-                        Intent(
-                            Intent.ACTION_VIEW,
-                            Uri.parse("https://play.google.com/store/apps/details?id=$appPackageName")
-                        )
-                    )
-                    finish()
-                }
+        LLog.e("앱 업데이트")
+        appUpdate = AppUpdateManagerFactory.create(this)
+        val appupdateInfoTask = appUpdate!!.appUpdateInfo
+        appupdateInfoTask.addOnSuccessListener { appUpdateInfo ->
+            if(appUpdateInfo.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE) {
+                appUpdate!!.startUpdateFlowForResult(appUpdateInfo,IMMEDIATE,this,Constant.APP_UPDATE)
             }
+            else {
+                emergencyPopup()
+            }
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == Constant.APP_UPDATE) {
+            MaterialAlertDialogBuilder(this).setPositiveButton("OK") {
+                _,_ ->
+            }
+                .setMessage(getString(R.string.need_update_app))
+                .show()
+        }
     }
 
     // 긴급공지 체크
     private fun emergencyPopup() {
+        LLog.e("긴급공지 체크")
         val popupTime: Policy? =
             realm.where(Policy::class.java).equalTo("id","POPUP_TIME_END").findFirst()
         val popupContent: Policy? =
@@ -310,5 +301,17 @@ class SplashActivity : BaseActivity() {
             moveAndFinishActivity(LoginActivity::class.java) },
             Constant.SPLASH_WAIT
         )
+    }
+
+    override fun onResume() {
+        super.onResume()
+        appUpdate?.appUpdateInfo?.addOnSuccessListener {
+                appUpdateInfo ->
+            if(appUpdateInfo.updateAvailability() == UpdateAvailability.DEVELOPER_TRIGGERED_UPDATE_IN_PROGRESS) {
+                appUpdate?.startUpdateFlowForResult(
+                    appUpdateInfo, IMMEDIATE,this,Constant.APP_UPDATE
+                )
+            }
+        }
     }
 }

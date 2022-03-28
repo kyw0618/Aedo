@@ -4,6 +4,7 @@ import com.aedo.my_heaven.model.coun.CounGet
 import com.aedo.my_heaven.model.coun.CounPost
 import com.aedo.my_heaven.model.list.Condole
 import com.aedo.my_heaven.model.list.ListDelete
+import com.aedo.my_heaven.model.list.ListImg
 import com.aedo.my_heaven.model.list.RecyclerList
 import com.aedo.my_heaven.model.notice.NoticeDetailModel
 import com.aedo.my_heaven.model.notice.NoticeModel
@@ -68,6 +69,11 @@ interface APIService {
     @GET("v1/obituary?name=")
     fun getCreateName(@Query("name")name: String?,
                       @Header("Accesstoken")accesstoken: String?) : Call<CreateName>
+
+    //부고 이미지 받기API
+    @GET("v1/obituary/image")
+    fun getImg(@Header("Accesstoken")accesstoken: String?) : Call<ListImg>
+
 
     // 나의부고 API
     @GET("v1/obituary/my")

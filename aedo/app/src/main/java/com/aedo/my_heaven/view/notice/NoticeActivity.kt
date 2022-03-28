@@ -20,6 +20,7 @@ import com.aedo.my_heaven.util.base.BaseActivity
 import com.aedo.my_heaven.util.base.MyApplication.Companion.prefs
 import com.aedo.my_heaven.util.log.LLog
 import com.aedo.my_heaven.view.main.MainActivity
+import com.aedo.my_heaven.view.main.detail.center.CenterActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -93,7 +94,7 @@ class NoticeActivity : BaseActivity() {
     }
 
     override fun onBackPressed() {
-        startActivity(Intent(this, MainActivity::class.java))
+        startActivity(Intent(this, CenterActivity::class.java))
         finish()
     }
 

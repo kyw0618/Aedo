@@ -45,11 +45,7 @@ import java.util.*
 class MakeActivity : BaseActivity() {
     private lateinit var mBinding: ActivityMakeBinding
     private lateinit var apiServices: APIService
-    private var imageUri : Uri?=null
     private var photoURI  : Uri?=null
-    private var albumURI : Uri?=null
-    private var mFileName : String?=null
-    private var mCurrentPhotoPath : String?=null
     private var mViewModel: MakeViewModel? = null
     private val fileUtil = FileUtil()
     private var files4: MutableList<Uri> = ArrayList()
@@ -174,98 +170,9 @@ class MakeActivity : BaseActivity() {
             }
             else -> {
                 dialog?.show()
-//                callCreateAPI()
                 testAPI(photoURI)
             }
         }
-    }
-
-    private fun callCreateAPI() {
-        val img = mBinding.imgPake.toString()
-        val resident = Resident(mBinding.spinnerText.text.toString(),
-            mBinding.makeTxName.text.toString(),mBinding.makeTxPhone.text.toString())
-
-        val place = Place(mBinding.spinnerInfoTextTt.text.toString())
-
-        val deceased = Deceased(mBinding.makeTxPersonName.text.toString(),
-            mBinding.makeTxAge.text.toString())
-
-        val eod = Eod(mBinding.eodText.text.toString(),mBinding.eodTextTime.text.toString())
-
-        val coffin =Coffin(mBinding.coffinText.text.toString(),mBinding.coffinTextTime.text.toString())
-
-        val dofp = Dofp(mBinding.dofpText.text.toString(),mBinding.dofpTextTime.text.toString())
-
-        val buried = mBinding.makeTxPlace.text.toString()
-
-        val word = mBinding.makeTxTex.text.toString()
-
-        val created =mBinding.tvMakeData.text.toString()
-
-        val data = CreateModel(img,resident,place,deceased,eod,coffin,dofp, buried, word, created)
-
-        LLog.e("만들기_첫번째 API")
-        apiServices.getCreate(prefs.myaccesstoken,data).enqueue(object : Callback<CreateModel> {
-            override fun onResponse(call: Call<CreateModel>, response: Response<CreateModel>) {
-                val result = response.body()
-                if(response.isSuccessful&& result!= null) {
-                    Log.d(TAG,"callCreateAPI API SUCCESS -> $result")
-                    moveList()
-                }
-                else {
-                    Log.d(TAG,"callCreateAPI API ERROR -> ${response.errorBody()}")
-                }
-            }
-
-            override fun onFailure(call: Call<CreateModel>, t: Throwable) {
-                Log.d(TAG,"callCreate Fail -> $t")
-//                otherAPI()
-                Toast.makeText(this@MakeActivity,"다시 시도해 주세요",Toast.LENGTH_SHORT).show()
-            }
-        })
-    }
-
-    private fun otherAPI() {
-        val img = mBinding.imgPake.toString()
-        val resident = Resident(mBinding.spinnerText.text.toString(),
-            mBinding.makeTxName.text.toString(),mBinding.makeTxPhone.text.toString())
-
-        val place = Place(mBinding.spinnerInfoTextTt.text.toString())
-
-        val deceased = Deceased(mBinding.makeTxPersonName.text.toString(),
-            mBinding.makeTxAge.text.toString())
-
-        val eod = Eod(mBinding.eodText.text.toString(),mBinding.eodTextTime.text.toString())
-
-        val coffin =Coffin(mBinding.coffinText.text.toString(),mBinding.coffinTextTime.text.toString())
-
-        val dofp = Dofp(mBinding.dofpText.text.toString(),mBinding.dofpTextTime.text.toString())
-
-        val buried = mBinding.makeTxPlace.text.toString()
-
-        val word = mBinding.makeTxTex.text.toString()
-
-        val created =mBinding.tvMakeData.text.toString()
-
-        val data = CreateModel(img,resident,place,deceased,eod,coffin,dofp, buried, word, created)
-        LLog.e("만들기_두번째 API")
-        apiServices.getCreate(prefs.newaccesstoken,data).enqueue(object : Callback<CreateModel> {
-            override fun onResponse(call: Call<CreateModel>, response: Response<CreateModel>) {
-                val result = response.body()
-                if(response.isSuccessful&& result!= null) {
-                    Log.d(TAG,"callCreateAPI Second API SUCCESS -> $result")
-                    moveList()
-                }
-                else {
-                    Log.d(TAG,"callCreateAPI Second API ERROR -> ${response.errorBody()}")
-                }
-            }
-
-            override fun onFailure(call: Call<CreateModel>, t: Throwable) {
-                Log.d(TAG,"callCreateAPI Second Fail -> $t")
-                Toast.makeText(this@MakeActivity,"다시 시도해 주세요",Toast.LENGTH_SHORT).show()
-            }
-        })
     }
 
     private fun testAPI(uri: Uri?) {

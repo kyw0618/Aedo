@@ -85,6 +85,8 @@ object  Constant {
     const val PICK_FROM_ALBUM = 1
     const val REQUEST_IMAGE_CROP = 2
 
+    const val APP_UPDATE = 700
+
 
     //Search
     const val SEARCH_RELATION_NAME = "SEARCH_RELATION_NAME"
