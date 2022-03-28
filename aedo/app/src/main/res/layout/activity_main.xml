@@ -128,18 +128,17 @@
                         android:layout_marginTop="10dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        android:onClick='@{activity::onReClick}'
-                        app:srcCompat="@drawable/breakdown" />
+                        android:onClick='@{activity::onCenterClick}'
+                        app:srcCompat="@drawable/main_center" />
 
                     <TextView
                         android:id="@+id/textView3"
                         android:layout_width="77dp"
                         android:layout_height="30dp"
                         android:gravity="center"
-                        android:layout_marginStart="2dp"
                         android:layout_marginTop="70dp"
                         android:fontFamily="@font/noto_sans_kr_bold"
-                        android:text="부고 만들기"
+                        android:text="부고 등록"
                         android:textColor="@color/white"
                         android:textSize="15dp"
                         app:layout_constraintStart_toStartOf="parent"
@@ -166,7 +165,7 @@
                         android:layout_height="30dp"
                         android:layout_marginTop="70dp"
                         android:layout_marginEnd="5dp"
-                        android:text="조문 내역"
+                        android:text="고객 센터"
                         android:textColor="@color/white"
                         android:textSize="15dp"
                         android:fontFamily="@font/noto_sans_kr_bold"
@@ -202,10 +201,10 @@
                         android:layout_height="55dp"
                         android:layout_marginTop="136dp"
                         android:layout_marginEnd="10dp"
-                        android:onClick='@{activity::onCenterClick}'
+                        android:onClick='@{activity::onSetting}'
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/main_center" />
+                        app:srcCompat="@drawable/main_setting" />
 
                     <TextView
                         android:id="@+id/textView6"
@@ -238,11 +237,11 @@
 
                     <TextView
                         android:id="@+id/textView8"
-                        android:layout_width="60dp"
-                        android:layout_height="28dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_marginTop="200dp"
-                        android:layout_marginEnd="7dp"
-                        android:text="고객 센터"
+                        android:layout_marginEnd="25dp"
+                        android:text="설정"
                         android:textColor="@color/white"
                         android:textSize="15dp"
                         android:fontFamily="@font/noto_sans_kr_bold"

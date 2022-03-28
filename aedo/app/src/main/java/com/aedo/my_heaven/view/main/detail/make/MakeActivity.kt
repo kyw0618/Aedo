@@ -179,32 +179,36 @@ class MakeActivity : BaseActivity() {
         val img: MutableList<MultipartBody.Part?> =  ArrayList()
 
         for (uri:Uri in files4) {
-            uri.path?.let { Log.i("uris", it) }
-            img.add(prepareFilePart("files", uri))
+            uri.path?.let {
+                Log.i("img", it)
+                prefs.imgurls = it
+
+            }
+            img.add(prepareFilePart("img", uri))
         }
 
         val resident = Resident(mBinding.spinnerText.text.toString(),
             mBinding.makeTxName.text.toString(),mBinding.makeTxPhone.text.toString())
-        val place = Place(mBinding.spinnerInfoTextTt.text.toString())
+        val place = mBinding.spinnerInfoTextTt.text.toString()
         val deceased = Deceased(mBinding.makeTxPersonName.text.toString(),
             mBinding.makeTxAge.text.toString())
-        val eod = Eod(mBinding.eodText.text.toString(),mBinding.eodTextTime.text.toString())
-        val coffin =Coffin(mBinding.coffinText.text.toString(),mBinding.coffinTextTime.text.toString())
-        val dofp = Dofp(mBinding.dofpText.text.toString(),mBinding.dofpTextTime.text.toString())
+        val eod = mBinding.eodText.text.toString()
+        val coffin = mBinding.coffinText.text.toString()
+        val dofp = mBinding.dofpText.text.toString()
         val buried = mBinding.makeTxPlace.text.toString()
         val word = mBinding.makeTxTex.text.toString()
         val created =mBinding.tvMakeData.text.toString()
         val requestHashMap : HashMap<String, RequestBody> = HashMap()
 
         requestHashMap["relation"] = resident.relation!!.toRequestBody("multipart/form-data".toMediaTypeOrNull())
-        requestHashMap["relationName"] = resident.name!!.toRequestBody("multipart/form-data".toMediaTypeOrNull())
-        requestHashMap["relationphone"] = resident.phone!!.toRequestBody("multipart/form-data".toMediaTypeOrNull())
+        requestHashMap["residentName"] = resident.name!!.toRequestBody("multipart/form-data".toMediaTypeOrNull())
+        requestHashMap["residentphone"] = resident.phone!!.toRequestBody("multipart/form-data".toMediaTypeOrNull())
         requestHashMap["deceasedName"] = deceased.name!!.toRequestBody("multipart/form-data".toMediaTypeOrNull())
         requestHashMap["deceasedAge"] = deceased.age!!.toRequestBody("multipart/form-data".toMediaTypeOrNull())
-        requestHashMap["place"] = place.place_name!!.toRequestBody("multipart/form-data".toMediaTypeOrNull())
-        requestHashMap["eod"] = eod.date!!.toRequestBody("multipart/form-data".toMediaTypeOrNull())
-        requestHashMap["coffin"] = coffin.date!!.toRequestBody("multipart/form-data".toMediaTypeOrNull())
-        requestHashMap["dofp"] = dofp.date!!.toRequestBody("multipart/form-data".toMediaTypeOrNull())
+        requestHashMap["place"] = place.toRequestBody("multipart/form-data".toMediaTypeOrNull())
+        requestHashMap["eod"] = eod.toRequestBody("multipart/form-data".toMediaTypeOrNull())
+        requestHashMap["coffin"] = coffin.toRequestBody("multipart/form-data".toMediaTypeOrNull())
+        requestHashMap["dofp"] = dofp.toRequestBody("multipart/form-data".toMediaTypeOrNull())
         requestHashMap["buried"] = buried.toRequestBody("multipart/form-data".toMediaTypeOrNull())
         requestHashMap["word"] = word.toRequestBody("multipart/form-data".toMediaTypeOrNull())
         requestHashMap["created"] =created.toRequestBody("multipart/form-data".toMediaTypeOrNull())
@@ -234,32 +238,36 @@ class MakeActivity : BaseActivity() {
         val img: MutableList<MultipartBody.Part?> =  ArrayList()
 
         for (uri:Uri in files4) {
-            uri.path?.let { Log.i("img", it) }
+            uri.path?.let {
+                Log.i("img", it)
+                prefs.imgurls = it
+            }
             img.add(prepareFilePart("img", uri))
+
         }
 
         val resident = Resident(mBinding.spinnerText.text.toString(),
             mBinding.makeTxName.text.toString(),mBinding.makeTxPhone.text.toString())
-        val place = Place(mBinding.spinnerInfoTextTt.text.toString())
+        val place = mBinding.spinnerInfoTextTt.text.toString()
         val deceased = Deceased(mBinding.makeTxPersonName.text.toString(),
             mBinding.makeTxAge.text.toString())
-        val eod = Eod(mBinding.eodText.text.toString(),mBinding.eodTextTime.text.toString())
-        val coffin =Coffin(mBinding.coffinText.text.toString(),mBinding.coffinTextTime.text.toString())
-        val dofp = Dofp(mBinding.dofpText.text.toString(),mBinding.dofpTextTime.text.toString())
+        val eod = mBinding.eodText.text.toString()
+        val coffin = mBinding.coffinText.text.toString()
+        val dofp = mBinding.dofpText.text.toString()
         val buried = mBinding.makeTxPlace.text.toString()
         val word = mBinding.makeTxTex.text.toString()
         val created =mBinding.tvMakeData.text.toString()
         val requestHashMap : HashMap<String, RequestBody> = HashMap()
 
         requestHashMap["relation"] = resident.relation!!.toRequestBody("multipart/form-data".toMediaTypeOrNull())
-        requestHashMap["relationName"] = resident.name!!.toRequestBody("multipart/form-data".toMediaTypeOrNull())
-        requestHashMap["relationphone"] = resident.phone!!.toRequestBody("multipart/form-data".toMediaTypeOrNull())
+        requestHashMap["residentName"] = resident.name!!.toRequestBody("multipart/form-data".toMediaTypeOrNull())
+        requestHashMap["residentphone"] = resident.phone!!.toRequestBody("multipart/form-data".toMediaTypeOrNull())
         requestHashMap["deceasedName"] = deceased.name!!.toRequestBody("multipart/form-data".toMediaTypeOrNull())
         requestHashMap["deceasedAge"] = deceased.age!!.toRequestBody("multipart/form-data".toMediaTypeOrNull())
-        requestHashMap["place"] = place.place_name!!.toRequestBody("multipart/form-data".toMediaTypeOrNull())
-        requestHashMap["eod"] = eod.date!!.toRequestBody("multipart/form-data".toMediaTypeOrNull())
-        requestHashMap["coffin"] = coffin.date!!.toRequestBody("multipart/form-data".toMediaTypeOrNull())
-        requestHashMap["dofp"] = dofp.date!!.toRequestBody("multipart/form-data".toMediaTypeOrNull())
+        requestHashMap["place"] = place.toRequestBody("multipart/form-data".toMediaTypeOrNull())
+        requestHashMap["eod"] = eod.toRequestBody("multipart/form-data".toMediaTypeOrNull())
+        requestHashMap["coffin"] = coffin.toRequestBody("multipart/form-data".toMediaTypeOrNull())
+        requestHashMap["dofp"] = dofp.toRequestBody("multipart/form-data".toMediaTypeOrNull())
         requestHashMap["buried"] = buried.toRequestBody("multipart/form-data".toMediaTypeOrNull())
         requestHashMap["word"] = word.toRequestBody("multipart/form-data".toMediaTypeOrNull())
         requestHashMap["created"] =created.toRequestBody("multipart/form-data".toMediaTypeOrNull())

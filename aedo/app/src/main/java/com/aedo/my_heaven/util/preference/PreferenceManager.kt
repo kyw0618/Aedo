@@ -5,6 +5,7 @@ import android.content.SharedPreferences
 import com.aedo.my_heaven.util.`object`.Constant
 import com.aedo.my_heaven.util.`object`.Constant.PREF_ACCESS_TOKEN
 import com.aedo.my_heaven.util.`object`.Constant.PREF_HASH_KEY
+import com.aedo.my_heaven.util.`object`.Constant.PREF_IMG_URI
 import com.aedo.my_heaven.util.`object`.Constant.PREF_KEY_APP_TOKEN
 import com.aedo.my_heaven.util.`object`.Constant.PREF_KEY_AUTH_TOKEN
 import com.aedo.my_heaven.util.`object`.Constant.PREF_KEY_ENCTYPT_IV
@@ -15,6 +16,7 @@ import com.aedo.my_heaven.util.`object`.Constant.PREF_KEY_TOKEN
 import com.aedo.my_heaven.util.`object`.Constant.PREF_LIST_ID
 import com.aedo.my_heaven.util.`object`.Constant.PREF_NEW_ACCESS_TOKEN
 import com.aedo.my_heaven.util.`object`.Constant.PREF_SMS
+import com.aedo.my_heaven.util.`object`.Constant.PREF_TEST_URI
 import com.securepreferences.SecurePreferences
 
 class PreferenceManager (context: Context) : PreferenceAdapter() {
@@ -129,10 +131,13 @@ class PreferenceManager (context: Context) : PreferenceAdapter() {
         get() = prefs.getString(PREF_LIST_ID,"")
         set(value) = prefs.edit().putString(PREF_LIST_ID, value).apply()
 
+    var imgurls : String?
+        get() = prefs.getString(PREF_IMG_URI,"")
+        set(value) = prefs.edit().putString(PREF_IMG_URI, value).apply()
 
-
-
-
+    var testurl : String?
+        get() = prefs.getString(PREF_TEST_URI,"")
+        set(value) = prefs.edit().putString(PREF_TEST_URI, value).apply()
 
     companion object {
         private var instance: PreferenceManager? = null

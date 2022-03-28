@@ -22,7 +22,6 @@ import com.aedo.my_heaven.util.log.LLog
 import com.aedo.my_heaven.util.log.LLog.TAG
 import com.aedo.my_heaven.view.main.MainActivity
 import com.kakao.sdk.common.KakaoSdk
-import kotlinx.android.synthetic.main.list_item.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

@@ -1,6 +1,8 @@
 package com.aedo.my_heaven.util.`object`
 
 import android.Manifest
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.os.Handler
 import android.os.Looper
 import com.naver.maps.geometry.LatLng
@@ -8,6 +10,9 @@ import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
 import java.io.File
+import java.io.IOException
+import java.net.MalformedURLException
+import java.net.URL
 import java.util.ArrayList
 
 object  Constant {
@@ -31,6 +36,8 @@ object  Constant {
     const val PREF_NEW_ACCESS_TOKEN = "PREF_NEW_ACCESS_TOKEN"
     const val PREF_HASH_KEY = "PREF_HASH_KEY"
     const val PREF_LIST_ID = "PREF_LIST_ID"
+    const val PREF_IMG_URI = "PREF_IMG_URI"
+    const val PREF_TEST_URI = "PREF_TEST_URI"
 
     const val PREF_KEY_ENC_KEY = "PREF_KEY_ENC_KEY"
     const val PREF_KEY_ENC_IV = "PREF_KEY_ENC_IV"
@@ -141,8 +148,5 @@ object  Constant {
             body = file.asRequestBody("video/*".toMediaType())
         )
     }
-
-
-
 
 }

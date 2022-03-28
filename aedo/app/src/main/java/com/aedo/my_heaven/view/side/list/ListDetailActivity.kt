@@ -6,6 +6,8 @@ import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.location.LocationManager
 import android.os.Bundle
 import android.provider.Settings
@@ -16,11 +18,13 @@ import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
+import com.aedo.my_heaven.R
 import com.aedo.my_heaven.api.APIService
 import com.aedo.my_heaven.api.ApiUtils
 import com.aedo.my_heaven.databinding.ActivityListdetailBinding
 import com.aedo.my_heaven.model.list.Condole
 import com.aedo.my_heaven.model.list.ListDelete
+import com.aedo.my_heaven.model.list.ListImg
 import com.aedo.my_heaven.model.list.Obituaray
 import com.aedo.my_heaven.model.restapi.base.Coordinates
 import com.aedo.my_heaven.util.`object`.Constant.BURIED
@@ -52,7 +56,11 @@ import kotlinx.android.synthetic.main.two_button_dialog.view.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import com.aedo.my_heaven.R
+import java.io.BufferedInputStream
+import java.io.IOException
+import java.net.HttpURLConnection
+import java.net.URL
+
 
 class ListDetailActivity : BaseActivity(),OnMapReadyCallback {
     private lateinit var mBinding: ActivityListdetailBinding
@@ -60,7 +68,7 @@ class ListDetailActivity : BaseActivity(),OnMapReadyCallback {
     private lateinit var datas : Obituaray
     private var locationSource: FusedLocationSource? = null
     private var mMap: NaverMap?=null
-
+    private var bitmap: Bitmap? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -71,6 +79,75 @@ class ListDetailActivity : BaseActivity(),OnMapReadyCallback {
         inStatusBar()
         inRecycler()
         initView()
+        initImg()
+    }
+
+    private fun initImg() {
+        LLog.e("이미지 API")
+        val imgname = "1648476114140_IMG_20220313_052329.jpg"
+        val vercall: Call<ListImg> = apiServices.getImg(imgname,prefs.myaccesstoken)
+        vercall.enqueue(object : Callback<ListImg> {
+            override fun onResponse(call: Call<ListImg>, response: Response<ListImg>) {
+                val result = response.body()
+                if (response.isSuccessful && result != null) {
+                    Log.d(LLog.TAG,"initImg response SUCESS -> $result")
+
+                }
+                else {
+                    Log.d(LLog.TAG,"initImg response ERROR -> $result")
+                    otherImgAPI()
+                }
+            }
+            override fun onFailure(call: Call<ListImg>, t: Throwable) {
+                Log.d(LLog.TAG, "initImg Fail -> $t")
+            }
+        })
+    }
+
+    fun getimg(imageURL: String?): Bitmap? {
+        var imgBitmap: Bitmap? = null
+        var conn: HttpURLConnection? = null
+        var bis: BufferedInputStream? = null
+        try {
+            val url = URL(imageURL)
+            conn = url.openConnection() as HttpURLConnection
+            conn.connect()
+            val nSize = conn.contentLength
+            bis = BufferedInputStream(conn.inputStream, nSize)
+            imgBitmap = BitmapFactory.decodeStream(bis)
+            mBinding.imgPerson.setImageBitmap(imgBitmap)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        } finally {
+            if (bis != null) {
+                try {
+                    bis.close()
+                } catch (e: IOException) {
+                }
+            }
+            conn?.disconnect()
+        }
+        return imgBitmap
+    }
+
+    private fun otherImgAPI() {
+        LLog.e("이미지_두번째 API")
+        val imgname = "1648476114140_IMG_20220313_052329.jpg"
+        val vercall: Call<ListImg> = apiServices.getImg(imgname,prefs.newaccesstoken)
+        vercall.enqueue(object : Callback<ListImg> {
+            override fun onResponse(call: Call<ListImg>, response: Response<ListImg>) {
+                val result = response.body()
+                if (response.isSuccessful && result != null) {
+                    Log.d(LLog.TAG,"initImg second response SUCCESS -> $result")
+                }
+                else {
+                    Log.d(LLog.TAG,"initImg second response ERROR -> ${response.errorBody()}")
+                }
+            }
+            override fun onFailure(call: Call<ListImg>, t: Throwable) {
+                Log.d(LLog.TAG, "initImg Fail -> $t")
+            }
+        })
     }
 
     override fun onResume() {

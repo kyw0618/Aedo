@@ -48,19 +48,19 @@ class SearchAdapter (private val searchlist : List<CreateSearch>, private val co
         val cl_search = itemView?.findViewById<ConstraintLayout>(R.id.cl_search)
 
         fun bind(list: CreateSearch?, context: Context) {
-            search_place?.text = list?.place?.place_name
+            search_place?.text = list?.place_name
             search_re_name?.text = list?.resident?.name
             search_de_name?.text = list?.deceased?.name
 
             cl_search?.setOnClickListener {
                 val intent = Intent(context, SearchDetailActivity::class.java)
                 intent.putExtra(SEARCH_RELATION_NAME,list?.resident?.name)
-                intent.putExtra(SEARCH_EOD_DATA,list?.eod?.date)
+                intent.putExtra(SEARCH_EOD_DATA,list?.eod)
                 intent.putExtra(SEARCH_DECEASED_NAME,list?.deceased?.name)
-                intent.putExtra(SEARCH_COFFIN_DATA,list?.coffin?.date)
-                intent.putExtra(SEARCH_DOFP_DATA,list?.dofp?.date)
+                intent.putExtra(SEARCH_COFFIN_DATA,list?.coffin)
+                intent.putExtra(SEARCH_DOFP_DATA,list?.dofp)
                 intent.putExtra(SEARCH_BURIED,list?.buried)
-                intent.putExtra(SEARCH_PLACE,list?.place?.place_name)
+                intent.putExtra(SEARCH_PLACE,list?.place_name)
                 ContextCompat.startActivity(itemView.context, intent, null)
             }
         }

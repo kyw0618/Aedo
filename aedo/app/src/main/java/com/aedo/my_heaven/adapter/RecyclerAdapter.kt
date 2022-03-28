@@ -75,21 +75,21 @@ class RecyclerAdapter(private val postList : List<Obituaray>, val context : Cont
 
         @SuppressLint("ResourceType")
         fun bind(itemPhoto : Obituaray?, context: Context){
-            tx_date?.text = itemPhoto?.eod?.date
-            tx_top_name?.text = itemPhoto?.deceased?.name
-            tx_body_name?.text = itemPhoto?.resident?.name
-            tx_body_info?.text=itemPhoto?.place?.place_name
+            tx_date?.text = itemPhoto?.eod.toString()
+            tx_top_name?.text = itemPhoto?.deceased?.name.toString()
+            tx_body_name?.text = itemPhoto?.resident?.name.toString()
+            tx_body_info?.text=itemPhoto?.place.toString()
             prefs.myListId = itemPhoto?.id
 
             btn_show?.setOnClickListener {
                 val intent = Intent(context, ListDetailActivity::class.java)
                 intent.putExtra(LLIST_ID,itemPhoto?.id.toString())
                 intent.putExtra(DECEASED_NAME,itemPhoto?.deceased?.name.toString())
-                intent.putExtra(EOD_DATE,itemPhoto?.eod?.date.toString())
+                intent.putExtra(EOD_DATE,itemPhoto?.eod.toString())
                 intent.putExtra(RESIDENT_NAME,itemPhoto?.resident?.name.toString())
-                intent.putExtra(PLACE_NAME,itemPhoto?.place?.place_name.toString())
-                intent.putExtra(COFFIN_DATE,itemPhoto?.coffin?.date.toString())
-                intent.putExtra(DOFP_DATE,itemPhoto?.dofp?.date.toString())
+                intent.putExtra(PLACE_NAME,itemPhoto?.place.toString())
+                intent.putExtra(COFFIN_DATE,itemPhoto?.coffin.toString())
+                intent.putExtra(DOFP_DATE,itemPhoto?.dofp.toString())
                 intent.putExtra(BURIED,itemPhoto?.buried.toString())
                 startActivity(itemView.context, intent, null)
             }
@@ -121,8 +121,8 @@ class RecyclerAdapter(private val postList : List<Obituaray>, val context : Cont
     private fun kakaoShare(itemPhoto: Obituaray?) {
         val defaultFeed = FeedTemplate(
             content = Content(
-                title = "故 ${itemPhoto?.deceased?.name.toString()}님 별세(${itemPhoto?.place?.place_name.toString()})",
-                description = "임종 : ${itemPhoto?.coffin?.date.toString()}",
+                title = "故 ${itemPhoto?.deceased?.name.toString()}님 별세(${itemPhoto?.place.toString()})",
+                description = "임종 : ${itemPhoto?.coffin?.toString()}",
                 imageUrl = "http://k.kakaocdn.net/dn/Q2iNx/btqgeRgV54P/VLdBs9cvyn8BJXB3o7N8UK/kakaolink40_original.png",
                 link = Link(
                     webUrl = "https://developers.kakao.com",
@@ -137,7 +137,6 @@ class RecyclerAdapter(private val postList : List<Obituaray>, val context : Cont
             else if (linkResult != null) {
                 context.startActivity(linkResult.intent)
 
-                // 카카오링크 보내기에 성공했지만 아래 경고 메시지가 존재할 경우 일부 컨텐츠가 정상 동작하지 않을 수 있습니다.
                 LLog.w("Warning Msg: ${linkResult.warningMsg}")
                 LLog.w("Argument Msg: ${linkResult.argumentMsg}")
             }

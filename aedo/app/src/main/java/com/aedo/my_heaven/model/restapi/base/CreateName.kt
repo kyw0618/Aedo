@@ -7,11 +7,11 @@ data class CreateName(
 data class CreateSearch(
     var id: String? = null,
     var resident : SResident?=null,
-    var place : SPlace?=null,
+    var place_name : String?=null,
     var deceased : SDeceased?=null,
-    var eod : SEod?=null,
-    var coffin : SCoffin?=null,
-    var dofp : SDofp?=null,
+    var eod : String?=null,
+    var coffin : String?=null,
+    var dofp : String?=null,
     var buried : String?=null,
     var word : String?=null
 )
@@ -23,28 +23,7 @@ data class SResident(
     var phone : String?=null
 )
 
-
-data class SPlace(
-    var place_name : String?=null,
-)
-
 data class SDeceased(
     var name: String?=null,
     var age: String?=null
-)
-
-data class SEod(
-    var date: String?=null,
-    var time: String?=null
-)
-
-data class SCoffin(
-    var date: String?=null,
-    var time: String?=null
-)
-
-
-data class SDofp(
-    var date: String?=null,
-    var time: String?=null
 )

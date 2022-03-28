@@ -14,6 +14,7 @@ import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.http.*
+import java.net.URI
 
 interface APIService {
     // 검증 API
@@ -72,7 +73,8 @@ interface APIService {
 
     //부고 이미지 받기API
     @GET("v1/obituary/image")
-    fun getImg(@Header("Accesstoken")accesstoken: String?) : Call<ListImg>
+    fun getImg(@Query("imgname") imgname: String?,
+               @Header("Accesstoken") accesstoken: String?) : Call<ListImg>
 
 
     // 나의부고 API

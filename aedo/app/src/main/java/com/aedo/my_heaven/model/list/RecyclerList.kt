@@ -5,46 +5,26 @@ data class RecyclerList(
 )
 data class Obituaray(
     var id: String? = null,
-    var resident : Resident?=null,
-    var place : Place?=null,
-    var deceased : Deceased?=null,
-    var eod : Eod?=null,
-    var coffin : Coffin?=null,
-    var dofp : Dofp?=null,
-    var buried : String?=null,
-    var word : String?=null
+    var imgName : String? = null,
+    var resident : Resident? = null,
+    var place : String? = null,
+    var deceased : Deceased? = null,
+    var eod : String? = null,
+    var coffin : String? = null,
+    var dofp : String? = null,
+    var buried : String? = null,
+    var word : String? = null
 )
 
 
 data class Resident(
-    var relation : String?=null,
-    var name : String?=null,
-    var phone : String?=null
-)
-
-
-data class Place(
-    var place_name : String?=null,
+    var relation : String? = null,
+    var name : String? = null,
+    var phone : String? = null
 )
 
 data class Deceased(
-    var name: String?=null,
-    var age: String?=null
-)
-
-data class Eod(
-    var date: String?=null,
-    var time: String?=null
-)
-
-data class Coffin(
-    var date: String?=null,
-    var time: String?=null
-)
-
-
-data class Dofp(
-    var date: String?=null,
-    var time: String?=null
+    var name: String? = null,
+    var age: String? = null
 )
 
