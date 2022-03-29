@@ -29,7 +29,7 @@
                 android:id="@+id/imageView8"
                 android:layout_width="19dp"
                 android:layout_height="14dp"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="30dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -45,6 +45,17 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/shop_top" />
+
+            <ImageView
+                android:id="@+id/imageView39"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginEnd="30dp"
+                android:onClick='@{activity::onShopTermClick}'
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/img_help" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

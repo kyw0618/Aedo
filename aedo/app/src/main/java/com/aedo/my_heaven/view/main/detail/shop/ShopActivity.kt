@@ -47,6 +47,10 @@ class ShopActivity : BaseActivity(){
         moveMain()
     }
 
+    fun onShopTermClick(v: View) {
+        moveShopTerm()
+    }
+
     override fun onBackPressed() {
         startActivity(Intent(this, MainActivity::class.java))
         finish()

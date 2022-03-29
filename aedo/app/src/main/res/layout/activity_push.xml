@@ -24,7 +24,7 @@
                 android:id="@+id/back_press"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="30dp"
                 android:src="@drawable/back_pressed"
                 android:onClick='@{activity::onBackPressed}'
                 app:layout_constraintBottom_toBottomOf="parent"

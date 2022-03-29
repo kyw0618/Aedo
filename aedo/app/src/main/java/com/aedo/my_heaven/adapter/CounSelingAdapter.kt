@@ -42,8 +42,8 @@ class CounSelingAdapter(private val counseling : List<CounList>,val context: Con
         val btn_go = itemView?.findViewById<ImageView>(R.id.coun_img_go)
 
         fun bind(list: CounList, context: Context){
-            coun_title?.text = list.title
-            coun_created?.text = list.created
+            coun_title?.text = list.title.toString()
+            coun_created?.text = list.created.toString()
 
             btn_go?.setOnClickListener {
                 val intent = Intent(context, CounSelingDetailActivity::class.java)

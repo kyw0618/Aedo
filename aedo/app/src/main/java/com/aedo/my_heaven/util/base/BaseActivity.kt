@@ -32,7 +32,9 @@ import com.aedo.my_heaven.view.main.detail.make.MakeActivity
 import com.aedo.my_heaven.view.main.detail.modify.ModifyActivity
 import com.aedo.my_heaven.view.main.detail.search.SearchActivity
 import com.aedo.my_heaven.view.main.detail.send.SendActivity
+import com.aedo.my_heaven.view.main.detail.shop.OrderActivity
 import com.aedo.my_heaven.view.main.detail.shop.ShopActivity
+import com.aedo.my_heaven.view.main.detail.shop.ShopTermActivity
 import com.aedo.my_heaven.view.notice.NoticeActivity
 import com.aedo.my_heaven.view.notice.NoticeDetailActivity
 import com.aedo.my_heaven.view.side.ThanksActivity
@@ -500,6 +502,20 @@ open class BaseActivity : AppCompatActivity() {
 
     internal fun moveTerms() {
         val intent = Intent(this, TermActivity::class.java)
+        startActivity(intent)
+        overridePendingTransition(0, 0)
+        finish()
+    }
+
+    internal fun moveOrder() {
+        val intent = Intent(this, OrderActivity::class.java)
+        startActivity(intent)
+        overridePendingTransition(0, 0)
+        finish()
+    }
+
+    internal fun moveShopTerm() {
+        val intent = Intent(this, ShopTermActivity::class.java)
         startActivity(intent)
         overridePendingTransition(0, 0)
         finish()

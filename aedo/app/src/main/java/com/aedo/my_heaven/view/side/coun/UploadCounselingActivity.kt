@@ -77,7 +77,7 @@ class UploadCounselingActivity : BaseActivity() {
         val name = mBinding.etName.text.toString()
         val title = mBinding.etConTitle.text.toString()
         val content = mBinding.etConDetail.text.toString()
-        val time = mBinding.tvTime.toString()
+        val time = mBinding.tvTime.text.toString()
         val data = CounPost(name, title,content,time)
 
         LLog.e("1:1문의 작성_첫번째 API")
@@ -105,7 +105,7 @@ class UploadCounselingActivity : BaseActivity() {
         val name = mBinding.etName.text.toString()
         val title = mBinding.etConTitle.text.toString()
         val content = mBinding.etConDetail.text.toString()
-        val time = mBinding.tvTime.toString()
+        val time = mBinding.tvTime.text.toString()
         val data = CounPost(name, title,content,time)
 
         LLog.e("1:1문의 작성_두번째 API")

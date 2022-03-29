@@ -9,12 +9,14 @@ import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.location.LocationManager
+import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
 import android.util.Log
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts.StartActivityForResult
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
@@ -46,6 +48,7 @@ import com.aedo.my_heaven.util.base.MyApplication
 import com.aedo.my_heaven.util.base.MyApplication.Companion.prefs
 import com.aedo.my_heaven.util.log.LLog
 import com.aedo.my_heaven.view.side.list.detail.MessageActivity
+import com.bumptech.glide.Glide
 import com.google.zxing.integration.android.IntentIntegrator
 import com.google.zxing.integration.android.IntentResult
 import com.naver.maps.geometry.LatLng
@@ -91,7 +94,8 @@ class ListDetailActivity : BaseActivity(),OnMapReadyCallback {
                 val result = response.body()
                 if (response.isSuccessful && result != null) {
                     Log.d(LLog.TAG,"initImg response SUCESS -> $result")
-
+                    Log.d(TAG,"IMG URL -> ${result.imgName}")
+                    getimg(result.imgName)
                 }
                 else {
                     Log.d(LLog.TAG,"initImg response ERROR -> $result")
@@ -105,29 +109,12 @@ class ListDetailActivity : BaseActivity(),OnMapReadyCallback {
     }
 
     fun getimg(imageURL: String?): Bitmap? {
-        var imgBitmap: Bitmap? = null
-        var conn: HttpURLConnection? = null
-        var bis: BufferedInputStream? = null
-        try {
-            val url = URL(imageURL)
-            conn = url.openConnection() as HttpURLConnection
-            conn.connect()
-            val nSize = conn.contentLength
-            bis = BufferedInputStream(conn.inputStream, nSize)
-            imgBitmap = BitmapFactory.decodeStream(bis)
-            mBinding.imgPerson.setImageBitmap(imgBitmap)
-        } catch (e: Exception) {
-            e.printStackTrace()
-        } finally {
-            if (bis != null) {
-                try {
-                    bis.close()
-                } catch (e: IOException) {
-                }
-            }
-            conn?.disconnect()
-        }
-        return imgBitmap
+        Glide.with(this)
+            .load(imageURL)
+            .override(400, 400)
+            .placeholder(R.drawable.loading)
+            .into(mBinding.imgPerson)
+        return null
     }
 
     private fun otherImgAPI() {
@@ -139,6 +126,10 @@ class ListDetailActivity : BaseActivity(),OnMapReadyCallback {
                 val result = response.body()
                 if (response.isSuccessful && result != null) {
                     Log.d(LLog.TAG,"initImg second response SUCCESS -> $result")
+                    Log.d(TAG,"IMG URL -> ${result.imgName}")
+                    Log.d(TAG,"IMG URL -> ${result.imgName.toString()}")
+                    getimg(result.imgName)
+
                 }
                 else {
                     Log.d(LLog.TAG,"initImg second response ERROR -> ${response.errorBody()}")
@@ -410,10 +401,6 @@ class ListDetailActivity : BaseActivity(),OnMapReadyCallback {
 
     fun onDataSendClick(v: View) {
         putID()
-    }
-
-    fun onWaringClick(v: View) {
-        moveWaring()
     }
 
     fun onMainClick(v: View) {

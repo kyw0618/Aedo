@@ -28,6 +28,7 @@ import com.aedo.my_heaven.util.file.FileUtil
 import com.aedo.my_heaven.util.log.LLog
 import com.aedo.my_heaven.util.log.LLog.TAG
 import com.aedo.my_heaven.view.main.MainActivity
+import com.bumptech.glide.Glide
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -181,8 +182,6 @@ class MakeActivity : BaseActivity() {
         for (uri:Uri in files4) {
             uri.path?.let {
                 Log.i("img", it)
-                prefs.imgurls = it
-
             }
             img.add(prepareFilePart("img", uri))
         }
@@ -240,7 +239,6 @@ class MakeActivity : BaseActivity() {
         for (uri:Uri in files4) {
             uri.path?.let {
                 Log.i("img", it)
-                prefs.imgurls = it
             }
             img.add(prepareFilePart("img", uri))
 
@@ -390,12 +388,14 @@ class MakeActivity : BaseActivity() {
                 try {
                     val img = data?.data
                     mBinding.imgPake.setImageURI(img)
+                    Log.d(TAG,"GET IMG -> $img")
                     val imgPath = img.let {
                         fileUtil.getPath(this@MakeActivity, it)
                     }
                     files4.add(Uri.parse(imgPath))
                     if (imgPath != null) {
                         Log.e("img", imgPath)
+                        Log.d(TAG, "img -> $imgPath")
                     }
                 }
                 catch (e:Exception) {

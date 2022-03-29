@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">애도</string>
     <string name="client_id">wdi9z6cfek</string>
     <string name="ok">확인</string>
@@ -224,6 +224,17 @@
         <item>새미소요양병원장례식장</item>
     </string-array>
 
+    <string-array name="spinner_text">
+        <item>리본 문구를 입력해 주세요</item>
+        <item>삼가 故人의 冥福을 빕니다</item>
+        <item>삼가 고인의 명복을 빕니다</item>
+        <item>謹 弔</item>
+        <item>極樂往生發源</item>
+        <item>극락왕생발원</item>
+        <item>천국에서 편히 쉬소서</item>
+        <item>하나님의 위로가 함께 하시길 빕니다</item>
+    </string-array>
+
     <string-array name="spinner_hour">
         <item>01</item>
         <item>02</item>
@@ -362,6 +373,17 @@
     <string name="shop_second_third">오브제 2단, 장구 2단</string>
     <string name="change_flower_first">1줄 리본 교체</string>
     <string name="change_flower_second">2줄 리본 교체</string>
+
+    <string name="flower_first">국화, 글라디올러스, 거베라, 백합, 아이리스, 안개꽃,\n장미, 튤립, 프리지아, 카네이션, 칼라 : \n기타-국내산 또는 수입산</string>
+    <string name="flower_second">원칙적으로는 이미지를 기준으로 제작되나 \n지역 및 계절에 따라 (화환의 모양. 크기, 꽃의 수량 \n및 종류가) 다를 수 있습니다</string>
+    <string name="flower_third">지역 및 꽃 수급에 따라 생화와 조화가 섞여서 \n제작될 수 있으며 지역별로 꽃을 제작하는 화원사는 \n각각의 스타일로 상품을 제작하여 서비스 상의 \n대표 이미지와 동일하게 제작되지 \n않을 수 있음을 안내 드립니다.</string>
+    <string name="flower_four" tools:ignore="TypographyDashes">온라인 : 24시간 자동주문\n전화주문 : 08시 ~ 20시 00분\n수정사항이 있으신 경우 결제완료 후 30분이내 \n고객센터로 접수하여 주시기 바랍니다.</string>
+    <string name="flower_five">국내 전 지역 3시간 안에 배송이 가능하나 \n도서 산간지역이나 시군 소재지에서 떨어진 \n일부 지역의 경우 배송이 지연될 수 있습니다\n당일 : 당일 19시 이전 결제완료 상품은 당일 배송완료\n(당일 3시간이내 배송이 가능하나 \n도로 교통상황등에 따라 지연될 수 있습니다.)\n익일 : 당일 19시 이후 결제완료 상품은 \n익일 오전 9시부터 순차배송 •\n일부지역은 상기 시간 이전에 배송이 마감될 수 있습니다.\n(이 경우 익일 오전에 배송이 진행되며, \n고객센터에서 별도 안내 드립니다.)</string>
+    <string name="flower_six">교환 안내 : 배송완료 후 불량, 파손된 상품이 \n배송되었을 경우 교환 또는 \n상품회수 후 환불이 가능합니다.\n(회수될 상품의 훼손 또는 부자재 누락의 경우 환불 불가)\n교환이나 주문취소 요청 시 \n반드시 고객센터로 전화해 주셔야 합니다.</string>
+    <string name="flower_seven">환불 안내 : 결제완료 후 30분이내 요청 시 배송시작 \n전인 경우 결제취소 또는 환불이 가능합니다.\n상품이 품절되었거나 기타 사유로 인해 \n배송이 불가능한 경우(지정하신 환불계좌 확인 후 익일) \n환불해 드립니다.</string>
+    <string name="flower_eight">환불 불가 안내 :고객님의 실수로 배송정보 기재 \n및 리본문구 오류, 부재 등으로 인한 \n반품 및 환불은 불가능합니다.\n고객님의 배송지 정보기재 오류 인해 배송지 변경 시 \n제작비 및 배송비가 추가될 수 있으며 \n수취인의 수취거부시는 교환 및 취소가 불가능합니다.\n배송된 화환은 따로 수거해드리지 않습니다.</string>
+    <string name="flower_nine">결제 후 20분 이내 리본 문구와 정보 수정이 \n필요하신 경우 고객센터에서 즉시 변경해 드립니다</string>
+    <string name="flower_ten">결제 후 20분이 경과 된 이 후, 정보 변경을 요청하신 경우 \n리본 문구 출력 등이 완료 되어 수정 및 변경이 불가 합니다. \n(재 수정 요청 시 별도 비용 발생됩니다)</string>
 
 
 </resources>

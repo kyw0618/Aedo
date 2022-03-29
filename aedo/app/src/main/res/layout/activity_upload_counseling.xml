@@ -28,7 +28,7 @@
                 android:id="@+id/imageView8"
                 android:layout_width="19dp"
                 android:layout_height="14dp"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="30dp"
                 android:onClick='@{activity::onBackClick}'
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -53,7 +53,7 @@
                 android:id="@+id/detail_home"
                 android:layout_width="18dp"
                 android:layout_height="18dp"
-                android:layout_marginEnd="15dp"
+                android:layout_marginEnd="30dp"
                 android:onClick='@{activity::onMainClick}'
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -243,68 +243,6 @@
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/tv_con_detail"
                             tools:text="" />
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_margin="20dp">
-
-                        <TextView
-                            android:id="@+id/tv_upload_photo"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/gyeonggititle_bold_title"
-                            android:text="사진 첨부"
-                            android:textColor="@color/black"
-                            android:textSize="16dp"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-
-                        <ImageView
-                            android:id="@+id/img_pick_album_one"
-                            android:layout_width="80dp"
-                            android:layout_height="80dp"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginStart="10dp"
-                            android:src="@drawable/pick_album_white"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/tv_upload_photo" />
-
-                        <ImageView
-                            android:id="@+id/img_pick_album_two"
-                            android:layout_width="80dp"
-                            android:layout_height="80dp"
-                            android:layout_marginStart="10dp"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintStart_toEndOf="@+id/img_pick_album_one"
-                            app:srcCompat="@drawable/pick_album_white" />
-
-                        <ImageView
-                            android:id="@+id/img_pick_album_three"
-                            android:layout_width="80dp"
-                            android:layout_height="80dp"
-                            android:layout_marginStart="10dp"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintStart_toEndOf="@+id/img_pick_album_two"
-                            app:srcCompat="@drawable/pick_album_white" />
-
-                        <ImageView
-                            android:id="@+id/img_pick_album_four"
-                            android:layout_width="80dp"
-                            android:layout_height="80dp"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toEndOf="@+id/img_pick_album_three"
-                            app:srcCompat="@drawable/pick_album_white" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </LinearLayout>

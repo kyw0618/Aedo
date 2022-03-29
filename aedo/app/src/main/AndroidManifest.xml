@@ -33,6 +33,9 @@
         android:usesCleartextTraffic="false"
         tools:targetApi="n">
         <activity
+            android:name=".view.main.detail.shop.ShopTermActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.main.detail.shop.OrderActivity"
             android:exported="false" />
         <activity
@@ -73,7 +76,7 @@
             android:exported="false" />
         <activity
             android:name=".view.side.list.ListDetailActivity"
-            android:exported="false"></activity>
+            android:exported="false" />
         <activity
             android:name=".view.notice.NoticeActivity"
             android:exported="false" />

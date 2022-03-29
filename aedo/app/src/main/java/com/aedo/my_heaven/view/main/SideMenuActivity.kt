@@ -1,6 +1,7 @@
 package com.aedo.my_heaven.view.main
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -104,7 +105,8 @@ class SideMenuActivity : BaseActivity() {
     }
 
     fun onKAKAOClick(v: View) {
-
+        val intent = Intent(Intent.ACTION_VIEW, Uri.parse("http://pf.kakao.com/_Xuvxeb/chat"))
+        startActivity(intent)
     }
 
     fun onCounClick(v: View) {

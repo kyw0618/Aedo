@@ -39,7 +39,7 @@ class SearchActivity : BaseActivity() {
 
     private fun initSearchAPI() {
         LLog.e("검색_첫번째 API")
-        val search = mBinding.etSearch.text.toString().trim()
+        val search = mBinding.etSearch.text.toString()
         val vercall: Call<CreateName> = apiServices.getCreateName(search,prefs.myaccesstoken)
         vercall.enqueue(object : Callback<CreateName> {
             override fun onResponse(call: Call<CreateName>, response: Response<CreateName>) {
@@ -61,22 +61,22 @@ class SearchActivity : BaseActivity() {
 
     private fun otherAPI() {
         LLog.e("검색_두번째 API")
-        val search = mBinding.etSearch.text.toString().trim()
+        val search = mBinding.etSearch.text.toString()
         val vercall: Call<CreateName> = apiServices.getCreateName(search,prefs.newaccesstoken)
         vercall.enqueue(object : Callback<CreateName> {
             override fun onResponse(call: Call<CreateName>, response: Response<CreateName>) {
                 val result = response.body()
                 if (response.isSuccessful && result != null) {
-                    Log.d(LLog.TAG,"NoticeModel response SUCCESS -> $result")
+                    Log.d(LLog.TAG,"NoticeModel Second response SUCCESS -> $result")
                     setAdapter(result.result)
 
                 }
                 else {
-                    Log.d(LLog.TAG,"NoticeModel response ERROR -> $result")
+                    Log.d(LLog.TAG,"NoticeModel Second response ERROR -> $result")
                 }
             }
             override fun onFailure(call: Call<CreateName>, t: Throwable) {
-                Log.d(LLog.TAG, "NoticeModel Fail -> $t")
+                Log.d(LLog.TAG, "NoticeModel Second Fail -> $t")
             }
         })
     }

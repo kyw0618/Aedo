@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.aedo.my_heaven.R
@@ -41,12 +42,13 @@ class NoticeAdapter(private val noticeList : List<Announcement>,private val cont
         val notice_title = itemView?.findViewById<TextView>(R.id.tv_notice_item_title)
         val notice_timestamp = itemView?.findViewById<TextView>(R.id.tv_notice_item_timestamp)
         val btn_go = itemView?.findViewById<ImageView>(R.id.notice_img_go)
+        val cl_body = itemView?.findViewById<ConstraintLayout>(R.id.cl_notice)
 
         fun bind(list: Announcement?,context: Context) {
             notice_title?.text = list?.title
             notice_timestamp?.text = list?.created
 
-            btn_go?.setOnClickListener {
+            cl_body?.setOnClickListener {
                 val intent = Intent(context, NoticeDetailActivity::class.java)
                 intent.putExtra(NOTICE_TITLE,list?.title.toString())
                 intent.putExtra(NOTICE_CONTENT, list?.content.toString())

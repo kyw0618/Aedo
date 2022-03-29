@@ -33,7 +33,7 @@ class NoticeActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_notice)
-        mBinding.activity = this@NoticeActivity
+        mBinding.activity = this
         apiServices = ApiUtils.apiService
         inStatusBar()
         inNoticeAPI()
@@ -47,7 +47,7 @@ class NoticeActivity : BaseActivity() {
                 val result = response.body()
                 if (response.isSuccessful && result != null) {
                     Log.d(LLog.TAG,"NoticeModel response SUCCESS -> $result")
-                    setAdapter(result.result!!)
+                    setAdapter(result.announcement!!)
                 }
                 else {
                     Log.d(LLog.TAG,"NoticeModel response ERROR -> $result")
@@ -68,7 +68,7 @@ class NoticeActivity : BaseActivity() {
                 val result = response.body()
                 if (response.isSuccessful && result != null) {
                     Log.d(LLog.TAG,"NoticeModel Second response SUCCESS -> $result")
-                    setAdapter(result.result!!)
+                    setAdapter(result.announcement!!)
                 }
                 else {
                     Log.d(LLog.TAG,"NoticeModel Second response ERROR -> $result")

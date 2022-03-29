@@ -1,7 +1,7 @@
 package com.aedo.my_heaven.model.notice
 
 data class NoticeModel(
-    val result : List<Announcement>? = null
+    val announcement : List<Announcement>? = null
 )
 
 data class Announcement(
