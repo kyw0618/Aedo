@@ -1,10 +1,12 @@
 package com.aedo.my_heaven.view.main.detail.make
 
+import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
@@ -14,6 +16,8 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import com.aedo.my_heaven.R
 import com.aedo.my_heaven.api.APIService
@@ -21,6 +25,7 @@ import com.aedo.my_heaven.api.ApiUtils
 import com.aedo.my_heaven.databinding.ActivityMakeBinding
 import com.aedo.my_heaven.model.restapi.base.*
 import com.aedo.my_heaven.util.`object`.Constant.ALBUM_REQUEST_CODE
+import com.aedo.my_heaven.util.`object`.Constant.ONE_PERMISSION_REQUEST_CODE
 import com.aedo.my_heaven.util.base.BaseActivity
 import com.aedo.my_heaven.util.base.MyApplication
 import com.aedo.my_heaven.util.base.MyApplication.Companion.prefs
@@ -46,11 +51,10 @@ import java.util.*
 class MakeActivity : BaseActivity() {
     private lateinit var mBinding: ActivityMakeBinding
     private lateinit var apiServices: APIService
-    private var photoURI  : Uri?=null
+    private var photoURI  : Uri? = null
     private var mViewModel: MakeViewModel? = null
     private val fileUtil = FileUtil()
     private var files4: MutableList<Uri> = ArrayList()
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -171,18 +175,16 @@ class MakeActivity : BaseActivity() {
             }
             else -> {
                 dialog?.show()
-                testAPI(photoURI)
+                testAPI()
             }
         }
     }
 
-    private fun testAPI(uri: Uri?) {
+    private fun testAPI() {
         val img: MutableList<MultipartBody.Part?> =  ArrayList()
 
         for (uri:Uri in files4) {
-            uri.path?.let {
-                Log.i("img", it)
-            }
+            uri.path?.let { Log.i("img", it) }
             img.add(prepareFilePart("img", uri))
         }
 
@@ -212,7 +214,7 @@ class MakeActivity : BaseActivity() {
         requestHashMap["word"] = word.toRequestBody("multipart/form-data".toMediaTypeOrNull())
         requestHashMap["created"] =created.toRequestBody("multipart/form-data".toMediaTypeOrNull())
 
-        LLog.e("만들기_두번째 API")
+        LLog.e("만들기 API")
         apiServices.getImgCreate(prefs.myaccesstoken,img,requestHashMap).enqueue(object : Callback<CreateModel> {
             override fun onResponse(call: Call<CreateModel>, response: Response<CreateModel>) {
                 val result = response.body()
@@ -222,7 +224,7 @@ class MakeActivity : BaseActivity() {
                 }
                 else {
                     Log.d(TAG,"testAPI  API ERROR -> ${response.errorBody()}")
-                    testOtherAPI(photoURI)
+                    testOtherAPI()
                 }
             }
 
@@ -233,15 +235,12 @@ class MakeActivity : BaseActivity() {
         })
     }
 
-    private fun testOtherAPI(uri: Uri?) {
+    private fun testOtherAPI() {
         val img: MutableList<MultipartBody.Part?> =  ArrayList()
 
         for (uri:Uri in files4) {
-            uri.path?.let {
-                Log.i("img", it)
-            }
+            uri.path?.let { Log.i("img", it) }
             img.add(prepareFilePart("img", uri))
-
         }
 
         val resident = Resident(mBinding.spinnerText.text.toString(),
@@ -291,7 +290,7 @@ class MakeActivity : BaseActivity() {
     }
 
     private fun prepareFilePart(partName: String, fileUri: Uri): MultipartBody.Part {
-        val file = File(fileUri.path)
+        val file = File(fileUri.path!!)
         Log.i("here is error", file.absolutePath)
         val requestFile: RequestBody = file
             .asRequestBody("image/*".toMediaTypeOrNull())
@@ -372,11 +371,40 @@ class MakeActivity : BaseActivity() {
     }
 
     fun onPickClick(v: View) {
-        getAlbum()
+        requestPermission()
+    }
+
+    private fun requestPermission() {
+        if (ContextCompat.checkSelfPermission(
+                this,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
+                ONE_PERMISSION_REQUEST_CODE
+            )
+        }
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<String?>,
+        grantResults: IntArray
+    ) {
+        when (requestCode) {
+            ONE_PERMISSION_REQUEST_CODE -> if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                getAlbum()
+            } else {
+                Toast.makeText(this, "Permission denied", Toast.LENGTH_SHORT).show()
+            }
+            else -> super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        }
     }
 
     private fun getAlbum() {
-        val intent = Intent(Intent.ACTION_GET_CONTENT)
+        val intent = Intent(Intent.ACTION_PICK,MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
         intent.type = "image/*"
         startActivityForResult(intent,ALBUM_REQUEST_CODE)
     }
@@ -384,21 +412,19 @@ class MakeActivity : BaseActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if( resultCode == Activity.RESULT_OK) {
-            if( requestCode == ALBUM_REQUEST_CODE) {
+            if (requestCode == ALBUM_REQUEST_CODE) {
                 try {
                     val img = data?.data
                     mBinding.imgPake.setImageURI(img)
-                    Log.d(TAG,"GET IMG -> $img")
                     val imgPath = img.let {
-                        fileUtil.getPath(this@MakeActivity, it)
+                        fileUtil.getPath(this@MakeActivity, it!!)
                     }
+
                     files4.add(Uri.parse(imgPath))
                     if (imgPath != null) {
-                        Log.e("img", imgPath)
-                        Log.d(TAG, "img -> $imgPath")
+                        Log.e("image", imgPath)
                     }
-                }
-                catch (e:Exception) {
+                } catch (e: Exception) {
                     e.printStackTrace()
                 }
             }
