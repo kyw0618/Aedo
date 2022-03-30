@@ -10,6 +10,7 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.location.LocationManager
 import android.net.Uri
+import android.net.Uri.parse
 import android.os.Bundle
 import android.provider.Settings
 import android.util.Log
@@ -19,6 +20,7 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts.StartActivityForResult
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.net.toUri
 import androidx.databinding.DataBindingUtil
 import com.aedo.my_heaven.R
 import com.aedo.my_heaven.api.APIService
@@ -46,6 +48,7 @@ import com.aedo.my_heaven.util.alert.LoadingDialog
 import com.aedo.my_heaven.util.base.BaseActivity
 import com.aedo.my_heaven.util.base.MyApplication
 import com.aedo.my_heaven.util.base.MyApplication.Companion.prefs
+import com.aedo.my_heaven.util.dialog.ImgDialog
 import com.aedo.my_heaven.util.log.LLog
 import com.aedo.my_heaven.view.side.list.detail.MessageActivity
 import com.bumptech.glide.Glide
@@ -61,7 +64,9 @@ import retrofit2.Callback
 import retrofit2.Response
 import java.io.BufferedInputStream
 import java.io.IOException
+import java.net.HttpCookie.parse
 import java.net.HttpURLConnection
+import java.net.URI
 import java.net.URL
 
 
@@ -109,8 +114,9 @@ class ListDetailActivity : BaseActivity(),OnMapReadyCallback {
     }
 
     fun getimg(imageURL: String?): Bitmap? {
+        val uri = imageURL?.toUri()
         Glide.with(this)
-            .load(imageURL)
+            .load(uri)
             .override(400, 400)
             .placeholder(R.drawable.loading)
             .into(mBinding.imgPerson)
@@ -366,6 +372,11 @@ class ListDetailActivity : BaseActivity(),OnMapReadyCallback {
         mBinding.txDetailCoffin.text = coffin.toString()
         mBinding.txDetailDofp.text = dofp.toString()
         mBinding.txBuried.text = buried.toString()
+
+        mBinding.imgPerson.setOnClickListener {
+            val dialog = ImgDialog()
+            dialog.show(supportFragmentManager,"ImgDialog")
+        }
     }
 
     override fun onMapReady(naverMap: NaverMap) {

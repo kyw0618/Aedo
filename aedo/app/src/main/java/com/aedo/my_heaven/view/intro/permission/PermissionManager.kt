@@ -30,30 +30,6 @@ object PermissionManager {
         return allGranted
     }
 
-    fun requestPermission(context: Context?, permissionCode: String) {
-        ActivityCompat.requestPermissions(
-            (context as Activity?)!!,
-            arrayOf(permissionCode),
-            Constant.ONE_PERMISSION_REQUEST_CODE
-        )
-    }
-
-    fun requestPermissions(context: Context?, permissionCode: Array<String?>?) {
-        ActivityCompat.requestPermissions(
-            (context as Activity?)!!,
-            permissionCode!!,
-            Constant.ONE_PERMISSION_REQUEST_CODE
-        )
-    }
-
-    fun requestMultiPermission(context: Context?, permissionCodes: Array<String?>?) {
-        ActivityCompat.requestPermissions(
-            (context as Activity?)!!,
-            permissionCodes!!,
-            Constant.ONE_PERMISSION_REQUEST_CODE
-        )
-    }
-
     fun requestAllPermissions(context: Context?) {
         val arraySize: Int = Constant.MUTILE_PERMISSION.size
         ActivityCompat.requestPermissions(

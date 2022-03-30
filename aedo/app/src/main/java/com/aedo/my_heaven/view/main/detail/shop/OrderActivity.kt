@@ -2,15 +2,26 @@ package com.aedo.my_heaven.view.main.detail.shop
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.aedo.my_heaven.R
 import com.aedo.my_heaven.api.APIService
 import com.aedo.my_heaven.api.ApiUtils
 import com.aedo.my_heaven.databinding.ActivityOrderBinding
+import com.aedo.my_heaven.model.coun.CounPost
+import com.aedo.my_heaven.model.restapi.base.CreateModel
+import com.aedo.my_heaven.model.shop.*
 import com.aedo.my_heaven.util.base.BaseActivity
+import com.aedo.my_heaven.util.base.MyApplication
+import com.aedo.my_heaven.util.base.MyApplication.Companion.prefs
+import com.aedo.my_heaven.util.log.LLog
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.time.LocalDate
 
 class OrderActivity : BaseActivity() {
@@ -83,7 +94,90 @@ class OrderActivity : BaseActivity() {
     }
 
     fun onOkClick(v: View) {
+        val place_number =  mBinding.makeTxPhone.text.toString()
+        val receiver_name = mBinding.orderSetPerson.text.toString()
+        val receiver_phone = mBinding.orderSetPhone.text.toString()
+        val send_name = mBinding.orderSendPerson.text.toString()
+        val send_phone = mBinding.orderSendPhone.text.toString()
+        val flower_name = mBinding.orderSeondFlower.text.toString()
 
+        when {
+            place_number.isEmpty() -> {
+                mBinding.makeTxPhone.error = "미입력"
+            }
+            receiver_name.isEmpty() -> {
+                mBinding.orderSetPerson.error = "미입력"
+            }
+            receiver_phone.isEmpty() -> {
+                mBinding.orderSetPhone.error = "미입력"
+            }
+            send_name.isEmpty() -> {
+                mBinding.orderSendPerson.error = "미입력"
+            }
+            send_phone.isEmpty() -> {
+                mBinding.orderSendPhone.error = "미입력력"
+           }
+            flower_name.isEmpty() -> {
+                mBinding.orderSeondFlower.error = "미입력"
+            }
+            else -> {
+                dialog?.show()
+                orderAPI()
+            }
+        }
+    }
+
+    private fun orderAPI() {
+        val place = Place(mBinding.spinnerInfoTextTt.text.toString(),mBinding.makeTxPhone.text.toString())
+        val receiver = Receiver()
+        val sender = Sender()
+        val word = Word()
+        val data = Orders(place, receiver, sender, word)
+
+        LLog.e("주문 API")
+        apiServices.getOrder(prefs.myaccesstoken,data).enqueue(object :
+            Callback<ShopModel> {
+            override fun onResponse(call: Call<ShopModel>, response: Response<ShopModel>) {
+                val result = response.body()
+                if(response.isSuccessful&& result!= null) {
+                    Log.d(LLog.TAG,"ShopModel  API SUCCESS -> $result")
+                }
+                else {
+                    Log.d(LLog.TAG,"ShopModel  API ERROR -> ${response.errorBody()}")
+                    otherAPI()
+                }
+            }
+
+            override fun onFailure(call: Call<ShopModel>, t: Throwable) {
+                Log.d(LLog.TAG,"ShopModel  Fail -> $t")
+            }
+        })
+    }
+
+    private fun otherAPI() {
+        val place = Place(mBinding.spinnerInfoTextTt.text.toString(),mBinding.makeTxPhone.text.toString())
+        val receiver = Receiver()
+        val sender = Sender()
+        val word = Word()
+        val data = Orders(place, receiver, sender, word)
+
+        LLog.e("주문_두번째 API")
+        apiServices.getOrder(prefs.newaccesstoken,data).enqueue(object :
+            Callback<ShopModel> {
+            override fun onResponse(call: Call<ShopModel>, response: Response<ShopModel>) {
+                val result = response.body()
+                if(response.isSuccessful&& result!= null) {
+                    Log.d(LLog.TAG,"ShopModel Second API SUCCESS -> $result")
+                }
+                else {
+                    Log.d(LLog.TAG,"ShopModel Second API ERROR -> ${response.errorBody()}")
+                }
+            }
+
+            override fun onFailure(call: Call<ShopModel>, t: Throwable) {
+                Log.d(LLog.TAG,"ShopModel Second Fail -> $t")
+            }
+        })
     }
 
     fun onShopTermClick(v: View) {

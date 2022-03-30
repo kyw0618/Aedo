@@ -1,5 +1,6 @@
 package com.aedo.my_heaven.util.file
 
+import android.annotation.SuppressLint
 import android.content.ContentUris
 import android.content.Context
 import android.database.Cursor
@@ -16,15 +17,17 @@ import java.io.File
 
 
 class FileUtil {
-    val AUTHORITY = "com.aedo.my_heaven"
+    val AUTHORITY = "com.ianhanniballake.localstorage.documents"
     val MIME_TYPE_AUDIO = "audio/*"
     val MIME_TYPE_TEXT = "text/*"
     val MIME_TYPE_IMAGE = "image/*"
     val MIME_TYPE_VIDEO = "video/*"
     val MIME_TYPE_APP = "application/*"
     val HIDDEN_PREFIX = "."
+
     val TAG = "FileUtils"
-    private val DEBUG = false
+    private val DEBUG = false // Set to true to enable logging
+
 
     private fun getExtension(uri: String?): String? {
         if (uri == null) {
@@ -34,6 +37,7 @@ class FileUtil {
         return if (dot >= 0) {
             uri.substring(dot)
         } else {
+            // No extension.
             ""
         }
     }
@@ -54,24 +58,24 @@ class FileUtil {
         return getMimeType(file)
     }
 
-    private fun isLocalStorageDocument(uri: Uri?): Boolean {
-        return AUTHORITY == uri!!.authority
+    private fun isLocalStorageDocument(uri: Uri): Boolean {
+        return AUTHORITY == uri.authority
     }
 
-    private fun isExternalStorageDocument(uri: Uri?): Boolean {
-        return "com.android.externalstorage.documents" == uri!!.authority
+    private fun isExternalStorageDocument(uri: Uri): Boolean {
+        return "com.android.externalstorage.documents" == uri.authority
     }
 
-    private fun isDownloadsDocument(uri: Uri?): Boolean {
-        return "com.android.providers.downloads.documents" == uri!!.authority
+    private fun isDownloadsDocument(uri: Uri): Boolean {
+        return "com.android.providers.downloads.documents" == uri.authority
     }
 
-    private fun isMediaDocument(uri: Uri?): Boolean {
-        return "com.android.providers.media.documents" == uri!!.authority
+    private fun isMediaDocument(uri: Uri): Boolean {
+        return "com.android.providers.media.documents" == uri.authority
     }
 
-    private fun isGooglePhotosUri(uri: Uri?): Boolean {
-        return "com.google.android.apps.photos.content" == uri!!.authority
+    private fun isGooglePhotosUri(uri: Uri): Boolean {
+        return "com.google.android.apps.photos.content" == uri.authority
     }
 
     fun getFile(context: Context?, uri: Uri?): File? {
@@ -84,6 +88,9 @@ class FileUtil {
         return null
     }
 
+    /**
+     * @return Whether the URI is a local one.
+     */
     private fun isLocal(url: String?): Boolean {
         return url != null && !url.startsWith("http://") && !url.startsWith("https://")
     }
@@ -114,10 +121,10 @@ class FileUtil {
         return null
     }
 
-    fun getPath(context: Context?, uri: Uri?): String? {
+    fun getPath(context: Context?, uri: Uri): String? {
         if (DEBUG) Log.d(
             "$TAG File -",
-            "Authority: " + uri!!.authority +
+            "Authority: " + uri.authority +
                     ", Fragment: " + uri.fragment +
                     ", Port: " + uri.port +
                     ", Query: " + uri.query +
@@ -127,8 +134,11 @@ class FileUtil {
         )
         val isKitKat = Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT
 
+        // DocumentProvider
         if (isKitKat && DocumentsContract.isDocumentUri(context, uri)) {
+            // LocalStorageProvider
             if (isLocalStorageDocument(uri)) {
+                // The path is the id
                 return DocumentsContract.getDocumentId(uri)
             } else if (isExternalStorageDocument(uri)) {
                 val docId = DocumentsContract.getDocumentId(uri)
@@ -150,16 +160,12 @@ class FileUtil {
                 val split = docId.split(":").toTypedArray()
                 val type = split[0]
                 var contentUri: Uri? = null
-                when (type) {
-                    "image" -> {
-                        contentUri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI
-                    }
-                    "video" -> {
-                        contentUri = MediaStore.Video.Media.EXTERNAL_CONTENT_URI
-                    }
-                    "audio" -> {
-                        contentUri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI
-                    }
+                if (("image" == type)) {
+                    contentUri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI
+                } else if (("video" == type)) {
+                    contentUri = MediaStore.Video.Media.EXTERNAL_CONTENT_URI
+                } else if (("audio" == type)) {
+                    contentUri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI
                 }
                 val selection = "_id=?"
                 val selectionArgs = arrayOf<String?>(
@@ -167,8 +173,9 @@ class FileUtil {
                 )
                 return getDataColumn((context)!!, contentUri, selection, selectionArgs)
             }
-        } else if ("content".equals(uri!!.scheme, ignoreCase = true)) {
+        } else if ("content".equals(uri.scheme, ignoreCase = true)) {
 
+            // Return the remote address
             return if (isGooglePhotosUri(uri)) uri.lastPathSegment else getDataColumn(
                 (context)!!,
                 uri,
@@ -220,6 +227,4 @@ class FileUtil {
         }
         return bm
     }
-
-
 }

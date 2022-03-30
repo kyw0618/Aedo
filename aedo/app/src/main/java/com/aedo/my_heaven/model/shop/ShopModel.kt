@@ -3,7 +3,33 @@ package com.aedo.my_heaven.model.shop
 import android.graphics.drawable.Drawable
 
 data class ShopModel(
-    val name: String? = null,
-    val money: String? = null,
-    val img: Drawable?
+    val order : Orders? = null
+)
+
+data class Orders(
+    val place : Place? = null,
+    val receiver : Receiver? = null,
+    val sender : Sender? = null,
+    val word : Word? = null,
+    val id : String? = null
+)
+
+data class Place(
+    val name : String? = null,
+    val number : String? = null
+)
+
+data class Receiver(
+    val name : String? = null,
+    val phone : String? = null
+)
+
+data class Sender(
+    val name : String? = null,
+    val phone : String? = null,
+)
+
+data class Word(
+    val company : String? = null,
+    val word : String? = null
 )

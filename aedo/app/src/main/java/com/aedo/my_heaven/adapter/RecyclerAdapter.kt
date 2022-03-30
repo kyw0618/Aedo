@@ -122,7 +122,7 @@ class RecyclerAdapter(private val postList : List<Obituaray>, val context : Cont
         val defaultFeed = FeedTemplate(
             content = Content(
                 title = "故 ${itemPhoto?.deceased?.name.toString()}님 별세(${itemPhoto?.place.toString()})",
-                description = "임종 : ${itemPhoto?.coffin?.toString()}",
+                description = "임종 : ${itemPhoto?.coffin.toString()}",
                 imageUrl = "http://k.kakaocdn.net/dn/Q2iNx/btqgeRgV54P/VLdBs9cvyn8BJXB3o7N8UK/kakaolink40_original.png",
                 link = Link(
                     webUrl = "https://developers.kakao.com",
@@ -136,7 +136,6 @@ class RecyclerAdapter(private val postList : List<Obituaray>, val context : Cont
             }
             else if (linkResult != null) {
                 context.startActivity(linkResult.intent)
-
                 LLog.w("Warning Msg: ${linkResult.warningMsg}")
                 LLog.w("Argument Msg: ${linkResult.argumentMsg}")
             }

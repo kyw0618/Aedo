@@ -10,6 +10,8 @@ import com.aedo.my_heaven.model.notice.NoticeDetailModel
 import com.aedo.my_heaven.model.notice.NoticeModel
 import com.aedo.my_heaven.model.restapi.base.*
 import com.aedo.my_heaven.model.restapi.login.*
+import com.aedo.my_heaven.model.shop.Orders
+import com.aedo.my_heaven.model.shop.ShopModel
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
@@ -54,17 +56,11 @@ interface APIService {
     fun getLogOut(@Header("Accesstoken")accesstoken: String?): Call<LogOut>
 
     // 부고작성 API
-    @POST("v1/obituary")
-    fun getCreate(@Header("Accesstoken")accesstoken: String?,
-                  @Body resident: CreateModel): Call<CreateModel>
-
-    // 부고작성 API(test)
     @Multipart
     @POST("v1/obituary")
     fun getImgCreate(@Header("Accesstoken") accesstoken: String?,
                      @Part img: MutableList<MultipartBody.Part?>,
                      @PartMap data: HashMap<String, RequestBody>): Call<CreateModel>
-
 
     // 부고조회 API
     @GET("v1/obituary?name=")
@@ -81,10 +77,6 @@ interface APIService {
     @GET("v1/obituary/my")
     fun getCreateGet(@Header("Accesstoken")accesstoken: String?): Call<RecyclerList>
 
-    // 부고수정 API
-    @PUT("v1/obituary/:id")
-    fun getCreatePut(@Header("Accesstoken")accesstoken: String?)
-
     // 부고삭제
     @DELETE("v1/obituary/:id")
     fun getCreateDelete(@Header("Accesstoken")accesstoken: String?,
@@ -100,22 +92,9 @@ interface APIService {
     fun getConID(@Query("id")id: String? ,
                  @Header("Accesstoken")accesstoken: String?) : Call<Condole>
 
-    // 조문메세지 수정 API
-    @PUT("v1/condole/:id")
-    fun getConPut(@Header("Accesstoken")accesstoken: String?)
-
-    // 조문메세지 삭제 API
-    @DELETE("v1/condole/:id")
-    fun getConDelete(@Header("Accesstoken")accesstoken: String?)
-
     // 공지사항 모두조회 API
     @GET("v1/center/announcement")
     fun getNoti(@Header("Accesstoken")accesstoken: String?) : Call<NoticeModel>
-
-    // 공지사항 세부조회 API
-    @GET("v1/center/announcement/:id")
-    fun getNotiDetail(@Header("Accesstoken")accesstoken: String?,
-                      @Query("id")id: String?) : Call<NoticeDetailModel>
 
     // 1:1문의 조회
     @GET("v1/center/request")
@@ -125,5 +104,30 @@ interface APIService {
     @POST("v1/center/request")
     fun getCounPost(@Header("Accesstoken")accesstoken: String?,
                     @Body counPost: CounPost) : Call<CounPost>
+
+    //화환 주문 API
+    @POST("v1/order")
+    fun getOrder(@Header("Accesstoken")accesstoken:String?,
+                 @Body orders: Orders) : Call<ShopModel>
+
+    // 공지사항 세부조회 API
+    @GET("v1/center/announcement/:id")
+    fun getNotiDetail(@Header("Accesstoken")accesstoken: String?,
+                      @Query("id")id: String?) : Call<NoticeDetailModel>
+
+    // 조문메세지 수정 API
+    @PUT("v1/condole/:id")
+    fun getConPut(@Header("Accesstoken")accesstoken: String?)
+
+    // 조문메세지 삭제 API
+    @DELETE("v1/condole/:id")
+    fun getConDelete(@Header("Accesstoken")accesstoken: String?)
+
+    // 부고수정 API
+    @PUT("v1/obituary/:id")
+    fun getCreatePut(@Header("Accesstoken")accesstoken: String?)
+
+
+
 
 }
