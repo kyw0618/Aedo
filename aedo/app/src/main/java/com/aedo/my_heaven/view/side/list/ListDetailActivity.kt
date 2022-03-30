@@ -10,6 +10,7 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.location.LocationManager
 import android.net.Uri
+import android.net.Uri.parse
 import android.os.Bundle
 import android.provider.Settings
 import android.util.Log
@@ -19,6 +20,7 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts.StartActivityForResult
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.net.toUri
 import androidx.databinding.DataBindingUtil
 import com.aedo.my_heaven.R
 import com.aedo.my_heaven.api.APIService
@@ -62,7 +64,9 @@ import retrofit2.Callback
 import retrofit2.Response
 import java.io.BufferedInputStream
 import java.io.IOException
+import java.net.HttpCookie.parse
 import java.net.HttpURLConnection
+import java.net.URI
 import java.net.URL
 
 
@@ -110,8 +114,9 @@ class ListDetailActivity : BaseActivity(),OnMapReadyCallback {
     }
 
     fun getimg(imageURL: String?): Bitmap? {
+        val uri = imageURL?.toUri()
         Glide.with(this)
-            .load(imageURL)
+            .load(uri)
             .override(400, 400)
             .placeholder(R.drawable.loading)
             .into(mBinding.imgPerson)
