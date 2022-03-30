@@ -129,24 +129,5 @@ object  Constant {
         }
     }
 
-    fun getBody(key : String, value : Any) : MultipartBody.Part {
-        return MultipartBody.Part.createFormData(key, value.toString())
-    }
-
-    fun getImageBody(key: String, file: File): MultipartBody.Part {
-        return MultipartBody.Part.createFormData(
-            name = key,
-            filename = file.name,
-            body = file.asRequestBody("image/*".toMediaType())
-        )
-    }
-
-    fun getVideoBody(key: String, file: File): MultipartBody.Part {
-        return MultipartBody.Part.createFormData(
-            name = key,
-            filename = file.name,
-            body = file.asRequestBody("video/*".toMediaType())
-        )
-    }
 
 }

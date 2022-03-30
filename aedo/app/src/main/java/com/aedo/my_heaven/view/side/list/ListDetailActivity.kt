@@ -46,6 +46,7 @@ import com.aedo.my_heaven.util.alert.LoadingDialog
 import com.aedo.my_heaven.util.base.BaseActivity
 import com.aedo.my_heaven.util.base.MyApplication
 import com.aedo.my_heaven.util.base.MyApplication.Companion.prefs
+import com.aedo.my_heaven.util.dialog.ImgDialog
 import com.aedo.my_heaven.util.log.LLog
 import com.aedo.my_heaven.view.side.list.detail.MessageActivity
 import com.bumptech.glide.Glide
@@ -366,6 +367,11 @@ class ListDetailActivity : BaseActivity(),OnMapReadyCallback {
         mBinding.txDetailCoffin.text = coffin.toString()
         mBinding.txDetailDofp.text = dofp.toString()
         mBinding.txBuried.text = buried.toString()
+
+        mBinding.imgPerson.setOnClickListener {
+            val dialog = ImgDialog()
+            dialog.show(supportFragmentManager,"ImgDialog")
+        }
     }
 
     override fun onMapReady(naverMap: NaverMap) {

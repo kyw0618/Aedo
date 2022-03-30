@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.AlertDialog
 import android.app.Dialog
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.ConnectivityManager
@@ -21,6 +22,7 @@ import com.aedo.my_heaven.util.`object`.ActivityControlManager
 import com.aedo.my_heaven.util.alert.AlertDialogManager
 import com.aedo.my_heaven.util.alert.LoadingDialog
 import com.aedo.my_heaven.util.common.CommonData
+import com.aedo.my_heaven.util.log.LLog.TAG
 import com.aedo.my_heaven.util.log.LLog.e
 import com.aedo.my_heaven.view.faq.FAQActivity
 import com.aedo.my_heaven.view.login.LoginActivity
@@ -87,7 +89,9 @@ open class BaseActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        if (!isNetworkAvailable) {
+        if(isInternetAvailable(this)) {
+            Log.d(TAG,"네트워크 연결중")
+        } else {
             networkDialog()
             return
         }
@@ -123,22 +127,35 @@ open class BaseActivity : AppCompatActivity() {
         }
     }
 
-    val isNetworkAvailable: Boolean
-        get() {
-            val connectivityManager = getSystemService(CONNECTIVITY_SERVICE) as ConnectivityManager
-            return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                val nw = connectivityManager.activeNetwork ?: return false
-                val actNw = connectivityManager.getNetworkCapabilities(nw)
-                actNw != null && (actNw.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) || actNw.hasTransport(
-                    NetworkCapabilities.TRANSPORT_CELLULAR
-                ) || actNw.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) || actNw.hasTransport(
-                    NetworkCapabilities.TRANSPORT_BLUETOOTH
-                ))
-            } else {
-                val nwInfo = connectivityManager.activeNetworkInfo
-                nwInfo != null && nwInfo.isConnected
+    @SuppressLint("ObsoleteSdkInt")
+    @Suppress("DEPRECATION")
+    fun isInternetAvailable(context: Context): Boolean {
+        var result = false
+        val cm = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager?
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            cm?.run {
+                cm.getNetworkCapabilities(cm.activeNetwork)?.run {
+                    result = when {
+                        hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> true
+                        hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> true
+                        hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> true
+                        else -> false
+                    }
+                }
+            }
+        } else {
+            cm?.run {
+                cm.activeNetworkInfo?.run {
+                    if (type == ConnectivityManager.TYPE_WIFI) {
+                        result = true
+                    } else if (type == ConnectivityManager.TYPE_MOBILE) {
+                        result = true
+                    }
+                }
             }
         }
+        return result
+    }
 
     val hash: String?
         get() {

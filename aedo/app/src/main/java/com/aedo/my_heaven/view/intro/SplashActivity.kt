@@ -51,19 +51,19 @@ class SplashActivity : BaseActivity() {
         setContentView(binding.root)
         apiServices = ApiUtils.apiService
         inStatusBar()
-        checknetwork()
+        checkNetwork()
 //        moveActivity()
     }
 
     // 네트워크 체크
-    private fun checknetwork() {
+    private fun checkNetwork() {
         LLog.e("1. 네트워크 확인")
-        if (!isNetworkAvailable) {
+        if(isInternetAvailable(this)) {
+            checkVerification()
+        } else {
             networkDialog()
             return
         }
-//        checkLoot()
-        checkVerification()
     }
 
     // 2. 루팅 확인
