@@ -51,7 +51,6 @@ import java.util.*
 class MakeActivity : BaseActivity() {
     private lateinit var mBinding: ActivityMakeBinding
     private lateinit var apiServices: APIService
-    private var photoURI  : Uri? = null
     private var mViewModel: MakeViewModel? = null
     private val fileUtil = FileUtil()
     private var files4: MutableList<Uri> = ArrayList()
@@ -182,7 +181,6 @@ class MakeActivity : BaseActivity() {
 
     private fun testAPI() {
         val img: MutableList<MultipartBody.Part?> =  ArrayList()
-
         for (uri:Uri in files4) {
             uri.path?.let { Log.i("img", it) }
             img.add(prepareFilePart("img", uri))
@@ -375,15 +373,22 @@ class MakeActivity : BaseActivity() {
     }
 
     private fun requestPermission() {
-        if (ContextCompat.checkSelfPermission(
+        when {
+            ContextCompat.checkSelfPermission(
                 this,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
-            ActivityCompat.requestPermissions(
-                this,
-                arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
-                ONE_PERMISSION_REQUEST_CODE
+                Manifest.permission.READ_EXTERNAL_STORAGE
+            ) == PackageManager.PERMISSION_GRANTED
+            -> {
+                getAlbum()
+            }
+
+            shouldShowRequestPermissionRationale(Manifest.permission.READ_EXTERNAL_STORAGE)
+            -> {
+                Toast.makeText(this,"사진 접근 권한 동의를 해주세요",Toast.LENGTH_SHORT).show()
+            }
+
+            else -> requestPermissions(
+                arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),ONE_PERMISSION_REQUEST_CODE
             )
         }
     }
@@ -397,7 +402,7 @@ class MakeActivity : BaseActivity() {
             ONE_PERMISSION_REQUEST_CODE -> if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 getAlbum()
             } else {
-                Toast.makeText(this, "Permission denied", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "사진권한 동의를 해주세요.", Toast.LENGTH_SHORT).show()
             }
             else -> super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         }
@@ -417,7 +422,7 @@ class MakeActivity : BaseActivity() {
                     val img = data?.data
                     mBinding.imgPake.setImageURI(img)
                     val imgPath = img.let {
-                        fileUtil.getPath(this@MakeActivity, it!!)
+                        fileUtil.getPath(this, it!!)
                     }
 
                     files4.add(Uri.parse(imgPath))
@@ -435,6 +440,4 @@ class MakeActivity : BaseActivity() {
         startActivity(Intent(this, MainActivity::class.java))
         finish()
     }
-
-
 }

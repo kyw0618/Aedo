@@ -19,6 +19,7 @@ import com.aedo.my_heaven.util.`object`.Constant.COFFIN_DATE
 import com.aedo.my_heaven.util.`object`.Constant.DECEASED_NAME
 import com.aedo.my_heaven.util.`object`.Constant.DOFP_DATE
 import com.aedo.my_heaven.util.`object`.Constant.EOD_DATE
+import com.aedo.my_heaven.util.`object`.Constant.LIST_IMG
 import com.aedo.my_heaven.util.`object`.Constant.LLIST_ID
 import com.aedo.my_heaven.util.`object`.Constant.PLACE_NAME
 import com.aedo.my_heaven.util.`object`.Constant.RESIDENT_NAME
@@ -85,6 +86,7 @@ class RecyclerAdapter(private val postList : List<Obituaray>, val context : Cont
                 val intent = Intent(context, ListDetailActivity::class.java)
                 intent.putExtra(LLIST_ID,itemPhoto?.id.toString())
                 intent.putExtra(DECEASED_NAME,itemPhoto?.deceased?.name.toString())
+                intent.putExtra(LIST_IMG,itemPhoto?.imgName.toString())
                 intent.putExtra(EOD_DATE,itemPhoto?.eod.toString())
                 intent.putExtra(RESIDENT_NAME,itemPhoto?.resident?.name.toString())
                 intent.putExtra(PLACE_NAME,itemPhoto?.place.toString())
