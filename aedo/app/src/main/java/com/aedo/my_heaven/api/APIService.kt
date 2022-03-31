@@ -68,7 +68,7 @@ interface APIService {
                       @Header("Accesstoken")accesstoken: String?) : Call<CreateName>
 
     //부고 이미지 받기API
-    @GET("v1/obituary?image=")
+    @GET("v1/obituary/image")
     fun getImg(@Query("imgname") imgname: String?,
                @Header("Accesstoken") accesstoken: String?) : Call<ListImg>
 

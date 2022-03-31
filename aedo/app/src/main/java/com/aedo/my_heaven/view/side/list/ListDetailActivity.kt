@@ -13,6 +13,7 @@ import android.net.Uri
 import android.net.Uri.parse
 import android.os.Bundle
 import android.provider.Settings
+import android.util.Base64
 import android.util.Log
 import android.view.View
 import android.widget.TextView
@@ -26,10 +27,7 @@ import com.aedo.my_heaven.R
 import com.aedo.my_heaven.api.APIService
 import com.aedo.my_heaven.api.ApiUtils
 import com.aedo.my_heaven.databinding.ActivityListdetailBinding
-import com.aedo.my_heaven.model.list.Condole
-import com.aedo.my_heaven.model.list.ListDelete
-import com.aedo.my_heaven.model.list.ListImg
-import com.aedo.my_heaven.model.list.Obituaray
+import com.aedo.my_heaven.model.list.*
 import com.aedo.my_heaven.model.restapi.base.Coordinates
 import com.aedo.my_heaven.util.`object`.Constant.BURIED
 import com.aedo.my_heaven.util.`object`.Constant.COFFIN_DATE
@@ -37,6 +35,7 @@ import com.aedo.my_heaven.util.`object`.Constant.DECEASED_NAME
 import com.aedo.my_heaven.util.`object`.Constant.DOFP_DATE
 import com.aedo.my_heaven.util.`object`.Constant.EOD_DATE
 import com.aedo.my_heaven.util.`object`.Constant.GPS_ENABLE_REQUEST_CODE
+import com.aedo.my_heaven.util.`object`.Constant.LIST_IMG
 import com.aedo.my_heaven.util.`object`.Constant.LLIST_ID
 import com.aedo.my_heaven.util.`object`.Constant.MESSAGE_LLIST_ID
 import com.aedo.my_heaven.util.`object`.Constant.PERMISSIONS
@@ -64,6 +63,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import java.io.BufferedInputStream
 import java.io.IOException
+import java.lang.Exception
 import java.net.HttpCookie.parse
 import java.net.HttpURLConnection
 import java.net.URI
@@ -87,64 +87,6 @@ class ListDetailActivity : BaseActivity(),OnMapReadyCallback {
         inStatusBar()
         inRecycler()
         initView()
-        initImg()
-    }
-
-    private fun initImg() {
-        LLog.e("이미지 API")
-        val imgname = "1648476114140_IMG_20220313_052329.jpg"
-        val vercall: Call<ListImg> = apiServices.getImg(imgname,prefs.myaccesstoken)
-        vercall.enqueue(object : Callback<ListImg> {
-            override fun onResponse(call: Call<ListImg>, response: Response<ListImg>) {
-                val result = response.body()
-                if (response.isSuccessful && result != null) {
-                    Log.d(LLog.TAG,"initImg response SUCESS -> $result")
-                    Log.d(TAG,"IMG URL -> ${result.imgName}")
-                    getimg(result.imgName)
-                }
-                else {
-                    Log.d(LLog.TAG,"initImg response ERROR -> $result")
-                    otherImgAPI()
-                }
-            }
-            override fun onFailure(call: Call<ListImg>, t: Throwable) {
-                Log.d(LLog.TAG, "initImg Fail -> $t")
-            }
-        })
-    }
-
-    fun getimg(imageURL: String?): Bitmap? {
-        val uri = imageURL?.toUri()
-        Glide.with(this)
-            .load(uri)
-            .override(400, 400)
-            .placeholder(R.drawable.loading)
-            .into(mBinding.imgPerson)
-        return null
-    }
-
-    private fun otherImgAPI() {
-        LLog.e("이미지_두번째 API")
-        val imgname = "1648476114140_IMG_20220313_052329.jpg"
-        val vercall: Call<ListImg> = apiServices.getImg(imgname,prefs.newaccesstoken)
-        vercall.enqueue(object : Callback<ListImg> {
-            override fun onResponse(call: Call<ListImg>, response: Response<ListImg>) {
-                val result = response.body()
-                if (response.isSuccessful && result != null) {
-                    Log.d(LLog.TAG,"initImg second response SUCCESS -> $result")
-                    Log.d(TAG,"IMG URL -> ${result.imgName}")
-                    Log.d(TAG,"IMG URL -> ${result.imgName.toString()}")
-                    getimg(result.imgName)
-
-                }
-                else {
-                    Log.d(LLog.TAG,"initImg second response ERROR -> ${response.errorBody()}")
-                }
-            }
-            override fun onFailure(call: Call<ListImg>, t: Throwable) {
-                Log.d(LLog.TAG, "initImg Fail -> $t")
-            }
-        })
     }
 
     override fun onResume() {
@@ -357,6 +299,7 @@ class ListDetailActivity : BaseActivity(),OnMapReadyCallback {
     @SuppressLint("SetTextI18n")
     private fun inRecycler() {
         val decase_name = intent.getStringExtra(DECEASED_NAME)
+        val img = intent.getStringExtra(LIST_IMG)
         val place_name = intent.getStringExtra(PLACE_NAME)
         val tx_data = intent.getStringExtra(EOD_DATE)
         val tv_center_name = intent.getStringExtra(RESIDENT_NAME)
@@ -375,9 +318,59 @@ class ListDetailActivity : BaseActivity(),OnMapReadyCallback {
 
         mBinding.imgPerson.setOnClickListener {
             val dialog = ImgDialog()
-            dialog.show(supportFragmentManager,"ImgDialog")
+            dialog.show(supportFragmentManager, "ImgDialog")
         }
+        getImg(img)
     }
+
+    private fun getImg(img: String?) {
+        LLog.e("이미지 API")
+        val vercall: Call<ListImg> = apiServices.getImg(img,prefs.myaccesstoken)
+        vercall.enqueue(object : Callback<ListImg> {
+            override fun onResponse(call: Call<ListImg>, response: Response<ListImg>) {
+                val result = response.body()
+                if (response.isSuccessful && result != null) {
+                    Log.d(LLog.TAG,"ListImg  response SUCCESS -> $result")
+                    Glide.with(applicationContext)
+                        .load(result.imgName)
+                        .override(150,150)
+                        .into(mBinding.imgPerson)
+                }
+                else {
+                    Log.d(LLog.TAG,"ListImg  esponse ERROR -> $result")
+                    otherAPI(img)
+                }
+            }
+            override fun onFailure(call: Call<ListImg>, t: Throwable) {
+                Log.d(LLog.TAG, "ListImg  Fail -> $t")
+                Log.d(TAG,"Log.img ${t.message}")
+            }
+        })
+    }
+
+    private fun otherAPI(img: String?) {
+        LLog.e("이미지_두번째 API")
+        val vercall: Call<ListImg> = apiServices.getImg(img,prefs.newaccesstoken)
+        vercall.enqueue(object : Callback<ListImg> {
+            override fun onResponse(call: Call<ListImg>, response: Response<ListImg>) {
+                val result = response.body()
+                if (response.isSuccessful && result != null) {
+                    Log.d(LLog.TAG,"ListImg Second response SUCCESS -> $result")
+                    Glide.with(applicationContext)
+                        .load(result.imgName)
+                        .override(150,150)
+                        .into(mBinding.imgPerson)
+                }
+                else {
+                    Log.d(LLog.TAG,"ListImg Second esponse ERROR -> $result")
+                }
+            }
+            override fun onFailure(call: Call<ListImg>, t: Throwable) {
+                Log.d(LLog.TAG, "ListImg Second Fail -> $t")
+            }
+        })
+    }
+
 
     override fun onMapReady(naverMap: NaverMap) {
         val place_first = realm.where(Coordinates::class.java).equalTo("id","PLACE_FIRST").findFirst()
@@ -416,71 +409,6 @@ class ListDetailActivity : BaseActivity(),OnMapReadyCallback {
 
     fun onMainClick(v: View) {
         moveMain()
-    }
-
-    fun onSideClick(v : View) {
-        val myLayout = layoutInflater.inflate(R.layout.two_button_dialog, null)
-        val build = AlertDialog.Builder(this).apply {
-            setView(myLayout)
-        }
-        val textView : TextView = myLayout.findViewById(R.id.popTv_second)
-        textView.text = getString(R.string.list_delete)
-        val dialog = build.create()
-        dialog.show()
-
-        myLayout.finish_btn.text = getString(R.string.btn_delete)
-        myLayout.update_btn.text = getString(R.string.btn_modify)
-
-        myLayout.finish_btn.setOnClickListener {
-
-            delete()
-            dialog.dismiss()
-        }
-        myLayout.update_btn.setOnClickListener {
-            finish()
-            dialog.dismiss()
-        }
-    }
-
-    private fun delete() {
-        val id = intent.getStringExtra(LLIST_ID)
-        val vercall: Call<ListDelete> = apiServices.getCreateDelete(id, prefs.myaccesstoken)
-        vercall.enqueue(object : Callback<ListDelete> {
-            override fun onResponse(call: Call<ListDelete>, response: Response<ListDelete>) {
-                val result = response.body()
-                if (response.isSuccessful && result != null) {
-                    Log.d(LLog.TAG,"ListDelete response SUCCESS -> $result")
-                    moveList()
-                }
-                else {
-                    Log.d(LLog.TAG,"ListDelete response ERROR -> $result")
-                    otherAPI()
-                }
-            }
-            override fun onFailure(call: Call<ListDelete>, t: Throwable) {
-                Log.d(LLog.TAG, "ListDelete FAIL -> $t")
-            }
-        })
-    }
-
-    private fun otherAPI() {
-        val id = intent.getStringExtra(LLIST_ID)
-        val vercall: Call<Condole> = apiServices.getConID(id, prefs.newaccesstoken)
-        vercall.enqueue(object : Callback<Condole> {
-            override fun onResponse(call: Call<Condole>, response: Response<Condole>) {
-                val result = response.body()
-                if (response.isSuccessful && result != null) {
-                    Log.d(LLog.TAG,"ListDelete second response SUCCESS -> $result")
-                    moveList()
-                }
-                else {
-                    Log.d(LLog.TAG,"ListDelete second response ERROR -> $result")
-                }
-            }
-            override fun onFailure(call: Call<Condole>, t: Throwable) {
-                Log.d(LLog.TAG, "ListDelete second FAIL -> $t")
-            }
-        })
     }
 
     private fun putID() {
