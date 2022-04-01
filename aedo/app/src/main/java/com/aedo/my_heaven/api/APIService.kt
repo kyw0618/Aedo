@@ -14,6 +14,7 @@ import com.aedo.my_heaven.model.shop.Orders
 import com.aedo.my_heaven.model.shop.ShopModel
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
+import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.http.*
 import java.net.URI
@@ -69,8 +70,9 @@ interface APIService {
 
     //부고 이미지 받기API
     @GET("v1/obituary/image")
+    @Streaming
     fun getImg(@Query("imgname") imgname: String?,
-               @Header("Accesstoken") accesstoken: String?) : Call<ListImg>
+               @Header("Accesstoken") accesstoken: String?) : Call<ResponseBody>
 
 
     // 나의부고 API

@@ -111,7 +111,7 @@ class SettingActivity : BaseActivity() {
     }
 
     override fun onBackPressed() {
-        startActivity(Intent(this, SideMenuActivity::class.java))
+        startActivity(Intent(this, MainActivity::class.java))
         finish()
     }
 

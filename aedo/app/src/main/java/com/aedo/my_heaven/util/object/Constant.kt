@@ -5,10 +5,12 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Handler
 import android.os.Looper
+import com.aedo.my_heaven.api.APIService
 import com.naver.maps.geometry.LatLng
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
+import okhttp3.logging.HttpLoggingInterceptor
 import java.io.File
 import java.io.IOException
 import java.net.MalformedURLException
@@ -121,14 +123,5 @@ object  Constant {
         Manifest.permission.ACCESS_FINE_LOCATION
         , Manifest.permission.ACCESS_COARSE_LOCATION
     )
-
-    fun delayRun(r: Runnable?, delay: Int) {
-        val loop = Looper.myLooper()
-        if (loop != null) {
-            val handler = Handler(loop)
-            handler.postDelayed(r!!, delay.toLong())
-        }
-    }
-
 
 }

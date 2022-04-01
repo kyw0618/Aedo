@@ -31,7 +31,7 @@
                 android:gravity="center"
                 android:text="감사 조문 인사"
                 android:textColor="@color/white"
-                android:textSize="16dp"
+                android:textSize="18dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"

@@ -9,19 +9,13 @@ import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.location.LocationManager
-import android.net.Uri
-import android.net.Uri.parse
 import android.os.Bundle
 import android.provider.Settings
-import android.util.Base64
 import android.util.Log
 import android.view.View
-import android.widget.TextView
 import android.widget.Toast
-import androidx.activity.result.contract.ActivityResultContracts.StartActivityForResult
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.core.net.toUri
 import androidx.databinding.DataBindingUtil
 import com.aedo.my_heaven.R
 import com.aedo.my_heaven.api.APIService
@@ -57,15 +51,12 @@ import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.*
 import com.naver.maps.map.overlay.Marker
 import com.naver.maps.map.util.FusedLocationSource
-import kotlinx.android.synthetic.main.two_button_dialog.view.*
+import com.squareup.picasso.Picasso
+import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.io.BufferedInputStream
-import java.io.IOException
-import java.lang.Exception
-import java.net.HttpCookie.parse
-import java.net.HttpURLConnection
+import java.io.InputStream
 import java.net.URI
 import java.net.URL
 
@@ -325,47 +316,45 @@ class ListDetailActivity : BaseActivity(),OnMapReadyCallback {
 
     private fun getImg(img: String?) {
         LLog.e("이미지 API")
-        val vercall: Call<ListImg> = apiServices.getImg(img,prefs.myaccesstoken)
-        vercall.enqueue(object : Callback<ListImg> {
-            override fun onResponse(call: Call<ListImg>, response: Response<ListImg>) {
+        val vercall: Call<ResponseBody> = apiServices.getImg(img,prefs.myaccesstoken)
+        vercall.enqueue(object : Callback<ResponseBody> {
+            override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
                 val result = response.body()
                 if (response.isSuccessful && result != null) {
                     Log.d(LLog.TAG,"ListImg  response SUCCESS -> $result")
-                    Glide.with(applicationContext)
-                        .load(result.imgName)
-                        .override(150,150)
-                        .into(mBinding.imgPerson)
+                    Log.d(TAG,"Log.img -> ${result.byteStream()}")
+                    val imgs = result.byteStream()
+                    val bitmap = BitmapFactory.decodeStream(imgs)
+                    mBinding.imgPerson.setImageBitmap(bitmap)
                 }
                 else {
                     Log.d(LLog.TAG,"ListImg  esponse ERROR -> $result")
                     otherAPI(img)
                 }
             }
-            override fun onFailure(call: Call<ListImg>, t: Throwable) {
-                Log.d(LLog.TAG, "ListImg  Fail -> $t")
-                Log.d(TAG,"Log.img ${t.message}")
+            override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+                Log.d(LLog.TAG, "ListImg  Fail -> ${t.localizedMessage}")
             }
         })
     }
 
     private fun otherAPI(img: String?) {
         LLog.e("이미지_두번째 API")
-        val vercall: Call<ListImg> = apiServices.getImg(img,prefs.newaccesstoken)
-        vercall.enqueue(object : Callback<ListImg> {
-            override fun onResponse(call: Call<ListImg>, response: Response<ListImg>) {
+        val vercall: Call<ResponseBody> = apiServices.getImg(img,prefs.newaccesstoken)
+        vercall.enqueue(object : Callback<ResponseBody> {
+            override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
                 val result = response.body()
                 if (response.isSuccessful && result != null) {
                     Log.d(LLog.TAG,"ListImg Second response SUCCESS -> $result")
-                    Glide.with(applicationContext)
-                        .load(result.imgName)
-                        .override(150,150)
-                        .into(mBinding.imgPerson)
+                    val img = response.body()!!.byteStream()
+                    val bitmap = BitmapFactory.decodeStream(img)
+                    mBinding.imgPerson.setImageBitmap(bitmap)
                 }
                 else {
                     Log.d(LLog.TAG,"ListImg Second esponse ERROR -> $result")
                 }
             }
-            override fun onFailure(call: Call<ListImg>, t: Throwable) {
+            override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
                 Log.d(LLog.TAG, "ListImg Second Fail -> $t")
             }
         })

@@ -2,6 +2,7 @@ package com.aedo.my_heaven.api
 
 import com.google.gson.GsonBuilder
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
+import com.naver.maps.map.BuildConfig
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -14,30 +15,30 @@ object RetrofitClient {
     private var okhttp: OkHttpClient? = null
     var gson =GsonBuilder().setLenient().create()
 
-    init { //로그 설정
-        val interceptor = HttpLoggingInterceptor().apply {
-            level = HttpLoggingInterceptor.Level.BODY
-        }
-        okhttp = OkHttpClient.Builder()
-            .addInterceptor(interceptor)
-            .build()
-    }
-
-
     fun getClient(baseUrl: String): Retrofit {
-        if (retrofit ==  null) {
-            retrofit = Retrofit.Builder()
-                .baseUrl(baseUrl)
-                .client(OkHttpClient())
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .addConverterFactory(ScalarsConverterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create(gson))
-                .build()
+        val interceptor = HttpLoggingInterceptor()
+        if (BuildConfig.DEBUG) {
+            interceptor.level = HttpLoggingInterceptor.Level.BODY
+        }
+        else {
+            interceptor.level = HttpLoggingInterceptor.Level.NONE
+        }
 
-            okhttp = OkHttpClient.Builder()
+        if (retrofit ==  null) {
+
+            val client = OkHttpClient.Builder()
                 .connectTimeout(10000, TimeUnit.MILLISECONDS)
                 .readTimeout(10000, TimeUnit.MILLISECONDS)
                 .writeTimeout(10000, TimeUnit.MILLISECONDS)
+                .addInterceptor(interceptor)
+                .build()
+
+            retrofit = Retrofit.Builder()
+                .baseUrl(baseUrl)
+                .client(client)
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .addConverterFactory(ScalarsConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create(gson))
                 .build()
         }
         return retrofit!!

@@ -81,7 +81,7 @@ class SideMenuActivity : BaseActivity() {
     }
 
     fun onInfoClick(v:View) {
-        moveTerms()
+        moveGuide()
     }
 
     fun onListClick(v:View) {
