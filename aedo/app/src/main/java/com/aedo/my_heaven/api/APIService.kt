@@ -4,7 +4,6 @@ import com.aedo.my_heaven.model.coun.CounGet
 import com.aedo.my_heaven.model.coun.CounPost
 import com.aedo.my_heaven.model.list.Condole
 import com.aedo.my_heaven.model.list.ListDelete
-import com.aedo.my_heaven.model.list.ListImg
 import com.aedo.my_heaven.model.list.RecyclerList
 import com.aedo.my_heaven.model.notice.NoticeDetailModel
 import com.aedo.my_heaven.model.notice.NoticeModel
@@ -17,7 +16,8 @@ import okhttp3.RequestBody
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.http.*
-import java.net.URI
+import java.io.File
+
 
 interface APIService {
     // 검증 API

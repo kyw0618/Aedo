@@ -5,8 +5,9 @@ import com.google.gson.annotations.SerializedName
 import retrofit2.http.Url
 import java.io.File
 import java.net.URI
+import java.net.URL
 
 data class ListImg(
-    val imgName : Bitmap? = null
+    val imgName : URL? = null
 )
 

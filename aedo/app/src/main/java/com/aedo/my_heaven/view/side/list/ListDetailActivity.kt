@@ -9,6 +9,7 @@ import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.location.LocationManager
+import android.os.AsyncTask
 import android.os.Bundle
 import android.provider.Settings
 import android.util.Log
@@ -44,21 +45,19 @@ import com.aedo.my_heaven.util.base.MyApplication.Companion.prefs
 import com.aedo.my_heaven.util.dialog.ImgDialog
 import com.aedo.my_heaven.util.log.LLog
 import com.aedo.my_heaven.view.side.list.detail.MessageActivity
-import com.bumptech.glide.Glide
 import com.google.zxing.integration.android.IntentIntegrator
 import com.google.zxing.integration.android.IntentResult
 import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.*
 import com.naver.maps.map.overlay.Marker
 import com.naver.maps.map.util.FusedLocationSource
-import com.squareup.picasso.Picasso
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.io.InputStream
-import java.net.URI
-import java.net.URL
+import java.io.*
+import java.lang.Exception
+import java.nio.Buffer
 
 
 class ListDetailActivity : BaseActivity(),OnMapReadyCallback {
@@ -311,7 +310,9 @@ class ListDetailActivity : BaseActivity(),OnMapReadyCallback {
             val dialog = ImgDialog()
             dialog.show(supportFragmentManager, "ImgDialog")
         }
-        getImg(img)
+        Thread {
+            getImg(img)
+        }.start()
     }
 
     private fun getImg(img: String?) {
@@ -322,10 +323,16 @@ class ListDetailActivity : BaseActivity(),OnMapReadyCallback {
                 val result = response.body()
                 if (response.isSuccessful && result != null) {
                     Log.d(LLog.TAG,"ListImg  response SUCCESS -> $result")
-                    Log.d(TAG,"Log.img -> ${result.byteStream()}")
-                    val imgs = result.byteStream()
-                    val bitmap = BitmapFactory.decodeStream(imgs)
-                    mBinding.imgPerson.setImageBitmap(bitmap)
+                    Thread {
+                        try {
+                            val imgs = result.byteStream()
+                            val bit = BitmapFactory.decodeStream(imgs)
+                            mBinding.imgPerson.setImageBitmap(bit)
+                        }
+                        catch (e: Exception) {
+
+                        }
+                    }.start()
                 }
                 else {
                     Log.d(LLog.TAG,"ListImg  esponse ERROR -> $result")
@@ -346,9 +353,16 @@ class ListDetailActivity : BaseActivity(),OnMapReadyCallback {
                 val result = response.body()
                 if (response.isSuccessful && result != null) {
                     Log.d(LLog.TAG,"ListImg Second response SUCCESS -> $result")
-                    val img = response.body()!!.byteStream()
-                    val bitmap = BitmapFactory.decodeStream(img)
-                    mBinding.imgPerson.setImageBitmap(bitmap)
+                    Thread {
+                        try {
+                            val imgs = result.byteStream()
+                            val bit = BitmapFactory.decodeStream(imgs)
+                            mBinding.imgPerson.setImageBitmap(bit)
+                        }
+                        catch (e: Exception) {
+
+                        }
+                    }.start()
                 }
                 else {
                     Log.d(LLog.TAG,"ListImg Second esponse ERROR -> $result")
@@ -409,3 +423,4 @@ class ListDetailActivity : BaseActivity(),OnMapReadyCallback {
     }
 
 }
+
