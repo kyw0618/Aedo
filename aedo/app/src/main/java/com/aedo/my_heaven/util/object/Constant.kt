@@ -64,6 +64,7 @@ object  Constant {
     const val MESSAGE_LLIST_ID = "MESSAGE_LLIST_ID"
     const val MESSAGE_DETAIL_LLIST_ID = "MESSAGE_DETAIL_LLIST_ID"
     const val LIST_IMG = "LIST_IMG"
+    const val LIST_FRAGMENT_IMG = "LIST_FRAGMENT_IMG"
 
     const val EOD_NAME = "EOD_NAME"
     const val EOD_DATE = "EOD_DATE"

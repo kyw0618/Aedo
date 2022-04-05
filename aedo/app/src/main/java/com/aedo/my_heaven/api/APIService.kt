@@ -74,7 +74,6 @@ interface APIService {
     fun getImg(@Query("imgname") imgname: String?,
                @Header("Accesstoken") accesstoken: String?) : Call<ResponseBody>
 
-
     // 나의부고 API
     @GET("v1/obituary/my")
     fun getCreateGet(@Header("Accesstoken")accesstoken: String?): Call<RecyclerList>

@@ -14,6 +14,8 @@ import android.os.Bundle
 import android.provider.Settings
 import android.util.Log
 import android.view.View
+import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -30,6 +32,7 @@ import com.aedo.my_heaven.util.`object`.Constant.DECEASED_NAME
 import com.aedo.my_heaven.util.`object`.Constant.DOFP_DATE
 import com.aedo.my_heaven.util.`object`.Constant.EOD_DATE
 import com.aedo.my_heaven.util.`object`.Constant.GPS_ENABLE_REQUEST_CODE
+import com.aedo.my_heaven.util.`object`.Constant.LIST_FRAGMENT_IMG
 import com.aedo.my_heaven.util.`object`.Constant.LIST_IMG
 import com.aedo.my_heaven.util.`object`.Constant.LLIST_ID
 import com.aedo.my_heaven.util.`object`.Constant.MESSAGE_LLIST_ID
@@ -51,6 +54,8 @@ import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.*
 import com.naver.maps.map.overlay.Marker
 import com.naver.maps.map.util.FusedLocationSource
+import kotlinx.android.synthetic.main.fragment_img_dialog.view.*
+import kotlinx.android.synthetic.main.one_button_dialog.view.*
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
@@ -63,10 +68,8 @@ import java.nio.Buffer
 class ListDetailActivity : BaseActivity(),OnMapReadyCallback {
     private lateinit var mBinding: ActivityListdetailBinding
     private lateinit var apiServices: APIService
-    private lateinit var datas : Obituaray
     private var locationSource: FusedLocationSource? = null
     private var mMap: NaverMap?=null
-    private var bitmap: Bitmap? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -306,10 +309,6 @@ class ListDetailActivity : BaseActivity(),OnMapReadyCallback {
         mBinding.txDetailDofp.text = dofp.toString()
         mBinding.txBuried.text = buried.toString()
 
-        mBinding.imgPerson.setOnClickListener {
-            val dialog = ImgDialog()
-            dialog.show(supportFragmentManager, "ImgDialog")
-        }
         Thread {
             getImg(img)
         }.start()

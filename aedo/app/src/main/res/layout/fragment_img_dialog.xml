@@ -48,7 +48,7 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/ok_btn"
+                    android:id="@+id/frag_ok_btn"
                     style="@style/CommonButtonStyle"
                     android:text="@string/ok" />
             </LinearLayout>
