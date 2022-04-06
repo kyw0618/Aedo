@@ -128,7 +128,4 @@ interface APIService {
     @PUT("v1/obituary/:id")
     fun getCreatePut(@Header("Accesstoken")accesstoken: String?)
 
-
-
-
 }
