@@ -210,9 +210,9 @@ class SearchDetailActivity : BaseActivity(), OnMapReadyCallback {
                     .compassEnabled(true)
                     .scaleBarEnabled(true)
 
-                val mapFragment = supportFragmentManager.findFragmentById(R.id.naver_map) as MapFragment?
+                val mapFragment = supportFragmentManager.findFragmentById(R.id.search_naver_map) as MapFragment?
                     ?: MapFragment.newInstance(options).also {
-                        supportFragmentManager.beginTransaction().add(R.id.naver_map, it).commit()
+                        supportFragmentManager.beginTransaction().add(R.id.search_naver_map, it).commit()
                     }
                 mapFragment.getMapAsync(this)
 
@@ -228,9 +228,9 @@ class SearchDetailActivity : BaseActivity(), OnMapReadyCallback {
                     .compassEnabled(true)
                     .scaleBarEnabled(true)
 
-                val mapFragment = supportFragmentManager.findFragmentById(R.id.naver_map) as MapFragment?
+                val mapFragment = supportFragmentManager.findFragmentById(R.id.search_naver_map) as MapFragment?
                     ?: MapFragment.newInstance(options).also {
-                        supportFragmentManager.beginTransaction().add(R.id.naver_map, it).commit()
+                        supportFragmentManager.beginTransaction().add(R.id.search_naver_map, it).commit()
                     }
                 mapFragment.getMapAsync(this)
             }
@@ -245,9 +245,9 @@ class SearchDetailActivity : BaseActivity(), OnMapReadyCallback {
                     .compassEnabled(true)
                     .scaleBarEnabled(true)
 
-                val mapFragment = supportFragmentManager.findFragmentById(R.id.naver_map) as MapFragment?
+                val mapFragment = supportFragmentManager.findFragmentById(R.id.search_naver_map) as MapFragment?
                     ?: MapFragment.newInstance(options).also {
-                        supportFragmentManager.beginTransaction().add(R.id.naver_map, it).commit()
+                        supportFragmentManager.beginTransaction().add(R.id.search_naver_map, it).commit()
                     }
                 mapFragment.getMapAsync(this)
 
@@ -263,15 +263,13 @@ class SearchDetailActivity : BaseActivity(), OnMapReadyCallback {
                     .compassEnabled(true)
                     .scaleBarEnabled(true)
 
-                val mapFragment = supportFragmentManager.findFragmentById(R.id.naver_map) as MapFragment?
+                val mapFragment = supportFragmentManager.findFragmentById(R.id.search_naver_map) as MapFragment?
                     ?: MapFragment.newInstance(options).also {
-                        supportFragmentManager.beginTransaction().add(R.id.naver_map, it).commit()
+                        supportFragmentManager.beginTransaction().add(R.id.search_naver_map, it).commit()
                     }
                 mapFragment.getMapAsync(this)
             }
             else -> {
-                serverDialog()
-                return
             }
         }
     }

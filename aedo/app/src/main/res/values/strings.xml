@@ -374,6 +374,9 @@
     <string name="change_flower_first">1줄 리본 교체</string>
     <string name="change_flower_second">2줄 리본 교체</string>
 
+    <string name="naver_key">wdi9z6cfek</string>
+    <string name="naver_pass_key">p1N78g4eR7SRlGMxlHGp6yVFYNwdqXOHNnJKUVlv</string>
+
     <string name="flower_first">국화, 글라디올러스, 거베라, 백합, 아이리스, 안개꽃,\n장미, 튤립, 프리지아, 카네이션, 칼라 : \n기타-국내산 또는 수입산</string>
     <string name="flower_second">원칙적으로는 이미지를 기준으로 제작되나 \n지역 및 계절에 따라 (화환의 모양. 크기, 꽃의 수량 \n및 종류가) 다를 수 있습니다</string>
     <string name="flower_third">지역 및 꽃 수급에 따라 생화와 조화가 섞여서 \n제작될 수 있으며 지역별로 꽃을 제작하는 화원사는 \n각각의 스타일로 상품을 제작하여 서비스 상의 \n대표 이미지와 동일하게 제작되지 \n않을 수 있음을 안내 드립니다.</string>

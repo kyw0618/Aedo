@@ -6,16 +6,15 @@ import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.graphics.Color
 import android.location.LocationManager
-import android.os.AsyncTask
+import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
 import android.util.Log
 import android.view.View
 import android.widget.ImageView
-import android.widget.TextView
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -24,7 +23,7 @@ import com.aedo.my_heaven.R
 import com.aedo.my_heaven.api.APIService
 import com.aedo.my_heaven.api.ApiUtils
 import com.aedo.my_heaven.databinding.ActivityListdetailBinding
-import com.aedo.my_heaven.model.list.*
+import com.aedo.my_heaven.model.naverMap.ResultPath
 import com.aedo.my_heaven.model.restapi.base.Coordinates
 import com.aedo.my_heaven.util.`object`.Constant.BURIED
 import com.aedo.my_heaven.util.`object`.Constant.COFFIN_DATE
@@ -32,7 +31,6 @@ import com.aedo.my_heaven.util.`object`.Constant.DECEASED_NAME
 import com.aedo.my_heaven.util.`object`.Constant.DOFP_DATE
 import com.aedo.my_heaven.util.`object`.Constant.EOD_DATE
 import com.aedo.my_heaven.util.`object`.Constant.GPS_ENABLE_REQUEST_CODE
-import com.aedo.my_heaven.util.`object`.Constant.LIST_FRAGMENT_IMG
 import com.aedo.my_heaven.util.`object`.Constant.LIST_IMG
 import com.aedo.my_heaven.util.`object`.Constant.LLIST_ID
 import com.aedo.my_heaven.util.`object`.Constant.MESSAGE_LLIST_ID
@@ -45,7 +43,6 @@ import com.aedo.my_heaven.util.alert.LoadingDialog
 import com.aedo.my_heaven.util.base.BaseActivity
 import com.aedo.my_heaven.util.base.MyApplication
 import com.aedo.my_heaven.util.base.MyApplication.Companion.prefs
-import com.aedo.my_heaven.util.dialog.ImgDialog
 import com.aedo.my_heaven.util.log.LLog
 import com.aedo.my_heaven.view.side.list.detail.MessageActivity
 import com.google.zxing.integration.android.IntentIntegrator
@@ -53,16 +50,17 @@ import com.google.zxing.integration.android.IntentResult
 import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.*
 import com.naver.maps.map.overlay.Marker
+import com.naver.maps.map.overlay.PathOverlay
 import com.naver.maps.map.util.FusedLocationSource
-import kotlinx.android.synthetic.main.fragment_img_dialog.view.*
-import kotlinx.android.synthetic.main.one_button_dialog.view.*
+import kotlinx.android.synthetic.main.view_item_img.view.*
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.io.*
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+import java.io.InputStream
 import java.lang.Exception
-import java.nio.Buffer
 
 
 class ListDetailActivity : BaseActivity(),OnMapReadyCallback {
@@ -205,7 +203,6 @@ class ListDetailActivity : BaseActivity(),OnMapReadyCallback {
 
     private fun initView() {
         val place_name = intent.getStringExtra(PLACE_NAME)
-
         val place_first = realm.where(Coordinates::class.java).equalTo("id","PLACE_FIRST").findFirst()
         val place_second  = realm.where(Coordinates::class.java).equalTo("id","PLACE_Second").findFirst()
         val place_third  = realm.where(Coordinates::class.java).equalTo("id","PLACE_Third").findFirst()
@@ -327,6 +324,20 @@ class ListDetailActivity : BaseActivity(),OnMapReadyCallback {
                             val imgs = result.byteStream()
                             val bit = BitmapFactory.decodeStream(imgs)
                             mBinding.imgPerson.setImageBitmap(bit)
+                            mBinding.imgPerson.setOnClickListener {
+                                val myLayout = layoutInflater.inflate(R.layout.view_item_img, null)
+                                val build = AlertDialog.Builder(this@ListDetailActivity).apply {
+                                    setView(myLayout)
+                                }
+                                val textView : ImageView = myLayout.findViewById(R.id.data_detail_img)
+                                textView.setImageBitmap(bit)
+                                val dialog = build.create()
+                                dialog.show()
+
+                                myLayout.img_finish.setOnClickListener {
+                                    dialog.dismiss()
+                                }
+                            }
                         }
                         catch (e: Exception) {
 
@@ -373,7 +384,6 @@ class ListDetailActivity : BaseActivity(),OnMapReadyCallback {
         })
     }
 
-
     override fun onMapReady(naverMap: NaverMap) {
         val place_first = realm.where(Coordinates::class.java).equalTo("id","PLACE_FIRST").findFirst()
         val place_second  = realm.where(Coordinates::class.java).equalTo("id","PLACE_Second").findFirst()
@@ -411,6 +421,60 @@ class ListDetailActivity : BaseActivity(),OnMapReadyCallback {
 
     fun onMainClick(v: View) {
         moveMain()
+    }
+
+    fun onBusClick(v: View) {
+
+    }
+
+    fun onParkingClick(v: View) {
+
+    }
+
+    fun onNaviClick(v: View) {
+        moveNavi()
+    }
+
+    private fun moveNavi() {
+        val APIKEY_ID = getString(R.string.naver_key)
+        val APIKEY = getString(R.string.naver_pass_key)
+        val retrofit = Retrofit.Builder().
+        baseUrl("https://naveropenapi.apigw.ntruss.com/map-direction/").
+        addConverterFactory(GsonConverterFactory.create()).
+        build()
+
+        val api = retrofit.create(APIService::class.java)
+        //근처에서 길찾기
+        val callgetPath = api.getPath(APIKEY_ID, APIKEY,"129.089441, 35.231100", "129.084454, 35.228982")
+        callgetPath.enqueue(object : Callback<ResultPath>{
+            override fun onResponse(call: Call<ResultPath>, response: Response<ResultPath>) {
+                val result = response.body()
+                if(response.isSuccessful && result != null) {
+                    Log.d(TAG,"네이버 길찾기 성공 -> $result")
+                    val path_cords = response.body()?.route?.traoptimal
+                    val path = PathOverlay()
+                    val path_container : MutableList<LatLng> = mutableListOf(LatLng(0.1,0.1))
+                    for (path_cordsss in path_cords!!) {
+                        for (path_cords_xy in path_cordsss.path) {
+                            path_container?.add(LatLng(path_cords_xy[1],path_cords_xy[0]))
+                        }
+                    }
+                    path.coords = path_container?.drop(1)!!
+                    path.color = Color.RED
+                    path.map = mMap
+
+                }
+                else {
+                    Log.d(TAG,"네이버 길찾기 실패 -> ${response.errorBody()}")
+                }
+            }
+
+            override fun onFailure(call: Call<ResultPath>, t: Throwable) {
+                Log.d(TAG,"네이버 길찾기 서버 연결 실패 -> $t")
+            }
+
+        })
+
     }
 
     private fun putID() {

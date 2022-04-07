@@ -7,7 +7,7 @@ data class CreateName(
 data class CreateSearch(
     var id: String? = null,
     var resident : SResident?=null,
-    var place_name : String?=null,
+    var place : String?=null,
     var deceased : SDeceased?=null,
     var eod : String?=null,
     var coffin : String?=null,

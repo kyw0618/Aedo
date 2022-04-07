@@ -45,16 +45,16 @@ class SearchActivity : BaseActivity() {
             override fun onResponse(call: Call<CreateName>, response: Response<CreateName>) {
                 val result = response.body()
                 if (response.isSuccessful && result != null) {
-                    Log.d(LLog.TAG,"NoticeModel response SUCCESS -> $result")
+                    Log.d(LLog.TAG,"Search response SUCCESS -> $result")
                     setAdapter(result.result)
                 }
                 else {
-                    Log.d(LLog.TAG,"NoticeModel response ERROR -> $result")
+                    Log.d(LLog.TAG,"Search response ERROR -> $result")
                     otherAPI()
                 }
             }
             override fun onFailure(call: Call<CreateName>, t: Throwable) {
-                Log.d(LLog.TAG, "NoticeModel Fail -> $t")
+                Log.d(LLog.TAG, "Search Fail -> $t")
             }
         })
     }
@@ -67,16 +67,16 @@ class SearchActivity : BaseActivity() {
             override fun onResponse(call: Call<CreateName>, response: Response<CreateName>) {
                 val result = response.body()
                 if (response.isSuccessful && result != null) {
-                    Log.d(LLog.TAG,"NoticeModel Second response SUCCESS -> $result")
+                    Log.d(LLog.TAG,"Search Second response SUCCESS -> $result")
                     setAdapter(result.result)
 
                 }
                 else {
-                    Log.d(LLog.TAG,"NoticeModel Second response ERROR -> $result")
+                    Log.d(LLog.TAG,"Search Second response ERROR -> $result")
                 }
             }
             override fun onFailure(call: Call<CreateName>, t: Throwable) {
-                Log.d(LLog.TAG, "NoticeModel Second Fail -> $t")
+                Log.d(LLog.TAG, "Search Second Fail -> $t")
             }
         })
     }

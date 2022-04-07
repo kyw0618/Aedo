@@ -468,6 +468,7 @@
                                 android:layout_height="62dp"
                                 android:layout_marginStart="40dp"
                                 android:layout_marginTop="3dp"
+                                android:onClick='@{activity::onBusClick}'
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
                                 app:srcCompat="@drawable/buss" />
@@ -480,6 +481,7 @@
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
+                                android:onClick='@{activity::onParkingClick}'
                                 android:layout_marginEnd="120dp"
                                 app:srcCompat="@drawable/parking" />
 
@@ -489,6 +491,7 @@
                                 android:layout_height="62dp"
                                 android:layout_marginEnd="40dp"
                                 android:layout_marginTop="3dp"
+                                android:onClick='@{activity::onNaviClick}'
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
                                 app:srcCompat="@drawable/navi" />

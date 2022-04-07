@@ -73,10 +73,6 @@ class MainActivity : BaseActivity() {
         moveShop()
     }
 
-    fun onPushClick(v: View) {
-        movePush()
-    }
-
     fun onNoticeCLick(v: View) {
         moveNotice()
     }

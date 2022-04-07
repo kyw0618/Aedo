@@ -63,6 +63,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/edit_box"
                 android:fontFamily="@font/notosans_medium"
+                android:layout_marginEnd="10dp"
                 android:hint="상주이름/고인이름/장례식장을 입력해 주세요"
                 android:inputType="text"
                 android:maxLength="20"

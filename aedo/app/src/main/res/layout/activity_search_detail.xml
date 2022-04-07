@@ -71,17 +71,6 @@
                         android:background="@drawable/header_bg">
 
                         <ImageView
-                            android:id="@+id/detail_waring"
-                            android:layout_width="18dp"
-                            android:layout_height="18dp"
-                            android:layout_marginStart="10dp"
-                            android:layout_marginTop="20dp"
-                            android:onClick='@{activity::onWaringClick}'
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:srcCompat="@drawable/detail_waring" />
-
-                        <ImageView
                             android:layout_width="match_parent"
                             android:layout_height="3dp"
                             android:layout_marginBottom="120dp"
@@ -354,7 +343,7 @@
                             app:layout_constraintTop_toBottomOf="@+id/textView25">
 
                             <FrameLayout
-                                android:id="@+id/naver_map"
+                                android:id="@+id/search_naver_map"
                                 android:layout_width="0dp"
                                 android:layout_height="0dp"
                                 app:layout_constraintBottom_toBottomOf="parent"
@@ -371,7 +360,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="286dp"
-                            app:layout_constraintBottom_toTopOf="@+id/constraintLayout16"
+                            app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent">

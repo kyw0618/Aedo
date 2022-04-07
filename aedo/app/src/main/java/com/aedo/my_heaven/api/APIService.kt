@@ -5,6 +5,7 @@ import com.aedo.my_heaven.model.coun.CounPost
 import com.aedo.my_heaven.model.list.Condole
 import com.aedo.my_heaven.model.list.ListDelete
 import com.aedo.my_heaven.model.list.RecyclerList
+import com.aedo.my_heaven.model.naverMap.ResultPath
 import com.aedo.my_heaven.model.notice.NoticeDetailModel
 import com.aedo.my_heaven.model.notice.NoticeModel
 import com.aedo.my_heaven.model.restapi.base.*
@@ -16,7 +17,6 @@ import okhttp3.RequestBody
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.http.*
-import java.io.File
 
 
 interface APIService {
@@ -64,7 +64,7 @@ interface APIService {
                      @PartMap data: HashMap<String, RequestBody>): Call<CreateModel>
 
     // 부고조회 API
-    @GET("v1/obituary?name=")
+    @GET("v1/obituary")
     fun getCreateName(@Query("name")name: String?,
                       @Header("Accesstoken")accesstoken: String?) : Call<CreateName>
 
@@ -111,6 +111,15 @@ interface APIService {
     fun getOrder(@Header("Accesstoken")accesstoken:String?,
                  @Body orders: Orders) : Call<ShopModel>
 
+    @GET("v1/driving")
+    fun getPath(
+        @Header("X-NCP-APIGW-API-KEY-ID") apiKeyID: String,
+        @Header("X-NCP-APIGW-API-KEY") apiKey: String,
+        @Query("start") start: String,
+        @Query("goal") goal: String,
+    ): Call<ResultPath>
+
+
     // 공지사항 세부조회 API
     @GET("v1/center/announcement/:id")
     fun getNotiDetail(@Header("Accesstoken")accesstoken: String?,
@@ -127,5 +136,4 @@ interface APIService {
     // 부고수정 API
     @PUT("v1/obituary/:id")
     fun getCreatePut(@Header("Accesstoken")accesstoken: String?)
-
 }
