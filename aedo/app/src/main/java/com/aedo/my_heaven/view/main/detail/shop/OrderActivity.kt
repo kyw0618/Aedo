@@ -141,6 +141,7 @@ class OrderActivity : BaseActivity() {
                 val result = response.body()
                 if(response.isSuccessful&& result!= null) {
                     Log.d(LLog.TAG,"ShopModel  API SUCCESS -> $result")
+                    getImport()
                 }
                 else {
                     Log.d(LLog.TAG,"ShopModel  API ERROR -> ${response.errorBody()}")
@@ -168,6 +169,7 @@ class OrderActivity : BaseActivity() {
                 val result = response.body()
                 if(response.isSuccessful&& result!= null) {
                     Log.d(LLog.TAG,"ShopModel Second API SUCCESS -> $result")
+                    getImport()
                 }
                 else {
                     Log.d(LLog.TAG,"ShopModel Second API ERROR -> ${response.errorBody()}")
@@ -178,6 +180,10 @@ class OrderActivity : BaseActivity() {
                 Log.d(LLog.TAG,"ShopModel Second Fail -> $t")
             }
         })
+    }
+
+    private fun getImport() {
+        TODO("Not yet implemented")
     }
 
     fun onShopTermClick(v: View) {

@@ -90,11 +90,6 @@ object  Constant {
 
     const val PERMISSION_REQUEST_CODE = 1000
     const val GPS_ENABLE_REQUEST_CODE = 2001
-    const val FINISH_INTERVAL_TIME: Long = 1500
-
-    const val PICK_FROM_CAMERA = 0
-    const val PICK_FROM_ALBUM = 1
-    const val REQUEST_IMAGE_CROP = 2
 
     const val APP_UPDATE = 700
 
