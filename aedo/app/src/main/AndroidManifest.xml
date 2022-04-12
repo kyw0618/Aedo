@@ -31,8 +31,9 @@
         android:roundIcon="@mipmap/ic_app_logo_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.My_Heaven"
-        android:usesCleartextTraffic="false"
-        tools:targetApi="n">
+        android:usesCleartextTraffic="true"
+        tools:targetApi="n"
+        tools:replace="android:usesCleartextTraffic">
         <activity
             android:name=".view.side.guide.GuideActivity"
             android:exported="false" />

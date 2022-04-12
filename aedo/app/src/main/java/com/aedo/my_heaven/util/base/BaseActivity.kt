@@ -50,6 +50,7 @@ import com.aedo.my_heaven.view.side.list.detail.MessageUploadActivity
 import com.aedo.my_heaven.view.side.list.detail.WaringActivity
 import com.aedo.my_heaven.view.side.setting.SettingActivity
 import com.aedo.my_heaven.view.term.TermActivity
+import com.iamport.sdk.domain.core.Iamport
 import io.realm.Realm
 import kotlinx.android.synthetic.main.one_button_dialog.view.*
 import kotlinx.android.synthetic.main.two_button_dialog.view.*

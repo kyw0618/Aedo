@@ -12,17 +12,20 @@ import com.aedo.my_heaven.R
 import com.aedo.my_heaven.api.APIService
 import com.aedo.my_heaven.api.ApiUtils
 import com.aedo.my_heaven.databinding.ActivityOrderBinding
-import com.aedo.my_heaven.model.coun.CounPost
-import com.aedo.my_heaven.model.restapi.base.CreateModel
 import com.aedo.my_heaven.model.shop.*
 import com.aedo.my_heaven.util.base.BaseActivity
-import com.aedo.my_heaven.util.base.MyApplication
 import com.aedo.my_heaven.util.base.MyApplication.Companion.prefs
 import com.aedo.my_heaven.util.log.LLog
+import com.google.android.material.snackbar.Snackbar
+import com.iamport.sdk.data.sdk.IamPortRequest
+import com.iamport.sdk.data.sdk.PG
+import com.iamport.sdk.data.sdk.PayMethod
+import com.iamport.sdk.domain.core.Iamport
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.time.LocalDate
+import java.util.*
 
 class OrderActivity : BaseActivity() {
     private lateinit var mBinding: ActivityOrderBinding
@@ -33,7 +36,6 @@ class OrderActivity : BaseActivity() {
         mBinding = DataBindingUtil.setContentView(this,R.layout.activity_order)
         mBinding.activity = this
         apiServices = ApiUtils.apiService
-
         val onlyDate: LocalDate = LocalDate.now()
         mBinding.tvMakeData.text = onlyDate.toString()
 
@@ -183,7 +185,7 @@ class OrderActivity : BaseActivity() {
     }
 
     private fun getImport() {
-        TODO("Not yet implemented")
+
     }
 
     fun onShopTermClick(v: View) {

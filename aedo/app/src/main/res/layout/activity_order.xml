@@ -462,7 +462,6 @@
                             <androidx.appcompat.widget.AppCompatButton
                                 android:id="@+id/btn_ok"
                                 style="@style/CommonButtonStyle"
-                                android:onClick='@{activity::onOkClick}'
                                 android:text="주문하기" />
 
                         </androidx.cardview.widget.CardView>
