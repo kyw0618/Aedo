@@ -103,6 +103,10 @@ object  Constant {
     const val SEARCH_BURIED = "SEARCH_BURIED"
     const val SEARCH_PLACE = "SEARCH_PLACE"
 
+    //Shop
+    const val SHOP_FIRST = "SHOP_FIRST"
+    const val SHOP_FIRST_PAY = "SHOP_FIRST_PAY"
+
 
     // Splash
     const val SPLASH_WAIT = 2500

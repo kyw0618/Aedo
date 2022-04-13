@@ -18,6 +18,7 @@ import com.aedo.my_heaven.util.base.BaseActivity
 import com.aedo.my_heaven.view.main.MainActivity
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
+import com.iamport.sdk.domain.core.Iamport
 
 class ShopActivity : BaseActivity(){
 
@@ -31,6 +32,7 @@ class ShopActivity : BaseActivity(){
         apiServices = ApiUtils.apiService
         setupViewPager()
         inStatusBar()
+        Iamport.init(this)
     }
 
     private fun setupViewPager() {

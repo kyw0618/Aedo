@@ -13,6 +13,8 @@ import com.aedo.my_heaven.api.APIService
 import com.aedo.my_heaven.api.ApiUtils
 import com.aedo.my_heaven.databinding.ActivityOrderBinding
 import com.aedo.my_heaven.model.shop.*
+import com.aedo.my_heaven.util.`object`.Constant.SHOP_FIRST
+import com.aedo.my_heaven.util.`object`.Constant.SHOP_FIRST_PAY
 import com.aedo.my_heaven.util.base.BaseActivity
 import com.aedo.my_heaven.util.base.MyApplication.Companion.prefs
 import com.aedo.my_heaven.util.log.LLog
@@ -39,6 +41,7 @@ class OrderActivity : BaseActivity() {
         val onlyDate: LocalDate = LocalDate.now()
         mBinding.tvMakeData.text = onlyDate.toString()
 
+        Iamport.init(this@OrderActivity)
         inStatusBar()
         setupSpinnerHandler()
         makeTop()
@@ -118,7 +121,7 @@ class OrderActivity : BaseActivity() {
             }
             send_phone.isEmpty() -> {
                 mBinding.orderSendPhone.error = "미입력력"
-           }
+            }
             flower_name.isEmpty() -> {
                 mBinding.orderSeondFlower.error = "미입력"
             }

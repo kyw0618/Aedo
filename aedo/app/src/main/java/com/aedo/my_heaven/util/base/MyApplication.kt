@@ -4,9 +4,9 @@ import android.app.Activity
 import android.app.Application
 import android.os.Bundle
 import com.aedo.my_heaven.R
-import com.clj.fastble.BleManager
 import com.aedo.my_heaven.util.common.CommonData
 import com.aedo.my_heaven.util.preference.PreferenceManager
+import com.iamport.sdk.domain.core.Iamport
 import com.kakao.sdk.common.KakaoSdk
 import io.realm.Realm
 import io.realm.RealmConfiguration
@@ -30,6 +30,7 @@ class MyApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         Realm.init(this)
+        
         val config = RealmConfiguration.Builder()
             .name("test-data")
             .allowWritesOnUiThread(true)
@@ -37,8 +38,6 @@ class MyApplication : Application() {
             .build()
         Realm.setDefaultConfiguration(config)
         prefs = PreferenceManager(applicationContext)
-        BleManager.getInstance().init(this)
-
         val commonData: CommonData = CommonData().getInstance()
         commonData.numStarted = 0
 
