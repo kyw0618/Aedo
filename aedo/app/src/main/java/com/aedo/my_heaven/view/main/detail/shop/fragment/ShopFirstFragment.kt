@@ -1,5 +1,7 @@
 package com.aedo.my_heaven.view.main.detail.shop.fragment
 
+import android.app.Application
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log

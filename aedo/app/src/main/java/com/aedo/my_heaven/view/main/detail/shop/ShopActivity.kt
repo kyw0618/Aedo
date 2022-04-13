@@ -32,7 +32,6 @@ class ShopActivity : BaseActivity(){
         apiServices = ApiUtils.apiService
         setupViewPager()
         inStatusBar()
-        Iamport.init(this)
     }
 
     private fun setupViewPager() {
