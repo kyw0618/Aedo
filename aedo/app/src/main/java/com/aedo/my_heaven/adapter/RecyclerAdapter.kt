@@ -34,7 +34,7 @@ import com.kakao.sdk.template.model.FeedTemplate
 import com.kakao.sdk.template.model.Link
 import kotlinx.android.synthetic.main.two_button_dialog.view.*
 
-class RecyclerAdapter(private val postList : List<Obituaray>, val context : Context)
+class RecyclerAdapter(private val postList: List<Obituaray>, val context: Context)
     : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

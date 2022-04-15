@@ -7,7 +7,7 @@
         <import type="android.view.View"/>
         <variable
             name="activity"
-            type="com.aedo.my_heaven.view.main.detail.shop.OrderActivity" />
+            type="com.aedo.my_heaven.view.main.detail.shop.fragment.order.FourOrderActivity" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -118,6 +118,51 @@
                         android:layout_height="match_parent"
                         android:layout_marginTop="10dp">
                         <TextView
+                            android:id="@+id/tv_flower_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:fontFamily="@font/gyeonggititle_bold_title"
+                            android:text="화환 종류 및 금액"
+                            android:textColor="@color/black"
+                            android:textSize="14dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                        <TextView
+                            android:id="@+id/tv_flower_name_detail"
+                            android:layout_width="150dp"
+                            android:layout_height="31dp"
+                            android:layout_marginTop="5dp"
+                            android:background="@drawable/edit_box"
+                            android:gravity="left|center"
+                            android:text="화환 종류"
+                            android:paddingStart="10dp"
+                            android:textColor="@color/semi_black"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_flower_name"
+                            tools:ignore="RtlHardcoded" />
+
+                        <TextView
+                            android:id="@+id/tv_flower_pay_detail"
+                            android:layout_width="80dp"
+                            android:layout_height="31dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginStart="20dp"
+                            android:background="@drawable/edit_box"
+                            android:gravity="left|center"
+                            android:paddingStart="10dp"
+                            android:text="금액"
+                            android:textColor="@color/semi_black"
+                            app:layout_constraintStart_toEndOf="@+id/tv_flower_name_detail"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_flower_name"
+                            tools:ignore="RtlHardcoded" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="10dp">
+                        <TextView
                             android:id="@+id/tv_place"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -184,77 +229,77 @@
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginRight="30dp"
-                android:orientation="vertical">
-                <androidx.constraintlayout.widget.ConstraintLayout
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-                    <TextView
-                        android:id="@+id/tv_place_person"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:fontFamily="@font/gyeonggititle_bold_title"
-                        android:text="받으시는 분"
-                        android:textColor="@color/black"
-                        android:textSize="14dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="10dp">
-                    <EditText
-                        android:id="@+id/order_set_person"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="30dp"
+                    android:orientation="vertical">
+                    <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:background="@drawable/edit_box"
-                        android:fontFamily="@font/noto_sans_kr_bold"
-                        android:gravity="start"
-                        android:hint="받는 상주 성함을 입력해 주세요"
-                        android:importantForAutofill="no"
-                        android:inputType="text"
-                        android:maxLength="15"
-                        android:paddingStart="10dp"
-                        android:textColor="@color/black"
-                        android:textSize="14dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        tools:targetApi="o"
-                        tools:ignore="RtlSymmetry,TextFields" />
+                        android:layout_height="match_parent">
+                        <TextView
+                            android:id="@+id/tv_place_person"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:fontFamily="@font/gyeonggititle_bold_title"
+                            android:text="받으시는 분"
+                            android:textColor="@color/black"
+                            android:textSize="14dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
 
-                    <EditText
-                        android:id="@+id/order_set_phone"
+                    <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:layout_marginTop="5dp"
-                        android:background="@drawable/edit_box"
-                        android:fontFamily="@font/noto_sans_kr_bold"
-                        android:gravity="start"
-                        android:hint="받는 상주 휴대폰 번호를 입력해 주세요"
-                        android:importantForAutofill="no"
-                        android:inputType="phone"
-                        android:maxLength="15"
-                        android:paddingStart="10dp"
-                        android:textColor="@color/black"
-                        android:textSize="14dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/order_set_person"
-                        tools:targetApi="o"
-                        tools:ignore="RtlSymmetry,TextFields" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </LinearLayout>
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="10dp">
+                        <EditText
+                            android:id="@+id/order_set_person"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:background="@drawable/edit_box"
+                            android:fontFamily="@font/noto_sans_kr_bold"
+                            android:gravity="start"
+                            android:hint="받는 상주 성함을 입력해 주세요"
+                            android:importantForAutofill="no"
+                            android:inputType="text"
+                            android:maxLength="15"
+                            android:paddingStart="10dp"
+                            android:textColor="@color/black"
+                            android:textSize="14dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:targetApi="o"
+                            tools:ignore="RtlSymmetry,TextFields" />
+
+                        <EditText
+                            android:id="@+id/order_set_phone"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:layout_marginTop="5dp"
+                            android:background="@drawable/edit_box"
+                            android:fontFamily="@font/noto_sans_kr_bold"
+                            android:gravity="start"
+                            android:hint="받는 상주 휴대폰 번호를 입력해 주세요"
+                            android:importantForAutofill="no"
+                            android:inputType="phone"
+                            android:maxLength="15"
+                            android:paddingStart="10dp"
+                            android:textColor="@color/black"
+                            android:textSize="14dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/order_set_person"
+                            tools:targetApi="o"
+                            tools:ignore="RtlSymmetry,TextFields" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -313,7 +358,7 @@
                             android:fontFamily="@font/noto_sans_kr_bold"
                             android:gravity="start"
                             android:hint="주문자 휴대폰 번호를 입력해 주세요"
-                           android:importantForAutofill="no"
+                            android:importantForAutofill="no"
                             android:inputType="phone"
                             android:maxLength="15"
                             android:paddingStart="10dp"
@@ -462,6 +507,7 @@
                             <androidx.appcompat.widget.AppCompatButton
                                 android:id="@+id/btn_ok"
                                 style="@style/CommonButtonStyle"
+                                android:onClick='@{activity::onOkClick}'
                                 android:text="주문하기" />
 
                         </androidx.cardview.widget.CardView>

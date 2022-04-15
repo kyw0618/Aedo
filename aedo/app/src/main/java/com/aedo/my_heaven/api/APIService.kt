@@ -10,6 +10,7 @@ import com.aedo.my_heaven.model.notice.NoticeDetailModel
 import com.aedo.my_heaven.model.notice.NoticeModel
 import com.aedo.my_heaven.model.restapi.base.*
 import com.aedo.my_heaven.model.restapi.login.*
+import com.aedo.my_heaven.model.shop.MyOrder
 import com.aedo.my_heaven.model.shop.Orders
 import com.aedo.my_heaven.model.shop.ShopModel
 import okhttp3.MultipartBody
@@ -110,6 +111,10 @@ interface APIService {
     @POST("v1/order")
     fun getOrder(@Header("Accesstoken")accesstoken:String?,
                  @Body orders: Orders) : Call<ShopModel>
+
+    //내 주문 조회 API
+    @GET("v1/oder/my")
+    fun getMyOrder(@Header("Accesstoken")accesstoken:String?) : Call<MyOrder>
 
     @GET("v1/driving")
     fun getPath(

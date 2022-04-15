@@ -363,10 +363,10 @@
     <string name="FAQ_five">5. 부고 작성</string>
     <string name="FAQ_five_detail">고객센터로 문의해주세요</string>
 
-    <string name="shop_first_first">[근조] 3단화한 1호</string>
-    <string name="shop_first_second">[근조] 3단화한 2호</string>
-    <string name="shop_first_third">[근조] 3단화한 3호</string>
-    <string name="shop_first_four">[근조] 4단화한 1호</string>
+    <string name="shop_first_first">[근조] 3단화환 1호</string>
+    <string name="shop_first_second">[근조] 3단화환 2호</string>
+    <string name="shop_first_third">[근조] 3단화환 3호</string>
+    <string name="shop_first_four">[근조] 4단화환 1호</string>
 
     <string name="shop_second_first">영정 바구니</string>
     <string name="shop_second_second">오브제, 장구 1단</string>

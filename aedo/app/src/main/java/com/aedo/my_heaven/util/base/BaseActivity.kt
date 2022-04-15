@@ -34,7 +34,7 @@ import com.aedo.my_heaven.view.main.detail.make.MakeActivity
 import com.aedo.my_heaven.view.main.detail.modify.ModifyActivity
 import com.aedo.my_heaven.view.main.detail.search.SearchActivity
 import com.aedo.my_heaven.view.main.detail.send.SendActivity
-import com.aedo.my_heaven.view.main.detail.shop.OrderActivity
+import com.aedo.my_heaven.view.main.detail.shop.MyOrderActivity
 import com.aedo.my_heaven.view.main.detail.shop.ShopActivity
 import com.aedo.my_heaven.view.main.detail.shop.ShopTermActivity
 import com.aedo.my_heaven.view.notice.NoticeActivity
@@ -50,7 +50,6 @@ import com.aedo.my_heaven.view.side.list.detail.MessageUploadActivity
 import com.aedo.my_heaven.view.side.list.detail.WaringActivity
 import com.aedo.my_heaven.view.side.setting.SettingActivity
 import com.aedo.my_heaven.view.term.TermActivity
-import com.iamport.sdk.domain.core.Iamport
 import io.realm.Realm
 import kotlinx.android.synthetic.main.one_button_dialog.view.*
 import kotlinx.android.synthetic.main.two_button_dialog.view.*
@@ -526,13 +525,6 @@ open class BaseActivity : AppCompatActivity() {
         finish()
     }
 
-    internal fun moveOrder() {
-        val intent = Intent(this, OrderActivity::class.java)
-        startActivity(intent)
-        overridePendingTransition(0, 0)
-        finish()
-    }
-
     internal fun moveShopTerm() {
         val intent = Intent(this, ShopTermActivity::class.java)
         startActivity(intent)
@@ -542,6 +534,13 @@ open class BaseActivity : AppCompatActivity() {
 
     internal fun moveGuide() {
         val intent = Intent(this, GuideActivity::class.java)
+        startActivity(intent)
+        overridePendingTransition(0, 0)
+        finish()
+    }
+
+    internal fun moveMyOrder() {
+        val intent = Intent(this, MyOrderActivity::class.java)
         startActivity(intent)
         overridePendingTransition(0, 0)
         finish()

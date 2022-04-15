@@ -237,7 +237,7 @@
                     android:layout_height="26dp"
                     android:layout_marginStart="34dp"
                     android:layout_marginTop="8dp"
-                    android:onClick='@{activity::onSetClick}'
+                    android:onClick='@{activity::onOrderClick}'
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/group_setting" />

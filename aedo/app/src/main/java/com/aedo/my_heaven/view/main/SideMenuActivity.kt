@@ -88,8 +88,8 @@ class SideMenuActivity : BaseActivity() {
         moveList()
     }
 
-    fun onSetClick(v: View) {
-        moveSetting()
+    fun onOrderClick(v: View) {
+        moveMyOrder()
     }
 
     fun onCompany(v: View) {

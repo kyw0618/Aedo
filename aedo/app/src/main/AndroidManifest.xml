@@ -32,16 +32,46 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.My_Heaven"
         android:usesCleartextTraffic="false"
-        tools:targetApi="n"
-        tools:replace="android:usesCleartextTraffic">
+        tools:replace="android:usesCleartextTraffic"
+        tools:targetApi="n">
+        <activity
+            android:name=".view.main.detail.shop.MyOrderDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.main.detail.shop.MyOrderActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.main.detail.shop.fragment.order.NineOrderActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.main.detail.shop.fragment.order.EightOrderActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.main.detail.shop.fragment.order.SevenOrderActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.main.detail.shop.fragment.order.SixOrderActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.main.detail.shop.fragment.order.FiveOrderActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.main.detail.shop.fragment.order.FourOrderActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.main.detail.shop.fragment.order.ThreeOrderActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.main.detail.shop.fragment.order.TwoOrderActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.main.detail.shop.fragment.order.OneOrderActivity"
+            android:exported="false" />
         <activity
             android:name=".view.side.guide.GuideActivity"
             android:exported="false" />
         <activity
             android:name=".view.main.detail.shop.ShopTermActivity"
-            android:exported="false" />
-        <activity
-            android:name=".view.main.detail.shop.OrderActivity"
             android:exported="false" />
         <activity
             android:name=".view.term.TermActivity"
