@@ -35,16 +35,42 @@ class OrderActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Iamport.init(this)
         mBinding = DataBindingUtil.setContentView(this,R.layout.activity_order)
         mBinding.activity = this
         apiServices = ApiUtils.apiService
         val onlyDate: LocalDate = LocalDate.now()
         mBinding.tvMakeData.text = onlyDate.toString()
-
-        Iamport.init(this@OrderActivity)
         inStatusBar()
         setupSpinnerHandler()
         makeTop()
+    }
+
+    override fun onStart() {
+        super.onStart()
+        val name = intent.getStringExtra(SHOP_FIRST)
+        val amount = intent.getStringExtra(SHOP_FIRST_PAY)
+        val request = IamPortRequest(
+            pg = PG.nice.makePgRawName(""),         // PG사
+            pay_method = PayMethod.card.name,                    // 결제수단
+            name = name.toString(),                      // 주문명
+            merchant_uid = "sample_aos_${Date().time}",     // 주문번호
+            amount = amount.toString(),                                // 결제금액
+            buyer_name = "김개발"
+        )
+
+        mBinding.btnOk.setOnClickListener { view ->
+            Snackbar.make(view, "결제를 진행 하시겠습니까?",Snackbar.LENGTH_LONG)
+                .setAction("결제") {
+                    val userCode = "imp00383227"
+                    Log.d("하이", "결제시작인데?")
+                    Iamport.close()
+                    // 아임포트 SDK 에 결제 요청하기
+                    Iamport.payment(userCode, iamPortRequest = request, paymentResultCallback = {
+                    })
+
+                }.show()
+        }
     }
 
     private fun setupSpinnerHandler() {
@@ -98,39 +124,39 @@ class OrderActivity : BaseActivity() {
         moveShop()
     }
 
-    fun onOkClick(v: View) {
-        val place_number =  mBinding.makeTxPhone.text.toString()
-        val receiver_name = mBinding.orderSetPerson.text.toString()
-        val receiver_phone = mBinding.orderSetPhone.text.toString()
-        val send_name = mBinding.orderSendPerson.text.toString()
-        val send_phone = mBinding.orderSendPhone.text.toString()
-        val flower_name = mBinding.orderSeondFlower.text.toString()
-
-        when {
-            place_number.isEmpty() -> {
-                mBinding.makeTxPhone.error = "미입력"
-            }
-            receiver_name.isEmpty() -> {
-                mBinding.orderSetPerson.error = "미입력"
-            }
-            receiver_phone.isEmpty() -> {
-                mBinding.orderSetPhone.error = "미입력"
-            }
-            send_name.isEmpty() -> {
-                mBinding.orderSendPerson.error = "미입력"
-            }
-            send_phone.isEmpty() -> {
-                mBinding.orderSendPhone.error = "미입력력"
-            }
-            flower_name.isEmpty() -> {
-                mBinding.orderSeondFlower.error = "미입력"
-            }
-            else -> {
-                dialog?.show()
-                orderAPI()
-            }
-        }
-    }
+//    fun onOkClick(v: View) {
+//        val place_number =  mBinding.makeTxPhone.text.toString()
+//        val receiver_name = mBinding.orderSetPerson.text.toString()
+//        val receiver_phone = mBinding.orderSetPhone.text.toString()
+//        val send_name = mBinding.orderSendPerson.text.toString()
+//        val send_phone = mBinding.orderSendPhone.text.toString()
+//        val flower_name = mBinding.orderSeondFlower.text.toString()
+//
+//        when {
+//            place_number.isEmpty() -> {
+//                mBinding.makeTxPhone.error = "미입력"
+//            }
+//            receiver_name.isEmpty() -> {
+//                mBinding.orderSetPerson.error = "미입력"
+//            }
+//            receiver_phone.isEmpty() -> {
+//                mBinding.orderSetPhone.error = "미입력"
+//            }
+//            send_name.isEmpty() -> {
+//                mBinding.orderSendPerson.error = "미입력"
+//            }
+//            send_phone.isEmpty() -> {
+//                mBinding.orderSendPhone.error = "미입력력"
+//            }
+//            flower_name.isEmpty() -> {
+//                mBinding.orderSeondFlower.error = "미입력"
+//            }
+//            else -> {
+//                dialog?.show()
+//                orderAPI()
+//            }
+//        }
+//    }
 
     private fun orderAPI() {
         val place = Place(mBinding.spinnerInfoTextTt.text.toString(),mBinding.makeTxPhone.text.toString())

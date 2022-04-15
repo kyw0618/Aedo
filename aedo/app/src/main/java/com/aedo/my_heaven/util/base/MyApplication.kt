@@ -10,6 +10,9 @@ import com.iamport.sdk.domain.core.Iamport
 import com.kakao.sdk.common.KakaoSdk
 import io.realm.Realm
 import io.realm.RealmConfiguration
+import org.koin.android.ext.koin.androidContext
+import org.koin.android.logger.AndroidLogger
+import org.koin.core.context.startKoin
 
 class MyApplication : Application() {
     companion object {
@@ -29,8 +32,12 @@ class MyApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
+        val koinApp = startKoin {
+            logger(AndroidLogger())
+            androidContext(this@MyApplication)
+        }
+        Iamport.createWithKoin(this, koinApp)
         Realm.init(this)
-        
         val config = RealmConfiguration.Builder()
             .name("test-data")
             .allowWritesOnUiThread(true)

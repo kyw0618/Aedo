@@ -1,5 +1,6 @@
 package com.aedo.my_heaven.view.main.detail.shop.fragment
 
+import android.annotation.SuppressLint
 import android.app.Application
 import android.content.Context
 import android.content.Intent
@@ -36,34 +37,16 @@ class ShopFirstFragment : Fragment() {
         return mBinding.root
     }
 
+    @SuppressLint("ShowToast")
     private fun setClick() {
+
         mBinding.btnActivityShopPurchase.setOnClickListener {
-//            val intent = Intent(activity, OrderActivity::class.java)
-//            intent.putExtra(SHOP_FIRST,mBinding.tvActivityShopTitle.text.toString())
-//            intent.putExtra(SHOP_FIRST_PAY, mBinding.tvActivityShopSalesPrice.text.toString())
-//            startActivity(intent)
-            val request = IamPortRequest(
-                pg = PG.nice.makePgRawName(""),         // PG사
-                pay_method = PayMethod.card.name,                    // 결제수단
-                name = mBinding.tvActivityShopTitle.text.toString(),                      // 주문명
-                merchant_uid = "sample_aos_${Date().time}",     // 주문번호
-                amount = mBinding.tvActivityShopSalesPrice.text.toString(),                                // 결제금액
-                buyer_name = "김개발"
-            )
-
-            mBinding.btnActivityShopPurchase.setOnClickListener { view ->
-                Snackbar.make(view, "결제를 진행 하시겠습니까?",Snackbar.LENGTH_LONG)
-                    .setAction("결제") {
-                        val userCode = "imp00383227"
-                        Log.d("하이", "결제시작인데?")
-                        Iamport.close()
-                        // 아임포트 SDK 에 결제 요청하기
-                        Iamport.payment(userCode, iamPortRequest = request, paymentResultCallback = {
-                        })
-
-                    }.show()
-            }
+            val intent = Intent(activity, OrderActivity::class.java)
+            intent.putExtra(SHOP_FIRST,mBinding.tvActivityShopTitle.text.toString())
+            intent.putExtra(SHOP_FIRST_PAY, mBinding.tvActivityShopSalesPrice.text.toString())
+            startActivity(intent)
         }
+
         mBinding.btnSecond.setOnClickListener {
             val intent = Intent(activity, OrderActivity::class.java)
             startActivity(intent)
@@ -76,5 +59,6 @@ class ShopFirstFragment : Fragment() {
             val intent = Intent(activity, OrderActivity::class.java)
             startActivity(intent)
         }
+
     }
 }
