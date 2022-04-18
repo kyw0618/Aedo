@@ -250,7 +250,7 @@ class LoginActivity : BaseActivity() {
         val birth = mBinding.etBitrhday.text.toString()
         val name = mBinding.etName.text.toString()
         val terms = termsVersion
-        val signdata = LoginResult(phone = phone, birth=birth, name=name, term=terms)
+        val signdata = LoginResult(phone = phone, birth=birth, name=name, terms=terms)
         apiServices.getSignUp(signdata).enqueue(object : Callback<LoginResult>{
             override fun onResponse(call: Call<LoginResult>, response: Response<LoginResult>) {
                 val result = response.body()

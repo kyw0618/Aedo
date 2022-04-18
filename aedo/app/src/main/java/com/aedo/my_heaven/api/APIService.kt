@@ -113,7 +113,7 @@ interface APIService {
                  @Body orders: Orders) : Call<ShopModel>
 
     //내 주문 조회 API
-    @GET("v1/oder/my")
+    @GET("v1/order/my")
     fun getMyOrder(@Header("Accesstoken")accesstoken:String?) : Call<MyOrder>
 
     @GET("v1/driving")

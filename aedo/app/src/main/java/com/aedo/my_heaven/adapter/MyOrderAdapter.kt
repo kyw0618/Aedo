@@ -2,15 +2,32 @@ package com.aedo.my_heaven.adapter
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.aedo.my_heaven.R
 import com.aedo.my_heaven.model.shop.MyOrders
+import com.aedo.my_heaven.util.`object`.Constant
+import com.aedo.my_heaven.util.`object`.Constant.MY_ORDER_CREATED
+import com.aedo.my_heaven.util.`object`.Constant.MY_ORDER_ITEM
+import com.aedo.my_heaven.util.`object`.Constant.MY_ORDER_PLACE_NAME
+import com.aedo.my_heaven.util.`object`.Constant.MY_ORDER_PLACE_NUMBER
+import com.aedo.my_heaven.util.`object`.Constant.MY_ORDER_PRICE
+import com.aedo.my_heaven.util.`object`.Constant.MY_ORDER_RECEIVER_NAME
+import com.aedo.my_heaven.util.`object`.Constant.MY_ORDER_RECEIVER_PHONE
+import com.aedo.my_heaven.util.`object`.Constant.MY_ORDER_SENDER_NAME
+import com.aedo.my_heaven.util.`object`.Constant.MY_ORDER_SENDER_PHONE
+import com.aedo.my_heaven.util.`object`.Constant.MY_ORDER_WORD_COMPANY
+import com.aedo.my_heaven.util.`object`.Constant.MY_ORDER_WORD_WORD
+import com.aedo.my_heaven.util.`object`.Constant.MY_ORDER_WORD_WORDSECOND
 import com.aedo.my_heaven.util.base.MyApplication
+import com.aedo.my_heaven.view.main.detail.shop.MyOrderDetailActivity
+import com.aedo.my_heaven.view.side.list.ListDetailActivity
 
 class MyOrderAdapter (private val postList : List<MyOrders>, val context : Context)
     : RecyclerView.Adapter<MyOrderAdapter.ViewHolder>(){
@@ -58,7 +75,20 @@ class MyOrderAdapter (private val postList : List<MyOrders>, val context : Conte
             myorder_send_name?.text = itemPhoto?.sender?.name.toString()
 
             cl_order?.setOnClickListener {
-
+                val intent = Intent(context, MyOrderDetailActivity::class.java)
+                intent.putExtra(MY_ORDER_PLACE_NAME, itemPhoto?.place?.name.toString())
+                intent.putExtra(MY_ORDER_PLACE_NUMBER, itemPhoto?.place?.number.toString())
+                intent.putExtra(MY_ORDER_ITEM, itemPhoto?.item.toString())
+                intent.putExtra(MY_ORDER_PRICE, itemPhoto?.price.toString())
+                intent.putExtra(MY_ORDER_RECEIVER_NAME, itemPhoto?.receiver?.name.toString())
+                intent.putExtra(MY_ORDER_RECEIVER_PHONE, itemPhoto?.receiver?.phone.toString())
+                intent.putExtra(MY_ORDER_SENDER_NAME, itemPhoto?.sender?.name.toString())
+                intent.putExtra(MY_ORDER_SENDER_PHONE, itemPhoto?.sender?.phone.toString())
+                intent.putExtra(MY_ORDER_WORD_COMPANY, itemPhoto?.word?.company.toString())
+                intent.putExtra(MY_ORDER_WORD_WORD, itemPhoto?.word?.word.toString())
+                intent.putExtra(MY_ORDER_WORD_WORDSECOND, itemPhoto?.word?.wordsecond.toString())
+                intent.putExtra(MY_ORDER_CREATED, itemPhoto?.created.toString())
+                ContextCompat.startActivity(itemView.context, intent, null)
             }
 
         }

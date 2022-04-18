@@ -45,6 +45,7 @@ class MyOrderActivity : BaseActivity() {
     }
 
     private fun inGetOrderAPI() {
+        LLog.e("내 주문목록 API")
         val vercall: Call<MyOrder> = apiServices.getMyOrder(prefs.myaccesstoken)
         vercall.enqueue(object : Callback<MyOrder> {
             override fun onResponse(call: Call<MyOrder>, response: Response<MyOrder>) {
@@ -65,9 +66,11 @@ class MyOrderActivity : BaseActivity() {
     }
 
     private fun otherAPI() {
+        LLog.e("내 주문목록 두번째 API")
         val vercall: Call<MyOrder> = apiServices.getMyOrder(prefs.newaccesstoken)
         vercall.enqueue(object : Callback<MyOrder> {
             override fun onResponse(call: Call<MyOrder>, response: Response<MyOrder>) {
+
                 val result = response.body()
                 if (response.isSuccessful && result != null) {
                     Log.d(LLog.TAG,"getMyOrder second response SUCCESS -> $result")

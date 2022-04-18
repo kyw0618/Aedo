@@ -104,7 +104,6 @@ object  Constant {
     const val SEARCH_PLACE = "SEARCH_PLACE"
 
     //Shop
-
     const val SHOP_FIRST = "SHOP_FIRST"
     const val SHOP_SECOND = "SHOP_SECOND"
     const val SHOP_THIRD = "SHOP_THIRD"
@@ -128,6 +127,20 @@ object  Constant {
 
     const val SHOP_EIGHT_PAY = "SHOP_EIGHT_PAY"
     const val SHOP_NINE_PAY = "SHOPT_NIE_PAY"
+
+    //My Order
+    const val MY_ORDER_PLACE_NAME = "MY_ORDER_PLACE_NAME"
+    const val MY_ORDER_PLACE_NUMBER = "MY_ORDER_PLACE_NUMBER"
+    const val MY_ORDER_ITEM = "MY_ORDER_ITEM"
+    const val MY_ORDER_PRICE = "MY_ORDER_PRICE"
+    const val MY_ORDER_RECEIVER_NAME = "MY_ORDER_RECEIVER_NAME"
+    const val MY_ORDER_RECEIVER_PHONE = "MY_ORDER_RECEIVER_NAME"
+    const val MY_ORDER_SENDER_NAME = "MY_ORDER_SENDER_NAME"
+    const val MY_ORDER_SENDER_PHONE = "MY_ORDER_SENDER_PHONE"
+    const val MY_ORDER_WORD_COMPANY = "MY_ORDER_WORD_COMPANY"
+    const val MY_ORDER_WORD_WORD = "MY_ORDER_WORD_WORD"
+    const val MY_ORDER_WORD_WORDSECOND = "MY_ORDER_WORD_WORDSECOND"
+    const val MY_ORDER_CREATED = "MY_ORDER_CREATED"
 
 
 

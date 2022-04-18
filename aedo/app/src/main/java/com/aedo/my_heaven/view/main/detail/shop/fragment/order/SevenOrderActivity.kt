@@ -150,7 +150,7 @@ class SevenOrderActivity : BaseActivity() {
         val price = mBinding.tvFlowerPayDetail.text.toString()
         val receiver = Receiver(mBinding.orderSetPerson.text.toString(), mBinding.orderSetPhone.text.toString())
         val sender = Sender(mBinding.orderSendPerson.text.toString(), mBinding.orderSendPhone.text.toString())
-        val word = Word(mBinding.orderSeondFlower.text.toString(), mBinding.orderTvSendPickText.text.toString())
+        val word = Word(mBinding.orderSeondFlower.text.toString(), mBinding.orderTvSendPickText.text.toString(),mBinding.orderSendTvStragith.text.toString())
         val createds = mBinding.tvMakeData.text.toString()
         val data = Orders(place, item, price,receiver, sender, word, created = createds)
 
@@ -181,7 +181,7 @@ class SevenOrderActivity : BaseActivity() {
         val price = mBinding.tvFlowerPayDetail.text.toString()
         val receiver = Receiver(mBinding.orderSetPerson.text.toString(), mBinding.orderSetPhone.text.toString())
         val sender = Sender(mBinding.orderSendPerson.text.toString(), mBinding.orderSendPhone.text.toString())
-        val word = Word(mBinding.orderSeondFlower.text.toString(), mBinding.orderTvSendPickText.text.toString())
+        val word = Word(mBinding.orderSeondFlower.text.toString(), mBinding.orderTvSendPickText.text.toString(),mBinding.orderSendTvStragith.text.toString())
         val createds = mBinding.tvMakeData.text.toString()
         val data = Orders(place, item, price,receiver, sender, word, created = createds)
 

@@ -32,5 +32,6 @@ data class MySender(
 
 data class MyWord(
     val company : String? = null,
-    val word : String? = null
+    val word : String? = null,
+    val wordsecond : String? = null
 )

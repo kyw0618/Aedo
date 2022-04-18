@@ -4,13 +4,15 @@ import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
+import android.graphics.BitmapFactory
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
-import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.startActivity
+import androidx.core.net.toUri
 import androidx.recyclerview.widget.RecyclerView
 import com.aedo.my_heaven.R
 import com.aedo.my_heaven.model.list.Obituaray
@@ -25,7 +27,6 @@ import com.aedo.my_heaven.util.`object`.Constant.PLACE_NAME
 import com.aedo.my_heaven.util.`object`.Constant.RESIDENT_NAME
 import com.aedo.my_heaven.util.base.MyApplication.Companion.prefs
 import com.aedo.my_heaven.util.log.LLog
-import com.aedo.my_heaven.util.log.LLog.TAG
 import com.aedo.my_heaven.view.side.list.ListDetailActivity
 import com.kakao.sdk.common.KakaoSdk
 import com.kakao.sdk.link.LinkClient
@@ -121,14 +122,15 @@ class RecyclerAdapter(private val postList: List<Obituaray>, val context: Contex
     }
 
     private fun kakaoShare(itemPhoto: Obituaray?) {
+        val imgs = itemPhoto?.imgName?.byteInputStream()
+        val bit = BitmapFactory.decodeStream(imgs)
         val defaultFeed = FeedTemplate(
             content = Content(
                 title = "故 ${itemPhoto?.deceased?.name.toString()}님 별세(${itemPhoto?.place.toString()})",
                 description = "임종 : ${itemPhoto?.coffin.toString()}",
-                imageUrl = "http://k.kakaocdn.net/dn/Q2iNx/btqgeRgV54P/VLdBs9cvyn8BJXB3o7N8UK/kakaolink40_original.png",
+                imageUrl = "http://k.kakaocdn.net/dn/m44LM/btrzKtNDLsa/ixqw0WJsnYl5r0Ax07tgvK/kakaolink40_original.png",
                 link = Link(
-                    webUrl = "https://developers.kakao.com",
-                    mobileWebUrl = "https://developers.kakao.com"
+                    mobileWebUrl = "https://play.google.com/store/apps/details?id=com.aedo.my_heaven"
                 )
             )
         )
@@ -143,6 +145,4 @@ class RecyclerAdapter(private val postList: List<Obituaray>, val context: Contex
             }
         }
     }
-
-
 }
