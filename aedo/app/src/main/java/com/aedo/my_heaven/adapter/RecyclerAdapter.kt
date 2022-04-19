@@ -10,9 +10,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat.startActivity
-import androidx.core.net.toUri
 import androidx.recyclerview.widget.RecyclerView
 import com.aedo.my_heaven.R
 import com.aedo.my_heaven.model.list.Obituaray
@@ -25,6 +25,7 @@ import com.aedo.my_heaven.util.`object`.Constant.LIST_IMG
 import com.aedo.my_heaven.util.`object`.Constant.LLIST_ID
 import com.aedo.my_heaven.util.`object`.Constant.PLACE_NAME
 import com.aedo.my_heaven.util.`object`.Constant.RESIDENT_NAME
+import com.aedo.my_heaven.util.`object`.Constant.TAG
 import com.aedo.my_heaven.util.base.MyApplication.Companion.prefs
 import com.aedo.my_heaven.util.log.LLog
 import com.aedo.my_heaven.view.side.list.ListDetailActivity
@@ -34,6 +35,7 @@ import com.kakao.sdk.template.model.Content
 import com.kakao.sdk.template.model.FeedTemplate
 import com.kakao.sdk.template.model.Link
 import kotlinx.android.synthetic.main.two_button_dialog.view.*
+
 
 class RecyclerAdapter(private val postList: List<Obituaray>, val context: Context)
     : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>(){
@@ -74,6 +76,7 @@ class RecyclerAdapter(private val postList: List<Obituaray>, val context: Contex
         val tx_body_info =   itemView?.findViewById<TextView>(R.id.tx_body_info)
         val btn_show = itemView?.findViewById<Button>(R.id.btn_list_show)
         val btn_share = itemView?.findViewById<Button>(R.id.btn_list_send)
+        val imgname = itemView?.findViewById<ImageView>(R.id.list_img)
 
         @SuppressLint("ResourceType")
         fun bind(itemPhoto : Obituaray?, context: Context){
@@ -82,6 +85,7 @@ class RecyclerAdapter(private val postList: List<Obituaray>, val context: Contex
             tx_body_name?.text = itemPhoto?.resident?.name.toString()
             tx_body_info?.text=itemPhoto?.place.toString()
             prefs.myListId = itemPhoto?.id
+            Log.d(TAG,"Recycler Img -> ${itemPhoto?.imgName.toString()}")
 
             btn_show?.setOnClickListener {
                 val intent = Intent(context, ListDetailActivity::class.java)
