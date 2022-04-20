@@ -9,5 +9,6 @@ data class UserGet(
     val phone : String? = null,
     val birth : String? = null,
     val name : String? = null,
+    val admin : String? = null,
     val terms : String? = null
 )

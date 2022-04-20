@@ -45,6 +45,7 @@
         <item name="cardCornerRadius">9dp</item>
         <item name="cardElevation">0dp</item>
     </style>
+
     <style name="AppTheme.Picker" parent="Theme.AppCompat.Light.NoActionBar" >
         <item name="android:textSize">18dp</item>
     </style>

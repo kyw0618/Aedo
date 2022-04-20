@@ -34,6 +34,7 @@
         android:usesCleartextTraffic="false"
         tools:replace="android:usesCleartextTraffic"
         tools:targetApi="n">
+
         <activity
             android:name=".view.main.detail.shop.MyOrderDetailActivity"
             android:exported="false" />
@@ -159,6 +160,7 @@
             android:exported="false" />
         <activity android:name=".view.main.MainActivity" />
         <activity android:name=".util.base.BaseActivity" />
+
         <activity
             android:name=".util.activity.ActivityController"
             android:exported="true">
