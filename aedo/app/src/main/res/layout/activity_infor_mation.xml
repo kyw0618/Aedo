@@ -87,7 +87,7 @@
                             android:layout_marginStart="20dp"
                             android:layout_marginTop="15dp"
                             android:fontFamily="@font/gyeonggititle_bold_title"
-                            android:text="1. 사업자 정보"
+                            android:text="1. 사업자 대표"
                             android:textColor="@color/black"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
@@ -145,7 +145,7 @@
                             android:layout_marginStart="20dp"
                             android:layout_marginTop="15dp"
                             android:fontFamily="@font/gyeonggititle_bold_title"
-                            android:text="2. 사업자 명"
+                            android:text="2. 상호 명"
                             android:textColor="@color/black"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
@@ -205,7 +205,7 @@
                             android:layout_marginStart="20dp"
                             android:layout_marginTop="15dp"
                             android:fontFamily="@font/gyeonggititle_bold_title"
-                            android:text="3. 사업장 소재지"
+                            android:text="3. 주소"
                             android:textColor="@color/black"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
@@ -266,7 +266,7 @@
                             android:layout_marginStart="20dp"
                             android:layout_marginTop="15dp"
                             android:fontFamily="@font/gyeonggititle_bold_title"
-                            android:text="4. 사업장 번호"
+                            android:text="4. 사업자 번호"
                             android:textColor="@color/black"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
@@ -382,10 +382,10 @@
                             android:id="@+id/tv_six"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="20dp"
-                            android:layout_marginTop="15dp"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="16dp"
                             android:fontFamily="@font/gyeonggititle_bold_title"
-                            android:text="6. 고객센터 : 010-2832-0516"
+                            android:text="6. 유선전화 : 010-2832-0516"
                             android:textColor="@color/black"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
