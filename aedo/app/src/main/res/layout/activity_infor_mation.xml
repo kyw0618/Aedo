@@ -145,7 +145,7 @@
                             android:layout_marginStart="20dp"
                             android:layout_marginTop="15dp"
                             android:fontFamily="@font/gyeonggititle_bold_title"
-                            android:text="2. 상호 명"
+                            android:text="2. 상호명"
                             android:textColor="@color/black"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
@@ -401,14 +401,9 @@
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/tv_six"
                             app:srcCompat="@drawable/line" />
-
                     </androidx.constraintlayout.widget.ConstraintLayout>
-
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>
-
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
