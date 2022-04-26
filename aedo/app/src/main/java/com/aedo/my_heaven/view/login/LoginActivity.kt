@@ -220,37 +220,14 @@ class LoginActivity : BaseActivity() {
         return super.dispatchTouchEvent(ev)
     }
 
-    private fun authrequest() {
-        LLog.e("로그인_로그인 API")
-        val phone = LoginSend(phone = mBinding.etPhonenum.text.toString())
-        apiServices.getLogin(phone).enqueue(object : Callback<LoginSend> {
-            override fun onResponse(call: Call<LoginSend>, response: Response<LoginSend>) {
-                val result = response.body()
-                if(response.isSuccessful&&result!=null) {
-                    prefs.myaccesstoken = result.accesstoken.toString()
-                    moveMain()
-                }
-                else {
-                    if (response.code() == 404) {
-                        sendsms()
-                        phoneSecond()
-                        prefs.myaccesstoken = result?.accesstoken.toString()
-                    }
-                }
-            }
-            override fun onFailure(call: Call<LoginSend>, t: Throwable) {
-                Log.d(TAG,"authrequest ERROR -> $t")
-            }
-        })
-    }
-
     private fun signrequest(termsVersion: String) {
         LLog.e("로그인_회원가입 API")
         val phone = mBinding.etPhonenum.text.toString()
         val birth = mBinding.etBitrhday.text.toString()
         val name = mBinding.etName.text.toString()
         val terms = termsVersion
-        val signdata = LoginResult(phone = phone, birth=birth, name=name, terms=terms)
+        val smsnumber = mBinding.etAuthnum.text.toString()
+        val signdata = LoginResult(phone = phone, birth=birth, name=name, terms=terms,smsnumber)
         apiServices.getSignUp(signdata).enqueue(object : Callback<LoginResult>{
             override fun onResponse(call: Call<LoginResult>, response: Response<LoginResult>) {
                 val result = response.body()
@@ -282,9 +259,6 @@ class LoginActivity : BaseActivity() {
             override fun onResponse(call: Call<LoginSMS>, response: Response<LoginSMS>) {
                 val result = response.body()
                 if(response.isSuccessful&& result!= null) {
-                    Log.d(TAG,"sendsms API SUCCESS -> $result")
-                    prefs.mysms  = result.user_auth_number
-                    Log.d(TAG,"SMS ->${prefs.mysms}")
                 }
                 else {
                     Log.d(TAG,"sendsms API ERROR -> ${response.errorBody()}")
@@ -292,6 +266,32 @@ class LoginActivity : BaseActivity() {
             }
             override fun onFailure(call: Call<LoginSMS>, t: Throwable) {
                 Log.d(TAG,"sendsms ERROR -> $t")
+            }
+        })
+    }
+
+    private fun authrequest() {
+        LLog.e("로그인_로그인 API")
+        val phone = mBinding.etPhonenum.text.toString()
+        val smsnumber = mBinding.etAuthnum.text.toString()
+
+        val data = LoginSend(phone, smsnumber )
+        apiServices.getLogin(data).enqueue(object : Callback<LoginSend> {
+            override fun onResponse(call: Call<LoginSend>, response: Response<LoginSend>) {
+                val result = response.body()
+                if(response.isSuccessful&&result!=null) {
+                    prefs.myaccesstoken = result.accesstoken.toString()
+                    moveMain()
+                }
+                else {
+                    if (response.code() == 404) {
+                        phoneThrid()
+                        prefs.myaccesstoken = result?.accesstoken.toString()
+                    }
+                }
+            }
+            override fun onFailure(call: Call<LoginSend>, t: Throwable) {
+                Log.d(TAG,"authrequest ERROR -> $t")
             }
         })
     }
@@ -310,13 +310,7 @@ class LoginActivity : BaseActivity() {
     }
 
     fun onCheckClick(v: View) {
-        val et_auth = mBinding.etAuthnum.text.toString()
-        if (prefs.mysms.equals(et_auth)) {
-            phoneThrid()
-        }
-        else {
-            smscheck()
-        }
+        authrequest()
     }
 
     fun onOkClick(v: View?) {
@@ -355,7 +349,8 @@ class LoginActivity : BaseActivity() {
             phonecheck()
         }
         else {
-           authrequest()
+            phoneSecond()
+            sendsms()
         }
     }
 }

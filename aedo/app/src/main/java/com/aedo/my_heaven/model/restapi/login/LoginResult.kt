@@ -7,6 +7,8 @@ data class LoginResult (
     var birth : String?=null,
     var name : String?=null,
     val terms : String?=null,
+    val smsnumber : String? = null,
+
     @SerializedName("Accesstoken")
     val accesstoken : String?=null
 )
