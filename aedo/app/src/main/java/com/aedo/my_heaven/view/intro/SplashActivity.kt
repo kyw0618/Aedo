@@ -1,14 +1,8 @@
 package com.aedo.my_heaven.view.intro
 
-import android.app.AlertDialog
-import android.content.ActivityNotFoundException
 import android.content.Intent
-import android.content.pm.PackageInfo
-import android.content.pm.PackageManager
-import android.net.Uri
 import android.os.*
 import android.util.Log
-import android.widget.TextView
 import android.widget.Toast
 import com.aedo.my_heaven.R
 import com.aedo.my_heaven.api.APIService
@@ -33,7 +27,6 @@ import com.google.android.play.core.appupdate.AppUpdateManager
 import com.google.android.play.core.appupdate.AppUpdateManagerFactory
 import com.google.android.play.core.install.model.AppUpdateType.IMMEDIATE
 import com.google.android.play.core.install.model.UpdateAvailability
-import kotlinx.android.synthetic.main.one_button_dialog.view.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
