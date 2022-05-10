@@ -235,7 +235,6 @@ class MakeActivity : BaseActivity() {
 
     private fun testOtherAPI() {
         val img: MutableList<MultipartBody.Part?> =  ArrayList()
-
         for (uri:Uri in files4) {
             uri.path?.let { Log.i("img", it) }
             img.add(prepareFilePart("img", uri))
