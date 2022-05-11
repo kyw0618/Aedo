@@ -110,7 +110,8 @@ class SideMenuActivity : BaseActivity() {
     }
 
     fun onCounClick(v: View) {
-        moveCounseling()
+        val intent = Intent(Intent.ACTION_VIEW, Uri.parse("http://pf.kakao.com/_Xuvxeb/chat"))
+        startActivity(intent)
     }
 
     override fun onBackPressed() {

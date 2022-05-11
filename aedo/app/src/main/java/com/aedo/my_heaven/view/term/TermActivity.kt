@@ -64,7 +64,7 @@ class TermActivity : BaseActivity() {
     }
 
     fun onBackClick(v: View) {
-        moveSide()
+        moveSetting()
     }
 
     override fun onBackPressed() {
