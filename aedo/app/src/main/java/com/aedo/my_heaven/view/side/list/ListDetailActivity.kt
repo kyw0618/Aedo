@@ -319,6 +319,7 @@ class ListDetailActivity : BaseActivity(),OnMapReadyCallback {
                 val result = response.body()
                 if (response.isSuccessful && result != null) {
                     Log.d(LLog.TAG,"ListImg  response SUCCESS -> $result")
+
                     Thread {
                         try {
                             val imgs = result.byteStream()
@@ -333,7 +334,6 @@ class ListDetailActivity : BaseActivity(),OnMapReadyCallback {
                                 textView.setImageBitmap(bit)
                                 val dialog = build.create()
                                 dialog.show()
-
                                 myLayout.img_finish.setOnClickListener {
                                     dialog.dismiss()
                                 }
@@ -343,6 +343,7 @@ class ListDetailActivity : BaseActivity(),OnMapReadyCallback {
 
                         }
                     }.start()
+
                 }
                 else {
                     Log.d(LLog.TAG,"ListImg  esponse ERROR -> $result")
@@ -472,9 +473,7 @@ class ListDetailActivity : BaseActivity(),OnMapReadyCallback {
             override fun onFailure(call: Call<ResultPath>, t: Throwable) {
                 Log.d(TAG,"네이버 길찾기 서버 연결 실패 -> $t")
             }
-
         })
-
     }
 
     private fun putID() {
