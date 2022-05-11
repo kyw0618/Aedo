@@ -23,6 +23,8 @@ class GuideActivity : BaseActivity() {
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_guide)
         mBinding.activity = this
         apiServices = ApiUtils.apiService
+        mBinding.lifecycleOwner = this
+
         inStatusBar()
     }
 

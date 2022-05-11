@@ -24,6 +24,8 @@ class PermissionActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_permission)
         binding.activity=this@PermissionActivity
+        binding.lifecycleOwner = this
+
         inStatusBar()
 
     }

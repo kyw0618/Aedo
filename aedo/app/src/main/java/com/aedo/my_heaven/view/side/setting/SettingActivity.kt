@@ -32,6 +32,8 @@ class SettingActivity : BaseActivity() {
         mBinding=DataBindingUtil.setContentView(this, R.layout.activity_setting)
         mBinding.activity = this@SettingActivity
         apiServices = ApiUtils.apiService
+        mBinding.lifecycleOwner = this
+
         inStatusBar()
         initView()
     }

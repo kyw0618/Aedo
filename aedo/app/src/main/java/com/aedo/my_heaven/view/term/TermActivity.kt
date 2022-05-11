@@ -27,6 +27,8 @@ class TermActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_term)
         mBinding.activity = this
+        mBinding.lifecycleOwner = this
+
         apiServices = ApiUtils.apiService
         inStatusBar()
         initTermAPI()

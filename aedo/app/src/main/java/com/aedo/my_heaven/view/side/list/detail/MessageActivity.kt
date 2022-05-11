@@ -38,6 +38,8 @@ class MessageActivity : BaseActivity() {
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_message)
         mBinding.activity = this@MessageActivity
         apiServices = ApiUtils.apiService
+        mBinding.lifecycleOwner = this
+
         inStatusBar()
         inRecycler()
     }

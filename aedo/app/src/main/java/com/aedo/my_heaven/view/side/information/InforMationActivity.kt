@@ -21,6 +21,8 @@ class InforMationActivity : BaseActivity() {
         mBinding = DataBindingUtil.setContentView(this,R.layout.activity_infor_mation)
         mBinding.activity = this
         apiServices = ApiUtils.apiService
+        mBinding.lifecycleOwner = this
+
         inStatusBar()
     }
 

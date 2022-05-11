@@ -43,6 +43,8 @@ class SplashActivity : BaseActivity() {
         binding = ActivitySplashBinding.inflate(layoutInflater)
         setContentView(binding.root)
         apiServices = ApiUtils.apiService
+        binding.lifecycleOwner = this
+
         inStatusBar()
         checkNetwork()
 //        moveActivity()

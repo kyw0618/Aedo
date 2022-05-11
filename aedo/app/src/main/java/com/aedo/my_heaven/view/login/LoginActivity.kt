@@ -62,6 +62,8 @@ class LoginActivity : BaseActivity() {
         mBinding.tvTitle.text = Html.fromHtml(getString(R.string.login_desc1))
         mBinding.tvTitleSub.text = getText(R.string.login_subtitle1)
         apiServices = ApiUtils.apiService
+        mBinding.lifecycleOwner = this
+
         inStatusBar()
         initView()
     }

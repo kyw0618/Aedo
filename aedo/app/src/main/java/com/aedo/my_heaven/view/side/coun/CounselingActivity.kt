@@ -36,6 +36,7 @@ class CounselingActivity : BaseActivity() {
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_counseling)
         mBinding.activity = this
         apiServices = ApiUtils.apiService
+        mBinding.lifecycleOwner = this
         inStatusBar()
         initRecycler()
     }

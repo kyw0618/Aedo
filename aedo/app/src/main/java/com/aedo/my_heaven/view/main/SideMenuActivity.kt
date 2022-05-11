@@ -27,6 +27,7 @@ class SideMenuActivity : BaseActivity() {
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_side_menu)
         mBinding.activity=this@SideMenuActivity
         apiServices = ApiUtils.apiService
+        mBinding.lifecycleOwner = this
         inStatusBar()
         initAPI()
     }
