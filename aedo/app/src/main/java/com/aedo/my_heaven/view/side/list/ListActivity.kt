@@ -36,6 +36,8 @@ class ListActivity : BaseActivity() {
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_list)
         mBinding.activity=this@ListActivity
         apiServices = ApiUtils.apiService
+        mBinding.lifecycleOwner = this
+
         dialog = LoadingDialog(this)
         KakaoSdk.init(this, getString(R.string.kakao_key))
         inStatusBar()

@@ -35,6 +35,7 @@ class NoticeActivity : BaseActivity() {
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_notice)
         mBinding.activity = this
         apiServices = ApiUtils.apiService
+        mBinding.lifecycleOwner = this
         inStatusBar()
         inNoticeAPI()
     }

@@ -29,6 +29,7 @@ class UploadCounselingActivity : BaseActivity() {
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_upload_counseling)
         mBinding.activity = this
         mBinding.vm = mViewModel
+        mBinding.lifecycleOwner = this
         apiServices = ApiUtils.apiService
         inStatusBar()
         initView()

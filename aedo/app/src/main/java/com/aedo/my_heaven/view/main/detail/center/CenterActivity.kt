@@ -1,6 +1,7 @@
 package com.aedo.my_heaven.view.main.detail.center
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import androidx.databinding.DataBindingUtil
@@ -36,7 +37,8 @@ class CenterActivity : BaseActivity() {
     }
 
     fun onCounCLick(v: View) {
-        moveCounseling()
+        val intent = Intent(Intent.ACTION_VIEW, Uri.parse("http://pf.kakao.com/_Xuvxeb/chat"))
+        startActivity(intent)
     }
 
     override fun onBackPressed() {

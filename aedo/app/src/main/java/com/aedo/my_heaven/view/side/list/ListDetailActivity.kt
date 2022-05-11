@@ -74,6 +74,8 @@ class ListDetailActivity : BaseActivity(),OnMapReadyCallback {
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_listdetail)
         mBinding.activity=this@ListDetailActivity
         apiServices = ApiUtils.apiService
+        mBinding.lifecycleOwner = this
+
         dialog = LoadingDialog(this)
         inStatusBar()
         inRecycler()

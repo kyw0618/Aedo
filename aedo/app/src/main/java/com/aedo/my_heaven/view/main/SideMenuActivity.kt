@@ -27,6 +27,7 @@ class SideMenuActivity : BaseActivity() {
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_side_menu)
         mBinding.activity=this@SideMenuActivity
         apiServices = ApiUtils.apiService
+        mBinding.lifecycleOwner = this
         inStatusBar()
         initAPI()
     }
@@ -110,7 +111,8 @@ class SideMenuActivity : BaseActivity() {
     }
 
     fun onCounClick(v: View) {
-        moveCounseling()
+        val intent = Intent(Intent.ACTION_VIEW, Uri.parse("http://pf.kakao.com/_Xuvxeb/chat"))
+        startActivity(intent)
     }
 
     override fun onBackPressed() {

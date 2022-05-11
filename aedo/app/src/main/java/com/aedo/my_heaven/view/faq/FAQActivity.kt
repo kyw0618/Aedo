@@ -21,6 +21,8 @@ class FAQActivity : BaseActivity() {
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_faqactivity)
         mBinding.activity = this
         apiServices = ApiUtils.apiService
+        mBinding.lifecycleOwner = this
+
         dialog = LoadingDialog(this)
         inStatusBar()
     }
