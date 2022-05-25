@@ -167,11 +167,11 @@ class SplashActivity : BaseActivity() {
             realm.where(Code::class.java).findAll().deleteAllFromRealm()
             realm.where(AppMenu::class.java).findAll().deleteAllFromRealm()
             realm.where(Coordinates::class.java).findAll().deleteAllFromRealm()
+
             realm.copyToRealm(result.policy!!)
             realm.copyToRealm(result.code!!)
             realm.copyToRealm(result.app_menu!!)
             realm.copyToRealm(result.coordinates!!)
-
         }
     }
 

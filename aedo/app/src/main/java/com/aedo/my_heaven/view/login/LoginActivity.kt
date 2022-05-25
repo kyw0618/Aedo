@@ -132,8 +132,6 @@ class LoginActivity : BaseActivity() {
         mBinding.tvPhonenumInputAgain.text = phoneAgainSpan
         mBinding.tvPhonenumInputAgain.isClickable = true
         mBinding.tvPhonenumInputAgain.movementMethod = LinkMovementMethod.getInstance()
-        mBinding.tvPhonenumInputAgain.isClickable = true
-        mBinding.tvPhonenumInputAgain.movementMethod = LinkMovementMethod.getInstance()
     }
 
     private fun callresult() {
