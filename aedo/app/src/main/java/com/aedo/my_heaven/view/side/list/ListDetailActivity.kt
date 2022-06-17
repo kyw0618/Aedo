@@ -66,6 +66,7 @@ import java.lang.Exception
 class ListDetailActivity : BaseActivity(),OnMapReadyCallback {
     private lateinit var mBinding: ActivityListdetailBinding
     private lateinit var apiServices: APIService
+
     private var locationSource: FusedLocationSource? = null
     private var mMap: NaverMap?=null
 
@@ -341,7 +342,6 @@ class ListDetailActivity : BaseActivity(),OnMapReadyCallback {
                             }
                         }
                         catch (e: Exception) {
-
                         }
                     }.start()
 

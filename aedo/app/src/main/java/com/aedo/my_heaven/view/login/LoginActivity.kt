@@ -259,6 +259,7 @@ class LoginActivity : BaseActivity() {
             override fun onResponse(call: Call<LoginSMS>, response: Response<LoginSMS>) {
                 val result = response.body()
                 if(response.isSuccessful&& result!= null) {
+                    Log.d(TAG,"로그인 테스트 -> $result")
                 }
                 else {
                     Log.d(TAG,"sendsms API ERROR -> ${response.errorBody()}")
