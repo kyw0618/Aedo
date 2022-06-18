@@ -35,9 +35,6 @@
         tools:replace="android:usesCleartextTraffic"
         tools:targetApi="n">
         <activity
-            android:name=".TestActivity"
-            android:exported="false" />
-        <activity
             android:name=".view.main.detail.shop.MyOrderDetailActivity"
             android:exported="false" />
         <activity
