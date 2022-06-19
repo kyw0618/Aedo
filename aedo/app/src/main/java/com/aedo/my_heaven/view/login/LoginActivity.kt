@@ -275,24 +275,25 @@ class LoginActivity : BaseActivity() {
         LLog.e("로그인_로그인 API")
         val phone = mBinding.etPhonenum.text.toString()
         val smsnumber = mBinding.etAuthnum.text.toString()
-
         val data = LoginSend(phone, smsnumber )
         apiServices.getLogin(data).enqueue(object : Callback<LoginSend> {
             override fun onResponse(call: Call<LoginSend>, response: Response<LoginSend>) {
                 val result = response.body()
                 if(response.isSuccessful&&result!=null) {
                     prefs.myaccesstoken = result.accesstoken.toString()
+                    Log.d(TAG,"로그인 성공 ->$result")
                     moveMain()
                 }
                 else {
-                    if (response.code() == 404) {
+                    if (response.code() == 403) {
                         phoneThrid()
                         prefs.myaccesstoken = result?.accesstoken.toString()
+                        Log.d(TAG,"로그인 실패 ->${response.errorBody()}")
                     }
                 }
             }
             override fun onFailure(call: Call<LoginSend>, t: Throwable) {
-                Log.d(TAG,"authrequest ERROR -> $t")
+                Log.d(TAG,"4566 ERROR -> $t")
             }
         })
     }
