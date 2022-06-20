@@ -228,6 +228,7 @@ class LoginActivity : BaseActivity() {
         val terms = termsVersion
         val smsnumber = mBinding.etAuthnum.text.toString()
         val signdata = LoginResult(phone = phone, birth=birth, name=name, terms=terms,smsnumber)
+
         apiServices.getSignUp(signdata).enqueue(object : Callback<LoginResult>{
             override fun onResponse(call: Call<LoginResult>, response: Response<LoginResult>) {
                 val result = response.body()
