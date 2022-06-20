@@ -34,7 +34,6 @@
         android:usesCleartextTraffic="false"
         tools:replace="android:usesCleartextTraffic"
         tools:targetApi="n">
-
         <activity
             android:name=".view.main.detail.shop.MyOrderDetailActivity"
             android:exported="false" />
@@ -160,7 +159,6 @@
             android:exported="false" />
         <activity android:name=".view.main.MainActivity" />
         <activity android:name=".util.base.BaseActivity" />
-
         <activity
             android:name=".util.activity.ActivityController"
             android:exported="true">
@@ -169,7 +167,6 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
@@ -182,7 +179,6 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
 
         <meta-data

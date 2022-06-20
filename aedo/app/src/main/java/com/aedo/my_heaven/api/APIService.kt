@@ -47,7 +47,7 @@ interface APIService {
 
     // 회원정보 API
     @GET("v1/user")
-    fun getUser(@Header("Accesstoken")accesstoken: String?): Call<GetUser>
+    fun getUser(@Header("Accesstoken")accesstoken: String?,): Call<GetUser>
 
     // 약관보기 API
     @GET("v1/user/terms")
