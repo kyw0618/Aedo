@@ -212,42 +212,42 @@ class SplashActivity : BaseActivity() {
             return
         }
         emergencyPopup()
-        checkAppVersion()
+//        checkAppVersion()
     }
 
-    // App 버전 체크
-    private fun checkAppVersion() {
-        LLog.e("앱 버전체크")
-        val versionCode: Policy? =
-            realm.where(Policy::class.java).equalTo("id", "APP_VERSION").findFirst()
-        val androidVersion = com.aedo.my_heaven.BuildConfig.VERSION_NAME
-        if (versionCode != null) {
-            if (versionCode.equals(androidVersion)) {
-                Log.d(TAG,"Android Version SAME")
-        } else {
-                showAppUpdate()
-                return
-            }
-        }
-        else {
-            serverDialog()
-        }
-    }
-
-    //앱 업데이트
-    private fun showAppUpdate() {
-        LLog.e("앱 업데이트")
-        appUpdate = AppUpdateManagerFactory.create(this)
-        val appupdateInfoTask = appUpdate!!.appUpdateInfo
-        appupdateInfoTask.addOnSuccessListener { appUpdateInfo ->
-            if(appUpdateInfo.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE) {
-                appUpdate!!.startUpdateFlowForResult(appUpdateInfo,IMMEDIATE,this,Constant.APP_UPDATE)
-            }
-            else {
-                emergencyPopup()
-            }
-        }
-    }
+//    // App 버전 체크
+//    private fun checkAppVersion() {
+//        LLog.e("앱 버전체크")
+//        val versionCode: Policy? =
+//            realm.where(Policy::class.java).equalTo("id", "APP_VERSION").findFirst()
+//        val androidVersion = com.aedo.my_heaven.BuildConfig.VERSION_NAME
+//        if (versionCode != null) {
+//            if (versionCode.equals(androidVersion)) {
+//                Log.d(TAG,"Android Version SAME")
+//        } else {
+//                showAppUpdate()
+//                return
+//            }
+//        }
+//        else {
+//            serverDialog()
+//        }
+//    }
+//
+//    //앱 업데이트
+//    private fun showAppUpdate() {
+//        LLog.e("앱 업데이트")
+//        appUpdate = AppUpdateManagerFactory.create(this)
+//        val appupdateInfoTask = appUpdate!!.appUpdateInfo
+//        appupdateInfoTask.addOnSuccessListener { appUpdateInfo ->
+//            if(appUpdateInfo.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE) {
+//                appUpdate!!.startUpdateFlowForResult(appUpdateInfo,IMMEDIATE,this,Constant.APP_UPDATE)
+//            }
+//            else {
+//                emergencyPopup()
+//            }
+//        }
+//    }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
