@@ -32,6 +32,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.My_Heaven"
         android:usesCleartextTraffic="false"
+        android:resizeableActivity="true"
         tools:replace="android:usesCleartextTraffic"
         tools:targetApi="n">
         <activity
@@ -184,6 +185,9 @@
         <meta-data
             android:name="com.naver.maps.map.CLIENT_ID"
             android:value="@string/client_id" />
+
+        <meta-data
+            android:name="android.allow_multiple_resumed_activities" android:value="true" />
     </application>
 
 </manifest>
