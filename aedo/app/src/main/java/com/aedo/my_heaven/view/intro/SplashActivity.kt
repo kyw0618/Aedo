@@ -211,7 +211,7 @@ class SplashActivity : BaseActivity() {
             serverDialog()
             return
         }
-        emergencyPopup()
+//        emergencyPopup()
 //        checkAppVersion()
     }
 
@@ -249,48 +249,49 @@ class SplashActivity : BaseActivity() {
 //        }
 //    }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == Constant.APP_UPDATE) {
-            MaterialAlertDialogBuilder(this).setPositiveButton("OK") {
-                _,_ ->
-            }
-                .setMessage(getString(R.string.need_update_app))
-                .show()
-        }
-    }
+//    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+//        super.onActivityResult(requestCode, resultCode, data)
+//        if (requestCode == Constant.APP_UPDATE) {
+//            MaterialAlertDialogBuilder(this).setPositiveButton("OK") {
+//                _,_ ->
+//            }
+//                .setMessage(getString(R.string.need_update_app))
+//                .show()
+//        }
+//    }
 
-    // 긴급공지 체크
-    private fun emergencyPopup() {
-        LLog.e("긴급공지 체크")
-        val popupTime: Policy? =
-            realm.where(Policy::class.java).equalTo("id","POPUP_TIME_END").findFirst()
-        val popupContent: Policy? =
-            realm.where(Policy::class.java).equalTo("id", "POPUP_CONTENT").findFirst()
-        val popupEnable: Policy? =
-            realm.where(Policy::class.java).equalTo("id", "POPUP_ENABLE_YN").findFirst()
+//    // 긴급공지 체크
+//    private fun emergencyPopup() {
+//        LLog.e("긴급공지 체크")
+//        val popupTime: Policy? =
+//            realm.where(Policy::class.java).equalTo("id","POPUP_TIME_END").findFirst()
+//        val popupContent: Policy? =
+//            realm.where(Policy::class.java).equalTo("id", "POPUP_CONTENT").findFirst()
+//        val popupEnable: Policy? =
+//            realm.where(Policy::class.java).equalTo("id", "POPUP_ENABLE_YN").findFirst()
+//
+//        if (popupEnable != null) {
+//            if ("Y" == popupEnable.value && TextStyle.compareDateAvailable(
+//                    popupTime!!.value!!,
+//                    "yyyyMMddHHmmss"
+//                ) && !prefs.getStr(Constant.PREF_EMERGENCY_NOTICE_NOT_SHOW, "").equals(popupTime.value)
+//            ) {
+//                val dialog = CustomDialog(this)
+//                if (popupContent != null) {
+//                    dialog.text(popupContent.value)
+//                        ?.positive(getString(R.string.ok)) {
+//                            dialog.dismiss()
+//                        }
+//                        ?.negative(getString(R.string.not_show_again)) {
+//                            dialog.dismiss()
+//                            prefs.setStr(Constant.PREF_EMERGENCY_NOTICE_NOT_SHOW, popupTime.value)
+//                        }!!.cancelable(false).show()
+//                }
+//                return
+//            }
+//        }
+//    }
 
-        if (popupEnable != null) {
-            if ("Y" == popupEnable.value && TextStyle.compareDateAvailable(
-                    popupTime!!.value!!,
-                    "yyyyMMddHHmmss"
-                ) && !prefs.getStr(Constant.PREF_EMERGENCY_NOTICE_NOT_SHOW, "").equals(popupTime.value)
-            ) {
-                val dialog = CustomDialog(this)
-                if (popupContent != null) {
-                    dialog.text(popupContent.value)
-                        ?.positive(getString(R.string.ok)) {
-                            dialog.dismiss()
-                        }
-                        ?.negative(getString(R.string.not_show_again)) {
-                            dialog.dismiss()
-                            prefs.setStr(Constant.PREF_EMERGENCY_NOTICE_NOT_SHOW, popupTime.value)
-                        }!!.cancelable(false).show()
-                }
-                return
-            }
-        }
-    }
     private fun moveLogin() {
         ActivityControlManager.delayRun({
             moveAndFinishActivity(LoginActivity::class.java) },
@@ -298,15 +299,15 @@ class SplashActivity : BaseActivity() {
         )
     }
 
-    override fun onResume() {
-        super.onResume()
-        appUpdate?.appUpdateInfo?.addOnSuccessListener {
-                appUpdateInfo ->
-            if(appUpdateInfo.updateAvailability() == UpdateAvailability.DEVELOPER_TRIGGERED_UPDATE_IN_PROGRESS) {
-                appUpdate?.startUpdateFlowForResult(
-                    appUpdateInfo, IMMEDIATE,this,Constant.APP_UPDATE
-                )
-            }
-        }
-    }
+//    override fun onResume() {
+//        super.onResume()
+//        appUpdate?.appUpdateInfo?.addOnSuccessListener {
+//                appUpdateInfo ->
+//            if(appUpdateInfo.updateAvailability() == UpdateAvailability.DEVELOPER_TRIGGERED_UPDATE_IN_PROGRESS) {
+//                appUpdate?.startUpdateFlowForResult(
+//                    appUpdateInfo, IMMEDIATE,this,Constant.APP_UPDATE
+//                )
+//            }
+//        }
+//    }
 }

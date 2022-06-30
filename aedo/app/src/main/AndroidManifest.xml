@@ -33,6 +33,7 @@
         android:theme="@style/Theme.My_Heaven"
         android:usesCleartextTraffic="false"
         android:resizeableActivity="true"
+        android:exported ="true"
         tools:replace="android:usesCleartextTraffic"
         tools:targetApi="n">
         <activity
