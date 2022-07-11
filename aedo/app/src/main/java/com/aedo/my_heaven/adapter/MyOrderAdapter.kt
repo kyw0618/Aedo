@@ -59,7 +59,6 @@ class MyOrderAdapter (private val postList : List<MyOrders>, val context : Conte
         return postList.count()
     }
 
-
     inner class ViewHolder (itemView: View? ) : RecyclerView.ViewHolder(itemView!!){
 
         val order_flower = itemView?.findViewById<TextView>(R.id.tv_flower_pay)
@@ -93,5 +92,4 @@ class MyOrderAdapter (private val postList : List<MyOrders>, val context : Conte
 
         }
     }
-
 }

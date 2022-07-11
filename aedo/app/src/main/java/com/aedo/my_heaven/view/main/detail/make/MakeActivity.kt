@@ -67,6 +67,8 @@ class MakeActivity : BaseActivity() {
         mBinding.imgPake.clipToOutline = true
 
         inStatusBar()
+
+
         makeTop()
         setupSpinnerHandler()
     }
