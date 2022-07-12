@@ -211,86 +211,87 @@ class SplashActivity : BaseActivity() {
             serverDialog()
             return
         }
-        emergencyPopup()
-        checkAppVersion()
+//        emergencyPopup()
+//        checkAppVersion()
     }
 
-    // App 버전 체크
-    private fun checkAppVersion() {
-        LLog.e("앱 버전체크")
-        val versionCode: Policy? =
-            realm.where(Policy::class.java).equalTo("id", "APP_VERSION").findFirst()
-        val androidVersion = com.aedo.my_heaven.BuildConfig.VERSION_NAME
-        if (versionCode != null) {
-            if (versionCode.equals(androidVersion)) {
-                Log.d(TAG,"Android Version SAME")
-        } else {
-                showAppUpdate()
-                return
-            }
-        }
-        else {
-            serverDialog()
-        }
-    }
+//    // App 버전 체크
+//    private fun checkAppVersion() {
+//        LLog.e("앱 버전체크")
+//        val versionCode: Policy? =
+//            realm.where(Policy::class.java).equalTo("id", "APP_VERSION").findFirst()
+//        val androidVersion = com.aedo.my_heaven.BuildConfig.VERSION_NAME
+//        if (versionCode != null) {
+//            if (versionCode.equals(androidVersion)) {
+//                Log.d(TAG,"Android Version SAME")
+//        } else {
+//                showAppUpdate()
+//                return
+//            }
+//        }
+//        else {
+//            serverDialog()
+//        }
+//    }
+//
+//    //앱 업데이트
+//    private fun showAppUpdate() {
+//        LLog.e("앱 업데이트")
+//        appUpdate = AppUpdateManagerFactory.create(this)
+//        val appupdateInfoTask = appUpdate!!.appUpdateInfo
+//        appupdateInfoTask.addOnSuccessListener { appUpdateInfo ->
+//            if(appUpdateInfo.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE) {
+//                appUpdate!!.startUpdateFlowForResult(appUpdateInfo,IMMEDIATE,this,Constant.APP_UPDATE)
+//            }
+//            else {
+//                emergencyPopup()
+//            }
+//        }
+//    }
 
-    //앱 업데이트
-    private fun showAppUpdate() {
-        LLog.e("앱 업데이트")
-        appUpdate = AppUpdateManagerFactory.create(this)
-        val appupdateInfoTask = appUpdate!!.appUpdateInfo
-        appupdateInfoTask.addOnSuccessListener { appUpdateInfo ->
-            if(appUpdateInfo.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE) {
-                appUpdate!!.startUpdateFlowForResult(appUpdateInfo,IMMEDIATE,this,Constant.APP_UPDATE)
-            }
-            else {
-                emergencyPopup()
-            }
-        }
-    }
+//    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+//        super.onActivityResult(requestCode, resultCode, data)
+//        if (requestCode == Constant.APP_UPDATE) {
+//            MaterialAlertDialogBuilder(this).setPositiveButton("OK") {
+//                _,_ ->
+//            }
+//                .setMessage(getString(R.string.need_update_app))
+//                .show()
+//        }
+//    }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == Constant.APP_UPDATE) {
-            MaterialAlertDialogBuilder(this).setPositiveButton("OK") {
-                _,_ ->
-            }
-                .setMessage(getString(R.string.need_update_app))
-                .show()
-        }
-    }
+//    // 긴급공지 체크
+//    private fun emergencyPopup() {
+//        LLog.e("긴급공지 체크")
+//        val popupTime: Policy? =
+//            realm.where(Policy::class.java).equalTo("id","POPUP_TIME_END").findFirst()
+//        val popupContent: Policy? =
+//            realm.where(Policy::class.java).equalTo("id", "POPUP_CONTENT").findFirst()
+//        val popupEnable: Policy? =
+//            realm.where(Policy::class.java).equalTo("id", "POPUP_ENABLE_YN").findFirst()
+//
+//        if (popupEnable != null) {
+//            if ("Y" == popupEnable.value && TextStyle.compareDateAvailable(
+//                    popupTime!!.value!!,
+//                    "yyyyMMddHHmmss"
+//                ) && !prefs.getStr(Constant.PREF_EMERGENCY_NOTICE_NOT_SHOW, "").equals(popupTime.value)
+//            ) {
+//                val dialog = CustomDialog(this)
+//                if (popupContent != null) {
+//                    dialog.text(popupContent.value)
+//                        ?.positive(getString(R.string.ok)) {
+//                            dialog.dismiss()
+//                        }
+//                        ?.negative(getString(R.string.not_show_again)) {
+//                            dialog.dismiss()
+//                            prefs.setStr(Constant.PREF_EMERGENCY_NOTICE_NOT_SHOW, popupTime.value)
+//                        }!!.cancelable(false).show()
+//                }
+//                return
+//            }
+//        }
+//    }
 
-    // 긴급공지 체크
-    private fun emergencyPopup() {
-        LLog.e("긴급공지 체크")
-        val popupTime: Policy? =
-            realm.where(Policy::class.java).equalTo("id","POPUP_TIME_END").findFirst()
-        val popupContent: Policy? =
-            realm.where(Policy::class.java).equalTo("id", "POPUP_CONTENT").findFirst()
-        val popupEnable: Policy? =
-            realm.where(Policy::class.java).equalTo("id", "POPUP_ENABLE_YN").findFirst()
-
-        if (popupEnable != null) {
-            if ("Y" == popupEnable.value && TextStyle.compareDateAvailable(
-                    popupTime!!.value!!,
-                    "yyyyMMddHHmmss"
-                ) && !prefs.getStr(Constant.PREF_EMERGENCY_NOTICE_NOT_SHOW, "").equals(popupTime.value)
-            ) {
-                val dialog = CustomDialog(this)
-                if (popupContent != null) {
-                    dialog.text(popupContent.value)
-                        ?.positive(getString(R.string.ok)) {
-                            dialog.dismiss()
-                        }
-                        ?.negative(getString(R.string.not_show_again)) {
-                            dialog.dismiss()
-                            prefs.setStr(Constant.PREF_EMERGENCY_NOTICE_NOT_SHOW, popupTime.value)
-                        }!!.cancelable(false).show()
-                }
-                return
-            }
-        }
-    }
     private fun moveLogin() {
         ActivityControlManager.delayRun({
             moveAndFinishActivity(LoginActivity::class.java) },
@@ -298,15 +299,15 @@ class SplashActivity : BaseActivity() {
         )
     }
 
-    override fun onResume() {
-        super.onResume()
-        appUpdate?.appUpdateInfo?.addOnSuccessListener {
-                appUpdateInfo ->
-            if(appUpdateInfo.updateAvailability() == UpdateAvailability.DEVELOPER_TRIGGERED_UPDATE_IN_PROGRESS) {
-                appUpdate?.startUpdateFlowForResult(
-                    appUpdateInfo, IMMEDIATE,this,Constant.APP_UPDATE
-                )
-            }
-        }
-    }
+//    override fun onResume() {
+//        super.onResume()
+//        appUpdate?.appUpdateInfo?.addOnSuccessListener {
+//                appUpdateInfo ->
+//            if(appUpdateInfo.updateAvailability() == UpdateAvailability.DEVELOPER_TRIGGERED_UPDATE_IN_PROGRESS) {
+//                appUpdate?.startUpdateFlowForResult(
+//                    appUpdateInfo, IMMEDIATE,this,Constant.APP_UPDATE
+//                )
+//            }
+//        }
+//    }
 }

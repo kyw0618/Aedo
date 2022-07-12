@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.aedo.my_heaven.R
+import com.aedo.my_heaven.R.layout.activity_search
 import com.aedo.my_heaven.adapter.SearchAdapter
 import com.aedo.my_heaven.api.APIService
 import com.aedo.my_heaven.api.ApiUtils
@@ -31,7 +32,7 @@ class SearchActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        mBinding = DataBindingUtil.setContentView(this, R.layout.activity_search)
+        mBinding = DataBindingUtil.setContentView(this, activity_search)
         mBinding.activity = this@SearchActivity
         apiServices = ApiUtils.apiService
         inStatusBar()
