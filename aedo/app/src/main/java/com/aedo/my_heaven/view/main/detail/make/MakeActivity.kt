@@ -347,6 +347,7 @@ class MakeActivity : BaseActivity() {
     @SuppressLint("SetTextI18n")
     fun onDofpDataClick(v: View) {
         var dateString = ""
+
         val cal = Calendar.getInstance()
         val dateSetListener = DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
             dateString = "${year}년 ${month+1}월 ${dayOfMonth}일"
